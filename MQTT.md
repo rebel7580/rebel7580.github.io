@@ -36,7 +36,9 @@ Same as the "-nodevice" option in the manual method.
 <li>
 Click "Run" when all selections are complete. If you have the debug plug-in running, you will see messages for each object selected. This is particularly useful when "Test" is selected.
 </ul>
+
 Discovery tab visibility as well as the selection of settings on the Discovery screen are **volatile**; they are not saved when the plug-in is shut down, unlike other plug-in settings.
+
 <h2>Manual Method</h2>
 The MQTT Plug-in contains a public procedure to do discovery:
 <pre>
@@ -202,8 +204,6 @@ Example (as provided by the Caseta Plug-in):
         ...
     }
 </pre>
-</ul>
-
 <h2>HomeVision Object Discovery Details</h2>
 An MQTT discovery message is sent in the form:
 <pre>
