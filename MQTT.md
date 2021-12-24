@@ -16,6 +16,12 @@ $Date: 2021/12/23 02:06:55 $
     <li><a href="#h2-Built-in" id="markdown-toc-h2-header">Built-in Method</a></li>
     <ul>
       <li><a href="#h3-Using-Built-in">Using the Built-in Method</a></li>
+    </ul>
+    <li><a href="#h2-Manual" id="markdown-toc-h2-header">Manual Method</a></li>
+    <li><a href="#h2-Obj-Dis" id="markdown-toc-h2-header">HomeVision Object Discovery Details</a></li>
+  </ul>
+</ul>
+
 
 
 <h1 id="h1-How"><b>MQTT - How to Use Home Assistant Auto Discovery</b></h1>
@@ -50,7 +56,7 @@ Click "Run" when all selections are complete. If you have the debug plug-in runn
 
 Discovery tab visibility as well as the selection of settings on the Discovery screen are **volatile**; they are not saved when the plug-in is shut down, unlike other plug-in settings.
 
-<h2>Manual Method</h2>
+<h2 id="#h2-Manual">Manual Method</h2>
 The MQTT Plug-in contains a public procedure to do discovery:
 <pre>
     hvObjectDiscovery {-noid} {-nous} {-nodevice} {-retain} <i>add</i> {<i>object_type</i> {<i>id1 id2 ...</i>}}
@@ -130,7 +136,7 @@ Examples:
       hvObjectDiscovery -noid -nous 1 flag 10
       hvObjectDiscovery -noid -nous 1 x10 1 21 46
 </pre>
-<h2>Notes</h2>
+<h2 id="#h2-Notes">Notes</h2>
 <ul>
 <li>
 Entities are created using the object's "Object Name", not its "topic".
@@ -217,7 +223,7 @@ Example (as provided by the Caseta Plug-in):
         ...
     }
 </pre>
-<h2>HomeVision Object Discovery Details</h2>
+<h2 id="#h2-Obj-Dis">HomeVision Object Discovery Details</h2>
 An MQTT discovery message is sent in the form:
 <pre>
     homeassistant/{entity type}/{id}/config {payload}
