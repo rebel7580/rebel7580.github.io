@@ -223,7 +223,7 @@ For each object type, MQTT Discovery can create a separate "device" that groups 
 The following entity types and devices are created according to the Object type:
 <br>
 <br>
-<table border="3" cellspacing="0">
+<table>
  <tr>
   <th>HomeVision Object</th>
   <th>Entity Type</th>
