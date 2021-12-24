@@ -277,15 +277,16 @@ The following entity types and devices are created according to the Object type:
   <td align="center">sensor</td>
   <td>HomeVisionXL Analog</td>
  </tr>
-  <tr>
+ <tr>
   <td align="center">DTS (temp)</td>
   <td align="center">sensor</td>
   <td>HomeVisionXL Temp</td>
  </tr>
-  <tr>
+ <tr>
   <td align="center">HVAC</td>
   <td align="center">climate</td>
   <td>HomeVisionXL Hvac</td>
+ </tr>
  <tr>
   <td align="center">Macro</td>
   <td align="center">switch</td>
