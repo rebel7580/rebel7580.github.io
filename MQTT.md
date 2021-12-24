@@ -7,8 +7,13 @@ $Date: 2021/12/23 02:06:55 $
 -->
 <html>
 <body>
-  <h1 class="no_toc" id="contents">Contents</h1>
+ # Contents
+{:.no_toc}
 
+*
+{:toc}
+
+<h1 class="no_toc" id="contents">Contents</h1>
 <ul id="markdown-toc">
   <li><a href="#h1-How" id="markdown-toc-h1-header">MQTT - How to Use Home Assistant Auto Discovery</a>
   <li><a href="#h1-Over" id="markdown-toc-h1-header">Overview</a>
@@ -22,11 +27,7 @@ $Date: 2021/12/23 02:06:55 $
   </ul>
 </ul>
 
-# Contents
-{:.no_toc}
 
-* Will be replaced with the ToC, excluding the "Contents" header
-{:toc}
 # How to Use Home Assistant Auto Discovery
 <h1 id="h1-How"><b>MQTT - How to Use Home Assistant Auto Discovery</b></h1>
 <h1 id="h1-Over">Overview</h1>
