@@ -15,7 +15,7 @@ $Date: 2021/12/23 02:06:55 $
   <ul>
     <li><a href="#h2-Built-in" id="markdown-toc-h2-header">Built-in Method</a></li>
     <ul>
-      <li><a href="#h3-Using-Built-in">Using the Built-in Method</h3>
+      <li><a href="#h3-Using-Built-in">Using the Built-in Method</a></li>
 
 
 <h1 id="h1-How"><b>MQTT - How to Use Home Assistant Auto Discovery</b></h1>
