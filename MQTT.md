@@ -1,4 +1,4 @@
- # Contents
+# How to Use Home Assistant Auto Discovery
 {:.no_toc}
 
 *
@@ -20,8 +20,8 @@
 </ul>
 
 -->
-# How to Use Home Assistant Auto Discovery
 <h1 id="h1-How"><b>MQTT - How to Use Home Assistant Auto Discovery</b></h1>
+# Overview
 <h1 id="h1-Over">Overview</h1>
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
 ## Built-in Method
