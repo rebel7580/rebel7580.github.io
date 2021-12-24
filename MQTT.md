@@ -16,18 +16,16 @@ $Date: 2021/12/23 02:06:55 $
     <li><a href="#h2-Built-in" id="markdown-toc-h2-header">Built-in Method</a></li>
     <ul>
       <li><a href="#h3-Using-Built-in">Using the Built-in Method</h3>
-    </ul>
-  </ul>
-</ul>
+
 
 <h1 id="h1-How"><b>MQTT - How to Use Home Assistant Auto Discovery</b></h1>
 <h1 id="h1-Over">Overview</h1>
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
-<h2 href="h2-Built-in">Built-in Method</h2>
+<h2 id="h2-Built-in">Built-in Method</h2>
 The MQTT plug-in supports a User Interface for Discovery.
 Because this is a feature that most users won't need, and for those who do use it, it is likely a one-time or seldom used feature, it is accessed by a normally "hidden" tab.
 To activate the Discovery feature, open the MQTT configuration screen, hover your mouse anywhere on the screen, then press F4. You should see a new "Discovery" tab appear. Alternately pressing F4 will cause the Discovery tab to appear/disappear.
-<h3 href="h3-Using-Built-in">Using the Built-in Method</h3>
+<h3 id="h3-Using-Built-in">Using the Built-in Method</h3>
 <ul>
 <li>
 Select "Object Type". Select "All" to discover all objects (those that are in the "Int Objects" list, NOT all of your HomeVisionXL defined objects!)
