@@ -6,19 +6,19 @@
   * Using the Built-in Method
  * Manual Method
  * Notes
-  * HomeVision Object Discovery Details
-    * X-10, Light Objects
-    * Flags
-    * Variables
-    * Inputs
-    * Outputs
-    * IR
-    * Macros, Scheduled Events, Periodic Events
-    * Digital Temperature Sensors
-    * Analog Inputs
-    * Timers
-    * HVAC
-    * Device Class Note
+ * HomeVision Object Discovery Details
+  * X-10, Light Objects
+  * Flags
+  * Variables
+  * Inputs
+  * Outputs
+  * IR
+  * Macros, Scheduled Events, Periodic Events
+  * Digital Temperature Sensors
+  * Analog Inputs
+  * Timers
+  * HVAC
+  * Device Class Note
 {:toc}
 
 # Overview
@@ -49,6 +49,7 @@ Same as the "-nodevice" option in the manual method.
 <li>
 Click "Run" when all selections are complete. If you have the debug plug-in running, you will see messages for each object selected. This is particularly useful when "Test" is selected.
 </ul>
+
 
 Discovery tab visibility as well as the selection of settings on the Discovery screen are **volatile**; they are not saved when the plug-in is shut down, unlike other plug-in settings.
 
@@ -219,7 +220,7 @@ Example (as provided by the Caseta Plug-in):
         ...
     }
 </pre>
-### HomeVision Object Discovery Details
+## HomeVision Object Discovery Details
 An MQTT discovery message is sent in the form:
 <pre>
     homeassistant/{entity type}/{id}/config {payload}
