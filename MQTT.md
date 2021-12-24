@@ -1,25 +1,10 @@
 # How to Use Home Assistant Auto Discovery
 {:.no_toc}
 
-*
+* Overview
+ * Built-in Method
 {:toc}
 
-<!--
-<h1 class="no_toc" id="contents">Contents</h1>
-<ul id="markdown-toc">
-  <li><a href="#h1-How" id="markdown-toc-h1-header">MQTT - How to Use Home Assistant Auto Discovery</a>
-  <li><a href="#h1-Over" id="markdown-toc-h1-header">Overview</a>
-  <ul>
-    <li><a href="#h2-Built-in" id="markdown-toc-h2-header">Built-in Method</a></li>
-    <ul>
-      <li><a href="#h3-Using-Built-in">Using the Built-in Method</a></li>
-    </ul>
-    <li><a href="#h2-Manual" id="markdown-toc-h2-header">Manual Method</a></li>
-    <li><a href="#h2-Obj-Dis" id="markdown-toc-h2-header">HomeVision Object Discovery Details</a></li>
-  </ul>
-</ul>
-
--->
 # Overview
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
 ## Built-in Method
