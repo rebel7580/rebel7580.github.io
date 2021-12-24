@@ -1,18 +1,13 @@
-layout: page
+<!-- layout: page
 title: "MQTT"
 permalink: /HomeVision/MQTT/
 
-<!-- $Revision: 1.9 $ -->
-<!-- $Date: 2021/12/23 02:06:55 $ -->
-<!-- -->
-<html><head><title>
-MQTT - How to Use Home Assistant Auto Discovery
-</title>
-<link rel="prev" href="index">
-<link rel="next" href="HomeVision and Home Assistant">
-</head>
+$Revision: 1.9 $
+$Date: 2021/12/23 02:06:55 $
+-->
+<html>
 <body>
-<font size=12 color=#0000FF><b>How to Use Home Assistant Auto Discovery</b></font>
+<h1><b>MQTT - How to Use Home Assistant Auto Discovery</b></h1>
 <h1>Overview</h1>
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
 <h2>Built-in Method</h2>
@@ -228,7 +223,6 @@ For each object type, MQTT Discovery can create a separate "device" that groups 
 The following entity types and devices are created according to the Object type:
 <br>
 <br>
-<div align="center">
 <table border="3" cellspacing="0">
  <tr>
   <th>HomeVision Object</th>
@@ -313,7 +307,6 @@ The following entity types and devices are created according to the Object type:
   <td>HomeVisionXL Timer</td>
  </tr>
  </table>
- </div>
 <br>
 <br>
 Auto Discovery assumes that in MQTT Configuration "Settings", the "State Response" settings are all checked, and "Response uses OFF/ON" are all checked.
