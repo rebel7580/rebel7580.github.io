@@ -5,14 +5,14 @@ permalink: /HomeVision/MQTT/
 $Revision: 1.9 $
 $Date: 2021/12/23 02:06:55 $
 -->
-<html>
-<body>
+
  # Contents
 {:.no_toc}
 
 *
 {:toc}
 
+<!--
 <h1 class="no_toc" id="contents">Contents</h1>
 <ul id="markdown-toc">
   <li><a href="#h1-How" id="markdown-toc-h1-header">MQTT - How to Use Home Assistant Auto Discovery</a>
@@ -27,7 +27,7 @@ $Date: 2021/12/23 02:06:55 $
   </ul>
 </ul>
 
-
+-->
 # How to Use Home Assistant Auto Discovery
 <h1 id="h1-How"><b>MQTT - How to Use Home Assistant Auto Discovery</b></h1>
 <h1 id="h1-Over">Overview</h1>
