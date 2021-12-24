@@ -7,10 +7,24 @@ $Date: 2021/12/23 02:06:55 $
 -->
 <html>
 <body>
-<h1><b>MQTT - How to Use Home Assistant Auto Discovery</b></h1>
-<h1>Overview</h1>
+  <h1 class="no_toc" id="contents">Contents</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#h1-How" id="markdown-toc-h1-header">MQTT - How to Use Home Assistant Auto Discovery</a>
+  <li><a href="#h1-Over" id="markdown-toc-h1-header">Overview</a>    <ul>
+<ul>
+      <li><a href="#h2-Built-in" id="markdown-toc-h2-header">Built-in Method</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="h1-header">H1 header</h1>
+
+<h2 id="h2-header">H2 header</h2>
+<h1 id="h1-How"><b>MQTT - How to Use Home Assistant Auto Discovery</b></h1>
+<h1 id="h1-Over">Overview</h1>
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
-<h2>Built-in Method</h2>
+<h2 href="h2-Built-in>Built-in Method</h2>
 The MQTT plug-in supports a User Interface for Discovery.
 Because this is a feature that most users won't need, and for those who do use it, it is likely a one-time or seldom used feature, it is accessed by a normally "hidden" tab.
 To activate the Discovery feature, open the MQTT configuration screen, hover your mouse anywhere on the screen, then press F4. You should see a new "Discovery" tab appear. Alternately pressing F4 will cause the Discovery tab to appear/disappear.
@@ -69,7 +83,9 @@ If you want to limit discovery or removal to one object type, put that type here
 Also works for other plug-ins that have discoverable devices and provide the proper interface to the Discovery procedures. (Caseta is one such plug-in.)
 <li>
 If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
+
 </ul>
+
 "flag_b" generates a flag as a <i>binary_sensor</i>. "flag" does a <i>switch</i>.
 As a binary_sensor, the flag is "read-only". As a switch, it can be read and written.
 You can run discovery on a flag for both types (separately of course). Discovery in this case will generate different <i>unique_IDs</i> and <i>entity IDs</i> for each type. Depending on <i>-noid</i>, names may be the same, but these can be changed in the Home Assistant UI if desired.
