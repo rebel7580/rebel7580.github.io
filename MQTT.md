@@ -39,6 +39,7 @@ Note: If "All" is selected, only "flag" is included; "flag_b" is not.
 * Check "Exclude from Device?" to NOT include the object's entity in Home Assistant in an object type device.
 Same as the "-nodevice" option in the manual method.
 * Click "Run" when all selections are complete. If you have the debug plug-in running, you will see messages for each object selected. This is particularly useful when "Test" is selected.
+
 Discovery tab visibility as well as the selection of settings on the Discovery screen are **volatile**; they are not saved when the plug-in is shut down, unlike other plug-in settings.
 
 ## Manual Method
