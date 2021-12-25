@@ -57,16 +57,16 @@ The MQTT Plug-in contains a public procedure to do discovery:
 <pre>
     hvObjectDiscovery {-noid} {-nous} {-nodevice} {-retain} <i>add</i> {<i>object_type</i> {<i>id1 id2 ...</i>}}
 </pre>
-<ul>
-<li>
+
+*
 <i>-noid</i> is optional. If present, don't include the object ID (i.e.: A-10) at the beginning of the entity name. Default: include the id. The object ID is still used in <i>unique_id</i> and other identifiers to ensure unique entries there.
-<li>
+*
 <i>-nous</i> is optional. If present, replace underscores with spaces in the entity name. Default: include any underscores as-is.
-<li>
+*
 <i>-nodevice</i> is optional. If present, the object's entity in Home Assistant will NOT be included in an object type device. Default: Entity is included.
-<li>
+*
 <i>-retain</i> is optional. If present, Home Assistant will publish command_topic messages with the retain flag set. Default: retain flag is not set.
-<li>
+*
 <i>add</i> is required:
  <br>
  1 - for discovery,
@@ -75,15 +75,12 @@ The MQTT Plug-in contains a public procedure to do discovery:
  <br>
  Any other number results in creating the message(s) and just displaying them in the debug plug-in, but NOT publishing.
  Good for testing that the procedure generates what you expect without actually sending anything.
-<li>
-If <i>object_type</i> is not present, then it will discover (or remove) all objects (those that are in the "Int Objects" list, NOT all of your defined objects!).
+* If <i>object_type</i> is not present, then it will discover (or remove) all objects (those that are in the "Int Objects" list, NOT all of your defined objects!).
 Note: If "All" is selected, only "flag" is included; "flag_b" is not.
 If you want to limit discovery or removal to one object type, put that type here. Valid built-in object_types are x10, light, var, flag, flag_b, input, output, analog, temp, ir, hvac, macro, se and pe.
 Also works for other plug-ins that have discoverable devices and provide the proper interface to the Discovery procedures. (Caseta is one such plug-in.)
-<li>
-If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
+* If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
 
-</ul>
 
 "flag_b" generates a flag as a <i>binary_sensor</i>. "flag" does a <i>switch</i>.
 As a binary_sensor, the flag is "read-only". As a switch, it can be read and written.
