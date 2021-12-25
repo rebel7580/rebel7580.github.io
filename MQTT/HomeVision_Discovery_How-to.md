@@ -1,6 +1,8 @@
 # How to Use Home Assistant Auto Discovery
 {:.no_toc}
 
+[Back to Projects](../index)
+
 * Overview
  * Built-in Method
   * Using the Built-in Method
