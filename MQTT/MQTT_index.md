@@ -3,7 +3,8 @@
 [Back to Projects](../index)
 
 * MQTT Plug-in
-  * [MQTT Client Plug-in](/MQTT/MQTT_Client_Plug-in.md)
+
+  * [MQTT Client Plug-in](/MQTT/MQTT_Client_Plug-in)
   
   * [How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to)
 
