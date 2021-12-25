@@ -126,10 +126,8 @@ Examples:
 </pre>
 ## Notes
 
-*
-Entities are created using the object's "Object Name", not its "topic".
-*
-If neither "NO ID in Name?" (or <i>-noid</i>) nor "Underscore to space in Name?" (or <i>-nous</i>) are checked, the entity "name" is constructed from the object's "ID" and "Object Name".
+* Entities are created using the object's "Object Name", not its "topic".
+* If neither "NO ID in Name?" (or <i>-noid</i>) nor "Underscore to space in Name?" (or <i>-nous</i>) are checked, the entity "name" is constructed from the object's "ID" and "Object Name".
 <br>
 Example: 
 <pre>
@@ -139,10 +137,8 @@ The entity id will be:
 <pre>
     light.b-12_garage_back_door
 </pre>
-*
-If "NO ID in Name?" is checked, the entity "name" and id are constructed from the object's "Object Name" only.
-*
-If "Underscore to space in Name?" is checked, underscores are replaced by spaces in the entity "name".
+* If "NO ID in Name?" is checked, the entity "name" and id are constructed from the object's "Object Name" only.
+* If "Underscore to space in Name?" is checked, underscores are replaced by spaces in the entity "name".
 Entity ids always replace spaces in the name with underscores, regardless of this setting.
 <br>
 Example ("NO ID in Name?"and "Underscore to space in Name?" both selected): 
@@ -153,12 +149,10 @@ The entity id will be:
 <pre>
     light.garage_back_door
 </pre>
-*
-If "Exclude from Device?" is NOT checked (or -nodevice is not present), for each object type, MQTT Discovery creates a separate "device" that groups all entities created for that type.
+* If "Exclude from Device?" is NOT checked (or -nodevice is not present), for each object type, MQTT Discovery creates a separate "device" that groups all entities created for that type.
 Device names will be "HomeVision {Object_type}". 
 If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
-*
-Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
+* Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
 The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
 and a "haObjectDiscovery" procedure which is called when "Run Discovery" is clicked and creates the discovery message to Home Assistant for each object to be discovered.
 The "haObjectDiscovery" procedure typically will call another procedure to process each individual object.
