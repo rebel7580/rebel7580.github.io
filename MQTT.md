@@ -58,16 +58,11 @@ The MQTT Plug-in contains a public procedure to do discovery:
     hvObjectDiscovery {-noid} {-nous} {-nodevice} {-retain} <i>add</i> {<i>object_type</i> {<i>id1 id2 ...</i>}}
 </pre>
 
-*
-<i>-noid</i> is optional. If present, don't include the object ID (i.e.: A-10) at the beginning of the entity name. Default: include the id. The object ID is still used in <i>unique_id</i> and other identifiers to ensure unique entries there.
-*
-<i>-nous</i> is optional. If present, replace underscores with spaces in the entity name. Default: include any underscores as-is.
-*
-<i>-nodevice</i> is optional. If present, the object's entity in Home Assistant will NOT be included in an object type device. Default: Entity is included.
-*
-<i>-retain</i> is optional. If present, Home Assistant will publish command_topic messages with the retain flag set. Default: retain flag is not set.
-*
-<i>add</i> is required:
+* <i>-noid</i> is optional. If present, don't include the object ID (i.e.: A-10) at the beginning of the entity name. Default: include the id. The object ID is still used in <i>unique_id</i> and other identifiers to ensure unique entries there.
+* <i>-nous</i> is optional. If present, replace underscores with spaces in the entity name. Default: include any underscores as-is.
+* <i>-nodevice</i> is optional. If present, the object's entity in Home Assistant will NOT be included in an object type device. Default: Entity is included.
+* <i>-retain</i> is optional. If present, Home Assistant will publish command_topic messages with the retain flag set. Default: retain flag is not set.
+* <i>add</i> is required:
  <br>
  1 - for discovery,
  <br>
