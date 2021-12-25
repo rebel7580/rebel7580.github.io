@@ -5,7 +5,7 @@
  * Built-in Method
   * Using the Built-in Method
  * Manual Method
- * Notes
+ * Discovery Notes
  * HomeVision Object Discovery Details
   * X-10, Light Objects
   * Flags
@@ -124,7 +124,7 @@ Examples:
       hvObjectDiscovery -noid -nous 1 flag 10
       hvObjectDiscovery -noid -nous 1 x10 1 21 46
 </pre>
-## Notes
+## Discovery Notes
 
 * Entities are created using the object's "Object Name", not its "topic".
 * If neither "NO ID in Name?" (or <i>-noid</i>) nor "Underscore to space in Name?" (or <i>-nous</i>) are checked, the entity "name" is constructed from the object's "ID" and "Object Name".
