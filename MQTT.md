@@ -54,6 +54,7 @@ Click "Run" when all selections are complete. If you have the debug plug-in runn
 Discovery tab visibility as well as the selection of settings on the Discovery screen are **volatile**; they are not saved when the plug-in is shut down, unlike other plug-in settings.
 
 ## Manual Method
+
 The MQTT Plug-in contains a public procedure to do discovery:
 <pre>
     hvObjectDiscovery {-noid} {-nous} {-nodevice} {-retain} <i>add</i> {<i>object_type</i> {<i>id1 id2 ...</i>}}
