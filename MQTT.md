@@ -28,27 +28,17 @@ The MQTT plug-in supports a User Interface for Discovery.
 Because this is a feature that most users won't need, and for those who do use it, it is likely a one-time or seldom used feature, it is accessed by a normally "hidden" tab.
 To activate the Discovery feature, open the MQTT configuration screen, hover your mouse anywhere on the screen, then press F4. You should see a new "Discovery" tab appear. Alternately pressing F4 will cause the Discovery tab to appear/disappear.
 ### Using the Built-in Method
-*
-Select "Object Type". Select "All" to discover all objects (those that are in the "Int Objects" list, NOT all of your HomeVisionXL defined objects!)
+* Select "Object Type". Select "All" to discover all objects (those that are in the "Int Objects" list, NOT all of your HomeVisionXL defined objects!)
 The "Choose Object(s)" list is NOT populated if you select "All" here.
 Note: If "All" is selected, only "flag" is included; "flag_b" is not.
-*
-If you selected an object type and want to further limit discovery to a subset of those objects, click on each one you want (ctrl-click for selecting more than one.) Otherwise, select "All". If you click on "All" AND also select other objects, only the selected objects will be discovered, not "All".
-*
-Select the discovery type: "Test", "Discover", UnDiscover".
-*
-Check "NO ID in Name?" to not include the object ID in the entity name. Same as the "-noid" option in the manual method.
+* If you selected an object type and want to further limit discovery to a subset of those objects, click on each one you want (ctrl-click for selecting more than one.) Otherwise, select "All". If you click on "All" AND also select other objects, only the selected objects will be discovered, not "All".
+* Select the discovery type: "Test", "Discover", UnDiscover".
+* Check "NO ID in Name?" to not include the object ID in the entity name. Same as the "-noid" option in the manual method.
 * Check "Underscore to space in Name?" to replace underscores with spaces in the entity name. Same as the "-nous" option in the manual method.
-*
-Check "Retain Flag for HA published msgs?" to have Home Assistant set the retain flag for "command_topic" messages it sends. Same as the "-retain" option in the manual method.
-*
-Check "Exclude from Device?" to NOT include the object's entity in Home Assistant in an object type device.
+* Check "Retain Flag for HA published msgs?" to have Home Assistant set the retain flag for "command_topic" messages it sends. Same as the "-retain" option in the manual method.
+* Check "Exclude from Device?" to NOT include the object's entity in Home Assistant in an object type device.
 Same as the "-nodevice" option in the manual method.
-*
-Click "Run" when all selections are complete. If you have the debug plug-in running, you will see messages for each object selected. This is particularly useful when "Test" is selected.
-
-
-
+* Click "Run" when all selections are complete. If you have the debug plug-in running, you will see messages for each object selected. This is particularly useful when "Test" is selected.
 Discovery tab visibility as well as the selection of settings on the Discovery screen are **volatile**; they are not saved when the plug-in is shut down, unlike other plug-in settings.
 
 ## Manual Method
