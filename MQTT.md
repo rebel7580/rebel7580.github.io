@@ -211,7 +211,9 @@ Example (as provided by the Caseta Plug-in):
         ...
     }
 </pre>
+
 ## HomeVision Object Discovery Details
+
 An MQTT discovery message is sent in the form:
 <pre>
     homeassistant/{entity type}/{id}/config {payload}
