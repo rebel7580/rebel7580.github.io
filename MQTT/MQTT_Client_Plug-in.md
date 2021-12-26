@@ -326,7 +326,9 @@ The retain flag will cause most brokers to "remember" the status and send it to 
 * Use the "Delete" button to delete an object. When a object is deleted, the plug-in unsubscribes to any topics related to that device.
 * When "Done" is clicked, objects with standard topics are subscribed to their command full topics.Objects with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
+
 ### Settings Tab
+
 * Prefixes and Postfixes can be set for "standard" topics.
 The defaults conform to the Tasmota structure.
 They can be changed if necessary, but
@@ -817,34 +819,30 @@ The <i>mqttComm</i> command has the following formats:
     mqttComm {-exactstat -nodim -log -retain} stat|cmnd &lt;<i>topic</i>&gt;|<i>topic</i> {<i>payload</i>}
     mqttComm {-log -retain} pub <i>topic</i> {<i>payload</i>}
 </pre>
-<ul>
-<li>Note: In previous versions (&lt; 1.76), "type", the name of the calling plug-in, was the first argument.
+* Note: In previous versions (&lt; 1.76), "type", the name of the calling plug-in, was the first argument.
 This has been deprecated.
 However, for backward compatibility,
 new versions of the command will allow (and ignore) a "type" argument.
-<li>-log: Log the command.
+* -log: Log the command.
 This argument is optional.
-<li>-retain: The sent message is retained by the broker.
+* -retain: The sent message is retained by the broker.
 This argument is optional.
-<li>-exactstat: Sends a POWER stat response regardless of power/result settings.
-<li>-nodim: Don't include Dimming in a RESULT response.
-<li><i>topic</i>: Can either be enclosed in "&lt;&gt;" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic.
+* -exactstat: Sends a POWER stat response regardless of power/result settings.
+* -nodim: Don't include Dimming in a RESULT response.
+* <i>topic</i>: Can either be enclosed in "&lt;&gt;" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic.
 Otherwise, a topic with neither "&lt;" nor "&gt;" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages.
 If the topic contains spaces, the topic along with any "&lt;" or "&gt;",
 should be enclosed in double-quotes.
-<li><i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions.
+* <i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions.
 Double-quotes or braces are NOT necessary for any spaces in the payload portion.
-<li><i>callback</i>: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
+* <i>callback</i>: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
 <pre>
     <i>callback fulltopic payload retain</i>
 </pre>
-<ul>
-<li><i>fulltopic</i>: the complete topic, including any prefix or postfix.
-<li><i>payload</i>: the message payload.
-<li>When a new subscription is made by a client, all retained messages that match the full topic are reported with <i>retain</i> set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
+ * <i>fulltopic</i>: the complete topic, including any prefix or postfix.
+ * <i>payload</i>: the message payload.
+ * When a new subscription is made by a client, all retained messages that match the full topic are reported with <i>retain</i> set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
 
-</ul>
-</ul>
 See below for further details on the use of callbacks!
 <br>
 <br>
@@ -939,6 +937,7 @@ If it needs to handle a number of very similar fulltopics, one callback that par
 <br>
 <br>
 Either approach will work.
+
 ### Other Public Procedures Supplied/Called by the MQTT Plug-in
 
 <b>topicTemplate</b>
@@ -956,8 +955,8 @@ The <i>topicTemplate</i> command has the following format:
 <pre>
     topicTemplate <i>topic</i>
 </pre>
-<ul>
-<li><i>topic</i>: fulltopic received by the callback.
+
+* <i>topic</i>: fulltopic received by the callback.
 </ul>
 topicTemplate returns a list containing a dict with the following key/values:
 <br>
@@ -1032,11 +1031,10 @@ The <i>mqttlog</i> command has the following format:
 <pre>
     mqttLog <i>string</i> {<i>color</i>}
 </pre>
-<ul>
 * <i>string</i>: String to log.
-<li><i>color</i>: If "debug" is imported into the calling proc,
+* <i>color</i>: If "debug" is imported into the calling proc,
 will send string to the debug plug-in in <i>color</i>, Default: red.
-</ul>
+
 <br>
 <b>mqttReady</b>
 <br>
@@ -1080,6 +1078,7 @@ Typical use:
         }
     }
 </pre>
+
 ### MQTT Discovery for Home Assistant
 <!--
 <a href="HomeVision and Home Assistant.html">Tips for Interfacing HomeVision with Home Assistant</a>
@@ -1087,7 +1086,7 @@ Typical use:
 <a href="HomeVision Discovery How-to.html">How to Use Home Assistant Auto Discovery</a>
 <br>
 -->
-[[Tips for Interfacing HomeVision with Home Assistant|https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL/wiki/Tips-for-Interfacing-HomeVision-with-Home-Assistant]]
+[Tips for Interfacing HomeVision with Home Assistant](https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL/wiki/Tips-for-Interfacing-HomeVision-with-Home-Assistant)
 <br>
 [[How to Use the MQTT Plug-in's Home-Assistant Auto Discovery|How-to-Use-the-MQTT-Plug-in's-Home-Assistant-Auto-Discovery]]
 </body>
