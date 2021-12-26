@@ -943,7 +943,6 @@ The *topicTemplate* command has the following format:
 topicTemplate returns a list containing a dict with the following key/values:
 <br>
 <br>
-<table border="0" cellspacing="10">
  <tr>
   <th>Key</th>
   <th>Value</th>
@@ -992,7 +991,7 @@ topicTemplate returns a list containing a dict with the following key/values:
   <td align="center">match</td>
   <td>Regexp expression to match the full topic.</td>
  </tr>
-</table>
+
 <br>
 <br>
 There are some details and cautions concerning the use of this helper proc.
