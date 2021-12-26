@@ -943,54 +943,19 @@ The *topicTemplate* command has the following format:
 topicTemplate returns a list containing a dict with the following key/values:
 <br>
 <br>
- <tr>
-  <th>Key</th>
-  <th>Value</th>
- </tr>
- <tr>
-  <td align="center">template</td>
-  <td>One of <T>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.</td>
- </tr>
- <tr>
-  <td align="center">pre pos</td>
-  <td>Prefix position 1-3, -1 if no prefix.</td>
- </tr>
- <tr>
-  <td align="center">pre type</td>
-  <td>Prefix string, "" if no prefix.</td>
- </tr>
- <tr>
-  <td align="center">topic pos</td>
-  <td>Sub-topic position 1-3</td>
- </tr>
- <tr>
-  <td align="center">topic name</td>
-  <td>Sub-topic string</td>
- </tr>
- <tr>
-  <td align="center">topic type</td>
-  <td>"s" (standard-contains both < and >), "ns" (non-standard) otherwise.</td>
- </tr>
- <tr>
-  <td align="center">post pos</td>
-  <td>Postfix position 1-3, -1 if no postfix.</td>
- </tr>
- <tr>
-  <td align="center">post type</td>
-  <td>Postfix string, "" if no prefix.</td>
- </tr>
- <tr>
-  <td align="center">post ntype</td>
-  <td>Post type with "Relay" number striped off.</td>
- </tr>
- <tr>
-  <td align="center">post index</td>
-  <td>"Relay" number or "[0-9]*" if none, or "" if no postfix.</td>
- </tr>
- <tr>
-  <td align="center">match</td>
-  <td>Regexp expression to match the full topic.</td>
- </tr>
+  | Key | Value |
+  | :---: | --- |
+  | template | One of <T>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.| 
+  | pre pos | Prefix position 1-3, -1 if no prefix.| 
+  | pre type | Prefix string, "" if no prefix.| 
+  | topic pos | Sub-topic position 1-3| 
+  | topic name | Sub-topic string| 
+  | topic type | "s" (standard-contains both < and >), "ns" (non-standard) otherwise.| 
+  | post pos | Postfix position 1-3, -1 if no postfix.| 
+  | post type | Postfix string, "" if no prefix.| 
+  | post ntype | Post type with "Relay" number striped off.| 
+  | post index | "Relay" number or "[0-9]*" if none, or "" if no postfix.| 
+  | match | Regexp expression to match the full topic.| 
 
 <br>
 <br>
