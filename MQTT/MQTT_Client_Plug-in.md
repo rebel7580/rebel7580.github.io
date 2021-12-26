@@ -34,10 +34,10 @@ There is a lot of flexibility in the plug-in allowing support for many different
 
 ### Standard and Custom Topics
 Topics can be assigned to devices either as abbreviated ("Standard") topics or full topics.
-Standard topics follow the Tasmota structure, so only the unique sub-topic portion need be entered. Default standard topics are indicated by enclosing the sub-topic with "&lt;" and "&gt;".
-If a topic starts with a "&lt;", the appropriate prefix is automatically added.
-If a topic ends with a "&gt;", the appropriate postfix is automatically added.
-A "&gt;" may be followed by optional index digits.
+Standard topics follow the Tasmota structure, so only the unique sub-topic portion need be entered. Default standard topics are indicated by enclosing the sub-topic with "<" and ">".
+If a topic starts with a "<", the appropriate prefix is automatically added.
+If a topic ends with a ">", the appropriate postfix is automatically added.
+A ">" may be followed by optional index digits.
 Prefixes and postfixes are defined in the **Settings Tab**.
 Most of the examples to follow assume use of the defaults.
 <br>
@@ -46,21 +46,21 @@ To provide additional flexibility in defining a system's topic structure, standa
 The following are possible (where "T" is the sub-topic):
 ```
    Template        Example
-      &lt;T&gt;       cmnd/T/POWER    --&gt; Tasmota standard and MQTT plug-in default
-      T&lt;&gt;       T/cmnd/POWER    
-      &lt;&gt;T       cmnd/POWER/T
-      &gt;T&lt;       POWER/T/cmnd
-      T&gt;&lt;       T/POWER/cmnd
-      &gt;&lt;T       POWER/cmnd/T
+      <T>       cmnd/T/POWER    --> Tasmota standard and MQTT plug-in default
+      T<>       T/cmnd/POWER    
+      <>T       cmnd/POWER/T
+      >T<       POWER/T/cmnd
+      T><       T/POWER/cmnd
+      ><T       POWER/cmnd/T
 ```
-To accommodate certain Tasmota devices that have multiple relays or switches, one or more digits can follow the "&gt;" postfix index to specify the relay or switch.
+To accommodate certain Tasmota devices that have multiple relays or switches, one or more digits can follow the ">" postfix index to specify the relay or switch.
 For example, an external device of this type that sends out state reports like this:
 ```
     stat/FloorLamp/POWER2 ON
 ```
 should be set up with this topic structure:
 ```
-    &lt;FloorLamp&gt;2
+    <FloorLamp>2
 ```
 Devices that send out reports for several "relays" should have separate entries in the **Ext Devices Tab** for each "relay".
 <br>
@@ -75,10 +75,10 @@ Tasmota considers "POWER1" and "POWER" as the same and interchangeable.
 However, the plug-in treats them as different, meaning "POWER" won't match a full topic containing "POWER1".
 <br>
 <br>
-If a topic has only a "&lt;" OR a "&gt;", then only the appropriate
+If a topic has only a "<" OR a ">", then only the appropriate
 prefix OR postfix is automatically added.
 Otherwise, the topic is used as-is without any additional portions prepended/appended to it.
-Thus by not putting "&lt;" and "&gt;" in a topic,
+Thus by not putting "<" and ">" in a topic,
 any topic structure can be used.
 However, the plug-in does not have built-in processing when receiving MQTT topics that don't follow the standard prefixes and postfixes. In these cases custom procedures need to be provided. See **Custom Processing of Received Messages**.
 <br>
@@ -118,7 +118,7 @@ For a full list of Actions based on the received topic and payload, see
 [[Help: Object Actions|Help:-Object-Actions]]
 
 ### Standard State Topic
-For each external device, the plug-in *subscribes* to the following topic (assuming "&lt;*topic*&gt; in the "Topic" field):
+For each external device, the plug-in *subscribes* to the following topic (assuming "<*topic*> in the "Topic" field):
 ```
         Full Topic                     Payload
     stat/*topic*/POWER*x*           OFF/ON/ON *level*/*level*
@@ -223,7 +223,7 @@ the row will display in BLACK text.
 * To enter a new device, click the "New" button, and start with the *Topic*.
   * Topics are case-sensitive!
   * A "Standard" topic, for which prefix and postfix substitution is performed (see **Settings Tab**),
-is indicated by enclosing it in "&lt;" and "&gt;"
+is indicated by enclosing it in "<" and ">"
 (or one of the variations mentioned previously).
 E.g., "<*topic*>".
 *This should be the default method for specifying topics.*
@@ -237,7 +237,7 @@ However, care should be taken when using them. It's probably a bad idea to have 
   *Device Names*, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
 If the "topic" is simple and descriptive, it can be copied to the *Name* field.
 If the "topic" is multi-level, *Name* must be simpler.
-*Name* cannot contain "&lt;", "&gt;", "/" or spaces.
+*Name* cannot contain "<", ">", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
 *Device Name* cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
   * There is some validation of the *Topic* and *Device Name* fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
@@ -283,7 +283,7 @@ X-10 object IDs show with their A-P house/unit code format.
 Input and Output object IDs have an "I" or "O" prepended to their usual A-Q codes to distinguish them from X-10 ids.
 Other objects show using a "Fake" code of the first two letters of their standard HV object type name. For example, Custom Lights show as "LI".
 * *Object Name* is the name of the object for use by serial and NetIO commands.
-It must be unique among both external and internal names. It can be the same as the topic, but cannot contain "&lt;", "&gt;", "/" or spaces.
+It must be unique among both external and internal names. It can be the same as the topic, but cannot contain "<", ">", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
 *Object Name* cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
 **N.B.:** HomeVision allows duplicate names among objects, so some modification to the suggested default names will be necessary to achieve uniqueness in the object lists.
@@ -404,7 +404,7 @@ For other non-standard topics, the right-click items may or may not make sense.
 <br>
 <br>
 For external devices, this typically will make its way through the MQTT broker to the external device which would then act on the command.
-For external device topics that are not standard, or at least missing the "&lt;", the topic will be published "as-is", with the appropriate payload.
+For external device topics that are not standard, or at least missing the "<", the topic will be published "as-is", with the appropriate payload.
 Since the plug-in will have subscribed to this topic, the message will be sent right back to the plug-in from the broker.
 <br>
 <br>
@@ -423,12 +423,12 @@ Here's a sequence chart example that might make it more clear:
                      Right-click X-10 object "Den"
                          and click "Toggle":
 
-                        cmnd/den/POWER TOGGLE     ---&gt;
-                                                  &lt;--- cmnd/den/POWER TOGGLE
-                   &lt;--- HV cmd to toggle Den
+                        cmnd/den/POWER TOGGLE     --->
+                                                  <--- cmnd/den/POWER TOGGLE
+                   <--- HV cmd to toggle Den
     sends X-10 cmd
      to toggle Den
-                   ---&gt; stat/den/POWER            ---&gt;
+                   ---> stat/den/POWER            --->
 ```
 
 ### Serial Control
@@ -588,7 +588,7 @@ The procedure will be called like this:
 Example:
 <br>
 <br>
-Suppose we have a device (named BathHumidity) running Tasmota software with a AM2301 temperature/humidity sensor attached , and we want to turn on a ventilator fan (named BathFan) when the humidity gets high (&gt;70) and turn it off when it is low (&lt;55).
+Suppose we have a device (named BathHumidity) running Tasmota software with a AM2301 temperature/humidity sensor attached , and we want to turn on a ventilator fan (named BathFan) when the humidity gets high (>70) and turn it off when it is low (<55).
 We would get periodic MQTT tele reports like this:
 ```
 
@@ -617,7 +617,7 @@ Click "OK" to save this entry.
 <br>
 Add another external device for the fan with a standard topic
 ```
-    &lt;BathFan&gt;
+    <BathFan>
 ```
 so that it will report status
 in the standard way, like this:
@@ -645,10 +645,10 @@ Create a plug-in containing the following:
         if {[catch {::json::json2dict $payload} status]} return
 
         set humidity [dict get $status AM2301 Humidity]
-        if {$humidity &gt; 70 && !$fanStatus} {
+        if {$humidity > 70 && !$fanStatus} {
             mqttComm pub "cmnd/BathFan/POWER" on
         }
-        if {$humidity &lt; 55 && $fanStatus} {
+        if {$humidity < 55 && $fanStatus} {
             mqttComm pub "cmnd/BathFan/POWER" off
         }
     }
@@ -692,7 +692,7 @@ Once selected, the "Topic Type" options are available.
 <br>
 <br>
 Selecting "Standard" is used with standard topics
-(generally, those of the form &lt;topic&gt;),
+(generally, those of the form <topic>),
 so "stat" messages with payloads of "on", "off","on {level}" and "{level}" are available.
 If "All" is selected, then only one trigger entry is provided, and this is run regardless of the payload.
 If "On/Off" is selected, there are separate entries for the "on" and "off" states. However, one of the two fields can be empty, which means that nothing will happen for messages received with that state.
@@ -805,17 +805,17 @@ The calling plug-in should import the command via:
 ```
 The *mqttComm* command has the following formats:
 ```tcl
-    mqttComm {-log} sub|unsub <&lt;*topic*&gt;|*topic* *callback* 
-    mqttComm {-exactstat -nodim -log -retain} stat|cmnd &lt;*topic*&gt;|*topic* {*payload*}
+    mqttComm {-log} sub|unsub <*topic*>|*topic* *callback* 
+    mqttComm {-exactstat -nodim -log -retain} stat|cmnd <*topic*>|*topic* {*payload*}
     mqttComm {-log -retain} pub *topic* {*payload*}
 ```
 
-* Note: In previous versions (&lt; 1.76), "type", the name of the calling plug-in, was the first argument. This has been deprecated. However, for backward compatibility, new versions of the command will allow (and ignore) a "type" argument.
+* Note: In previous versions (< 1.76), "type", the name of the calling plug-in, was the first argument. This has been deprecated. However, for backward compatibility, new versions of the command will allow (and ignore) a "type" argument.
 * -log: Log the command. This argument is optional.
 * -retain: The sent message is retained by the broker. This argument is optional.
 * -exactstat: Sends a POWER stat response regardless of power/result settings.
 * -nodim: Don't include Dimming in a RESULT response.
-* *topic*: Can either be enclosed in "&lt;&gt;" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "&lt;" nor "&gt;" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "&lt;" or "&gt;", should be enclosed in double-quotes.
+* *topic*: Can either be enclosed in "<>" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "<" nor ">" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "<" or ">", should be enclosed in double-quotes.
 * *payload*: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
 * *callback*: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
 ```
@@ -829,14 +829,14 @@ The *mqttComm* command has the following formats:
 See below for further details on the use of callbacks!
 <br>
 <br>
-A "stat" or "cmnd", when used with a topic with neither "&lt;" nor "&gt;", ignores the "stat" or "cmnd" and is the same as using "pub".
+A "stat" or "cmnd", when used with a topic with neither "<" nor ">", ignores the "stat" or "cmnd" and is the same as using "pub".
 <br>
 <br>
 A "pub" or "cmnd", when used with a standard topic, is the same as using "cmnd".
 <br>
 <br>
 When the standard form is used with "sub" or "unsub", a "cmnd" pre-fix is assumed.
-To subscribe or unsubscribe to a "stat" type topic, use the topic without the &lt;.
+To subscribe or unsubscribe to a "stat" type topic, use the topic without the <.
 Example: To subscribe to a stat message:
 ```
     mqttComm sub stat/utilityroom> cascallback
@@ -866,14 +866,14 @@ The mqttComm proc returns 1 for a successful operation.
 <br>
 Examples:
 ```
-    mqttComm sub &lt;utilityroom&gt; cascallback       subscribes to cmnd/utilityroom/POWER with callback cascallback
+    mqttComm sub <utilityroom> cascallback       subscribes to cmnd/utilityroom/POWER with callback cascallback
     mqttComm unsub stat/utilityroom/power mycallback  unsubscribes to stat/utilityroom/power with callback mycalback
-    mqttComm cmnd &lt;utilityroom&gt; on               publishes cmnd/utilityroom/POWER on
-    mqttComm stat &lt;utilityroom&gt; on               publishes stat/utilityroom/POWER on and/or
+    mqttComm cmnd <utilityroom> on               publishes cmnd/utilityroom/POWER on
+    mqttComm stat <utilityroom> on               publishes stat/utilityroom/POWER on and/or
                                                            stat/utilityroom/RESULT {"POWER":"ON","Dimming":100}
-    mqttComm -nodim stat &lt;utilityroom&gt; on        publishes stat/utilityroom/POWER on and/or
+    mqttComm -nodim stat <utilityroom> on        publishes stat/utilityroom/POWER on and/or
                                                            stat/utilityroom/RESULT {"POWER":"ON"}
-    mqttComm -exactstat stat &lt;utilityroom&gt; on    publishes stat/utilityroom/POWER on 
+    mqttComm -exactstat stat <utilityroom> on    publishes stat/utilityroom/POWER on 
     mqttComm stat "cmnd/living room/state" on    publishes cmnd/living room/state on
     mqttComm pub "cmnd/living room/state" on     publishes cmnd/living room/state on
 ```
@@ -889,7 +889,7 @@ So how is that handled when a plug-in uses *mqttComm* to subscribe to a topic?
 This is best explained by example.
 Let's assume a plug-in wants to subscribe to a topic:
 ```
-    mqttComm sub &lt;utilityroom&gt; cascb     
+    mqttComm sub <utilityroom> cascb     
 ```
 This results in a subscription to
 ```
@@ -907,7 +907,7 @@ A proc "cascb" must be defined in the calling plug-in to handle the message.
 In this case, it should eventually use another mqttComm command to send back status, maybe like this:
 
 ```
-    mqttComm stat &lt;utilityroom&gt; On 50   ---&gt;   stat/utilityroom/POWER ON 50
+    mqttComm stat <utilityroom> On 50   --->   stat/utilityroom/POWER ON 50
 ```
 There are a couple of different approaches to handling subscribed topics. Which is better depends on the goals of the plug-in.
 <br>
@@ -950,7 +950,7 @@ topicTemplate returns a list containing a dict with the following key/values:
  </tr>
  <tr>
   <td align="center">template</td>
-  <td>One of &lt;T&gt;, &gt;T&lt;, &lt;&gt;T, T&lt;&gt;, &gt;&lt;T, T&gt;&lt;, &lt;T, &gt;T, T&gt;, T&lt;, T.</td>
+  <td>One of <T>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.</td>
  </tr>
  <tr>
   <td align="center">pre pos</td>
@@ -970,7 +970,7 @@ topicTemplate returns a list containing a dict with the following key/values:
  </tr>
  <tr>
   <td align="center">topic type</td>
-  <td>"s" (standard-contains both &lt; and &gt;), "ns" (non-standard) otherwise.</td>
+  <td>"s" (standard-contains both < and >), "ns" (non-standard) otherwise.</td>
  </tr>
  <tr>
   <td align="center">post pos</td>
