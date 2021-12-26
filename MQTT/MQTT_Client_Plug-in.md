@@ -201,15 +201,12 @@ This can be used to advantage; sending a "cmnd" "POWER" message with a payload o
 <h2>Configuring Devices</h2>
 <h3>Ext Devices Tab</h3>
 This tab contains a list of supported external devices.
-<ul>
-
 * <i>Device Name</i> is the name of the device for use by serial and NetIO commands.
 It must be unique among both external and internal device names.
 See below for Name rules.
 * <i>Topic</i> is the topic used for publishing and subscribing.
 See below for Topic rules.
-<li>   
-The <i>Flag/Var</i> column shows the Flag (FL-#) or Variable (VA-#) assigned to the device.
+* The <i>Flag/Var</i> column shows the Flag (FL-#) or Variable (VA-#) assigned to the device.
 If none is assigned, a "-" will show.
 * The <i>Macro</i> column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
 If no macro is assigned, a "-" will show. 
@@ -220,11 +217,9 @@ When the state has not (yet) been reported, a "-" will show.
 However, if an "on Line" LWT or a POWER state message is received,
 the row will display in BLACK text.
 * Rows can be sorted in ascending or descending order by <i>Device Name</i> or <i>Topic</i> by clicking on the column header. 
-</ul>
+
 <i>New/Edit/Delete External Devices</i>
-<ul>
 * To enter a new device, click the "New" button, and start with the <i>Topic</i>.
-<ul>
  * Topics are case-sensitive!
  * A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
 is indicated by enclosing it in "&lt;" and "&gt;"
@@ -238,7 +233,6 @@ To help with this, a new device will have "<>" already inserted in the topic fie
  * A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
 Use of wildcards should adhere to the MQTT standards.
 However, care should be taken when using them. It's probably a bad idea to have "#" as a topic, as it will subscribe to EVERYTHING!
-
  * <i>Device Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
 If the "topic" is simple and descriptive, it can be copied to the <i>Name</i> field.
 If the "topic" is multi-level, <i>Name</i> must be simpler.
@@ -250,7 +244,6 @@ Alphanumeric and the underscore are the only allowed characters.
 Assigning a Flag or Variable is optional.
 There is no checking to make sure a Flag or Variable is not used more than once.
  * If a variable is selected, two additional options are available.
-<ul>
   * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
   * If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
 can be selected.
@@ -259,7 +252,7 @@ If the option is not selected, the received value is written as a 1-byte number 
 <br>
 <br>
 Note: When "Use Variable as Flag" is not selected, Payloads with "on" or "off" do not cause any Actions, except for updating the "State" display.
-</ul>
+
  * Macros can be assigned for "On" and "Off" states.
 The same macro can be assigned to both states, or different macros can be assigned.
 A macro can be assigned to just one of the states, leaving the other set to "None".
@@ -271,7 +264,7 @@ this selection has no effect.
  * Choose whether to log MQTT messages sent or received by this device.
  * Click "OK" to save edits,
 or "Cancel" to discard them.
-</ul>
+
 * Devices can be edited by clicking the "Edit" button.
 This brings up the same window used for adding a new device.
 * Use the "Delete" button to delete a device.
@@ -279,7 +272,7 @@ When a device is deleted, the plug-in unsubscribes to any topics related to that
 * When "Done" is clicked, devices with standard topics are subscribed to their state and LWT full topics.
 Devices with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
-</ul>
+
 
 <h3>Int Objects Tab</h3>
 This tab contains a list of supported internal objects.
@@ -320,7 +313,7 @@ Objects included in the list are those that have been checked in the
 can be selected.
 If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1.
 If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
-</ul>
+
  * If an X-10 object is selected, then choose a Model.
 Model is used to determine how level changes are done.
  * Clicking "Copy Object to Topic, Name" will populate the "Topic" and "Name" fields with an appropriate version of the object name.
@@ -336,7 +329,7 @@ An exception to this is if different index numbers are appended to the topic, in
 * Choose if object status messages should be sent with the "retained" flag set.
 The retain flag will cause most brokers to "remember" the status and send it to any client that later subscribes to the status topic.
  * Choose whether to log MQTT messages sent or received by this device.
-</ul>
+
 * Objects can be edited by clicking the "Edit" button.
 This brings up the same window used for adding a new object.
 * Use the "Delete" button to delete an object.
@@ -344,8 +337,6 @@ When a object is deleted, the plug-in unsubscribes to any topics related to that
 * When "Done" is clicked, objects with standard topics are subscribed to their command full topics.
 Objects with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
-</ul>
-
 <h3>Settings Tab</h3>
 <ul>
 * Prefixes and Postfixes can be set for "standard" topics.
@@ -395,15 +386,15 @@ To keep file sizes to a reasonable length, a new file is created each day there 
 The file name is "MQTTLogYYMMDD", with an extension determined by "Log File Extension".
 If "Log File Extension" is empty, the file will have a ".txt" extension if HomeVisionXL is running in Windows,
 and no extension if running in Linux.
-<ul>
+
  * Only messages for devices/objects that have their "Log sent messages" or "Log received messages" options checked are logged.
 This includes messages sent via the "right-click" menu, serial or NetIO.
  * "Subscribe" and "Unsubscribe" messages are not logged.
  * Received messages to "cmnd/homevision/#" are always logged.
 However, responses to this command are determined by the affected objects' settings.
-</ul>
+
 * "Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
-</ul>
+
 <h2>Responding to External Device State Changes</h2>
 Refer to <!-- <a href="MQTT_Actions_ext.html">External Device Actions</a> --> [[Help: External Device Actions|Help:-External-Device-Actions]]
 for responses to received messages.
