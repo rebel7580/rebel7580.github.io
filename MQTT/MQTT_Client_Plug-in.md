@@ -29,7 +29,7 @@ other devices that follow different topic structures likely can be accommodated 
 There is a lot of flexibility in the plug-in allowing support for many different situations.
 <br>
 <br>
-<b>Note: To perform actions on internal objects, this plug-in uses the Actions Plug-in. The Actions Plug-in must be enabled to control internal objects.</b>
+_Note: To perform actions on internal objects, this plug-in uses the Actions Plug-in. The Actions Plug-in must be enabled to control internal objects._
 ##  Supported MQTT Topics
 
 ### Standard and Custom Topics
@@ -38,7 +38,7 @@ Standard topics follow the Tasmota structure, so only the unique sub-topic porti
 If a topic starts with a "&lt;", the appropriate prefix is automatically added.
 If a topic ends with a "&gt;", the appropriate postfix is automatically added.
 A "&gt;" may be followed by optional index digits.
-Prefixes and postfixes are defined in the <b>Settings Tab</b>.
+Prefixes and postfixes are defined in the _Settings Tab_.
 Most of the examples to follow assume use of the defaults.
 <br>
 <br>
@@ -62,7 +62,7 @@ should be set up with this topic structure:
 ```
     &lt;FloorLamp&gt;2
 ```
-Devices that send out reports for several "relays" should have separate entries in the <b>Ext Devices Tab</b> for each "relay".
+Devices that send out reports for several "relays" should have separate entries in the _Ext Devices Tab_ for each "relay".
 <br>
 <br>
 Note 1:
@@ -80,7 +80,7 @@ prefix OR postfix is automatically added.
 Otherwise, the topic is used as-is without any additional portions prepended/appended to it.
 Thus by not putting "&lt;" and "&gt;" in a topic,
 any topic structure can be used.
-However, the plug-in does not have built-in processing when receiving MQTT topics that don't follow the standard prefixes and postfixes. In these cases custom procedures need to be provided. See <b>Custom Processing of Received Messages</b>.
+However, the plug-in does not have built-in processing when receiving MQTT topics that don't follow the standard prefixes and postfixes. In these cases custom procedures need to be provided. See _Custom Processing of Received Messages_.
 <br>
 <br>
 Most of the examples in the rest of this Help follow the Tasmota standard.
@@ -123,7 +123,7 @@ For each external device, the plug-in <i>subscribes</i> to the following topic (
         Full Topic                     Payload
     stat/<i>topic</i>/POWER<i>x</i>           OFF/ON/ON <i>level</i>/<i>level</i>
 ```
-When a POWER topic is received, the plug-in looks for a message of "on" or "off" and takes action according to the device's settings in the <b>Ext Devices Tab</b>.
+When a POWER topic is received, the plug-in looks for a message of "on" or "off" and takes action according to the device's settings in the _Ext Devices Tab_.
 For a full list of Actions based on the received topic and payload, see
 <!-- <a href="MQTT_Actions_ext.html">External Device Actions</a> -->
 [[Help: External Device Actions|Help:-External-Device-Actions]]
@@ -136,7 +136,7 @@ Certain devices, i.e., those running Tasmota software, usually produce both at P
 In fact, RESULT state messages can be sent from the device when many other actions occur.
 <br>
 <br>
-To receive such messages, they must explicitly be entered as a device in the <b>Ext Devices Tab</b> with a <i>custom command</i> defined to process the message.
+To receive such messages, they must explicitly be entered as a device in the _Ext Devices Tab_ with a <i>custom command</i> defined to process the message.
 ```
           Topic                         Payload
     stat/<i>topic</i>/RESULT               a JSON string
@@ -150,7 +150,7 @@ a <i>Last Will and Testament</i> topic as follows:
         Full Topic     
       tele/<i>topic</i>/LWT
 ```
-If received, the plug-in looks for a message of "online" or "offline" and attempt to display this message in the <b>Ext Devices Tab</b>.
+If received, the plug-in looks for a message of "online" or "offline" and attempt to display this message in the _Ext Devices Tab_.
 <br>
 <br>
 If the topic is not in the form of a standard topic,
@@ -174,7 +174,7 @@ for each defined object matching <i>object_type</i>
 (one of
 x10, light, var, flag, hvac, temp, analog, input or output)
 or for all object types if not specified, the plug-in will <i>publish</i> a state message for each object to indicate its current state.
-<i>Only those objects specified in the <b>Int Objects Tab</b> are reported</i>.
+<i>Only those objects specified in the _Int Objects Tab_ are reported</i>.
 This feature can be used by an MQTT entity to quickly sync up with HomeVision object states.
 <br>
 <br>
@@ -222,7 +222,7 @@ the row will display in BLACK text.
 <i>New/Edit/Delete External Devices</i>
 * To enter a new device, click the "New" button, and start with the <i>Topic</i>.
   * Topics are case-sensitive!
-  * A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
+  * A "Standard" topic, for which prefix and postfix substitution is performed (see _Settings Tab_),
 is indicated by enclosing it in "&lt;" and "&gt;"
 (or one of the variations mentioned previously).
 E.g., "<<i>topic</i>>".
@@ -258,7 +258,7 @@ Note: When "Use Variable as Flag" is not selected, Payloads with "on" or "off" d
 The same macro can be assigned to both states, or different macros can be assigned.
 A macro can be assigned to just one of the states, leaving the other set to "None".
   * To have custom processing of received messages or triggers for this topic, select the appropriate mode and enter command/triggers.
-See <b>Custom Processing of Received Messages</b> for details.
+See _Custom Processing of Received Messages_ for details.
   * Check "Subscribe to Last Will and Testament" to subscribe standard topics to LWT.
 If the topic is not in the form of a standard topic,
 this selection has no effect.
@@ -287,7 +287,7 @@ Other objects show using a "Fake" code of the first two letters of their standar
 It must be unique among both external and internal names. It can be the same as the topic, but cannot contain "&lt;", "&gt;", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
 <i>Object Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
-<b>N.B.:</b> HomeVision allows duplicate names among objects, so some modification to the suggested default names will be necessary to achieve uniqueness in the object lists.
+_N.B.:_ HomeVision allows duplicate names among objects, so some modification to the suggested default names will be necessary to achieve uniqueness in the object lists.
 * <i>Topic</i> is the topic used for publishing and subscribing.
 Topic rules are the same as external devices with default processing (i.e., no MQTT wildcards).
 * The <i>State</i> column will show the reported state of the object.
@@ -303,7 +303,7 @@ When sorting by ID, object types are always grouped together and sorted within t
 
 * To enter a new object, Click the "New" button and start by selecting an object from the drop-down list.
 Objects included in the list are those that have been checked in the
-"Object Type List Enable" section of the <b>Int Object Tab</b>.
+"Object Type List Enable" section of the _Int Object Tab_.
   * If a variable is selected, two additional options are available.
     * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
     * If "Use Variable as Flag" is NOT selected, then "Use Two Variables" can be selected. If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1. If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
@@ -400,7 +400,7 @@ For internal objects, one or more of these items may be grayed out if not approp
 For external devices, none are grayed out as there is no knowledge of the capabilities of the device. Some or all of these items may not work based on what the device can do (or not do).
 <br>
 <br>
-When selected, for standard topics, the corresponding <i>command</i> topic is published. (See <b>Standard Command Topics</b> above).
+When selected, for standard topics, the corresponding <i>command</i> topic is published. (See _Standard Command Topics_ above).
 For other non-standard topics, the right-click items may or may not make sense.
 <br>
 <br>
@@ -549,7 +549,7 @@ Note: For NetIO, a topic with spaces must be enclosed by braces {}.
 Double-quotes are not allowed due to the way NetIO handles arguments of the netioaction command.
 
 ### Custom Processing of Received Messages
-<b>Note: This section applies to external devices only.</b>
+_Note: This section applies to external devices only._
 <br>
 <br>
 Sometimes a topic may not fit the standard forms supported by the plug-in, or the actions taken (setting flags, variables and running macros)
@@ -570,11 +570,11 @@ the "Flag/Var", "On Macro" and "Off Macro" fields are ignored.
 However, the action command can be used in the procedure to manipulate flags, vars, macros, etc..
 <br>
 <br>
-<b>CAUTION:
+_CAUTION:
 <i>There is little validation of the name of the custom procedure.
 Care should be taken to avoid any standard TCL procedure names
 as inadvertently using an existing procedure name may result in abnormal behavior!
-</i></b>
+</i>_
 <br>
 <br>
 The procedure must be defined in another enabled plug-in, 
@@ -607,7 +607,7 @@ We would get periodic MQTT tele reports like this:
 (The JSON payload is expanded here for readability.)
 <br>
 <br>
-In the <b>Ext Devices Tab</b>, add an external device for the humidity sensor with a full topic of
+In the _Ext Devices Tab_, add an external device for the humidity sensor with a full topic of
 ```
     tele/BathHumidity/SENSOR
 ```
@@ -706,15 +706,15 @@ Only one trigger entry is available and is run regardless of the payload content
 <br>
 The following special character strings will cause substitutions for every occurrence in a trigger string(s).
 (Note: %X, %P, %E, %L don't make sense for "Custom" trigger strings, but, if used, will result in a "0" being substituted.)
-* %X Substitute a received 0-100 level scaled to 0-16 (standard <b>X</b>10).
-* %P Substitute a received 0-100 level scaled to 0-31 (<b>P</b>cs).
-* %E Substitute a received 0-100 level scaled to 0-63 (dir<b>E</b>ct to level).
-* %L Substitute a received 0-100 <b>L</b>evel unscaled.
-* %O Substitute the t<b>O</b>pic.
-* %M Substitute the entire payload  (<b>M</b>essage) unmodified.
-* %m Substitute the entire payload  (<b>m</b>essage), substituting single quotes for double quotes.
-* %D Substitute the current <b>D</b>ate in the form YYYYMMDD.
-* %T Substitute the current <b>T</b>ime in the form HH:MM:SS.
+* %X Substitute a received 0-100 level scaled to 0-16 (standard _X_10).
+* %P Substitute a received 0-100 level scaled to 0-31 (_P_cs).
+* %E Substitute a received 0-100 level scaled to 0-63 (dir_E_ct to level).
+* %L Substitute a received 0-100 _L_evel unscaled.
+* %O Substitute the t_O_pic.
+* %M Substitute the entire payload  (_M_essage) unmodified.
+* %m Substitute the entire payload  (_m_essage), substituting single quotes for double quotes.
+* %D Substitute the current _D_ate in the form YYYYMMDD.
+* %T Substitute the current _T_ime in the form HH:MM:SS.
 <br>
 Examples:
 <br>
@@ -723,6 +723,7 @@ Play a sound file and run a program when the topic is received.
 This example shows how two separate "built-in" triggers can work together in one trigger string. 
 (Assumes that the sound and program functions are working.)
 <br>
+
 ```
 Options: Custom. 
 
@@ -847,7 +848,7 @@ which will subscribe to
 ```
 with "cascallback" as the callback proc.
 <br>
-<br><b>Caution:</b>
+<br>_Caution:_
 Make sure when subscribing to a topic that the topic is unique, especially compared to <i>external devices</i> and <i>internal objects</i>.
 The MQTT client allows multiple, different callback procs to be assigned to the same topic (via different subscriptions) resulting in all of the procs being called when the common topic arrives.
 This could be useful, but normally it will cause unexpected behavior.
@@ -923,7 +924,7 @@ Either approach will work.
 
 ### Other Public Procedures Supplied/Called by the MQTT Plug-in
 
-<b>topicTemplate</b>
+_topicTemplate_
 <br>
 <br>
 To help with parsing full topics,
@@ -999,7 +1000,7 @@ There are some details and cautions concerning the use of this helper proc.
 Contact the author for further support.
 <br>
 <br>
-<b>mqttLog</b>
+_mqttLog_
 <br>
 <br>
 Puts an entry into the current MQTT log file.
@@ -1019,7 +1020,7 @@ will send string to the debug plug-in in <i>color</i>, Default: red.
 
 
 <br>
-<b>mqttReady</b>
+_mqttReady_
 <br>
 <br>
 This proc is <i>called</i> by the MQTT plug-in to indicate whether it is connected or disconnected to the MQTT broker (and hence ready to take mqttComm calls).
