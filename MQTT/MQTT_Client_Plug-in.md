@@ -7,7 +7,7 @@ The MQTT Client Plug-in provides a client interface to MQTT for HomeVision.
 Its main purposes are to control MQTT enabled devices via the HomeVision Schedule or NetIO and
 to control HomeVision objects by MQTT sources.
 The MQTT interface has three distinct functions:
-<ul>
+
 * For "external" MQTT-enabled devices (e.g., Sonoff switches with Tasmota SW),
 the MQTT Plug-in acts as an MQTT controller.
 The plug-in PUBLISHES <i>command</i> topics to these devices
