@@ -278,7 +278,6 @@ Devices with custom topics are subscribed only to the topic as-is.
 This tab contains a list of supported internal objects.
 These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, or HVAC.
 Add only those objects that need to be visible to or acted on by the MQTT network.
-<ul>
 * <i>ID</i>
 is the internal object ID.
 X-10 object IDs show with their A-P house/unit code format.
@@ -322,7 +321,7 @@ However, note that if a single topic is assigned to multiple objects, when ANY o
 An exception to this is if different index numbers are appended to the topic, in which case each will act and report independently.
   * Choose if object status messages should be sent with the "retained" flag set.
 The retain flag will cause most brokers to "remember" the status and send it to any client that later subscribes to the status topic.
-   * Choose whether to log MQTT messages sent or received by this device.
+  * Choose whether to log MQTT messages sent or received by this device.
 * Objects can be edited by clicking the "Edit" button. This brings up the same window used for adding a new object.
 * Use the "Delete" button to delete an object. When a object is deleted, the plug-in unsubscribes to any topics related to that device.
 * When "Done" is clicked, objects with standard topics are subscribed to their command full topics.Objects with custom topics are subscribed only to the topic as-is.
@@ -375,11 +374,10 @@ To keep file sizes to a reasonable length, a new file is created each day there 
 The file name is "MQTTLogYYMMDD", with an extension determined by "Log File Extension".
 If "Log File Extension" is empty, the file will have a ".txt" extension if HomeVisionXL is running in Windows,
 and no extension if running in Linux.
-
- * Only messages for devices/objects that have their "Log sent messages" or "Log received messages" options checked are logged.
+  * Only messages for devices/objects that have their "Log sent messages" or "Log received messages" options checked are logged.
 This includes messages sent via the "right-click" menu, serial or NetIO.
- * "Subscribe" and "Unsubscribe" messages are not logged.
- * Received messages to "cmnd/homevision/#" are always logged.
+  * "Subscribe" and "Unsubscribe" messages are not logged.
+  * Received messages to "cmnd/homevision/#" are always logged.
 However, responses to this command are determined by the affected objects' settings.
 
 * "Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
@@ -391,6 +389,7 @@ for responses to received messages.
 <br>
 Note that an assigned Flag or Variable is always updated before the macro is run so the macro can take advantage of the new value.
 ## Controlling Devices
+
 ### Device/Object Display Area
 Right-clicking on a line in the Device/Object Display Area
 will bring up a menu from which "On", "Off", "Toggle", "State", and "Set to" can be selected.
@@ -554,10 +553,10 @@ Double-quotes are not allowed due to the way NetIO handles arguments of the neti
 Sometimes a topic may not fit the standard forms supported by the plug-in, or the actions taken (setting flags, variables and running macros)
 may not be powerful enough.
 There are two methods that provide more advanced processing:
-<ul>
 * Custom commands - Create a plug-in and define a command to run when a topic is received;
 * Triggers - Send trigger strings to HomeVisionXL or plug-ins.
-</ul>
+
+
 #### Custom Commands
 To have custom processing of received messages for a topic,
 click "Command" and enter a procedure name in the "Command" field.
