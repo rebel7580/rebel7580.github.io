@@ -9,18 +9,18 @@ to control HomeVision objects by MQTT sources.
 The MQTT interface has three distinct functions:
 * For "external" MQTT-enabled devices (e.g., Sonoff switches with Tasmota SW),
 the MQTT Plug-in acts as an MQTT controller.
-The plug-in PUBLISHES * *command* * topics to these devices
+The plug-in PUBLISHES *command* topics to these devices
 to control them
-and SUBSCRIBES to * *status* * topics from these devices to track their state changes.
+and SUBSCRIBES to *status* topics from these devices to track their state changes.
 Changes are tracked by Actions such as setting Flags or Variables and running Macros based on that status.
 * For "internal" objects defined in HomeVision
 (such as X-10 modules, flags, inputs, etc.),
 the MQTT Plug-in acts as a "proxy" for them, essentially making them appear to be MQTT-enabled.
 For each selected object, the plug-in 
-SUBSCRIBES to a * *command* * topic
+SUBSCRIBES to a *command* topic
 so it can be controlled
 and
-PUBLISHES a * *status* * topic when it changes state.
+PUBLISHES a *status* topic when it changes state.
 * Generic MQTT topics can be sent from the HomeVision schedule via serial commands, from NetIO, or from custom plug-ins, independent of any configured devices.
 
 
@@ -89,39 +89,39 @@ Most of the examples in the rest of this Help follow the Tasmota standard.
 The following command topic is supported (using default prefixes and postfixes) with various payloads:
 ```
         Full Topic     Payload
-    cmnd/* *topic* */POWER  ON
-    cmnd/* *topic* */POWER  ON * *level* **
-    cmnd/* *topic* */POWER  * *level* **
-    cmnd/* *topic* */POWER  OFF
-    cmnd/* *topic* */POWER  TOGGLE
-    cmnd/* *topic* */POWER  empty or "?"** 
+    cmnd/*topic*/POWER  ON
+    cmnd/*topic*/POWER  ON *level**
+    cmnd/*topic*/POWER  *level**
+    cmnd/*topic*/POWER  OFF
+    cmnd/*topic*/POWER  TOGGLE
+    cmnd/*topic*/POWER  empty or "?"** 
 ```
-* *topic* * is defined during device configuration.
+*topic* is defined during device configuration.
 <br>Payloads are case-insensitive for incoming messages.<br>
-* * *level* * is expressed as a percentage, 0-100.
+*level* is expressed as a percentage, 0-100.
 For X-10 devices, it  is converted to the nearest discrete level supported.
 Any status reports back will have the discrete level.
 <br>
 ** "?" for those external entities that don't allow an empty payload.
 <br>
 <br>
-The plug-in * *publishes* * command topics to external devices.
+The plug-in *publishes* command topics to external devices.
 Usually, after receiving one of these commands, an external device will publish its state.
-The plug-in receives this report by * *subscribing* * to the state topic. (See next.)
+The plug-in receives this report by *subscribing* to the state topic. (See next.)
 An empty payload requests the device to publish its state without changing the state of the device.
 <br>
 <br>
-HomeVision objects * *subscribe* * to command topics so that external entities can control them.
+HomeVision objects *subscribe* to command topics so that external entities can control them.
 For a full list of Actions based on the received topic and payload, see 
 <!-- <a href="MQTT_Actions_int.html">Object Actions</a>
 -->
 [[Help: Object Actions|Help:-Object-Actions]]
 
 ### Standard State Topic
-For each external device, the plug-in * *subscribes* * to the following topic (assuming "&lt;* *topic* *&gt; in the "Topic" field):
+For each external device, the plug-in *subscribes* to the following topic (assuming "&lt;*topic*&gt; in the "Topic" field):
 ```
         Full Topic                     Payload
-    stat/* *topic* */POWER* *x* *           OFF/ON/ON * *level* */* *level* *
+    stat/*topic*/POWER*x*           OFF/ON/ON *level*/*level*
 ```
 When a POWER topic is received, the plug-in looks for a message of "on" or "off" and takes action according to the device's settings in the **Ext Devices Tab**.
 For a full list of Actions based on the received topic and payload, see
@@ -130,25 +130,25 @@ For a full list of Actions based on the received topic and payload, see
 .
 <br>
 <br>
-When an internal object changes state, the plug-in will * *publish* * a state message to indicate the object's new state.
+When an internal object changes state, the plug-in will *publish* a state message to indicate the object's new state.
 ### RESULT State Topic
 Certain devices, i.e., those running Tasmota software, usually produce both at POWER state message and a RESULT state message with the POWER info in a JSON formatted payload.
 In fact, RESULT state messages can be sent from the device when many other actions occur.
 <br>
 <br>
-To receive such messages, they must explicitly be entered as a device in the **Ext Devices Tab** with a * *custom command* * defined to process the message.
+To receive such messages, they must explicitly be entered as a device in the **Ext Devices Tab** with a *custom command* defined to process the message.
 ```
           Topic                         Payload
-    stat/* *topic* */RESULT               a JSON string
+    stat/*topic*/RESULT               a JSON string
 ```
 ### Last Will and Testament Topic
-For each external device with a * *standard topic* *
+For each external device with a *standard topic*
 that has "Subscribe to Last Will and Testament" checked,
-the plug-in automatically * *subscribes* * to
-a * *Last Will and Testament* * topic as follows:
+the plug-in automatically *subscribes* to
+a *Last Will and Testament* topic as follows:
 ```
         Full Topic     
-      tele/* *topic* */LWT
+      tele/*topic*/LWT
 ```
 If received, the plug-in looks for a message of "online" or "offline" and attempt to display this message in the **Ext Devices Tab**.
 <br>
@@ -167,24 +167,24 @@ The MQTT plug-in automatically subscribes to:
 When a message is received in the form:
 ```
         Full Topic                        Payload
-    cmnd/homevision/* *object_type* */POWER    empty or "?"
+    cmnd/homevision/*object_type*/POWER    empty or "?"
     cmnd/homevision/POWER               empty or "?"
 ```
-for each defined object matching * *object_type* *
+for each defined object matching *object_type*
 (one of
 x10, light, var, flag, hvac, temp, analog, input or output)
-or for all object types if not specified, the plug-in will * *publish* * a state message for each object to indicate its current state.
-* *Only those objects specified in the **Int Objects Tab** are reported* *.
+or for all object types if not specified, the plug-in will *publish* a state message for each object to indicate its current state.
+*Only those objects specified in the **Int Objects Tab** are reported*.
 This feature can be used by an MQTT entity to quickly sync up with HomeVision object states.
 <br>
 <br>
 The only valid Payloads are empty or "?".
-This topic cannot be used to * *control* * objects.
+This topic cannot be used to *control* objects.
 ### Special Counting Payload
 The MQTT plug-in has special handling to provide a "counting" feature.
-Certain MQTT messages will * *increment* * selected variable(s) each time the message is received. To activate this feature,
+Certain MQTT messages will *increment* selected variable(s) each time the message is received. To activate this feature,
 create either an external device or internal object with either one or two variables selected.
-Then, in the "Count Payload Text" of the * *Settings Tab* *, enter the text that will indicate "Count".
+Then, in the "Count Payload Text" of the *Settings Tab*, enter the text that will indicate "Count".
 For external devices, receiving a "stat" or "tele" "POWER" message that has its first word in the payload matching "Count Payload Text" will cause the selected variable(s) to increment.
 For internal objects, a "cmnd" "Power" message will do the same.
 <br>
@@ -202,45 +202,45 @@ This can be used to advantage; sending a "cmnd" "POWER" message with a payload o
 ## Configuring Devices
 ### Ext Devices Tab
 This tab contains a list of supported external devices.
-* * *Device Name* * is the name of the device for use by serial and NetIO commands.
+*Device Name* is the name of the device for use by serial and NetIO commands.
 It must be unique among both external and internal device names.
 See below for Name rules.
-* * *Topic* * is the topic used for publishing and subscribing.
+*Topic* is the topic used for publishing and subscribing.
 See below for Topic rules.
-* The * *Flag/Var* * column shows the Flag (FL-#) or Variable (VA-#) assigned to the device.
+* The *Flag/Var* column shows the Flag (FL-#) or Variable (VA-#) assigned to the device.
 If none is assigned, a "-" will show.
-* The * *Macro* * column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
+* The *Macro* column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
 If no macro is assigned, a "-" will show. 
-* The * *State* * column will usually show "On" or "Off", depending on the reported state of the device.
+* The *State* column will usually show "On" or "Off", depending on the reported state of the device.
 If the payload was an number, its value, potentially masked and/or truncated, will be displayed.
 When the state has not (yet) been reported, a "-" will show.
 * For each device, its row will be displayed in RED text if the device is reported as "off line" by an LWT message.
 However, if an "on Line" LWT or a POWER state message is received,
 the row will display in BLACK text.
-* Rows can be sorted in ascending or descending order by * *Device Name* * or * *Topic* * by clicking on the column header. 
+* Rows can be sorted in ascending or descending order by *Device Name* or *Topic* by clicking on the column header. 
 
-* *New/Edit/Delete External Devices* *
-* To enter a new device, click the "New" button, and start with the * *Topic* *.
+*New/Edit/Delete External Devices*
+* To enter a new device, click the "New" button, and start with the *Topic*.
   * Topics are case-sensitive!
   * A "Standard" topic, for which prefix and postfix substitution is performed (see **Settings Tab**),
 is indicated by enclosing it in "&lt;" and "&gt;"
 (or one of the variations mentioned previously).
-E.g., "<* *topic* *>".
-* *This should be the default method for specifying topics.* *
+E.g., "<*topic*>".
+*This should be the default method for specifying topics.*
 To help with this, a new device will have "<>" already inserted in the topic field.
 (Delete or modify as needed.)
   * Topics can contain multiple levels, indicated by "/", but should not start or end with a "/".
-  * A topic with * *default* * processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
-  * A topic with * *custom* * processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
+  * A topic with *default* processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
+  * A topic with *custom* processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
 Use of wildcards should adhere to the MQTT standards.
 However, care should be taken when using them. It's probably a bad idea to have "#" as a topic, as it will subscribe to EVERYTHING!
-  * * *Device Names* *, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
-If the "topic" is simple and descriptive, it can be copied to the * *Name* * field.
-If the "topic" is multi-level, * *Name* * must be simpler.
-* *Name* * cannot contain "&lt;", "&gt;", "/" or spaces.
+  *Device Names*, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
+If the "topic" is simple and descriptive, it can be copied to the *Name* field.
+If the "topic" is multi-level, *Name* must be simpler.
+*Name* cannot contain "&lt;", "&gt;", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
-* *Device Name* * cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
-  * There is some validation of the * *Topic* * and * *Device Name* * fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
+*Device Name* cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
+  * There is some validation of the *Topic* and *Device Name* fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
   * For each device, an HV Flag or Variable can be assigned. 
 Assigning a Flag or Variable is optional.
 There is no checking to make sure a Flag or Variable is not used more than once.
@@ -271,35 +271,34 @@ This brings up the same window used for adding a new device.
 When a device is deleted, the plug-in unsubscribes to any topics related to that device.
 * When "Done" is clicked, devices with standard topics are subscribed to their state and LWT full topics.
 Devices with custom topics are subscribed only to the topic as-is.
-* *Click "Done" for changes to become effective!* *
+*Click "Done" for changes to become effective!*
 
 
 ### Int Objects Tab
 This tab contains a list of supported internal objects.
 These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, or HVAC.
 Add only those objects that need to be visible to or acted on by the MQTT network.
-* * *ID* *
-is the internal object ID.
+* *ID* is the internal object ID.
 X-10 object IDs show with their A-P house/unit code format.
 Input and Output object IDs have an "I" or "O" prepended to their usual A-Q codes to distinguish them from X-10 ids.
 Other objects show using a "Fake" code of the first two letters of their standard HV object type name. For example, Custom Lights show as "LI".
-* * *Object Name* * is the name of the object for use by serial and NetIO commands.
+* *Object Name* is the name of the object for use by serial and NetIO commands.
 It must be unique among both external and internal names. It can be the same as the topic, but cannot contain "&lt;", "&gt;", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
-* *Object Name* * cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
+*Object Name* cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
 **N.B.:** HomeVision allows duplicate names among objects, so some modification to the suggested default names will be necessary to achieve uniqueness in the object lists.
-* * *Topic* * is the topic used for publishing and subscribing.
+* *Topic* is the topic used for publishing and subscribing.
 Topic rules are the same as external devices with default processing (i.e., no MQTT wildcards).
-* The * *State* * column will show the reported state of the object.
+* The *State* column will show the reported state of the object.
 The auto reporting feature for objects must be turned on, or the HomeVision schedule must explicitly send updates for this to work.
 When the state has not (yet) been reported, a "-" may show.
 Variables always show a "-" for the state.
-* * *Level* * shows the reported object level or value as appropriate.
+* *Level* shows the reported object level or value as appropriate.
 X-10 and Light objects show their level in percent, while Variables show their value.
-* Rows can be sorted in ascending or descending order by * *ID* *, * *Object Name* * or * *Topic* * by clicking on the column header.
+* Rows can be sorted in ascending or descending order by *ID*, *Object Name* or *Topic* by clicking on the column header.
 When sorting by ID, object types are always grouped together and sorted within those groups by ID.
 
-* *New/Edit/Delete Internal Objects* *
+*New/Edit/Delete Internal Objects*
 
 * To enter a new object, Click the "New" button and start by selecting an object from the drop-down list.
 Objects included in the list are those that have been checked in the
@@ -325,7 +324,7 @@ The retain flag will cause most brokers to "remember" the status and send it to 
 * Objects can be edited by clicking the "Edit" button. This brings up the same window used for adding a new object.
 * Use the "Delete" button to delete an object. When a object is deleted, the plug-in unsubscribes to any topics related to that device.
 * When "Done" is clicked, objects with standard topics are subscribed to their command full topics.Objects with custom topics are subscribed only to the topic as-is.
-* *Click "Done" for changes to become effective!* *
+*Click "Done" for changes to become effective!*
 
 ### Settings Tab
 
@@ -342,31 +341,31 @@ change it to the MQTT broker's domain or explicit IP address.
 * QOS values for Publish and Subscribe messages can be set for brokers that do not support the defaults of QOS 1 for Publish and QOS 2 for Subscribe.
 * If a username and password is used to log into the broker, check the "Use Username/Password" box and then fill in the username and password.
 * Select the type(s) of state responses desired.
-* *Valid only for internal objects!* *
+*Valid only for internal objects!*
 <br>
 "Power" enables a standard response like this:
 ```
         Full Topic                     Payload
-    stat/* *topic* */POWER* *x* *               OFF/ON/ON * *level* */* *level* *
+    stat/*topic*/POWER*x*               OFF/ON/ON *level*/*level*
 ```
 "RESULT" enables a response like this, if "Dimming" is unchecked:
 ```
         Full Topic                     Payload
-    stat/* *topic* */RESULT          {"POWER* *x* *":"OFF/ON/ON * *level* */* *level* *"}
+    stat/*topic*/RESULT          {"POWER*x*":"OFF/ON/ON *level*/*level*"}
 ```
 or like this if "Dimming" is checked:
 ```
         Full Topic                     Payload
-    stat/* *topic* */RESULT          {"POWER* *x* *":"OFF/ON","Dimmer":* *level* *}*
+    stat/*topic*/RESULT          {"POWER*x*":"OFF/ON","Dimmer":*level*}*
 ```
 * Note: If set to "Response uses 0-100" (see next item), the POWER value will still be "OFF" if 0 and "ON" if otherwise.
 <br>
-One or both of "Power" or "RESULT" * *must* * be selected.
-If both are * *unchecked* *, "Power" will be re-selected automatically.
+One or both of "Power" or "RESULT" *must* be selected.
+If both are *unchecked*, "Power" will be re-selected automatically.
 "Dimming" has no effect if "Power" only is selected.
 * Select the format of device state responses for "stat" MQTT messages.
-* *Valid only for internal objects!* *
-Responses can be either the "OFF"/"ON"/"ON * *level* *" format or strictly "* *level* *", i.e., 0-100.
+*Valid only for internal objects!*
+Responses can be either the "OFF"/"ON"/"ON *level*" format or strictly "*level*", i.e., 0-100.
 Response format can be set separately for appliance modules (which normally would be best set to "OFF/ON") and all others (standard X-10, PCS, Custom Lights, etc.).
 * If logging is desired, check "Create log file".
 Doing so will display an entry box for the folder for the logs.
@@ -400,7 +399,7 @@ For internal objects, one or more of these items may be grayed out if not approp
 For external devices, none are grayed out as there is no knowledge of the capabilities of the device. Some or all of these items may not work based on what the device can do (or not do).
 <br>
 <br>
-When selected, for standard topics, the corresponding * *command* * topic is published. (See **Standard Command Topics** above).
+When selected, for standard topics, the corresponding *command* topic is published. (See **Standard Command Topics** above).
 For other non-standard topics, the right-click items may or may not make sense.
 <br>
 <br>
@@ -412,9 +411,9 @@ Since the plug-in will have subscribed to this topic, the message will be sent r
 For internal objects, 
 the corresponding command topic is published in the same manner as external devices.
 (Some object types "interpret" the selection depending on its capability. For example, clicking "On" for a flag translates to SET, while "Off" translates to CLEAR.)
-* *No action is taken directly on the internal object.* *
+*No action is taken directly on the internal object.*
 Only a cmnd messages is sent out.
-However, since the internal object has * *subscribed* * to the command topic,
+However, since the internal object has *subscribed* to the command topic,
 the MQTT broker will send it right back to the plug-in,
 which will then set the object to the requested state.
 If the command topic causes an object state change, the plug-in completes the sequence by publishing a state topic showing the new state.
@@ -435,9 +434,9 @@ Here's a sequence chart example that might make it more clear:
 ### Serial Control
 MQTT devices can be controlled within a schedule via serial commands which take the form:
 ```
-    mqtt: * *device_name/object_name* * * *command* *;
+    mqtt: *device_name/object_name* *command*;
 ```
-For example, to toggle a device * *named* * "sonoff1",
+For example, to toggle a device *named* "sonoff1",
 the serial command would be:
 ```
     mqtt: sonoff1 toggle;
@@ -445,21 +444,21 @@ the serial command would be:
 "mqtt:" is whatever the "Serial string prefix" is defined as.
 ";' is whatever the "Serial string terminator character(s)" is defined as.
 "toggle" or "2", "on" or "1", "off" or "0", and "state" are allowed.
-X-10 and Custom Lights can be set to a level by using "on * *level* *". E.g.,
+X-10 and Custom Lights can be set to a level by using "on *level*". E.g.,
 ```
     mqtt: den on 50;
 ```
-The device * *name* * is case-insensitive when matching a device * *name* * in the Device list.
-The * *command* * portion is sent as-is, case-wise.
+The device *name* is case-insensitive when matching a device *name* in the Device list.
+The *command* portion is sent as-is, case-wise.
 <br>
 <br>
-Note: Device * *names* * are limited to alphas, numbers and the underscore.
+Note: Device *names* are limited to alphas, numbers and the underscore.
 <br>Note: While serial commands in the schedule can change the state of internal objects as well as external devices, it may make more sense to just set the internal object directly in the schedule.
 In either case, the plug-in will publish a state change topic if the state actually changed.
 ### NetIO
 MQTT devices can be controlled via NetIO using a "netioaction" command in the NetIO application.
-For example, to have a button set up to toggle a device * *named* * "sonoff1",
-the button's * *sends* * attribute would be set to:
+For example, to have a button set up to toggle a device *named* "sonoff1",
+the button's *sends* attribute would be set to:
 ```
     sends:  netioaction mqtt sonoff1 toggle
 ```
@@ -467,15 +466,15 @@ the button's * *sends* * attribute would be set to:
 "toggle" or "2", "on" or "1", "off" or "0", and "state" are allowed.
 <br>
 <br>
-The device * *name* * is case-insensitive when matching a device * *name* * in the Device list.
-The * *command* * portion is sent as-is, case-wise.
+The device *name* is case-insensitive when matching a device *name* in the Device list.
+The *command* portion is sent as-is, case-wise.
 <br>
 <br>
 The state of the device can get retrieved by:
 ```
     reads:  get mqtt sonoff1
 ```
-The * *get* * command will return the object's state string, depending on the state of the device.
+The *get* command will return the object's state string, depending on the state of the device.
 <br>
 <br>
 Note: This is a "convenience" command, since it actually just reads the state of the Flag or Variable associated with an external device,
@@ -486,15 +485,15 @@ If the device's state has not yet been reported, the last value of the Flag or V
 <br>
 Also note that this command is essentially the same as the more direct gets:
 ```
-    reads:  get var state * *var#* *
+    reads:  get var state *var#*
 ```
 or
 ```
-    reads:  get flag state * *flag#* *
+    reads:  get flag state *flag#*
 ```
 or
 ```
-    reads:  get x10 state * *id#* *
+    reads:  get x10 state *id#*
 ```
 except that no NetIO Custom Returns processing is done.
 So the direct object gets are probably better to use then the MQTT versions.
@@ -509,18 +508,18 @@ Generic messages can be sent by either NetIO or serial commands.
 <br>
 Generic MQTT messages can be sent within a schedule via serial commands and take the form:
 ```
-    mqtt: pub * *topic* * {* *payload* *};
-    mqtt: sub|unsub * *topic* * {* *callback* *};
+    mqtt: pub *topic* {*payload*};
+    mqtt: sub|unsub *topic* {*callback*};
 ```
 For "pub" commands, if the last word in the payload is "retain",
 the command is sent with the MQTT retain flag set.
 <br>
 <br>
-For sub and unsub, if * *callback* * is given,
+For sub and unsub, if *callback* is given,
 then a public callback proc must exist somewhere.
 <br>
 <br>
-If * *callback* * is not present, then the serial command essentially does nothing.
+If *callback* is not present, then the serial command essentially does nothing.
 <br>
 <br>
 Examples:
@@ -571,10 +570,10 @@ However, the action command can be used in the procedure to manipulate flags, va
 <br>
 <br>
 **CAUTION:
-* *There is little validation of the name of the custom procedure.
+*There is little validation of the name of the custom procedure.
 Care should be taken to avoid any standard TCL procedure names
 as inadvertently using an existing procedure name may result in abnormal behavior!
-* ***
+**
 <br>
 <br>
 The procedure must be defined in another enabled plug-in, 
@@ -584,7 +583,7 @@ A plug-in can contain several different procedures that are called by different 
 <br>
 The procedure will be called like this:
 ```
-    procedure_name * *topic* * * *payload* * * *retain* *
+    procedure_name *topic* *payload* *retain*
 ```
 Example:
 <br>
@@ -612,7 +611,7 @@ In the **Ext Devices Tab**, add an external device for the humidity sensor with 
     tele/BathHumidity/SENSOR
 ```
 The MQTT plug-in will explicitly subscribe to this topic instead of the normal standard state topics.
-Click "Command" and set the * *Command* * entry field to "humid".
+Click "Command" and set the *Command* entry field to "humid".
 Click "OK" to save this entry.
 <br>
 <br>
@@ -625,7 +624,7 @@ in the standard way, like this:
 ```
     stat/BathFan/POWER ON
 ```
-Click "Command" and set the * *Command* * entry field to "bathfan".
+Click "Command" and set the *Command* entry field to "bathfan".
 Click "OK" to save this entry.
 <br>
 <br>
@@ -669,11 +668,11 @@ Create a plug-in containing the following:
 (See next Section for a description of "mqttComm".)
 <br>
 <br>
-Procedure * *humid* * is called whenever a humidity status message is received. It processes the JSON status message to get the humidity and turns the fan on or off depending on the humidity level.
+Procedure *humid* is called whenever a humidity status message is received. It processes the JSON status message to get the humidity and turns the fan on or off depending on the humidity level.
 <br>
 <br>
-Procedure * *bathfan* * is called whenever a state message from the fan switch is received. It tracks the state of the fan so * *humid* * only turns the fan on/off if it is not already.
-In reality, * *bathfan* * isn't necessary, as turning on the fan while it is already on does no harm. It's here mainly as an example of how to set up a command.
+Procedure *bathfan* is called whenever a state message from the fan switch is received. It tracks the state of the fan so *humid* only turns the fan on/off if it is not already.
+In reality, *bathfan* isn't necessary, as turning on the fan while it is already on does no harm. It's here mainly as an example of how to set up a command.
 #### Triggers
 For those not comfortable with creating custom procedures, Triggers are a way to get a little more processing power without coding.
 Works well for sequential actions that don't require decision making.
@@ -749,7 +748,7 @@ Trigger:
     write to file "filename%D" "%T: %O:%m"
 ```
 <br>
-* *The following examples require action plug-in version 1.3 or greater.* *
+*The following examples require action plug-in version 1.3 or greater.*
 <br>
 <br>
 Turn on/off other lights to same level as triggering device.
@@ -790,7 +789,7 @@ On Trigger:
 Off Trigger:
     {empty}
 ```
-Note: * *roku* * is a custom plug-in not generally available.
+Note: *roku* is a custom plug-in not generally available.
 
 ### Sending/Receiving MQTT Messages from/to Another Plug-in
 
@@ -799,16 +798,16 @@ this method takes "Custom Commands" a step farther.
 A plug-in can be essentially independent of processing that is done in the MQTT plug-in, except for using it as a MQTT transport mechanism.
 <br>
 <br>
-Other plug-ins can interface with the MQTT plug-in via the * *mqttComm* * command.
+Other plug-ins can interface with the MQTT plug-in via the *mqttComm* command.
 The calling plug-in should import the command via:
 ```tcl
     hvImport mqttComm
 ```
-The * *mqttComm* * command has the following formats:
+The *mqttComm* command has the following formats:
 ```tcl
-    mqttComm {-log} sub|unsub &lt;* *topic* *&gt;|* *topic* * * *callback* * 
-    mqttComm {-exactstat -nodim -log -retain} stat|cmnd &lt;* *topic* *&gt;|* *topic* * {* *payload* *}
-    mqttComm {-log -retain} pub * *topic* * {* *payload* *}
+    mqttComm {-log} sub|unsub &lt;*topic*&gt;|*topic* *callback* 
+    mqttComm {-exactstat -nodim -log -retain} stat|cmnd &lt;*topic*&gt;|*topic* {*payload*}
+    mqttComm {-log -retain} pub *topic* {*payload*}
 ```
 
 * Note: In previous versions (&lt; 1.76), "type", the name of the calling plug-in, was the first argument. This has been deprecated. However, for backward compatibility, new versions of the command will allow (and ignore) a "type" argument.
@@ -816,15 +815,15 @@ The * *mqttComm* * command has the following formats:
 * -retain: The sent message is retained by the broker. This argument is optional.
 * -exactstat: Sends a POWER stat response regardless of power/result settings.
 * -nodim: Don't include Dimming in a RESULT response.
-* * *topic* *: Can either be enclosed in "&lt;&gt;" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "&lt;" nor "&gt;" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "&lt;" or "&gt;", should be enclosed in double-quotes.
-* * *payload* *: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
-* * *callback* *: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
+* *topic*: Can either be enclosed in "&lt;&gt;" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "&lt;" nor "&gt;" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "&lt;" or "&gt;", should be enclosed in double-quotes.
+* *payload*: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
+* *callback*: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
 ```
-    * *callback fulltopic payload retain* *
+    *callback fulltopic payload retain*
 ```
- * * *fulltopic* *: the complete topic, including any prefix or postfix.
- * * *payload* *: the message payload.
- * When a new subscription is made by a client, all retained messages that match the full topic are reported with * *retain* * set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
+ * *fulltopic*: the complete topic, including any prefix or postfix.
+ * *payload*: the message payload.
+ * When a new subscription is made by a client, all retained messages that match the full topic are reported with *retain* set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
 
 
 See below for further details on the use of callbacks!
@@ -849,7 +848,7 @@ which will subscribe to
 with "cascallback" as the callback proc.
 <br>
 <br>**Caution:**
-Make sure when subscribing to a topic that the topic is unique, especially compared to * *external devices* * and * *internal objects* *.
+Make sure when subscribing to a topic that the topic is unique, especially compared to *external devices* and *internal objects*.
 The MQTT client allows multiple, different callback procs to be assigned to the same topic (via different subscriptions) resulting in all of the procs being called when the common topic arrives.
 This could be useful, but normally it will cause unexpected behavior.
 <br>
@@ -880,11 +879,11 @@ Examples:
 ```
 <br>
 <br>
-* *Callbacks with the "sub" form of mqttComm* *
+*Callbacks with the "sub" form of mqttComm*
 <br>
 <br>
 When something subscribes to a topic, the assumption is that some action should be taken when a message with that topic arrives.
-So how is that handled when a plug-in uses * *mqttComm* * to subscribe to a topic?
+So how is that handled when a plug-in uses *mqttComm* to subscribe to a topic?
 <br>
 <br>
 This is best explained by example.
@@ -935,11 +934,11 @@ The calling plug-in should import the command via:
 ```
     hvImport topicTemplate
 ```
-The * *topicTemplate* * command has the following format:
+The *topicTemplate* command has the following format:
 ```
-    topicTemplate * *topic* *
+    topicTemplate *topic*
 ```
-* * *topic* *: fulltopic received by the callback.
+*topic*: fulltopic received by the callback.
 
 topicTemplate returns a list containing a dict with the following key/values:
 <br>
@@ -1010,30 +1009,30 @@ The calling plug-in should import the command via:
 ```
     hvImport mqttLog
 ```
-The * *mqttlog* * command has the following format:
+The *mqttlog* command has the following format:
 ```
-    mqttLog * *string* * {* *color* *}
+    mqttLog *string* {*color*}
 ```
-* * *string* *: String to log.
-* * *color* *: If "debug" is imported into the calling proc,
-will send string to the debug plug-in in * *color* *, Default: red.
+* string*: String to log.
+*color*: If "debug" is imported into the calling proc,
+will send string to the debug plug-in in *color*, Default: red.
 
 
 <br>
 **mqttReady**
 <br>
 <br>
-This proc is * *called* * by the MQTT plug-in to indicate whether it is connected or disconnected to the MQTT broker (and hence ready to take mqttComm calls).
+This proc is *called* by the MQTT plug-in to indicate whether it is connected or disconnected to the MQTT broker (and hence ready to take mqttComm calls).
 The using plug-in should make the command public via:
 ```
     hvPublic mqttReady
 ```
-When the MQTT connection changes, the MQTT plug-in calls * *mqttReady* * like this:
+When the MQTT connection changes, the MQTT plug-in calls *mqttReady* like this:
 ```
-    mqttReady * *status* *
+    mqttReady *status*
 ```
-* * *status* * is a dict  of either {state connected} or {state disconnected reason * *reason* *}.
-Possible values for * *reason* * are:
+*status* is a dict  of either {state connected} or {state disconnected reason *reason*}.
+Possible values for *reason* are:
 ```
     0 Normal disconnect
     1 Unacceptable protocol version
