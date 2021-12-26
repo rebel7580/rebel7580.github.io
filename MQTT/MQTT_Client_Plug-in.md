@@ -1,7 +1,7 @@
 <!-- $Revision: 1.29 $ -->
 <!-- $Date: 2021/07/22 21:55:08 $ -->
 <body>
-<h1>MQTT Client Plug-in<h1>
+# MQTT Client Plug-in
 ## Overview
 The MQTT Client Plug-in provides a client interface to MQTT for HomeVision.
 Its main purposes are to control MQTT enabled devices via the HomeVision Schedule or NetIO and
@@ -558,7 +558,7 @@ There are two methods that provide more advanced processing:
 * Custom commands - Create a plug-in and define a command to run when a topic is received;
 * Triggers - Send trigger strings to HomeVisionXL or plug-ins.
 </ul>
-<h4>Custom Commands</h4>
+#### Custom Commands
 To have custom processing of received messages for a topic,
 click "Command" and enter a procedure name in the "Command" field.
 The procedure becomes the callback proc for this topic.
@@ -673,7 +673,7 @@ Procedure <i>humid</i> is called whenever a humidity status message is received.
 <br>
 Procedure <i>bathfan</i> is called whenever a state message from the fan switch is received. It tracks the state of the fan so <i>humid</i> only turns the fan on/off if it is not already.
 In reality, <i>bathfan</i> isn't necessary, as turning on the fan while it is already on does no harm. It's here mainly as an example of how to set up a command.
-<h4>Triggers</h4>
+#### Triggers
 For those not comfortable with creating custom procedures, Triggers are a way to get a little more processing power without coding.
 Works well for sequential actions that don't require decision making.
 <br>
