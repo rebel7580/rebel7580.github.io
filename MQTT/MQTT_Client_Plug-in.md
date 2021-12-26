@@ -1015,7 +1015,7 @@ Reasons "1", "2", and "4" are fatal and need to be corrected before a connection
 <br>
 To use, define an mqttReady proc to respond to the connected and/or disconnected states.
 Typical use:
-```
+``` tcl
     hvPublic mqttReady
     proc mqttReady {status} {
     
