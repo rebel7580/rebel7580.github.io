@@ -706,14 +706,14 @@ Only one trigger entry is available and is run regardless of the payload content
 The following special character strings will cause substitutions for every occurrence in a trigger string(s).
 (Note: %X, %P, %E, %L don't make sense for "Custom" trigger strings, but, if used, will result in a "0" being substituted.)
 * **%X** Substitute a received 0-100 level scaled to 0-16 (standard **X**10).
-* %P Substitute a received 0-100 level scaled to 0-31 (**P**cs).
-* %E Substitute a received 0-100 level scaled to 0-63 (dir**E**ct to level).
-* %L Substitute a received 0-100 **L**evel unscaled.
-* %O Substitute the t**O**pic.
-* %M Substitute the entire payload  (**M**essage) unmodified.
-* %m Substitute the entire payload  (**m**essage), substituting single quotes for double quotes.
-* %D Substitute the current **D**ate in the form YYYYMMDD.
-* %T Substitute the current **T**ime in the form HH:MM:SS.
+* **%P** Substitute a received 0-100 level scaled to 0-31 (**P**cs).
+* **%E** Substitute a received 0-100 level scaled to 0-63 (dir**E**ct to level).
+* **%L** Substitute a received 0-100 **L**evel unscaled.
+* **%O** Substitute the t**O**pic.
+* **%M** Substitute the entire payload  (**M**essage) unmodified.
+* **%m** Substitute the entire payload  (**m**essage), substituting single quotes for double quotes.
+* **%D** Substitute the current **D**ate in the form YYYYMMDD.
+* **%T** Substitute the current **T**ime in the form HH:MM:SS.
 <br>
 Examples:
 <br>
@@ -805,7 +805,7 @@ The calling plug-in should import the command via:
 ```
 The *mqttComm* command has the following formats:
 ```tcl
-    mqttComm {-log} sub|unsub &lt;*topic*&gt;|*topic* *callback* 
+    mqttComm {-log} sub|unsub <&lt;*topic*&gt;|*topic* *callback* 
     mqttComm {-exactstat -nodim -log -retain} stat|cmnd &lt;*topic*&gt;|*topic* {*payload*}
     mqttComm {-log -retain} pub *topic* {*payload*}
 ```
