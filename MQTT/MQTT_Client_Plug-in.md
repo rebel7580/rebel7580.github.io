@@ -1,6 +1,39 @@
 <!-- $Revision: 1.29 $ -->
 <!-- $Date: 2021/07/22 21:55:08 $ -->
 # MQTT Client Plug-in
+{:.no_toc}
+
+[Back to Projects](/index)
+
+  * Overview
+    * Supported MQTT Topics
+      * Standard and Custom Topics
+      * Standard Command Topic
+      * Standard State Topic
+      * RESULT State Topic
+      * Last Will and Testament Topic
+      * Special "homevision" Topic
+      * Special Counting Payload
+    * Configuring Devices
+      * Ext Devices Tab
+      * Int Objects Tab
+      * Settings Tab
+    * Responding to External Device State Changes
+    * Controlling Devices
+      * Device/Object Display Area
+      * Serial Control
+      * NetIO
+      * Sending Generic MQTT Messages
+      * Custom Processing of Received Messages
+        * Custom Commands
+        * Triggers
+      * mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
+      * Other Public Procedures Supplied/Called by the MQTT Plug-in
+        * topicTemplate
+        * mqttLog
+        * mqttReady
+      * MQTT Discovery for Home Assistant
+{:toc}
 
 ## Overview
 The MQTT Client Plug-in provides a client interface to MQTT for HomeVision.
@@ -791,7 +824,7 @@ Off Trigger:
 ```
 Note: *roku* is a custom plug-in not generally available.
 
-### Sending/Receiving MQTT Messages from/to Another Plug-in
+### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
 
 When total control for MQTT message processing is needed,
 this method takes "Custom Commands" a step farther.
@@ -923,7 +956,7 @@ Either approach will work.
 
 ### Other Public Procedures Supplied/Called by the MQTT Plug-in
 
-**topicTemplate**
+#### topicTemplate
 <br>
 <br>
 To help with parsing full topics,
@@ -964,7 +997,7 @@ There are some details and cautions concerning the use of this helper proc.
 Contact the author for further support.
 <br>
 <br>
-**mqttLog**
+#### mqttLog
 <br>
 <br>
 Puts an entry into the current MQTT log file.
@@ -984,7 +1017,7 @@ will send string to the debug plug-in in *color*, Default: red.
 
 
 <br>
-**mqttReady**
+#### mqttReady
 <br>
 <br>
 This proc is *called* by the MQTT plug-in to indicate whether it is connected or disconnected to the MQTT broker (and hence ready to take mqttComm calls).
