@@ -1031,6 +1031,7 @@ The <i>mqttlog</i> command has the following format:
 <pre>
     mqttLog <i>string</i> {<i>color</i>}
 </pre>
+
 * <i>string</i>: String to log.
 * <i>color</i>: If "debug" is imported into the calling proc,
 will send string to the debug plug-in in <i>color</i>, Default: red.
@@ -1048,7 +1049,6 @@ When the MQTT connection changes, the MQTT plug-in calls <i>mqttReady</i> like t
 <pre>
     mqttReady <i>status</i>
 </pre>
-<ul>
 * <i>status</i> is a dict  of either {state connected} or {state disconnected reason <i>reason</i>}.
 Possible values for <i>reason</i> are:
 <pre>
@@ -1058,7 +1058,7 @@ Possible values for <i>reason</i> are:
     3 Server unavailable
     4 Bad user name or password
 </pre>
-</ul>
+
 Using this proc is only necessary to make sure the plug-in's subscriptions are re-done automatically in the case the connection to the broker going down and then recovers (with a {state connected} return).
 <br>
 <br>
@@ -1080,6 +1080,7 @@ Typical use:
 </pre>
 
 ### MQTT Discovery for Home Assistant
+
 <!--
 <a href="HomeVision and Home Assistant.html">Tips for Interfacing HomeVision with Home Assistant</a>
 <br>
