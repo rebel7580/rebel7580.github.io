@@ -23,7 +23,8 @@ so it can be controlled
 and
 PUBLISHES a <i>status</i> topic when it changes state.
 * Generic MQTT topics can be sent from the HomeVision schedule via serial commands, from NetIO, or from custom plug-ins, independent of any configured devices.
-</ul>
+
+
 While the client plug-in is designed to work easily with Tasmota based devices, using a similar topic and LWT structure,
 other devices that follow different topic structures likely can be accommodated as well.
 There is a lot of flexibility in the plug-in allowing support for many different situations.
