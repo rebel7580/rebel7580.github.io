@@ -819,22 +819,13 @@ The <i>mqttComm</i> command has the following formats:
     mqttComm {-exactstat -nodim -log -retain} stat|cmnd &lt;<i>topic</i>&gt;|<i>topic</i> {<i>payload</i>}
     mqttComm {-log -retain} pub <i>topic</i> {<i>payload</i>}
 </pre>
-* Note: In previous versions (&lt; 1.76), "type", the name of the calling plug-in, was the first argument.
-This has been deprecated.
-However, for backward compatibility,
-new versions of the command will allow (and ignore) a "type" argument.
-* -log: Log the command.
-This argument is optional.
-* -retain: The sent message is retained by the broker.
-This argument is optional.
+* Note: In previous versions (&lt; 1.76), "type", the name of the calling plug-in, was the first argument. This has been deprecated. However, for backward compatibility, new versions of the command will allow (and ignore) a "type" argument.
+* -log: Log the command. This argument is optional.
+* -retain: The sent message is retained by the broker. This argument is optional.
 * -exactstat: Sends a POWER stat response regardless of power/result settings.
 * -nodim: Don't include Dimming in a RESULT response.
-* <i>topic</i>: Can either be enclosed in "&lt;&gt;" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic.
-Otherwise, a topic with neither "&lt;" nor "&gt;" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages.
-If the topic contains spaces, the topic along with any "&lt;" or "&gt;",
-should be enclosed in double-quotes.
-* <i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions.
-Double-quotes or braces are NOT necessary for any spaces in the payload portion.
+* <i>topic</i>: Can either be enclosed in "&lt;&gt;" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "&lt;" nor "&gt;" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "&lt;" or "&gt;", should be enclosed in double-quotes.
+* <i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
 * <i>callback</i>: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
 <pre>
     <i>callback fulltopic payload retain</i>
@@ -955,9 +946,8 @@ The <i>topicTemplate</i> command has the following format:
 <pre>
     topicTemplate <i>topic</i>
 </pre>
-
 * <i>topic</i>: fulltopic received by the callback.
-</ul>
+
 topicTemplate returns a list containing a dict with the following key/values:
 <br>
 <br>
@@ -1031,10 +1021,10 @@ The <i>mqttlog</i> command has the following format:
 <pre>
     mqttLog <i>string</i> {<i>color</i>}
 </pre>
-
 * <i>string</i>: String to log.
 * <i>color</i>: If "debug" is imported into the calling proc,
 will send string to the debug plug-in in <i>color</i>, Default: red.
+
 
 <br>
 <b>mqttReady</b>
@@ -1049,7 +1039,6 @@ When the MQTT connection changes, the MQTT plug-in calls <i>mqttReady</i> like t
 <pre>
     mqttReady <i>status</i>
 </pre>
-
 * <i>status</i> is a dict  of either {state connected} or {state disconnected reason <i>reason</i>}.
 Possible values for <i>reason</i> are:
 <pre>
@@ -1059,6 +1048,7 @@ Possible values for <i>reason</i> are:
     3 Server unavailable
     4 Bad user name or password
 </pre>
+
 
 Using this proc is only necessary to make sure the plug-in's subscriptions are re-done automatically in the case the connection to the broker going down and then recovers (with a {state connected} return).
 <br>
