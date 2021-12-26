@@ -705,7 +705,7 @@ Only one trigger entry is available and is run regardless of the payload content
 <br>
 The following special character strings will cause substitutions for every occurrence in a trigger string(s).
 (Note: %X, %P, %E, %L don't make sense for "Custom" trigger strings, but, if used, will result in a "0" being substituted.)
-* %X Substitute a received 0-100 level scaled to 0-16 (standard **X**10).
+* **%X** Substitute a received 0-100 level scaled to 0-16 (standard **X**10).
 * %P Substitute a received 0-100 level scaled to 0-31 (**P**cs).
 * %E Substitute a received 0-100 level scaled to 0-63 (dir**E**ct to level).
 * %L Substitute a received 0-100 **L**evel unscaled.
