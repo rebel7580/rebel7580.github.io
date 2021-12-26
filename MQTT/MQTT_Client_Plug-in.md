@@ -706,24 +706,15 @@ Only one trigger entry is available and is run regardless of the payload content
 <br>
 The following special character strings will cause substitutions for every occurrence in a trigger string(s).
 (Note: %X, %P, %E, %L don't make sense for "Custom" trigger strings, but, if used, will result in a "0" being substituted.)
-<dt>%X</dt>
-<dd>Substitute a received 0-100 level scaled to 0-16 (standard <b>X</b>10).</dd>
-<dt>%P</dt>
-<dd>Substitute a received 0-100 level scaled to 0-31 (<b>P</b>cs).</dd>
-<dt>%E</dt>
-<dd>Substitute a received 0-100 level scaled to 0-63 (dir<b>E</b>ct to level).</dd>
-<dt>%L</dt>
-<dd>Substitute a received 0-100 <b>L</b>evel unscaled.</dd>
-<dt>%O</dt>
-<dd>Substitute the t<b>O</b>pic.</dd>
-<dt>%M</dt>
-<dd>Substitute the entire payload  (<b>M</b>essage) unmodified.
-<dt>%m</dt>
-<dd>Substitute the entire payload  (<b>m</b>essage), substituting single quotes for double quotes.
-<dt>%D</dt>
-<dd>Substitute the current <b>D</b>ate in the form YYYYMMDD.</dd>
-<dt>%T</dt>
-<dd>Substitute the current <b>T</b>ime in the form HH:MM:SS.</dd>
+* %X Substitute a received 0-100 level scaled to 0-16 (standard <b>X</b>10).
+* %P Substitute a received 0-100 level scaled to 0-31 (<b>P</b>cs).
+* %E Substitute a received 0-100 level scaled to 0-63 (dir<b>E</b>ct to level).
+* %L Substitute a received 0-100 <b>L</b>evel unscaled.
+* %O Substitute the t<b>O</b>pic.
+* %M Substitute the entire payload  (<b>M</b>essage) unmodified.
+* %m Substitute the entire payload  (<b>m</b>essage), substituting single quotes for double quotes.
+* %D Substitute the current <b>D</b>ate in the form YYYYMMDD.
+* %T Substitute the current <b>T</b>ime in the form HH:MM:SS.
 <br>
 Examples:
 <br>
