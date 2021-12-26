@@ -1,7 +1,7 @@
 <!-- $Revision: 1.29 $ -->
 <!-- $Date: 2021/07/22 21:55:08 $ -->
-<body>
 # MQTT Client Plug-in
+
 ## Overview
 The MQTT Client Plug-in provides a client interface to MQTT for HomeVision.
 Its main purposes are to control MQTT enabled devices via the HomeVision Schedule or NetIO and
@@ -31,6 +31,7 @@ There is a lot of flexibility in the plug-in allowing support for many different
 <br>
 <b>Note: To perform actions on internal objects, this plug-in uses the Actions Plug-in. The Actions Plug-in must be enabled to control internal objects.</b>
 ##  Supported MQTT Topics
+
 ### Standard and Custom Topics
 Topics can be assigned to devices either as abbreviated ("Standard") topics or full topics.
 Standard topics follow the Tasmota structure, so only the unique sub-topic portion need be entered. Default standard topics are indicated by enclosing the sub-topic with "&lt;" and "&gt;".
