@@ -957,8 +957,7 @@ Either approach will work.
 ### Other Public Procedures Supplied/Called by the MQTT Plug-in
 
 #### topicTemplate
-<br>
-<br>
+
 To help with parsing full topics,
 the mqtt plug-in makes public a helper proc that will split a full topic (the topic returned to the callback) into its parts and provide other info about the full topic.
 <br>
@@ -995,11 +994,9 @@ topicTemplate returns a list containing a dict with the following key/values:
 <br>
 There are some details and cautions concerning the use of this helper proc.
 Contact the author for further support.
-<br>
-<br>
+
 #### mqttLog
-<br>
-<br>
+
 Puts an entry into the current MQTT log file.
 <br>
 <br>
@@ -1015,11 +1012,8 @@ The *mqttlog* command has the following format:
 *color*: If "debug" is imported into the calling proc,
 will send string to the debug plug-in in *color*, Default: red.
 
-
-<br>
 #### mqttReady
-<br>
-<br>
+
 This proc is *called* by the MQTT plug-in to indicate whether it is connected or disconnected to the MQTT broker (and hence ready to take mqttComm calls).
 The using plug-in should make the command public via:
 ``` tcl
@@ -1038,7 +1032,6 @@ Possible values for *reason* are:
     3 Server unavailable
     4 Bad user name or password
 ```
-
 
 Using this proc is only necessary to make sure the plug-in's subscriptions are re-done automatically in the case the connection to the broker going down and then recovers (with a {state connected} return).
 <br>
