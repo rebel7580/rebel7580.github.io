@@ -1049,6 +1049,7 @@ When the MQTT connection changes, the MQTT plug-in calls <i>mqttReady</i> like t
 <pre>
     mqttReady <i>status</i>
 </pre>
+
 * <i>status</i> is a dict  of either {state connected} or {state disconnected reason <i>reason</i>}.
 Possible values for <i>reason</i> are:
 <pre>
@@ -1081,12 +1082,6 @@ Typical use:
 
 ### MQTT Discovery for Home Assistant
 
-<!--
-<a href="HomeVision and Home Assistant.html">Tips for Interfacing HomeVision with Home Assistant</a>
-<br>
-<a href="HomeVision Discovery How-to.html">How to Use Home Assistant Auto Discovery</a>
-<br>
--->
 [Tips for Interfacing HomeVision with Home Assistant](https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL/wiki/Tips-for-Interfacing-HomeVision-with-Home-Assistant)
 <br>
 [[How to Use the MQTT Plug-in's Home-Assistant Auto Discovery|How-to-Use-the-MQTT-Plug-in's-Home-Assistant-Auto-Discovery]]
