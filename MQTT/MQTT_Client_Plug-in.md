@@ -706,7 +706,6 @@ Only one trigger entry is available and is run regardless of the payload content
 <br>
 The following special character strings will cause substitutions for every occurrence in a trigger string(s).
 (Note: %X, %P, %E, %L don't make sense for "Custom" trigger strings, but, if used, will result in a "0" being substituted.)
-<dl>
 <dt>%X</dt>
 <dd>Substitute a received 0-100 level scaled to 0-16 (standard <b>X</b>10).</dd>
 <dt>%P</dt>
@@ -725,7 +724,6 @@ The following special character strings will cause substitutions for every occur
 <dd>Substitute the current <b>D</b>ate in the form YYYYMMDD.</dd>
 <dt>%T</dt>
 <dd>Substitute the current <b>T</b>ime in the form HH:MM:SS.</dd>
-</dl>
 <br>
 Examples:
 <br>
