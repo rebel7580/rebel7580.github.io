@@ -8,15 +8,13 @@ Its main purposes are to control MQTT enabled devices via the HomeVision Schedul
 to control HomeVision objects by MQTT sources.
 The MQTT interface has three distinct functions:
 <ul>
-<li>
-For "external" MQTT-enabled devices (e.g., Sonoff switches with Tasmota SW),
+* For "external" MQTT-enabled devices (e.g., Sonoff switches with Tasmota SW),
 the MQTT Plug-in acts as an MQTT controller.
 The plug-in PUBLISHES <i>command</i> topics to these devices
 to control them
 and SUBSCRIBES to <i>status</i> topics from these devices to track their state changes.
 Changes are tracked by Actions such as setting Flags or Variables and running Macros based on that status.
-<li>
-For "internal" objects defined in HomeVision
+* For "internal" objects defined in HomeVision
 (such as X-10 modules, flags, inputs, etc.),
 the MQTT Plug-in acts as a "proxy" for them, essentially making them appear to be MQTT-enabled.
 For each selected object, the plug-in 
@@ -24,8 +22,7 @@ SUBSCRIBES to a <i>command</i> topic
 so it can be controlled
 and
 PUBLISHES a <i>status</i> topic when it changes state.
-<li>
-Generic MQTT topics can be sent from the HomeVision schedule via serial commands, from NetIO, or from custom plug-ins, independent of any configured devices.
+* Generic MQTT topics can be sent from the HomeVision schedule via serial commands, from NetIO, or from custom plug-ins, independent of any configured devices.
 </ul>
 While the client plug-in is designed to work easily with Tasmota based devices, using a similar topic and LWT structure,
 other devices that follow different topic structures likely can be accommodated as well.
@@ -205,73 +202,57 @@ This can be used to advantage; sending a "cmnd" "POWER" message with a payload o
 <h3>Ext Devices Tab</h3>
 This tab contains a list of supported external devices.
 <ul>
-<li>
-<i>Device Name</i> is the name of the device for use by serial and NetIO commands.
+
+* <i>Device Name</i> is the name of the device for use by serial and NetIO commands.
 It must be unique among both external and internal device names.
-See below for Name rules.<li>
-<i>Topic</i> is the topic used for publishing and subscribing.
+See below for Name rules.
+* <i>Topic</i> is the topic used for publishing and subscribing.
 See below for Topic rules.
-<li>
+<li>   
 The <i>Flag/Var</i> column shows the Flag (FL-#) or Variable (VA-#) assigned to the device.
 If none is assigned, a "-" will show.
-<li>
-The <i>Macro</i> column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
+* The <i>Macro</i> column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
 If no macro is assigned, a "-" will show. 
-<li>
-The <i>State</i> column will usually show "On" or "Off", depending on the reported state of the device.
+* The <i>State</i> column will usually show "On" or "Off", depending on the reported state of the device.
 If the payload was an number, its value, potentially masked and/or truncated, will be displayed.
 When the state has not (yet) been reported, a "-" will show.
-<li>
-For each device, its row will be displayed in RED text if the device is reported as "off line" by an LWT message.
+* For each device, its row will be displayed in RED text if the device is reported as "off line" by an LWT message.
 However, if an "on Line" LWT or a POWER state message is received,
 the row will display in BLACK text.
-<li>
-Rows can be sorted in ascending or descending order by <i>Device Name</i> or <i>Topic</i> by clicking on the column header. 
+* Rows can be sorted in ascending or descending order by <i>Device Name</i> or <i>Topic</i> by clicking on the column header. 
 </ul>
 <i>New/Edit/Delete External Devices</i>
 <ul>
-<li>
-To enter a new device, click the "New" button, and start with the <i>Topic</i>.
+* To enter a new device, click the "New" button, and start with the <i>Topic</i>.
 <ul>
-<li>
-Topics are case-sensitive!
-<li>
-A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
+ * Topics are case-sensitive!
+ * A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
 is indicated by enclosing it in "&lt;" and "&gt;"
 (or one of the variations mentioned previously).
 E.g., "<<i>topic</i>>".
 <i>This should be the default method for specifying topics.</i>
 To help with this, a new device will have "<>" already inserted in the topic field.
 (Delete or modify as needed.)
-<li>
-Topics can contain multiple levels, indicated by "/", but should not start or end with a "/".
-<li>
-A topic with <i>default</i> processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
-<li>
-A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
+ * Topics can contain multiple levels, indicated by "/", but should not start or end with a "/".
+ * A topic with <i>default</i> processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
+ * A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
 Use of wildcards should adhere to the MQTT standards.
 However, care should be taken when using them. It's probably a bad idea to have "#" as a topic, as it will subscribe to EVERYTHING!
 
-<li>
-<i>Device Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
+ * <i>Device Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
 If the "topic" is simple and descriptive, it can be copied to the <i>Name</i> field.
 If the "topic" is multi-level, <i>Name</i> must be simpler.
 <i>Name</i> cannot contain "&lt;", "&gt;", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
 <i>Device Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
-<li>
-There is some validation of the <i>Topic</i> and <i>Device Name</i> fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
-<li>
-For each device, an HV Flag or Variable can be assigned. 
+ * There is some validation of the <i>Topic</i> and <i>Device Name</i> fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
+ * For each device, an HV Flag or Variable can be assigned. 
 Assigning a Flag or Variable is optional.
 There is no checking to make sure a Flag or Variable is not used more than once.
-<li>
-If a variable is selected, two additional options are available.
+ * If a variable is selected, two additional options are available.
 <ul>
-<li>
-"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
-<li>
-If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
+  * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+  * If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
 can be selected.
 If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1.
 If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
@@ -279,30 +260,23 @@ If the option is not selected, the received value is written as a 1-byte number 
 <br>
 Note: When "Use Variable as Flag" is not selected, Payloads with "on" or "off" do not cause any Actions, except for updating the "State" display.
 </ul>
-<li>
-Macros can be assigned for "On" and "Off" states.
+ * Macros can be assigned for "On" and "Off" states.
 The same macro can be assigned to both states, or different macros can be assigned.
 A macro can be assigned to just one of the states, leaving the other set to "None".
-<li>
-To have custom processing of received messages or triggers for this topic, select the appropriate mode and enter command/triggers.
+ * To have custom processing of received messages or triggers for this topic, select the appropriate mode and enter command/triggers.
 See <b>Custom Processing of Received Messages</b> for details.
-<li>
-Check "Subscribe to Last Will and Testament" to subscribe standard topics to LWT.
+ * Check "Subscribe to Last Will and Testament" to subscribe standard topics to LWT.
 If the topic is not in the form of a standard topic,
 this selection has no effect.
-<li>
-Choose whether to log MQTT messages sent or received by this device.
-<li> Click "OK" to save edits,
+ * Choose whether to log MQTT messages sent or received by this device.
+ * Click "OK" to save edits,
 or "Cancel" to discard them.
 </ul>
-<li>
-Devices can be edited by clicking the "Edit" button.
+* Devices can be edited by clicking the "Edit" button.
 This brings up the same window used for adding a new device.
-<li>
-Use the "Delete" button to delete a device.
+* Use the "Delete" button to delete a device.
 When a device is deleted, the plug-in unsubscribes to any topics related to that device.
-<li>
-When "Done" is clicked, devices with standard topics are subscribed to their state and LWT full topics.
+* When "Done" is clicked, devices with standard topics are subscribed to their state and LWT full topics.
 Devices with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
 </ul>
@@ -312,56 +286,44 @@ This tab contains a list of supported internal objects.
 These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, or HVAC.
 Add only those objects that need to be visible to or acted on by the MQTT network.
 <ul>
-<li>
-<i>ID</i>
+* <i>ID</i>
 is the internal object ID.
 X-10 object IDs show with their A-P house/unit code format.
 Input and Output object IDs have an "I" or "O" prepended to their usual A-Q codes to distinguish them from X-10 ids.
 Other objects show using a "Fake" code of the first two letters of their standard HV object type name. For example, Custom Lights show as "LI".
-<li>
-<i>Object Name</i> is the name of the object for use by serial and NetIO commands.
+* <i>Object Name</i> is the name of the object for use by serial and NetIO commands.
 It must be unique among both external and internal names. It can be the same as the topic, but cannot contain "&lt;", "&gt;", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
 <i>Object Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
 <b>N.B.:</b> HomeVision allows duplicate names among objects, so some modification to the suggested default names will be necessary to achieve uniqueness in the object lists.
-<li>
-<i>Topic</i> is the topic used for publishing and subscribing.
+* <i>Topic</i> is the topic used for publishing and subscribing.
 Topic rules are the same as external devices with default processing (i.e., no MQTT wildcards).
-<li>
-The <i>State</i> column will show the reported state of the object.
+* The <i>State</i> column will show the reported state of the object.
 The auto reporting feature for objects must be turned on, or the HomeVision schedule must explicitly send updates for this to work.
 When the state has not (yet) been reported, a "-" may show.
 Variables always show a "-" for the state.
-<li>
-<i>Level</i> shows the reported object level or value as appropriate.
+* <i>Level</i> shows the reported object level or value as appropriate.
 X-10 and Light objects show their level in percent, while Variables show their value.
-<li>
-Rows can be sorted in ascending or descending order by <i>ID</i>, <i>Object Name</i> or <i>Topic</i> by clicking on the column header.
+* Rows can be sorted in ascending or descending order by <i>ID</i>, <i>Object Name</i> or <i>Topic</i> by clicking on the column header.
 When sorting by ID, object types are always grouped together and sorted within those groups by ID.
 </ul>
 <i>New/Edit/Delete Internal Objects</i>
 <ul>
-<li>
-To enter a new object, Click the "New" button and start by selecting an object from the drop-down list.
+* To enter a new object, Click the "New" button and start by selecting an object from the drop-down list.
 Objects included in the list are those that have been checked in the
 "Object Type List Enable" section of the <b>Int Object Tab</b>.
 <ul>
-<li>
-If a variable is selected, two additional options are available.
+ * If a variable is selected, two additional options are available.
 <ul>
-<li>
-"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
-<li>
-If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
+  * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+  * If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
 can be selected.
 If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1.
 If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
 </ul>
-<li>
-If an X-10 object is selected, then choose a Model.
+ * If an X-10 object is selected, then choose a Model.
 Model is used to determine how level changes are done.
-<li>
-Clicking "Copy Object to Topic, Name" will populate the "Topic" and "Name" fields with an appropriate version of the object name.
+ * Clicking "Copy Object to Topic, Name" will populate the "Topic" and "Name" fields with an appropriate version of the object name.
 Some validation is done on the "Topic" and "Name" fields; the "OK" button will be grayed out if either field fails validation. 
 The "Topic" and "Name" fields can be modified, keeping in mind the rules above for topics and object/device names.
 <br>
@@ -371,46 +333,34 @@ However, note that if a single topic is assigned to multiple objects, when ANY o
 <br>
 <br>
 An exception to this is if different index numbers are appended to the topic, in which case each will act and report independently.
-<li>
-Choose if object status messages should be sent with the "retained" flag set.
+* Choose if object status messages should be sent with the "retained" flag set.
 The retain flag will cause most brokers to "remember" the status and send it to any client that later subscribes to the status topic.
-<li>
-Choose whether to log MQTT messages sent or received by this device.
+ * Choose whether to log MQTT messages sent or received by this device.
 </ul>
-<li>
-Objects can be edited by clicking the "Edit" button.
+* Objects can be edited by clicking the "Edit" button.
 This brings up the same window used for adding a new object.
-<li>
-Use the "Delete" button to delete an object.
+* Use the "Delete" button to delete an object.
 When a object is deleted, the plug-in unsubscribes to any topics related to that device.
-<li>
-When "Done" is clicked, objects with standard topics are subscribed to their command full topics.
+* When "Done" is clicked, objects with standard topics are subscribed to their command full topics.
 Objects with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
 </ul>
 
 <h3>Settings Tab</h3>
 <ul>
-<li>
-Prefixes and Postfixes can be set for "standard" topics.
+* Prefixes and Postfixes can be set for "standard" topics.
 The defaults conform to the Tasmota structure.
 They can be changed if necessary, but
 avoid Prefixes and Postfixes that have digits at the beginning or end.
-<li>
-If desired, enter the "Count" payload text.
+* If desired, enter the "Count" payload text.
 Leave blank if not used.
-<li>
-"MQTT Broker web/IP Address" defaults to "localhost" which should work if the MQTT broker is on the same (Linux) computer as HomeVisionXL.
+* "MQTT Broker web/IP Address" defaults to "localhost" which should work if the MQTT broker is on the same (Linux) computer as HomeVisionXL.
 If it doesn't work, or the broker and HomeVisionXL are on different computers,
 change it to the MQTT broker's domain or explicit IP address.
-<li>
-"MQTT Broker Port" defaults to "1883" and probably won't need to change.
-<li>
-QOS values for Publish and Subscribe messages can be set for brokers that do not support the defaults of QOS 1 for Publish and QOS 2 for Subscribe.
-<li>
-If a username and password is used to log into the broker, check the "Use Username/Password" box and then fill in the username and password.
-<li>
-Select the type(s) of state responses desired.
+* "MQTT Broker Port" defaults to "1883" and probably won't need to change.
+* QOS values for Publish and Subscribe messages can be set for brokers that do not support the defaults of QOS 1 for Publish and QOS 2 for Subscribe.
+* If a username and password is used to log into the broker, check the "Use Username/Password" box and then fill in the username and password.
+* Select the type(s) of state responses desired.
 <i>Valid only for internal objects!</i>
 <br>
 "Power" enables a standard response like this:
@@ -433,13 +383,11 @@ or like this if "Dimming" is checked:
 One or both of "Power" or "RESULT" <i>must</i> be selected.
 If both are <i>unchecked</i>, "Power" will be re-selected automatically.
 "Dimming" has no effect if "Power" only is selected.
-<li>
-Select the format of device state responses for "stat" MQTT messages.
+* Select the format of device state responses for "stat" MQTT messages.
 <i>Valid only for internal objects!</i>
 Responses can be either the "OFF"/"ON"/"ON <i>level</i>" format or strictly "<i>level</i>", i.e., 0-100.
 Response format can be set separately for appliance modules (which normally would be best set to "OFF/ON") and all others (standard X-10, PCS, Custom Lights, etc.).
-<li>
-If logging is desired, check "Create log file".
+* If logging is desired, check "Create log file".
 Doing so will display an entry box for the folder for the logs.
 Log files will be created in this folder.
 Enter the folder name directly, or click the "..." button to browse to or create it.
@@ -448,17 +396,13 @@ The file name is "MQTTLogYYMMDD", with an extension determined by "Log File Exte
 If "Log File Extension" is empty, the file will have a ".txt" extension if HomeVisionXL is running in Windows,
 and no extension if running in Linux.
 <ul>
-<li>
-Only messages for devices/objects that have their "Log sent messages" or "Log received messages" options checked are logged.
+ * Only messages for devices/objects that have their "Log sent messages" or "Log received messages" options checked are logged.
 This includes messages sent via the "right-click" menu, serial or NetIO.
-<li>
-"Subscribe" and "Unsubscribe" messages are not logged.
-<li>
-Received messages to "cmnd/homevision/#" are always logged.
+ * "Subscribe" and "Unsubscribe" messages are not logged.
+ * Received messages to "cmnd/homevision/#" are always logged.
 However, responses to this command are determined by the affected objects' settings.
 </ul>
-<li>
-"Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
+* "Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
 </ul>
 <h2>Responding to External Device State Changes</h2>
 Refer to <!-- <a href="MQTT_Actions_ext.html">External Device Actions</a> --> [[Help: External Device Actions|Help:-External-Device-Actions]]
@@ -631,10 +575,8 @@ Sometimes a topic may not fit the standard forms supported by the plug-in, or th
 may not be powerful enough.
 There are two methods that provide more advanced processing:
 <ul>
-<li> 
-Custom commands - Create a plug-in and define a command to run when a topic is received;
-<li>
-Triggers - Send trigger strings to HomeVisionXL or plug-ins.
+* Custom commands - Create a plug-in and define a command to run when a topic is received;
+* Triggers - Send trigger strings to HomeVisionXL or plug-ins.
 </ul>
 <h4>Custom Commands</h4>
 To have custom processing of received messages for a topic,
@@ -1112,8 +1054,7 @@ The <i>mqttlog</i> command has the following format:
     mqttLog <i>string</i> {<i>color</i>}
 </pre>
 <ul>
-<li>
-<i>string</i>: String to log.
+* <i>string</i>: String to log.
 <li><i>color</i>: If "debug" is imported into the calling proc,
 will send string to the debug plug-in in <i>color</i>, Default: red.
 </ul>
@@ -1131,8 +1072,7 @@ When the MQTT connection changes, the MQTT plug-in calls <i>mqttReady</i> like t
     mqttReady <i>status</i>
 </pre>
 <ul>
-<li>
-<i>status</i> is a dict  of either {state connected} or {state disconnected reason <i>reason</i>}.
+* <i>status</i> is a dict  of either {state connected} or {state disconnected reason <i>reason</i>}.
 Possible values for <i>reason</i> are:
 <pre>
     0 Normal disconnect
