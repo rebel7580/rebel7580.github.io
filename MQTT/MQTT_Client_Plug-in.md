@@ -44,7 +44,7 @@ Most of the examples to follow assume use of the defaults.
 <br>
 To provide additional flexibility in defining a system's topic structure, standard topics can have the prefix and postfix indicators in any position relative to the sub-topic.
 The following are possible (where "T" is the sub-topic):
-~~~
+```
    Template        Example
       &lt;T&gt;       cmnd/T/POWER    --&gt; Tasmota standard and MQTT plug-in default
       T&lt;&gt;       T/cmnd/POWER    
@@ -52,16 +52,16 @@ The following are possible (where "T" is the sub-topic):
       &gt;T&lt;       POWER/T/cmnd
       T&gt;&lt;       T/POWER/cmnd
       &gt;&lt;T       POWER/cmnd/T
-~~~
+```
 To accommodate certain Tasmota devices that have multiple relays or switches, one or more digits can follow the "&gt;" postfix index to specify the relay or switch.
 For example, an external device of this type that sends out state reports like this:
-~~~
+```
     stat/FloorLamp/POWER2 ON
-~~~
+```
 should be set up with this topic structure:
-~~~
+```
     &lt;FloorLamp&gt;2
-~~~
+```
 Devices that send out reports for several "relays" should have separate entries in the <b>Ext Devices Tab</b> for each "relay".
 <br>
 <br>
@@ -87,7 +87,7 @@ Most of the examples in the rest of this Help follow the Tasmota standard.
 
 ### Standard Command Topic
 The following command topic is supported (using default prefixes and postfixes) with various payloads:
-~~~
+```
         Full Topic     Payload
     cmnd/<i>topic</i>/POWER  ON
     cmnd/<i>topic</i>/POWER  ON <i>level</i>*
@@ -95,7 +95,7 @@ The following command topic is supported (using default prefixes and postfixes) 
     cmnd/<i>topic</i>/POWER  OFF
     cmnd/<i>topic</i>/POWER  TOGGLE
     cmnd/<i>topic</i>/POWER  empty or "?"** 
-~~~
+```
 <i>topic</i> is defined during device configuration.
 <br>Payloads are case-insensitive for incoming messages.<br>
 * <i>level</i> is expressed as a percentage, 0-100.
@@ -119,10 +119,10 @@ For a full list of Actions based on the received topic and payload, see
 
 ### Standard State Topic
 For each external device, the plug-in <i>subscribes</i> to the following topic (assuming "&lt;<i>topic</i>&gt; in the "Topic" field):
-~~~
+```
         Full Topic                     Payload
     stat/<i>topic</i>/POWER<i>x</i>           OFF/ON/ON <i>level</i>/<i>level</i>
-~~~
+```
 When a POWER topic is received, the plug-in looks for a message of "on" or "off" and takes action according to the device's settings in the <b>Ext Devices Tab</b>.
 For a full list of Actions based on the received topic and payload, see
 <!-- <a href="MQTT_Actions_ext.html">External Device Actions</a> -->
@@ -137,19 +137,19 @@ In fact, RESULT state messages can be sent from the device when many other actio
 <br>
 <br>
 To receive such messages, they must explicitly be entered as a device in the <b>Ext Devices Tab</b> with a <i>custom command</i> defined to process the message.
-~~~
+```
           Topic                         Payload
     stat/<i>topic</i>/RESULT               a JSON string
-~~~
+```
 ### Last Will and Testament Topic
 For each external device with a <i>standard topic</i>
 that has "Subscribe to Last Will and Testament" checked,
 the plug-in automatically <i>subscribes</i> to
 a <i>Last Will and Testament</i> topic as follows:
-~~~
+```
         Full Topic     
       tele/<i>topic</i>/LWT
-~~~
+```
 If received, the plug-in looks for a message of "online" or "offline" and attempt to display this message in the <b>Ext Devices Tab</b>.
 <br>
 <br>
@@ -160,16 +160,16 @@ the "Subscribe to Last Will and Testament" checkbox has no effect.
 LWT is not supported for internal objects.
 ### Special "homevision" Topic
 The MQTT plug-in automatically subscribes to:
-~~~
+```
         Full Topic
     cmnd/homevision/#
-~~~
+```
 When a message is received in the form:
-~~~
+```
         Full Topic                        Payload
     cmnd/homevision/<i>object_type</i>/POWER    empty or "?"
     cmnd/homevision/POWER               empty or "?"
-~~~
+```
 for each defined object matching <i>object_type</i>
 (one of
 x10, light, var, flag, hvac, temp, analog, input or output)
@@ -191,9 +191,9 @@ For internal objects, a "cmnd" "Power" message will do the same.
 <br>
 For example, if "Count Payload Text" is set to "CYCLE", and an internal object is created with Var-100 and Var-101 assigned to it but re-named "Watchdog",
 then when the following is received:
-~~~
+```
     cmnd/Watchdog/POWER CYCLE
-~~~
+```
 Var-100 and Var-101 are incremented.
 <br>
 <br>
@@ -345,20 +345,20 @@ change it to the MQTT broker's domain or explicit IP address.
 <i>Valid only for internal objects!</i>
 <br>
 "Power" enables a standard response like this:
-~~~
+```
         Full Topic                     Payload
     stat/<i>topic</i>/POWER<i>x</i>               OFF/ON/ON <i>level</i>/<i>level</i>
-~~~
+```
 "RESULT" enables a response like this, if "Dimming" is unchecked:
-~~~
+```
         Full Topic                     Payload
     stat/<i>topic</i>/RESULT          {"POWER<i>x</i>":"OFF/ON/ON <i>level</i>/<i>level</i>"}
-~~~
+```
 or like this if "Dimming" is checked:
-~~~
+```
         Full Topic                     Payload
     stat/<i>topic</i>/RESULT          {"POWER<i>x</i>":"OFF/ON","Dimmer":<i>level</i>}*
-~~~
+```
 * Note: If set to "Response uses 0-100" (see next item), the POWER value will still be "OFF" if 0 and "ON" if otherwise.
 <br>
 One or both of "Power" or "RESULT" <i>must</i> be selected.
@@ -419,7 +419,7 @@ the MQTT broker will send it right back to the plug-in,
 which will then set the object to the requested state.
 If the command topic causes an object state change, the plug-in completes the sequence by publishing a state topic showing the new state.
 Here's a sequence chart example that might make it more clear:
-~~~    HomeVision              Plug-in                       MQTT Broker
+```    HomeVision              Plug-in                       MQTT Broker
 
                      Right-click X-10 object "Den"
                          and click "Toggle":
@@ -430,25 +430,25 @@ Here's a sequence chart example that might make it more clear:
     sends X-10 cmd
      to toggle Den
                    ---&gt; stat/den/POWER            ---&gt;
-~~~
+```
 
 ### Serial Control
 MQTT devices can be controlled within a schedule via serial commands which take the form:
-~~~
+```
     mqtt: <i>device_name/object_name</i> <i>command</i>;
-~~~
+```
 For example, to toggle a device <i>named</i> "sonoff1",
 the serial command would be:
-~~~
+```
     mqtt: sonoff1 toggle;
-~~~
+```
 "mqtt:" is whatever the "Serial string prefix" is defined as.
 ";' is whatever the "Serial string terminator character(s)" is defined as.
 "toggle" or "2", "on" or "1", "off" or "0", and "state" are allowed.
 X-10 and Custom Lights can be set to a level by using "on <i>level</i>". E.g.,
-~~~
+```
     mqtt: den on 50;
-~~~
+```
 The device <i>name</i> is case-insensitive when matching a device <i>name</i> in the Device list.
 The <i>command</i> portion is sent as-is, case-wise.
 <br>
@@ -460,9 +460,9 @@ In either case, the plug-in will publish a state change topic if the state actua
 MQTT devices can be controlled via NetIO using a "netioaction" command in the NetIO application.
 For example, to have a button set up to toggle a device <i>named</i> "sonoff1",
 the button's <i>sends</i> attribute would be set to:
-~~~
+```
     sends:  netioaction mqtt sonoff1 toggle
-~~~
+```
 "mqtt" is whatever the "Netio string" is defined as.
 "toggle" or "2", "on" or "1", "off" or "0", and "state" are allowed.
 <br>
@@ -472,9 +472,9 @@ The <i>command</i> portion is sent as-is, case-wise.
 <br>
 <br>
 The state of the device can get retrieved by:
-~~~
+```
     reads:  get mqtt sonoff1
-~~~
+```
 The <i>get</i> command will return the object's state string, depending on the state of the device.
 <br>
 <br>
@@ -485,17 +485,17 @@ If the device's state has not yet been reported, the last value of the Flag or V
 <br>
 <br>
 Also note that this command is essentially the same as the more direct gets:
-~~~
+```
     reads:  get var state <i>var#</i>
-~~~
+```
 or
-~~~
+```
     reads:  get flag state <i>flag#</i>
-~~~
+```
 or
-~~~
+```
     reads:  get x10 state <i>id#</i>
-~~~
+```
 except that no NetIO Custom Returns processing is done.
 So the direct object gets are probably better to use then the MQTT versions.
 
@@ -508,10 +508,10 @@ Generic messages can be sent by either NetIO or serial commands.
 <br>
 <br>
 Generic MQTT messages can be sent within a schedule via serial commands and take the form:
-~~~
+```
     mqtt: pub <i>topic</i> {<i>payload</i>};
     mqtt: sub|unsub <i>topic</i> {<i>callback</i>};
-~~~
+```
 For "pub" commands, if the last word in the payload is "retain",
 the command is sent with the MQTT retain flag set.
 <br>
@@ -524,12 +524,12 @@ If <i>callback</i> is not present, then the serial command essentially does noth
 <br>
 <br>
 Examples:
-~~~
+```
     mqtt: sub tele/somedevice/state mycb;
     mqtt: unsub tele/somedevice/state mycb;
     mqtt: pub "cmnd/living room/POWER" some payload info;
     mqtt: pub "cmnd/living room/POWER" some payload info retain;
-~~~
+```
 Note: If a topic has spaces, the entire topic should be enclosed in double-quotes or braces {}.
 <br>
 Note: Double-quotes or braces are NOT necessary for any spaces in the payload portion.
@@ -539,12 +539,12 @@ Generic MQTT messages can be sent via NetIO using a "netioaction" command in the
 <br>
 <br>
 Examples:
-~~~
+```
     sends:  netioaction mqtt sub tele/somedevice/state mycb
     sends:  netioaction mqtt unsub tele/somedevice/state mycb
     sends:  netioaction mqtt pub {cmnd/living room/POWER} some payload info
     sends:  netioaction mqtt pub {cmnd/living room/POWER} some payload info retain
-~~~
+```
 Note: For NetIO, a topic with spaces must be enclosed by braces {}.
 Double-quotes are not allowed due to the way NetIO handles arguments of the netioaction command.
 
@@ -583,15 +583,15 @@ A plug-in can contain several different procedures that are called by different 
 <br>
 <br>
 The procedure will be called like this:
-~~~
+```
     procedure_name <i>topic</i> <i>payload</i> <i>retain</i>
-~~~
+```
 Example:
 <br>
 <br>
 Suppose we have a device (named BathHumidity) running Tasmota software with a AM2301 temperature/humidity sensor attached , and we want to turn on a ventilator fan (named BathFan) when the humidity gets high (&gt;70) and turn it off when it is low (&lt;55).
 We would get periodic MQTT tele reports like this:
-~~~
+```
 
     tele/BathHumidity/SENSOR {
         "Time":"2020-05-20T15:13:25",
@@ -603,28 +603,28 @@ We would get periodic MQTT tele reports like this:
         "TempUnit": "F"
     }
 
-~~~
+```
 (The JSON payload is expanded here for readability.)
 <br>
 <br>
 In the <b>Ext Devices Tab</b>, add an external device for the humidity sensor with a full topic of
-~~~
+```
     tele/BathHumidity/SENSOR
-~~~
+```
 The MQTT plug-in will explicitly subscribe to this topic instead of the normal standard state topics.
 Click "Command" and set the <i>Command</i> entry field to "humid".
 Click "OK" to save this entry.
 <br>
 <br>
 Add another external device for the fan with a standard topic
-~~~
+```
     &lt;BathFan&gt;
-~~~
+```
 so that it will report status
 in the standard way, like this:
-~~~
+```
     stat/BathFan/POWER ON
-~~~
+```
 Click "Command" and set the <i>Command</i> entry field to "bathfan".
 Click "OK" to save this entry.
 <br>
@@ -633,7 +633,7 @@ Click "Done" for changes to be effective!
 <br>
 <br>
 Create a plug-in containing the following:
-~~~
+```
     tcl::tm::path add [file dirname [info script]]
     package require json 1.0
 
@@ -665,7 +665,7 @@ Create a plug-in containing the following:
             }
         }
     }
-~~~
+```
 (See next Section for a description of "mqttComm".)
 <br>
 <br>
@@ -723,37 +723,37 @@ Play a sound file and run a program when the topic is received.
 This example shows how two separate "built-in" triggers can work together in one trigger string. 
 (Assumes that the sound and program functions are working.)
 <br>
-~~~
+```
 Options: Custom. 
 
 Trigger:
     Play wav file "alarm"  Run program "sendtext"
-~~~
+```
 <br>
 Write a daily log file. (This may be redundant, as the MQTT plug-in has logging capability in other forms, but shows what can be done.)
-~~~
+```
 Options: Standard, All.
  
 Trigger:
     write to file "filename%D" "%T: %O:%M"
-~~~
+```
 <br>
 <br>
 Write a daily log file, where the payload may have double quotes in it (i.e., a JSON string).
 In that case, the double quotes must be converted to single quotes to avoid confusing the "write to file" processing.
-~~~
+```
 Options: Standard, All.
  
 Trigger:
     write to file "filename%D" "%T: %O:%m"
-~~~
+```
 <br>
 <i>The following examples require action plug-in version 1.3 or greater.</i>
 <br>
 <br>
 Turn on/off other lights to same level as triggering device.
 <br>
-~~~
+```
 Options: Standard, On/Off. 
 
 On Trigger:
@@ -761,12 +761,12 @@ On Trigger:
 
 Off Trigger:
     action: x10 off c12, x10 off a3;
-~~~
+```
 <br>
 Tune a TV to a channel using IR.
 (Select cable input to TV, then tune a channel with a .5 second delay between digits.)
 <br>
-~~~
+```
 Options: Standard, On/Off. 
 
 On Trigger:
@@ -774,13 +774,13 @@ On Trigger:
 
 Off Trigger:
     {empty}
-~~~
+```
 <br>
 Tune a TV to a channel on a streaming service.
 (Turn on TV, .5 second delay for TV to turn on, select streaming device input, then select streaming channel.)
 This example shows how two separate plug-in triggers (action and roku) can work together in one trigger string.
 <br>
-~~~
+```
 Options: Standard, On/Off. 
 
 On Trigger:
@@ -788,7 +788,7 @@ On Trigger:
 
 Off Trigger:
     {empty}
-~~~
+```
 Note: <i>roku</i> is a custom plug-in not generally available.
 
 ### Sending/Receiving MQTT Messages from/to Another Plug-in
@@ -800,15 +800,15 @@ A plug-in can be essentially independent of processing that is done in the MQTT 
 <br>
 Other plug-ins can interface with the MQTT plug-in via the <i>mqttComm</i> command.
 The calling plug-in should import the command via:
-~~~tcl
+```tcl
     hvImport mqttComm
-~~~
+```
 The <i>mqttComm</i> command has the following formats:
-~~~tcl
+```tcl
     mqttComm {-log} sub|unsub &lt;<i>topic</i>&gt;|<i>topic</i> <i>callback</i> 
     mqttComm {-exactstat -nodim -log -retain} stat|cmnd &lt;<i>topic</i>&gt;|<i>topic</i> {<i>payload</i>}
     mqttComm {-log -retain} pub <i>topic</i> {<i>payload</i>}
-~~~
+```
 
 * Note: In previous versions (&lt; 1.76), "type", the name of the calling plug-in, was the first argument. This has been deprecated. However, for backward compatibility, new versions of the command will allow (and ignore) a "type" argument.
 * -log: Log the command. This argument is optional.
@@ -818,9 +818,9 @@ The <i>mqttComm</i> command has the following formats:
 * <i>topic</i>: Can either be enclosed in "&lt;&gt;" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "&lt;" nor "&gt;" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "&lt;" or "&gt;", should be enclosed in double-quotes.
 * <i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
 * <i>callback</i>: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
-~~~
+```
     <i>callback fulltopic payload retain</i>
-~~~
+```
  * <i>fulltopic</i>: the complete topic, including any prefix or postfix.
  * <i>payload</i>: the message payload.
  * When a new subscription is made by a client, all retained messages that match the full topic are reported with <i>retain</i> set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
@@ -838,13 +838,13 @@ A "pub" or "cmnd", when used with a standard topic, is the same as using "cmnd".
 When the standard form is used with "sub" or "unsub", a "cmnd" pre-fix is assumed.
 To subscribe or unsubscribe to a "stat" type topic, use the topic without the &lt;.
 Example: To subscribe to a stat message:
-~~~
+```
     mqttComm sub stat/utilityroom> cascallback
-~~~
+```
 which will subscribe to
-~~~
+```
     stat/utilityroom/POWER
-~~~
+```
 with "cascallback" as the callback proc.
 <br>
 <br><b>Caution:</b>
@@ -865,7 +865,7 @@ The mqttComm proc returns 1 for a successful operation.
 <br>
 <br>
 Examples:
-~~~
+```
     mqttComm sub &lt;utilityroom&gt; cascallback       subscribes to cmnd/utilityroom/POWER with callback cascallback
     mqttComm unsub stat/utilityroom/power mycallback  unsubscribes to stat/utilityroom/power with callback mycalback
     mqttComm cmnd &lt;utilityroom&gt; on               publishes cmnd/utilityroom/POWER on
@@ -876,7 +876,7 @@ Examples:
     mqttComm -exactstat stat &lt;utilityroom&gt; on    publishes stat/utilityroom/POWER on 
     mqttComm stat "cmnd/living room/state" on    publishes cmnd/living room/state on
     mqttComm pub "cmnd/living room/state" on     publishes cmnd/living room/state on
-~~~
+```
 <br>
 <br>
 <i>Callbacks with the "sub" form of mqttComm</i>
@@ -888,27 +888,27 @@ So how is that handled when a plug-in uses <i>mqttComm</i> to subscribe to a top
 <br>
 This is best explained by example.
 Let's assume a plug-in wants to subscribe to a topic:
-~~~
+```
     mqttComm sub &lt;utilityroom&gt; cascb     
-~~~
+```
 This results in a subscription to
-~~~
+```
     cmnd/utilityroom/POWER
-~~~
+```
 When received, this topic means either report back the current device state (with an empty or "?" payload),
 or change the device state based on the payload.
 That means that when the MQTT plug-in receives the message, it must communicate with the subscribing plug-in to complete the response.
 It does this by calling the callback proc. Let's say some external entity wants to know the state of utilityroom.
 When the mqtt plug-in received the appropriate message, it calls the callback proc like this:
-~~~
+```
     cascb cmnd/utilityroom/POWER "?" 0
-~~~
+```
 A proc "cascb" must be defined in the calling plug-in to handle the message.
 In this case, it should eventually use another mqttComm command to send back status, maybe like this:
 
-~~~
+```
     mqttComm stat &lt;utilityroom&gt; On 50   ---&gt;   stat/utilityroom/POWER ON 50
-~~~
+```
 There are a couple of different approaches to handling subscribed topics. Which is better depends on the goals of the plug-in.
 <br>
 <br>
@@ -931,13 +931,13 @@ the mqtt plug-in makes public a helper proc that will split a full topic (the to
 <br>
 <br>
 The calling plug-in should import the command via:
-~~~
+```
     hvImport topicTemplate
-~~~
+```
 The <i>topicTemplate</i> command has the following format:
-~~~
+```
     topicTemplate <i>topic</i>
-~~~
+```
 * <i>topic</i>: fulltopic received by the callback.
 
 topicTemplate returns a list containing a dict with the following key/values:
@@ -1006,13 +1006,13 @@ Puts an entry into the current MQTT log file.
 <br>
 <br>
 The calling plug-in should import the command via:
-~~~
+```
     hvImport mqttLog
-~~~
+```
 The <i>mqttlog</i> command has the following format:
-~~~
+```
     mqttLog <i>string</i> {<i>color</i>}
-~~~
+```
 * <i>string</i>: String to log.
 * <i>color</i>: If "debug" is imported into the calling proc,
 will send string to the debug plug-in in <i>color</i>, Default: red.
@@ -1024,22 +1024,22 @@ will send string to the debug plug-in in <i>color</i>, Default: red.
 <br>
 This proc is <i>called</i> by the MQTT plug-in to indicate whether it is connected or disconnected to the MQTT broker (and hence ready to take mqttComm calls).
 The using plug-in should make the command public via:
-~~~
+```
     hvPublic mqttReady
-~~~
+```
 When the MQTT connection changes, the MQTT plug-in calls <i>mqttReady</i> like this:
-~~~
+```
     mqttReady <i>status</i>
-~~~
+```
 * <i>status</i> is a dict  of either {state connected} or {state disconnected reason <i>reason</i>}.
 Possible values for <i>reason</i> are:
-~~~
+```
     0 Normal disconnect
     1 Unacceptable protocol version
     2 Identifier rejected
     3 Server unavailable
     4 Bad user name or password
-~~~
+```
 
 
 Using this proc is only necessary to make sure the plug-in's subscriptions are re-done automatically in the case the connection to the broker going down and then recovers (with a {state connected} return).
@@ -1050,7 +1050,7 @@ Reasons "1", "2", and "4" are fatal and need to be corrected before a connection
 <br>
 To use, define an mqttReady proc to respond to the connected and/or disconnected states.
 Typical use:
-~~~
+```
     hvPublic mqttReady
     proc mqttReady {status} {
     
@@ -1060,7 +1060,7 @@ Typical use:
             #code to run when MQTT is not ready.
         }
     }
-~~~
+```
 
 ### MQTT Discovery for Home Assistant
 
