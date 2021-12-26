@@ -221,32 +221,32 @@ the row will display in BLACK text.
 
 <i>New/Edit/Delete External Devices</i>
 * To enter a new device, click the "New" button, and start with the <i>Topic</i>.
- * Topics are case-sensitive!
- * A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
+  * Topics are case-sensitive!
+  * A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
 is indicated by enclosing it in "&lt;" and "&gt;"
 (or one of the variations mentioned previously).
 E.g., "<<i>topic</i>>".
 <i>This should be the default method for specifying topics.</i>
 To help with this, a new device will have "<>" already inserted in the topic field.
 (Delete or modify as needed.)
- * Topics can contain multiple levels, indicated by "/", but should not start or end with a "/".
- * A topic with <i>default</i> processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
- * A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
+  * Topics can contain multiple levels, indicated by "/", but should not start or end with a "/".
+  * A topic with <i>default</i> processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
+  * A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
 Use of wildcards should adhere to the MQTT standards.
 However, care should be taken when using them. It's probably a bad idea to have "#" as a topic, as it will subscribe to EVERYTHING!
- * <i>Device Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
+  * <i>Device Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
 If the "topic" is simple and descriptive, it can be copied to the <i>Name</i> field.
 If the "topic" is multi-level, <i>Name</i> must be simpler.
 <i>Name</i> cannot contain "&lt;", "&gt;", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
 <i>Device Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
- * There is some validation of the <i>Topic</i> and <i>Device Name</i> fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
- * For each device, an HV Flag or Variable can be assigned. 
+  * There is some validation of the <i>Topic</i> and <i>Device Name</i> fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
+  * For each device, an HV Flag or Variable can be assigned. 
 Assigning a Flag or Variable is optional.
 There is no checking to make sure a Flag or Variable is not used more than once.
- * If a variable is selected, two additional options are available.
-  * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
-  * If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
+  * If a variable is selected, two additional options are available.
+    * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+    * If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
 can be selected.
 If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1.
 If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
@@ -254,17 +254,16 @@ If the option is not selected, the received value is written as a 1-byte number 
 <br>
 Note: When "Use Variable as Flag" is not selected, Payloads with "on" or "off" do not cause any Actions, except for updating the "State" display.
 
- * Macros can be assigned for "On" and "Off" states.
+  * Macros can be assigned for "On" and "Off" states.
 The same macro can be assigned to both states, or different macros can be assigned.
 A macro can be assigned to just one of the states, leaving the other set to "None".
- * To have custom processing of received messages or triggers for this topic, select the appropriate mode and enter command/triggers.
+  * To have custom processing of received messages or triggers for this topic, select the appropriate mode and enter command/triggers.
 See <b>Custom Processing of Received Messages</b> for details.
- * Check "Subscribe to Last Will and Testament" to subscribe standard topics to LWT.
+  * Check "Subscribe to Last Will and Testament" to subscribe standard topics to LWT.
 If the topic is not in the form of a standard topic,
 this selection has no effect.
- * Choose whether to log MQTT messages sent or received by this device.
- * Click "OK" to save edits,
-or "Cancel" to discard them.
+  * Choose whether to log MQTT messages sent or received by this device.
+  * Click "OK" to save edits, or "Cancel" to discard them.
 
 * Devices can be edited by clicking the "Edit" button.
 This brings up the same window used for adding a new device.
