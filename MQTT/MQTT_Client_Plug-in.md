@@ -2,12 +2,11 @@
 <!-- $Date: 2021/07/22 21:55:08 $ -->
 <body>
 <h1>MQTT Client Plug-in<h1>
-<h2>Overview</h2>
+## Overview
 The MQTT Client Plug-in provides a client interface to MQTT for HomeVision.
 Its main purposes are to control MQTT enabled devices via the HomeVision Schedule or NetIO and
 to control HomeVision objects by MQTT sources.
 The MQTT interface has three distinct functions:
-
 * For "external" MQTT-enabled devices (e.g., Sonoff switches with Tasmota SW),
 the MQTT Plug-in acts as an MQTT controller.
 The plug-in PUBLISHES <i>command</i> topics to these devices
@@ -31,8 +30,8 @@ There is a lot of flexibility in the plug-in allowing support for many different
 <br>
 <br>
 <b>Note: To perform actions on internal objects, this plug-in uses the Actions Plug-in. The Actions Plug-in must be enabled to control internal objects.</b>
-<h2> Supported MQTT Topics</h2>
-<h3>Standard and Custom Topics</h3>
+##  Supported MQTT Topics
+### Standard and Custom Topics
 Topics can be assigned to devices either as abbreviated ("Standard") topics or full topics.
 Standard topics follow the Tasmota structure, so only the unique sub-topic portion need be entered. Default standard topics are indicated by enclosing the sub-topic with "&lt;" and "&gt;".
 If a topic starts with a "&lt;", the appropriate prefix is automatically added.
@@ -85,7 +84,7 @@ However, the plug-in does not have built-in processing when receiving MQTT topic
 <br>
 Most of the examples in the rest of this Help follow the Tasmota standard.
 
-<h3>Standard Command Topic</h3>
+### Standard Command Topic
 The following command topic is supported (using default prefixes and postfixes) with various payloads:
 <pre>
         Full Topic     Payload
@@ -117,7 +116,7 @@ For a full list of Actions based on the received topic and payload, see
 -->
 [[Help: Object Actions|Help:-Object-Actions]]
 
-<h3>Standard State Topic</h3>
+### Standard State Topic
 For each external device, the plug-in <i>subscribes</i> to the following topic (assuming "&lt;<i>topic</i>&gt; in the "Topic" field):
 <pre>
         Full Topic                     Payload
@@ -131,7 +130,7 @@ For a full list of Actions based on the received topic and payload, see
 <br>
 <br>
 When an internal object changes state, the plug-in will <i>publish</i> a state message to indicate the object's new state.
-<h3>RESULT State Topic</h3>
+### RESULT State Topic
 Certain devices, i.e., those running Tasmota software, usually produce both at POWER state message and a RESULT state message with the POWER info in a JSON formatted payload.
 In fact, RESULT state messages can be sent from the device when many other actions occur.
 <br>
@@ -141,7 +140,7 @@ To receive such messages, they must explicitly be entered as a device in the <b>
           Topic                         Payload
     stat/<i>topic</i>/RESULT               a JSON string
 </pre>
-<h3>Last Will and Testament Topic</h3>
+### Last Will and Testament Topic
 For each external device with a <i>standard topic</i>
 that has "Subscribe to Last Will and Testament" checked,
 the plug-in automatically <i>subscribes</i> to
@@ -158,7 +157,7 @@ the "Subscribe to Last Will and Testament" checkbox has no effect.
 <br>
 <br>
 LWT is not supported for internal objects.
-<h3>Special "homevision" Topic</h3>
+### Special "homevision" Topic
 The MQTT plug-in automatically subscribes to:
 <pre>
         Full Topic
@@ -180,7 +179,7 @@ This feature can be used by an MQTT entity to quickly sync up with HomeVision ob
 <br>
 The only valid Payloads are empty or "?".
 This topic cannot be used to <i>control</i> objects.
-<h3>Special Counting Payload</h3>
+### Special Counting Payload
 The MQTT plug-in has special handling to provide a "counting" feature.
 Certain MQTT messages will <i>increment</i> selected variable(s) each time the message is received. To activate this feature,
 create either an external device or internal object with either one or two variables selected.
@@ -199,8 +198,8 @@ Var-100 and Var-101 are incremented.
 <br>
 Note: Other messages that would set variables assigned to this topic will continue to do so.
 This can be used to advantage; sending a "cmnd" "POWER" message with a payload of "0" would "reset" the variables so subsequent "Count" messages would start from zero.
-<h2>Configuring Devices</h2>
-<h3>Ext Devices Tab</h3>
+## Configuring Devices
+### Ext Devices Tab
 This tab contains a list of supported external devices.
 * <i>Device Name</i> is the name of the device for use by serial and NetIO commands.
 It must be unique among both external and internal device names.
@@ -275,7 +274,7 @@ Devices with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
 
 
-<h3>Int Objects Tab</h3>
+### Int Objects Tab
 This tab contains a list of supported internal objects.
 These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, or HVAC.
 Add only those objects that need to be visible to or acted on by the MQTT network.
@@ -300,24 +299,18 @@ Variables always show a "-" for the state.
 X-10 and Light objects show their level in percent, while Variables show their value.
 * Rows can be sorted in ascending or descending order by <i>ID</i>, <i>Object Name</i> or <i>Topic</i> by clicking on the column header.
 When sorting by ID, object types are always grouped together and sorted within those groups by ID.
-</ul>
+
 <i>New/Edit/Delete Internal Objects</i>
-<ul>
+
 * To enter a new object, Click the "New" button and start by selecting an object from the drop-down list.
 Objects included in the list are those that have been checked in the
 "Object Type List Enable" section of the <b>Int Object Tab</b>.
-<ul>
- * If a variable is selected, two additional options are available.
-<ul>
-  * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
-  * If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
-can be selected.
-If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1.
-If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
-
- * If an X-10 object is selected, then choose a Model.
+  * If a variable is selected, two additional options are available.
+    * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+    * If "Use Variable as Flag" is NOT selected, then "Use Two Variables" can be selected. If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1. If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
+  * If an X-10 object is selected, then choose a Model.
 Model is used to determine how level changes are done.
- * Clicking "Copy Object to Topic, Name" will populate the "Topic" and "Name" fields with an appropriate version of the object name.
+  * Clicking "Copy Object to Topic, Name" will populate the "Topic" and "Name" fields with an appropriate version of the object name.
 Some validation is done on the "Topic" and "Name" fields; the "OK" button will be grayed out if either field fails validation. 
 The "Topic" and "Name" fields can be modified, keeping in mind the rules above for topics and object/device names.
 <br>
@@ -327,19 +320,14 @@ However, note that if a single topic is assigned to multiple objects, when ANY o
 <br>
 <br>
 An exception to this is if different index numbers are appended to the topic, in which case each will act and report independently.
-* Choose if object status messages should be sent with the "retained" flag set.
+  * Choose if object status messages should be sent with the "retained" flag set.
 The retain flag will cause most brokers to "remember" the status and send it to any client that later subscribes to the status topic.
- * Choose whether to log MQTT messages sent or received by this device.
-
-* Objects can be edited by clicking the "Edit" button.
-This brings up the same window used for adding a new object.
-* Use the "Delete" button to delete an object.
-When a object is deleted, the plug-in unsubscribes to any topics related to that device.
-* When "Done" is clicked, objects with standard topics are subscribed to their command full topics.
-Objects with custom topics are subscribed only to the topic as-is.
+   * Choose whether to log MQTT messages sent or received by this device.
+* Objects can be edited by clicking the "Edit" button. This brings up the same window used for adding a new object.
+* Use the "Delete" button to delete an object. When a object is deleted, the plug-in unsubscribes to any topics related to that device.
+* When "Done" is clicked, objects with standard topics are subscribed to their command full topics.Objects with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
-<h3>Settings Tab</h3>
-<ul>
+### Settings Tab
 * Prefixes and Postfixes can be set for "standard" topics.
 The defaults conform to the Tasmota structure.
 They can be changed if necessary, but
@@ -396,14 +384,14 @@ However, responses to this command are determined by the affected objects' setti
 
 * "Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
 
-<h2>Responding to External Device State Changes</h2>
+## Responding to External Device State Changes
 Refer to <!-- <a href="MQTT_Actions_ext.html">External Device Actions</a> --> [[Help: External Device Actions|Help:-External-Device-Actions]]
 for responses to received messages.
 <br>
 <br>
 Note that an assigned Flag or Variable is always updated before the macro is run so the macro can take advantage of the new value.
-<h2>Controlling Devices</h2>
-<h3>Device/Object Display Area</h3>
+## Controlling Devices
+### Device/Object Display Area
 Right-clicking on a line in the Device/Object Display Area
 will bring up a menu from which "On", "Off", "Toggle", "State", and "Set to" can be selected.
 For internal objects, one or more of these items may be grayed out if not appropriate for the object type.
@@ -443,7 +431,7 @@ Here's a sequence chart example that might make it more clear:
                    ---&gt; stat/den/POWER            ---&gt;
 </pre>
 
-<h3>Serial Control</h3>
+### Serial Control
 MQTT devices can be controlled within a schedule via serial commands which take the form:
 <pre>
     mqtt: <i>device_name/object_name</i> <i>command</i>;
@@ -467,7 +455,7 @@ The <i>command</i> portion is sent as-is, case-wise.
 Note: Device <i>names</i> are limited to alphas, numbers and the underscore.
 <br>Note: While serial commands in the schedule can change the state of internal objects as well as external devices, it may make more sense to just set the internal object directly in the schedule.
 In either case, the plug-in will publish a state change topic if the state actually changed.
-<h3>NetIO</h3>
+### NetIO
 MQTT devices can be controlled via NetIO using a "netioaction" command in the NetIO application.
 For example, to have a button set up to toggle a device <i>named</i> "sonoff1",
 the button's <i>sends</i> attribute would be set to:
@@ -510,7 +498,7 @@ or
 except that no NetIO Custom Returns processing is done.
 So the direct object gets are probably better to use then the MQTT versions.
 
-<h3>Sending Generic MQTT Messages</h3>
+### Sending Generic MQTT Messages
 
 In addition to the external and internal device/object specific MQTT messages,
 the plug-in allows generic MQTT messages that may or may not be related to any configured device.
@@ -559,7 +547,7 @@ Examples:
 Note: For NetIO, a topic with spaces must be enclosed by braces {}.
 Double-quotes are not allowed due to the way NetIO handles arguments of the netioaction command.
 
-<h3>Custom Processing of Received Messages</h3>
+### Custom Processing of Received Messages
 <b>Note: This section applies to external devices only.</b>
 <br>
 <br>
@@ -813,7 +801,7 @@ Off Trigger:
 </pre>
 Note: <i>roku</i> is a custom plug-in not generally available.
 
-<h3>Sending/Receiving MQTT Messages from/to Another Plug-in</h3>
+### Sending/Receiving MQTT Messages from/to Another Plug-in
 When total control for MQTT message processing is needed,
 this method takes "Custom Commands" a step farther.
 A plug-in can be essentially independent of processing that is done in the MQTT plug-in, except for using it as a MQTT transport mechanism.
@@ -952,7 +940,7 @@ If it needs to handle a number of very similar fulltopics, one callback that par
 <br>
 <br>
 Either approach will work.
-<h3>Other Public Procedures Supplied/Called by the MQTT Plug-in</h3>
+### Other Public Procedures Supplied/Called by the MQTT Plug-in
 
 <b>topicTemplate</b>
 <br>
@@ -1093,7 +1081,7 @@ Typical use:
         }
     }
 </pre>
-<h3>MQTT Discovery for Home Assistant</h3>
+### MQTT Discovery for Home Assistant
 <!--
 <a href="HomeVision and Home Assistant.html">Tips for Interfacing HomeVision with Home Assistant</a>
 <br>
