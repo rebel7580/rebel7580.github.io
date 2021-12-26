@@ -632,7 +632,7 @@ Click "Done" for changes to be effective!
 <br>
 <br>
 Create a plug-in containing the following:
-```
+``` tcl
     tcl::tm::path add [file dirname [info script]]
     package require json 1.0
 
@@ -800,11 +800,11 @@ A plug-in can be essentially independent of processing that is done in the MQTT 
 <br>
 Other plug-ins can interface with the MQTT plug-in via the *mqttComm* command.
 The calling plug-in should import the command via:
-```tcl
+``` tcl
     hvImport mqttComm
 ```
 The *mqttComm* command has the following formats:
-```tcl
+``` tcl
     mqttComm {-log} sub|unsub <*topic*>|*topic* *callback* 
     mqttComm {-exactstat -nodim -log -retain} stat|cmnd <*topic*>|*topic* {*payload*}
     mqttComm {-log -retain} pub *topic* {*payload*}
@@ -818,7 +818,7 @@ The *mqttComm* command has the following formats:
 * *topic*: Can either be enclosed in "<>" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "<" nor ">" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "<" or ">", should be enclosed in double-quotes.
 * *payload*: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
 * *callback*: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
-```
+``` tcl
     *callback fulltopic payload retain*
 ```
  * *fulltopic*: the complete topic, including any prefix or postfix.
@@ -838,7 +838,7 @@ A "pub" or "cmnd", when used with a standard topic, is the same as using "cmnd".
 When the standard form is used with "sub" or "unsub", a "cmnd" pre-fix is assumed.
 To subscribe or unsubscribe to a "stat" type topic, use the topic without the <.
 Example: To subscribe to a stat message:
-```
+``` tcl
     mqttComm sub stat/utilityroom> cascallback
 ```
 which will subscribe to
@@ -865,7 +865,7 @@ The mqttComm proc returns 1 for a successful operation.
 <br>
 <br>
 Examples:
-```
+``` tcl
     mqttComm sub <utilityroom> cascallback       subscribes to cmnd/utilityroom/POWER with callback cascallback
     mqttComm unsub stat/utilityroom/power mycallback  unsubscribes to stat/utilityroom/power with callback mycalback
     mqttComm cmnd <utilityroom> on               publishes cmnd/utilityroom/POWER on
@@ -888,7 +888,7 @@ So how is that handled when a plug-in uses *mqttComm* to subscribe to a topic?
 <br>
 This is best explained by example.
 Let's assume a plug-in wants to subscribe to a topic:
-```
+``` tcl
     mqttComm sub <utilityroom> cascb     
 ```
 This results in a subscription to
@@ -900,13 +900,13 @@ or change the device state based on the payload.
 That means that when the MQTT plug-in receives the message, it must communicate with the subscribing plug-in to complete the response.
 It does this by calling the callback proc. Let's say some external entity wants to know the state of utilityroom.
 When the mqtt plug-in received the appropriate message, it calls the callback proc like this:
-```
+``` tcl
     cascb cmnd/utilityroom/POWER "?" 0
 ```
 A proc "cascb" must be defined in the calling plug-in to handle the message.
 In this case, it should eventually use another mqttComm command to send back status, maybe like this:
 
-```
+``` tcl
     mqttComm stat <utilityroom> On 50   --->   stat/utilityroom/POWER ON 50
 ```
 There are a couple of different approaches to handling subscribed topics. Which is better depends on the goals of the plug-in.
@@ -931,11 +931,11 @@ the mqtt plug-in makes public a helper proc that will split a full topic (the to
 <br>
 <br>
 The calling plug-in should import the command via:
-```
+``` tcl
     hvImport topicTemplate
 ```
 The *topicTemplate* command has the following format:
-```
+``` tcl
     topicTemplate *topic*
 ```
 *topic*: fulltopic received by the callback.
@@ -971,11 +971,11 @@ Puts an entry into the current MQTT log file.
 <br>
 <br>
 The calling plug-in should import the command via:
-```
+``` tcl
     hvImport mqttLog
 ```
 The *mqttlog* command has the following format:
-```
+``` tcl
     mqttLog *string* {*color*}
 ```
 * string*: String to log.
@@ -989,11 +989,11 @@ will send string to the debug plug-in in *color*, Default: red.
 <br>
 This proc is *called* by the MQTT plug-in to indicate whether it is connected or disconnected to the MQTT broker (and hence ready to take mqttComm calls).
 The using plug-in should make the command public via:
-```
+``` tcl
     hvPublic mqttReady
 ```
 When the MQTT connection changes, the MQTT plug-in calls *mqttReady* like this:
-```
+``` tcl
     mqttReady *status*
 ```
 *status* is a dict  of either {state connected} or {state disconnected reason *reason*}.
