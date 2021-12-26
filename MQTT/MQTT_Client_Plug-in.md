@@ -943,6 +943,7 @@ The *topicTemplate* command has the following format:
 topicTemplate returns a list containing a dict with the following key/values:
 <br>
 <br>
+
   | Key | Value |
   | :---: | --- |
   | template | One of <T>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.| 
