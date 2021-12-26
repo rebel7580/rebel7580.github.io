@@ -819,6 +819,7 @@ The <i>mqttComm</i> command has the following formats:
     mqttComm {-exactstat -nodim -log -retain} stat|cmnd &lt;<i>topic</i>&gt;|<i>topic</i> {<i>payload</i>}
     mqttComm {-log -retain} pub <i>topic</i> {<i>payload</i>}
 </pre>
+
 * Note: In previous versions (&lt; 1.76), "type", the name of the calling plug-in, was the first argument. This has been deprecated. However, for backward compatibility, new versions of the command will allow (and ignore) a "type" argument.
 * -log: Log the command. This argument is optional.
 * -retain: The sent message is retained by the broker. This argument is optional.
@@ -833,6 +834,7 @@ The <i>mqttComm</i> command has the following formats:
  * <i>fulltopic</i>: the complete topic, including any prefix or postfix.
  * <i>payload</i>: the message payload.
  * When a new subscription is made by a client, all retained messages that match the full topic are reported with <i>retain</i> set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
+
 
 See below for further details on the use of callbacks!
 <br>
