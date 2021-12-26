@@ -1031,7 +1031,7 @@ Typical use:
 
 [Tips for Interfacing HomeVision with Home Assistant](https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL/wiki/Tips-for-Interfacing-HomeVision-with-Home-Assistant)
 <br>
-[[How to Use the MQTT Plug-in's Home-Assistant Auto Discovery|How-to-Use-the-MQTT-Plug-in's-Home-Assistant-Auto-Discovery]]
+[How to Use the MQTT Plug-in's Home-Assistant Auto Discovery](MQTT/HomeVision_Discovery_How-to)
 </body>
 </html>
 
