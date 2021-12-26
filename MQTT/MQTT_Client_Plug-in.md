@@ -3,7 +3,8 @@
 # MQTT Client Plug-in
 {:.no_toc}
 
-[Back to Projects](/index)
+[Back to Projects Index](/index)
+[Back to MQTT Index](/MQTT/MQTT_index)
 
   * Overview
     * Supported MQTT Topics
@@ -1058,6 +1059,5 @@ Typical use:
 [Tips for Interfacing HomeVision with Home Assistant](https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL/wiki/Tips-for-Interfacing-HomeVision-with-Home-Assistant)
 <br>
 [How to Use the MQTT Plug-in's Home-Assistant Auto Discovery](HomeVision_Discovery_How-to)
-</body>
-</html>
+
 
