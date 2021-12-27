@@ -1,4 +1,4 @@
-# MQTT Client Plug-in Help
+# MQTT Plug-in Help
 <!-- $Revision: 1.29 $ -->
 <!-- $Date: 2021/07/22 21:55:08 $ -->
 {:.no_toc}

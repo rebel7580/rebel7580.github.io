@@ -1,4 +1,4 @@
-# MQTT Plug-in: Tips for Interfacing HomeVision with Home Assistant
+# Tips for Interfacing HomeVision with Home Assistant
 <!-- $Revision: 1.9 $ -->
 <!-- $Date: 2021/12/23 01:21:51 $ -->
 
