@@ -366,7 +366,6 @@ Use the following values:
         Stop
         Clear
 </pre>
-
 * Create the input_text helper for the timer's set time. (Configuration->Helpers->Add Helper->Text).
 This is used to specify what timer value to send.
 Use the following values:
@@ -375,6 +374,7 @@ Use the following values:
     Min: 10
     Regex pattern: ^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d\\.)?([0-9][0-9]$
 </pre>
+
 
 Once these are available, 
 create a GUI using them.
