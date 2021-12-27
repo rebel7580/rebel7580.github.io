@@ -432,6 +432,11 @@ cards:
 columns: 2
 square: false
 ```
+          {%-else %}
+```
+
+```
+
 <b>Note:</b> The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
 "stat" updates occur whenever a timer command (load, start,stop,clear or query - i.e., "?") is sent to the timer.
 
