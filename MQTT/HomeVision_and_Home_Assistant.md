@@ -406,7 +406,7 @@ cards:
       service: mqtt.publish
       service_data:
         topic: cmnd/WashTimer/POWER
-        payload_template: |
+        payload_template: \|
           {% if is_state("input_select.wash_timer_set", "Load") %}
               load {{ states('input_text.wash_timer_time') }}
           {%-else %}
