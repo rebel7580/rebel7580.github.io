@@ -14,14 +14,17 @@ This document tries to give a few of the more obvious solutions to common situat
 
 <h2>Basics of the HomeVisionXL MQTT plug-in</h2>
 First let's go over the basics. The MQTT plug-in provides support for monitoring and controlling of both HomeVision "internal" objects like x10, lights, vars, flags, etc. via MQTT, and "External" devices such as ESP8266 based products running 
+<!--
 <a href="https://tasmota.github.io/docs/">Tasmota</a>
+-->
+[Tasmota](https://tasmota.github.io/docs/)
 software.
 This Help doesn't go into all the details of the MQTT plug-in. See
 [MQTT Help](/MQTT/MQTT_Client_Plug-in)
 <!--
-
 <a href="index.html">MQTT Help</a>
--->for that.
+-->
+for that.
 <h3>How the MQTT plug-in Handles Internal Objects</h3>
 The MQTT plug-in exposes internal objects to the MQTT system by <i>publishing</i> STATE topics to report an object's state and by <i>subscribing</i> to COMMAND topics that can control the internal object. Only internal objects included in the MQTT plug-in's "Int Objects" configuration screen are exposed.
 
