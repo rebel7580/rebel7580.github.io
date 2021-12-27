@@ -1,13 +1,7 @@
 <!-- $Revision: 1.9 $ -->
 <!-- $Date: 2021/12/23 01:21:51 $ -->
 <!-- -->
-<html><head>
-<title>
-MQTT - Tips for Interfacing HomeVision with Home Assistant
-</title>
-<link rel="prev" href="index">
-<link rel="next" href="HomeVision Discovery How-to">
-</head>
+<html>
 <body>
 
 <!-- <h1>**This is a draft work-in-progress and may have significant errors and/or discuss features not yet made public!**</h1>
@@ -113,11 +107,11 @@ There are blueprints for the two automations. You can get them into Home Assista
 <br>
 <br>
 For each variable you want to expose in Home Assistant:
-<ul>
-<li>First create the input_number entity for the variable you want to set/read.
-<li>Create an automation from the "Get Variable" blueprint to read the value of the HomeVision variable.
-<li>Create an automation from the "Set Variable" blueprint to set the value of the HomeVision variable.
-</ul>
+
+* First create the input_number entity for the variable you want to set/read.
+* Create an automation from the "Get Variable" blueprint to read the value of the HomeVision variable.
+* Create an automation from the "Set Variable" blueprint to set the value of the HomeVision variable.
+
 
 You do not need to create both automations if you only want to either just read or just set the variable.
 <br>
@@ -176,12 +170,11 @@ You need another entity  for that.
 <br>
 For example, you have a macro ("Toggle Garage Door 1") that toggles your garage door, and an input ("Door1") that indicates the state (Open/Closed) of the door.
 You'd like the state/icon of the button to show the door's state.
-<ul>
-<li>
-Add the "Door1" input and "Toggle Garage Door 1" macro to the "Int Objects" list.
+
+
+* Add the "Door1" input and "Toggle Garage Door 1" macro to the "Int Objects" list.
 You don't need to run MQTT discovery for these, but it won't hurt if you do so you can use them in Home Assistant for other reasons, as well as in this case.
-<li>
-Manually add something like the following to your configuration.yaml:
+* Manually add something like the following to your configuration.yaml:
 <pre>
   - platform: mqtt
     unique_id: "MA_GarageDoor1"
@@ -195,15 +188,14 @@ Manually add something like the following to your configuration.yaml:
     qos: 1
 </pre>
 Note this uses the macro for the command topic and the input for the state topic.
-<li>
-Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
+* Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
 <pre>
     type: button
     entity: switch.ma_garagedoor1
     icon: 'mdi:garage'
     name: Ron's Garage Door
 </pre>
-</ul>
+
 
 When the button is pressed, the macro will run to toggle the door, and the input will report back the door's position, which will be reflected in the button's state and/or icon.
 Since the button's state is controlled by the Door1 state, it can be "On" and "Off".
@@ -353,7 +345,6 @@ These allow tracking of Timer state and current time, but must be triggered by a
 <br>
 A Demonstration on how to implement a Timer GUI is as follows.
 
-
 * Run MQTT Discovery for the desired timer.
 This creates two sensor entities.
 Use these in the GUI to show the Timer state and "current" timer value.
@@ -376,7 +367,6 @@ Use the following values:
     Min: 10
     Regex pattern: ^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d\\.)?([0-9][0-9]$
 </pre>
-
 
 Once these are available, 
 create a GUI using them.
