@@ -314,9 +314,7 @@ which will run Scheduled Event #3.
 The previous Tip was called out specifically because it can be used to add in macro capability for those who have run out of macro space.
 However the idea can be extended to virtually all items in HomeVisionXL. Since the trigger simply sends whatever is there to HomeVisionXL's serial command processor, you can set triggers for anything the Action plug-in can do (or any other plug-in with its own defined serial commands), and, along with the trigger's capability to make run-time substitutions in a trigger string, Home Assistant may be able to trigger different things based on the payload sent.
 In an extreme case, the trigger could be just "%M", in which case Home Assistant would put in the payload the complete trigger string to execute. See
-
 [Triggers](/MQTT/MQTT_Client_Plug-in#Triggers) in [MQTT Help](/MQTT/MQTT_Client_Plug-in)
-
 for more details.
 <h3>Refreshing HomeVision Objects</h3>
 There may be instances (like restarting Home Assistant) where the current status of HomeVision objects is not reflected by Home Assistant. The MQTT plug-in provides a special topic to force all listed objects to report their status: 
@@ -437,7 +435,7 @@ some text
           {%-else %}
 ```
 
-<b>Note:</b> The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
+<b>Note:</b> 55555555555555 The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
 "stat" updates occur whenever a timer command (load, start,stop,clear or query - i.e., "?") is sent to the timer.
 
 <h3>Retain Option for Objects</h3>
