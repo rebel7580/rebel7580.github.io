@@ -350,12 +350,12 @@ These allow tracking of Timer state and current time, but must be triggered by a
 <br>
 <br>
 A Demonstration on how to implement a Timer GUI is as follows.
-<ul>
-<li>
-Run MQTT Discovery for the desired timer.
+
+
+* Run MQTT Discovery for the desired timer.
 This creates two sensor entities.
 Use these in the GUI to show the Timer state and "current" timer value.
-<li>Create the input_select helper for the timer's control states.
+* Create the input_select helper for the timer's control states.
 (Configuration->Helpers->Add Helper->Select).
 This is used to specify what timer command to send.
 Use the following values:
@@ -367,7 +367,7 @@ Use the following values:
         Clear
 </pre>
 
-<li>Create the input_text helper for the timer's set time. (Configuration->Helpers->Add Helper->Text).
+* Create the input_text helper for the timer's set time. (Configuration->Helpers->Add Helper->Text).
 This is used to specify what timer value to send.
 Use the following values:
 <pre>
@@ -375,7 +375,7 @@ Use the following values:
     Min: 10
     Regex pattern: ^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d\\.)?([0-9][0-9]$
 </pre>
-</ul>
+
 Once these are available, 
 create a GUI using them.
 There are probably many different ways to do this, but here is one.
