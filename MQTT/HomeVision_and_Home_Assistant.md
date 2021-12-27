@@ -316,9 +316,7 @@ However the idea can be extended to virtually all items in HomeVisionXL. Since t
 In an extreme case, the trigger could be just "%M", in which case Home Assistant would put in the payload the complete trigger string to execute. See
 
 [Triggers](/MQTT/MQTT_Client_Plug-in#Triggers) in [MQTT Help](/MQTT/MQTT_Client_Plug-in)
-<!--
-Triggers in <a href="index.html">MQTT Help</a>
--->
+
 for more details.
 <h3>Refreshing HomeVision Objects</h3>
 There may be instances (like restarting Home Assistant) where the current status of HomeVision objects is not reflected by Home Assistant. The MQTT plug-in provides a special topic to force all listed objects to report their status: 
