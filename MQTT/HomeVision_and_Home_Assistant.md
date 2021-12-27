@@ -1,10 +1,12 @@
 <!-- $Revision: 1.9 $ -->
 <!-- $Date: 2021/12/23 01:21:51 $ -->
 <!-- -->
+# MQTT Plug-in: Tips for Interfacing HomeVision with Home Assistant
 
+[Back to Projects Index](/index)
 
-<!-- <h1>**This is a draft work-in-progress and may have significant errors and/or discuss features not yet made public!**</h1>
--->
+[Back to MQTT Index](/MQTT/MQTT_index)
+
 <h1>Overview</h1>
 This help discusses ways to connect Home Assistant to your HomeVision controller running HomeVisionXL.
 Emphasis is on using MQTT as the connecting method and assumes you have an MQTT broker running in your system.
@@ -12,7 +14,7 @@ With the versatility of the MQTT plug-in with respect to how many different ways
 This document tries to give a few of the more obvious solutions to common situations.
 
 <h2>Basics of the HomeVisionXL MQTT plug-in</h2>
-First let's go over the basics. The MQTT plug-in provides support for monitoring and controlling of both HomeVision "internal" objects like x10, lights, vars, flags, etc. via MQTT, and "External" devices such as ESP8266 based products running 5
+First let's go over the basics. The MQTT plug-in provides support for monitoring and controlling of both HomeVision "internal" objects like x10, lights, vars, flags, etc. via MQTT, and "External" devices such as ESP8266 based products running
 <!--
 <a href="https://tasmota.github.io/docs/">Tasmota</a>
 -->
