@@ -312,8 +312,9 @@ However the idea can be extended to virtually all items in HomeVisionXL. Since t
 In an extreme case, the trigger could be just "%M", in which case Home Assistant would put in the payload the complete trigger string to execute. See
 <!--
 [[Triggers|Help#triggers]] in [[MQTT Help|Help]]
--->
+
 Triggers in <a href="index.html">MQTT Help</a>
+-->
 for more details.
 <h3>Refreshing HomeVision Objects</h3>
 There may be instances (like restarting Home Assistant) where the current status of HomeVision objects is not reflected by Home Assistant. The MQTT plug-in provides a special topic to force all listed objects to report their status: 
@@ -339,13 +340,11 @@ These allow tracking of Timer state and current time, but must be triggered by a
 <br>
 <br>
 A Demonstration on how to implement a Timer GUI is as follows.
-
 * Run MQTT Discovery for the desired timer. This creates two sensor entities. Use these in the GUI to show the Timer state and "current" timer value.
 * Create the input_select helper for the timer's control states.
 (Configuration->Helpers->Add Helper->Select).
 This is used to specify what timer command to send.
 Use the following values:
-
 ```
     Options:
         Load
@@ -353,17 +352,14 @@ Use the following values:
         Stop
         Clear
 ```
-
 * Create the input_text helper for the timer's set time. (Configuration->Helpers->Add Helper->Text).
 This is used to specify what timer value to send.
 Use the following values:
-
 ```
     Max: 12
     Min: 10
     Regex pattern: ^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d\\.)?([0-9][0-9]$
 ```
-
 Once these are available, 
 create a GUI using them.
 There are probably many different ways to do this, but here is one.
@@ -381,8 +377,6 @@ with the two timer entities, the two helpers and two buttons
 
 Here is the yaml for the above implementation.
 This was created using the GUI editor, which is a lot easier than writing in yaml, but is shown here to see the details.
-
-
 ``` yaml
 type: grid
 cards:
@@ -429,8 +423,6 @@ cards:
 columns: 2
 square: false
 ```
-
-
 <b>Note:</b> The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
 "stat" updates occur whenever a timer command (load, start,stop,clear or query - i.e., "?") is sent to the timer.
 
