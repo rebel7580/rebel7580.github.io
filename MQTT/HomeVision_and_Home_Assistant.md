@@ -406,13 +406,13 @@ cards:
       service: mqtt.publish
       service_data:
         topic: cmnd/WashTimer/POWER
-        payload_template: \|
-          \{% if is_state("input_select.wash_timer_set", "Load") %\}
-              load \{\{ states('input_text.wash_timer_time') \}\}
-          \{%-else %\}
-             \{\{ states("input_select.wash_timer_set") \}\}
-          \{% endif %\}
-      target: \{\}
+        payload_template: |
+          {% if is_state("input_select.wash_timer_set", "Load") %}
+              load {{ states('input_text.wash_timer_time') }}
+          {%-else %}
+             {{ states("input_select.wash_timer_set") }}
+          {% endif %}
+      target: {}
     hold_action:
       action: none
     name: Update Timer
