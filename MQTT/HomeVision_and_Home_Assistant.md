@@ -9,7 +9,6 @@ MQTT - Tips for Interfacing HomeVision with Home Assistant
 <link rel="next" href="HomeVision Discovery How-to">
 </head>
 <body>
-<font size=12 color=#0000FF><b>Tips for Interfacing HomeVision with Home Assistant</b></font>
 
 <!-- <h1>**This is a draft work-in-progress and may have significant errors and/or discuss features not yet made public!**</h1>
 -->
