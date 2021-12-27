@@ -396,6 +396,7 @@ with the two timer entities, the two helpers and two buttons
 Here is the yaml for the above implementation.
 This was created using the GUI editor, which is a lot easier than writing in yaml, but is shown here to see the details.
 
+
 ``` yaml
 type: grid
 cards:
@@ -442,6 +443,7 @@ cards:
 columns: 2
 square: false
 ```
+
 
 <b>Note:</b> The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
 "stat" updates occur whenever a timer command (load, start,stop,clear or query - i.e., "?") is sent to the timer.
