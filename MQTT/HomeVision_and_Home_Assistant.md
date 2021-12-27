@@ -117,7 +117,7 @@ For each variable you want to expose in Home Assistant:
 <li>First create the input_number entity for the variable you want to set/read.
 <li>Create an automation from the "Get Variable" blueprint to read the value of the HomeVision variable.
 <li>Create an automation from the "Set Variable" blueprint to set the value of the HomeVision variable.
-</ul>
+
 You do not need to create both automations if you only want to either just read or just set the variable.
 <br>
 <br>
@@ -202,7 +202,7 @@ Create a button in the HA GUI. Use the GUI editor, but here is the corresponding
     icon: 'mdi:garage'
     name: Ron's Garage Door
 </pre>
-</ul>
+
 When the button is pressed, the macro will run to toggle the door, and the input will report back the door's position, which will be reflected in the button's state and/or icon.
 Since the button's state is controlled by the Door1 state, it can be "On" and "Off".
 If "On", the button when press will send the "off" payload,
