@@ -22,11 +22,11 @@ First let's go over the basics. The MQTT plug-in provides support for monitoring
 <a href="https://tasmota.github.io/docs/">Tasmota</a>
 software.
 This Help doesn't go into all the details of the MQTT plug-in. See
+[MQTT Help](MQTT_Client_Plug-in)
 <!--
-[[MQTT Help|Help]]
--->
+
 <a href="index.html">MQTT Help</a>
-for that.
+-->for that.
 <h3>How the MQTT plug-in Handles Internal Objects</h3>
 The MQTT plug-in exposes internal objects to the MQTT system by <i>publishing</i> STATE topics to report an object's state and by <i>subscribing</i> to COMMAND topics that can control the internal object. Only internal objects included in the MQTT plug-in's "Int Objects" configuration screen are exposed.
 
