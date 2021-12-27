@@ -314,9 +314,9 @@ which will run Scheduled Event #3.
 The previous Tip was called out specifically because it can be used to add in macro capability for those who have run out of macro space.
 However the idea can be extended to virtually all items in HomeVisionXL. Since the trigger simply sends whatever is there to HomeVisionXL's serial command processor, you can set triggers for anything the Action plug-in can do (or any other plug-in with its own defined serial commands), and, along with the trigger's capability to make run-time substitutions in a trigger string, Home Assistant may be able to trigger different things based on the payload sent.
 In an extreme case, the trigger could be just "%M", in which case Home Assistant would put in the payload the complete trigger string to execute. See
-<!--
-[[Triggers|Help#triggers]] in [[MQTT Help|Help]]
 
+[Triggers](/MQTT/MQTT_Client_Plug-in#Triggers) in [MQTT Help](/MQTT/MQTT_Client_Plug-in)
+<!--
 Triggers in <a href="index.html">MQTT Help</a>
 -->
 for more details.
