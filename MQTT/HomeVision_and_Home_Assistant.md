@@ -328,7 +328,7 @@ If you have this issue, you may want to consider adding a button to send this me
 <h3>Timers</h3>
 HomeVision timers can be controlled via MQTT.
 There is no simple "MQTT Discovery" defined in Home Assistant that is appropriate for Timers,
-so the MQTT Plug-in's Discovery sets up <i>two</i> "sensor" entities,
+so the MQTT Plug-in's Discovery sets up two "sensor" entities,
 one for the timer's state (Running, Stopped, Ringing)
 and one for the current time (See Note below).
 Time is reported in "HHH:MM:SS.hh" format.
