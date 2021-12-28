@@ -222,10 +222,12 @@ We can use these capabilities to enable Home Assistant to do these actions. The 
 First, in MQTT Configuration Ext Devices, set up an virtual external device with an appropriate descriptive topic and the ON and Off macros you want to run defined in the On and Off macro fields.
 <br>
 <br>
+<p align="center">
 <img alt="HA_Outside_Deco_Config" src="https://github.com/rebel7580/img/blob/master/HA_Outside_Deco_Config.png?raw=true"/>
 <!-- 
 <img alt="HA_Outside_Deco_Config" src="HA_Outside_Deco_Config.png">
 -->  
+</p>
 <br>
 <br>
 Next set up a switch in Home Assistant's <i>configuration.yaml</i> (Since this is an external device, you can't use MQTT discovery):
@@ -255,10 +257,12 @@ Using the same basic switch design as above, here are two other ways to do thing
 This one shows how to use standard ON/OFF triggers to execute actions more complex than just one macro each for ON and OFF. It uses a serial command to the <i>action plug-in</i> to run the macros, then a serial command to <i>custom plug-in</i> to control a candles object.
 <br>
 <br>
+<p align="center">
   <img alt="HA_Indoor_Deco_Config" src="https://github.com/rebel7580/img/blob/master/HA_Indoor_Deco_Config.png?raw=true"/>
 <!-- 
   <img alt="HA_Indoor_Deco_Config" src="HA_Indoor_Deco_Config.png">
 -->
+</p>
 <br>
 <br>
 <b><i>Using a single trigger for complex actions:</i></b>
@@ -267,10 +271,12 @@ This one shows how to use standard ON/OFF triggers to execute actions more compl
 This one shows using a single trigger (independent of ON/OFF) to send a series of IR commands. 
 <br>
 <br>
+<p align="center">
 <img alt="HA_NBC_Config" src="https://github.com/rebel7580/img/blob/master/HA_NBC_Config.png?raw=true"/>
 <!-- 
 <img alt="HA_NBC_Config" src="HA_NBC_Config.png">
 -->
+</p>
 <br>
 <br>
 The compete trigger command (obscured in the screen shot) is:
