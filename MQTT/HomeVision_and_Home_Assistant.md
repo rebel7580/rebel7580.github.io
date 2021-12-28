@@ -382,6 +382,7 @@ with the two timer entities, the two helpers and two buttons
 
 Here is the yaml for the above implementation.
 This was created using the GUI editor, which is a lot easier than writing in yaml, but is shown here to see the details.
+{% raw %}
 ``` yaml
 type: grid
 cards:
@@ -403,6 +404,11 @@ cards:
       service_data:
         topic: cmnd/WashTimer/POWER
         payload_template: |
+          {% if is_state("input_select.wash_timer_set", "Load") %}
+              load {{ states('input_text.wash_timer_time') }}
+          {%-else %}
+             {{ states("input_select.wash_timer_set") }}
+          {% endif %}
       target: {}
     hold_action:
       action: none
@@ -423,6 +429,7 @@ cards:
 columns: 2
 square: false
 ```
+{% endraw %}
 
 some text
 

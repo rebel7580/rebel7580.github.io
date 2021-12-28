@@ -338,7 +338,7 @@ homeassistant/light/HVXLb1d0d912ed315aad_C-9/config
         "command_topic": "cmnd/KitchenSink/POWER",
         "payload_on": "ON",
         "payload_off": "OFF",
-        "state_value_template": "\{\{ value_json.POWER \}\}",
+        "state_value_template": "{{ value_json.POWER }}",
         "brightness_command_topic": "cmnd/KitchenSink/POWER",
         "brightness_state_topic": "stat/KitchenSink/RESULT",
         "brightness_scale": 100,
@@ -675,6 +675,7 @@ While the HVAC returns modes in Title case, the climate entity requires them in 
 <br>
 <br>
 When HVAC status is sent from HomeVisionXL, "Fan" reports either "Auto" or "On". The "Auto" here conflicts with the mode ("HVAC") of "Auto". Since the fan keywords used to set the fan mode are "fanauto" and "fanon", these are defined as the <i>Fan_modes</i> items, and the <i>fan_mode_state_template</i> prepends "fan" to what it receives (either "Auto" or "On").
+{% raw %}
 <pre>
 homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 {
@@ -724,6 +725,7 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
         }
 }
 </pre>
+{% endraw %}
 #### Device Class Note
 For sensors and binary sensors, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
 (Other text is allowed in the Description as well.)
