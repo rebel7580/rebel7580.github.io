@@ -1,4 +1,6 @@
-# NetIO, Home Assistant and MQTT_Dash Comparisons
+# NetIO, Home Assistant and MQTT Dash Comparisons
+
+[Back to Projects Index](/index)
 
 ## Quick comparison of selected screen shots showing similar functionallity for NetIO, Home Assistant and MQTT Dash
 
