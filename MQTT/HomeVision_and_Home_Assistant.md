@@ -316,16 +316,6 @@ However the idea can be extended to virtually all items in HomeVisionXL. Since t
 In an extreme case, the trigger could be just "%M", in which case Home Assistant would put in the payload the complete trigger string to execute. See
 [Triggers](/MQTT/MQTT_Client_Plug-in#triggers) in [MQTT Help](/MQTT/MQTT_Client_Plug-in)
 for more details.
-<h3>Refreshing HomeVision Objects</h3>
-There may be instances (like restarting Home Assistant) where the current status of HomeVision objects is not reflected by Home Assistant. The MQTT plug-in provides a special topic to force all listed objects to report their status: 
-<pre>
-        Full Topic                        Payload
-    cmnd/homevision/<i>object_type</i>/POWER    empty or "?"
-or
-    cmnd/homevision/POWER                empty or "?"
-</pre>
-
-If you have this issue, you may want to consider adding a button to send this message, or create an automation to issue the command at an appropriate time.
 <h3>Timers</h3>
 HomeVision timers can be controlled via MQTT.
 There is no simple "MQTT Discovery" defined in Home Assistant that is appropriate for Timers,
@@ -434,6 +424,16 @@ square: false
 <b>Note:</b> The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
 "stat" updates occur whenever a timer command (load, start,stop,clear or query - i.e., "?") is sent to the timer.
 
+<h3>Refreshing HomeVision Objects</h3>
+There may be instances (like restarting Home Assistant) where the current status of HomeVision objects is not reflected by Home Assistant. The MQTT plug-in provides a special topic to force all listed objects to report their status: 
+<pre>
+        Full Topic                        Payload
+    cmnd/homevision/<i>object_type</i>/POWER    empty or "?"
+or
+    cmnd/homevision/POWER                empty or "?"
+</pre>
+
+If you have this issue, you may want to consider adding a button to send this message, or create an automation to issue the command at an appropriate time.
 <h3>Retain Option for Objects</h3>
 You may also want to consider, as a possible alternative to the previous, whether to enable "retain" for objects that are tracked by Home Assistant.
 This should allow Home Assistant to automatically pick up status via the MQTT broker's retained messages feature.
