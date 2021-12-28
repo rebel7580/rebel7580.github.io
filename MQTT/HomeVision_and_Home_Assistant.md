@@ -345,8 +345,9 @@ These allow tracking of Timer state and current time, but must be triggered by a
 <br>
 <br>
 A Demonstration on how to implement a Timer GUI is as follows.
-* Run MQTT Discovery for the desired timer. This creates two sensor entities. Use these in the GUI to show the Timer state and "current" timer value.
-* Create the input_select helper for the timer's control states.
+<ul>
+<li>Run MQTT Discovery for the desired timer. This creates two sensor entities. Use these in the GUI to show the Timer state and "current" timer value.</li>
+<li>Create the input_select helper for the timer's control states.
 (Configuration->Helpers->Add Helper->Select).
 This is used to specify what timer command to send.
 Use the following values:
@@ -357,7 +358,8 @@ Use the following values:
         Stop
         Clear
 ```
-* Create the input_text helper for the timer's set time. (Configuration->Helpers->Add Helper->Text).
+</li>
+<li>Create the input_text helper for the timer's set time. (Configuration->Helpers->Add Helper->Text).
 This is used to specify what timer value to send.
 Use the following values:
 ```
@@ -365,6 +367,8 @@ Use the following values:
     Min: 10
     Regex pattern: ^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d\\.)?([0-9][0-9]$
 ```
+</li>
+</ul>
 Once these are available, 
 create a GUI using them.
 There are probably many different ways to do this, but here is one.
@@ -431,12 +435,7 @@ square: false
 ```
 {% endraw %}
 
-some text
-
-```
-
-
-<b>Note:</b> 55555555555555 The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
+<b>Note:</b> The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
 "stat" updates occur whenever a timer command (load, start,stop,clear or query - i.e., "?") is sent to the timer.
 
 <h3>Retain Option for Objects</h3>
