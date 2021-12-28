@@ -4,7 +4,7 @@
 
 ## Quick comparison of selected screen shots showing similar functionallity for NetIO, Home Assistant and MQTT Dash
 
-See the this document for screen shots: [NetIO HA Dash Comparison](https://github.com/rebel7580/img/blob/master/NetIO%20HA%20Dash%20Comparison.pdf)
+See this document for screen shots: [NetIO HA Dash Comparison](https://github.com/rebel7580/img/blob/master/NetIO%20HA%20Dash%20Comparison.pdf)
 
 Notes:
 * The NetIO screens were the model for creating the other screens.
