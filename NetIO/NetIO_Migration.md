@@ -3,7 +3,7 @@
 [Back to Projects Index](/index)
 
 
-
+### Comparisons
 [NetIO, Home-Assistant, and MQTT Dash Comparison](NetIO_HA_MQTT_Dash_Comparisons)
 ### Home Assistant
 * [Tips for Interfacing HomeVision with Home Assistant](/MQTT/HomeVision_and_Home_Assistant)
