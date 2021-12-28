@@ -337,7 +337,7 @@ homeassistant/light/HVXLb1d0d912ed315aad_C-9/config
         "command_topic": "cmnd/KitchenSink/POWER",
         "payload_on": "ON",
         "payload_off": "OFF",
-        "state_value_template": "{{ value_json.POWER }}",
+        "state_value_template": "\{\{ value_json.POWER \}\}",
         "brightness_command_topic": "cmnd/KitchenSink/POWER",
         "brightness_state_topic": "stat/KitchenSink/RESULT",
         "brightness_scale": 100,
