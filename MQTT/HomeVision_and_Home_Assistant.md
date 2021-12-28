@@ -1,7 +1,8 @@
 # Tips for Interfacing HomeVision with Home Assistant
+{:.no_toc}
+
 <!-- $Revision: 1.9 $ -->
 <!-- $Date: 2021/12/23 01:21:51 $ -->
-{:.no_toc}
 
 [Back to Projects Index](/index)
 
