@@ -24,7 +24,7 @@
     * Retain Option for Objects
 {:toc}
 
-<h1>Overview</h1>
+# Overview
 This help discusses ways to connect Home Assistant to your HomeVision controller running HomeVisionXL.
 Emphasis is on using MQTT as the connecting method and assumes you have an MQTT broker running in your system.
 With the versatility of the MQTT plug-in with respect to how many different ways you can use it to control your devices along with the complexity and power of Home Assistant, the possible combinations are almost endless.
