@@ -13,18 +13,19 @@ text
   * Manual Method
   * Discovery Notes
   * HomeVision Object Discovery Details
-    * X-10, Light Objects
-    * Flags
-    * Variables
-    * Inputs
-    * Outputs
-    * IR
-    * Macros, Scheduled Events, Periodic Events
-    * Digital Temperature Sensors
-    * Analog Inputs
-    * Timers
-    * HVAC
-    * Device Class Note
+    * Discovery Messages
+      * X-10, Light Objects
+      * Flags
+      * Variables
+      * Inputs
+      * Outputs
+      * IR
+      * Macros, Scheduled Events, Periodic Events
+      * Digital Temperature Sensors
+      * Analog Inputs
+      * Timers
+      * HVAC
+      * Device Class Note
 {:toc}
 
 # Overview
@@ -317,6 +318,7 @@ Auto Discovery assumes that in MQTT Configuration "Settings", the "State Respons
 Auto Discovery does use the "Command Prefix", "State Prefix" and "Power Postfix" settings, and works with Object topics in any of the six standard topic templates: &lt;T&gt;, &gt;T&lt;, &lt;&gt;T, T&lt;&gt;, &gt;&lt;T, T&gt;&lt;.
 <br>
 <br>
+### Discovery Messages
 Here are examples of what is sent to Home Assistant during discovery.
 <br>
 <br>
@@ -726,6 +728,7 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 }
 </pre>
 {% endraw %}
+
 #### Device Class Note
 For sensors and binary sensors, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
 (Other text is allowed in the Description as well.)

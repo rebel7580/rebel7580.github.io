@@ -325,10 +325,6 @@ or
     cmnd/homevision/POWER                empty or "?"
 </pre>
 
-```
-test
-```
-
 If you have this issue, you may want to consider adding a button to send this message, or create an automation to issue the command at an appropriate time.
 <h3>Timers</h3>
 HomeVision timers can be controlled via MQTT.
