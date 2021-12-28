@@ -328,6 +328,7 @@ Note: Actual discovery payloads may use abbreviated configuration variable names
 <br>
 ####  X-10, Light Objects
 Defined as "light" entities.
+{% raw %}
 <pre>
 homeassistant/light/HVXLb1d0d912ed315aad_C-9/config
 {
@@ -355,6 +356,7 @@ homeassistant/light/HVXLb1d0d912ed315aad_C-9/config
         }
 }
 </pre>
+{% endraw %}
 If a device is defined as a appliance or switch module, it will be set up as a switch entity instead.
 <pre>
 homeassistant/switch/HVXLb1d0d912ed315aad_C-11/config
