@@ -403,11 +403,6 @@ cards:
       service_data:
         topic: cmnd/WashTimer/POWER
         payload_template: |
-          {% if is_state("input_select.wash_timer_set", "Load") %}
-              load {{ states('input_text.wash_timer_time') }}
-          {%-else %}
-             {{ states("input_select.wash_timer_set") }}
-          {% endif %}
       target: {}
     hold_action:
       action: none
@@ -432,8 +427,7 @@ square: false
 some text
 
 ```
-          {%-else %}
-```
+          -else 
 
 <b>Note:</b> 55555555555555 The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
 "stat" updates occur whenever a timer command (load, start,stop,clear or query - i.e., "?") is sent to the timer.
