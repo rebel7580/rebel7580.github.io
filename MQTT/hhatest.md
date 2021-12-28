@@ -123,7 +123,7 @@ square: false
 some text
 
 ```
-          -else 
+          hi 
 ```
 
 <b>Note:</b> 55555555555555 The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
