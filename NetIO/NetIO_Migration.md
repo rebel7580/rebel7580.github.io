@@ -10,4 +10,4 @@
 * [How to Use the MQTT Plug-in's Home Assistant Auto Discovery](MQTT/HmoeVision_Discovery_How-to)
 
 ### MQTT Dash
-* https://play.google.com/store/apps/details?id=net.routix.mqttdash
+* [MQTT Dash Website](https://play.google.com/store/apps/details?id=net.routix.mqttdash)
