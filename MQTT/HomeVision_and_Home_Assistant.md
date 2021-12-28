@@ -1,10 +1,27 @@
 # Tips for Interfacing HomeVision with Home Assistant
 <!-- $Revision: 1.9 $ -->
 <!-- $Date: 2021/12/23 01:21:51 $ -->
+{:.no_toc}
 
 [Back to Projects Index](/index)
 
 [Back to MQTT Index](/MQTT/MQTT_index)
+
+* Overview
+  * Basics of the HomeVisionXL MQTT plug-in
+    * How the MQTT plug-in Handles Internal Objects
+    * How the MQTT plug-in Handles External Devices
+  * MQTT Auto Discovery
+  * Tips
+    * Variable Options
+    * Running Macros
+    * Running Macros, Setting Flags and Variables and Executing Other Actions
+    * Running Scheduled and Periodic Events
+    * Running Other Objects
+    * Timers
+    * Refreshing HomeVision Objects
+    * Retain Option for Objects
+{:toc}
 
 <h1>Overview</h1>
 This help discusses ways to connect Home Assistant to your HomeVision controller running HomeVisionXL.
@@ -205,7 +222,7 @@ When the button is pressed, the macro will run to toggle the door, and the input
 Since the button's state is controlled by the Door1 state, it can be "On" and "Off".
 If "On", the button when press will send the "off" payload,
 so both command payloads are set to "ON" since that's what the macro expects.
-<h3>Running Macros, Setting Flags and Variables and Executing Other Actions.</h3>
+<h3>Running Macros, Setting Flags and Variables and Executing Other Actions</h3>
 While macros can be run directly by configuring them in the "Int Objects" screen and running MQTT Discovery,
 there may be situations where more flexibility is needed.
 For example,
