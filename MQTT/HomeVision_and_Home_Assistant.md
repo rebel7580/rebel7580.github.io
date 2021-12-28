@@ -360,10 +360,12 @@ create a GUI using them.
 There are probably many different ways to do this, but here is one.
 <br>
 <br>
+<p align="center">
   <img alt="HA Timer GUI.gif" src="https://github.com/rebel7580/img/blob/master/HA Timer GUI.gif?raw=true"/>
 <!--
   <img alt="HA_Outside_Deco_Config" src="HA Timer GUI.gif">
 -->
+</p>
 <br>
 <br>
 This GUI uses a grid card,
