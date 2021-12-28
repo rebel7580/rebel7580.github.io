@@ -3,6 +3,7 @@
 [Back to Projects Index](/index)
 
 * MQTT Plug-in
+  * [MQTT Plug-in](https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL)
   * [MQTT Client Plug-in Help](/MQTT/MQTT_Client_Plug-in)
 
 * MQTT Plug-in & Home Assistant
