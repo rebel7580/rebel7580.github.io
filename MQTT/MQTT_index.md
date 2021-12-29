@@ -11,4 +11,5 @@
   * [How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to)
   * [Tips for Interfacing HomeVision with Home Assistant](/MQTT/HomeVision_and_Home_Assistant)
 
+
 * [Change Log](https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL/wiki/Change-Log)
