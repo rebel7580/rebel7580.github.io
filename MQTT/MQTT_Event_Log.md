@@ -7,6 +7,9 @@
 MQTT helper plug-in, *MQTT_evlog.hap*,
 provides an MQTT interface to the *Netio_evlog.hap* helper plug-in,
 which in turn provides an interface to the HomeVision Event Log.
+You must have both *MQTT_evlog.hap* and *Netio_evlog.hap* enabled.
+You *do not* need the *NetIO plug-in* enabled for the MQTT part to work;
+*MQTT_evlog.hap* and *Netio_evlog.hap* run independently of the *NetIO plug-in*.
 
 The MQTT helper plug-in was designed with Home Assistant in mind but is useful in other MQTT environments as well.
 Control of the Event Log is accomplished via several MQTT messages and results are reported via four MQTT messages. MQTT payloads for HA are max 256 characters, so the 20-line log view is broken into 4 separate MQTT messages.
