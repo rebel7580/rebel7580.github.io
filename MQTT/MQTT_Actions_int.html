@@ -1,0 +1,672 @@
+<!-- $Revision: 1.8 $ -->
+<!-- $Date: 2021/12/22 23:02:19 $ -->
+<html>
+<head>
+<title>
+MQTT Object Actions
+</title>
+</head>
+<body>
+The following Tables describe the Action and MQTT response for Objects when they receive the following command topic and payload.
+<pre>
+     <b>topic: cmnd/topic/POWER {Payload}<sup>1</sup></b>
+</pre>
+<div align=center>
+<table border="1" cellspacing="0">
+ <tr>
+  <th>Object Type</th>
+  <th>Payload</th>
+  <th>Action</th>
+  <th>Response<sup>1</sup></th>
+ </tr>
+ <tr>
+  <td align="center">X-10</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER ON
+  {level in %}|OFF<sup>2</sup></td>
+ </tr>
+ <tr>
+  <td align="center">X-10</td>
+  <td align="center">on</td>
+  <td>Set to On</td>
+  <td>stat/topic/POWER ON
+  {level in %}<sup2></sup></td>
+ </tr>
+ <tr>
+  <td align="center">X-10</td>
+  <td align="center">off</td>
+  <td>Set to Off</td>
+  <td>stat/topic/POWER OFF<sup>2</sup></td>
+ </tr>
+ <tr>
+  <td align="center">X-10</td>
+  <td align="center">toggle</td>
+  <td>Toggle</td>
+  <td>stat/topic/POWER ON
+  {level in %}|OFF<sup>2</sup></td>
+ </tr>
+ <tr>
+  <td align="center">X-10</td>
+  <td align="center">on value</td>
+  <td>Set to On at level {value}%</td>
+  <td>stat/topic/POWER ON
+  {level in %}<sup>2</sup></td>
+ </tr>
+ <tr>
+  <td align="center">X-10</td>
+  <td align="center">value</td>
+  <td>Set to On at level {value}%</td>
+  <td>stat/topic/POWER ON
+  {level in %}<sup>2</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Custom Light</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER ON
+  {level in %}|OFF<sup>2</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Custom Light</td>
+  <td align="center">on</td>
+  <td>Set to On</td>
+  <td>stat/topic/POWER ON
+  {level in %}<sup>2</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Custom Light</td>
+  <td align="center">off</td>
+  <td>Set to Off</td>
+  <td>stat/topic/POWER OFF<sup>2</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Custom Light</td>
+  <td align="center">toggle</td>
+  <td>Toggle</td>
+  <td>stat/topic/POWER ON {level in %}|OFF<sup>2</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Custom Light</td>
+  <td align="center">value</td>
+  <td>Set to On at level {value}%</td>
+  <td>stat/topic/POWER ON {level in %}<sup>2</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Custom Light</td>
+  <td align="center">on value</td>
+  <td>Set to On at level {value}%</td>
+  <td>stat/topic/POWER ON
+  {level in %}<sup>2</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Flag</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER Set|Clear</td>
+ </tr>
+ <tr>
+  <td align="center">Flag</td>
+  <td align="center">on | set</td>
+  <td>Set Flag</td>
+  <td>stat/topic/POWER Set</td>
+ </tr>
+ <tr>
+  <td align="center">Flag</td>
+  <td align="center">off | clear</td>
+  <td>Clear Flag</td>
+  <td>stat/topic/POWER Clear</td>
+ </tr>
+ <tr>
+  <td align="center">Flag</td>
+  <td align="center">toggle</td>
+  <td>Toggle Flag</td>
+  <td>stat/topic/POWER Set|Clear</td>
+ </tr>
+ <tr>
+  <td align="center">Flag</td>
+  <td align="center">on value</td>
+  <td>Mask value with 0x01, if 1, then Set; if 0, then Clear</td>
+  <td>stat/topic/POWER Set|Clear</td>
+ </tr>
+ <tr>
+  <td align="center">Flag</td>
+  <td align="center">value</td>
+  <td>Mask value with 0x01, if 1, then Set; if 0, then Clear</td>
+  <td>stat/topic/POWER Set|Clear</td>
+ </tr>
+ <tr>
+  <td align="center">Input</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER {High State Label | Low State Label}</td>
+ </tr>
+ <tr>
+  <td align="center">Input</td>
+  <td align="center">on</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Input</td>
+  <td align="center">off</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Input</td>
+  <td align="center">toggle</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Input</td>
+  <td align="center">on value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Input</td>
+  <td align="center">value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Output</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER {High State Label | Low State Label}</td>
+ </tr>
+ <tr>
+  <td align="center">Output</td>
+  <td align="center">on</td>
+  <td>Set to high</td>
+  <td>stat/topic/POWER {High State Label}</td>
+ </tr>
+ <tr>
+  <td align="center">Output</td>
+  <td align="center">off</td>
+  <td>Set to low</td>
+  <td>stat/topic/POWER {Low State Label}</td>
+ </tr>
+ <tr>
+  <td align="center">Output</td>
+  <td align="center">toggle</td>
+  <td>Toggle Output</td>
+  <td>stat/topic/POWER {High State Label | Low State Label}</td>
+ </tr>
+ <tr>
+  <td align="center">Output</td>
+  <td align="center">on value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Output</td>
+  <td align="center">value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">HVAC</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER Run|Hold Off|Cool|Heat|Auto Auto|ON {temperature} {setpoint}</td>
+ </tr>
+ <tr>
+  <td align="center">HVAC</td>
+  <td align="center">value</td>
+  <td>Set Setpoint to value (0-99, ignored otherwise)</td>
+  <td>stat/topic/POWER Run|Hold Off|Cool|Heat|Auto Auto|ON {temperature} {setpoint}</td>
+ </tr>
+<tr>
+  <td align="center">HVAC</td>
+  <td align="center">run<sup>3</sup></td>
+  <td>Set Control Mode to Run</td>
+  <td>stat/topic/POWER Run|Hold Off|Cool|Heat|Auto Auto|ON {temperature} {setpoint}</td>
+ </tr>
+ <tr>
+  <td align="center">HVAC</td>
+  <td align="center">hold<sup>3</sup></td>
+  <td>Set Control Mode to Hold</td>
+  <td>stat/topic/POWER Run|Hold Off|Cool|Heat|Auto Auto|ON {temperature} {setpoint}</td>
+ </tr>
+ <tr>
+  <td align="center">HVAC</td>
+  <td align="center">off<sup>3</sup></td>
+  <td>Set HVAC Mode to Off</td>
+  <td>stat/topic/POWER Run|Hold Off|Cool|Heat|Auto Auto|ON {temperature} {setpoint}</td>
+ </tr>
+ <tr>
+  <td align="center">HVAC</td>
+  <td align="center">cool<sup>3</sup></td>
+  <td>Set HVAC Mode to Cool</td>
+  <td>stat/topic/POWER Run|Hold Off|Cool|Heat|Auto Auto|ON {temperature} {setpoint}</td>
+ </tr>
+ <tr>
+  <td align="center">HVAC</td>
+  <td align="center">heat<sup>3</sup></td>
+  <td>Set HVAC Mode to Heat</td>
+  <td>stat/topic/POWER Run|Hold Off|Cool|Heat|Auto Auto|ON {temperature} {setpoint}</td>
+ </tr>
+ <tr>
+  <td align="center">HVAC</td>
+  <td align="center">auto<sup>3</sup></td>
+  <td>Set HVAC Mode to Auto</td>
+  <td>stat/topic/POWER Run|Hold Off|Cool|Heat|Auto Auto|ON {temperature} {setpoint}</td>
+ </tr>
+ <tr>
+  <td align="center">HVAC</td>
+  <td align="center">fanauto<sup>3</sup></td>
+  <td>Set Fan Mode to Auto</td>
+  <td>stat/topic/POWER Run|Hold Off|Cool|Heat|Auto Auto|ON {temperature} {setpoint}</td>
+ </tr>
+  <tr>
+  <td align="center">HVAC</td>
+  <td align="center">fanon<sup>3</sup></td>
+  <td>Set Fan Mode to On</td>
+  <td>stat/topic/POWER Run|Hold Off|Cool|Heat|Auto Auto|ON {temperature} {setpoint}</td>
+ </tr>
+ <tr>
+  <td align="center">DTS</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER {temperature}</td>
+ </tr>
+ <tr>
+  <td align="center">DTS</td>
+  <td align="center">on </td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">DTS</td>
+  <td align="center">off</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">DTS</td>
+  <td align="center">toggle</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">DTS</td>
+  <td align="center">on value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">DTS</td>
+  <td align="center">value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Analog</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER {value}</td>
+ </tr>
+ <tr>
+  <td align="center">Analog</td>
+  <td align="center">on</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Analog</td>
+  <td align="center">off</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Analog</td>
+  <td align="center">toggle</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Analog</td>
+  <td align="center">on value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Analog</td>
+  <td align="center">value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">IR</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER Unknown<sup>4</sup></td>
+ </tr>
+ <tr>
+  <td align="center">IR</td>
+  <td align="center">on</td>
+  <td>Send IR command 1 time<sup>5</sup></td>
+  <td>stat/topic/POWER ON 1</td>
+ </tr>
+ <tr>
+  <td align="center">IR</td>
+  <td align="center">off</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">IR</td>
+  <td align="center">toggle</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">IR</td>
+  <td align="center">on value</td>
+  <td>Send IR command value times<sup>5</sup></td>
+  <td>stat/topic/POWER ON {value}</td>
+ </tr>
+ <tr>
+  <td align="center">IR</td>
+  <td align="center">value</td>
+  <td>Send IR command value times<sup>5</sup></td>
+  <td>stat/topic/POWER ON {value}</td>
+ </tr>
+  <tr>
+  <td align="center">Macro</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER Unknown<sup>4</sup></td>
+ </tr>
+<tr>
+  <td align="center">Macro</td>
+  <td align="center">run, on</td>
+  <td>Run Macro</td>
+  <td>stat/topic/POWER Unknown<sup>4</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Macro</td>
+  <td align="center">off</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Macro</td>
+  <td align="center">toggle</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Macro</td>
+  <td align="center">run, on value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Macro</td>
+  <td align="center">value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+<tr>
+  <td align="center">Scheduled Event</td>
+   <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER Unknown<sup>4</sup></td>
+ </tr>
+<tr>
+  <td align="center">Scheduled Event</td>
+  <td align="center">run, on</td>
+  <td>Run Scheduled Event</td>
+  <td>stat/topic/POWER Unknown<sup>4</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Scheduled Event</td>
+  <td align="center">off</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Scheduled Event</td>
+  <td align="center">toggle</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Scheduled Event</td>
+  <td align="center">run, on value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Scheduled Event</td>
+  <td align="center">value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+  <tr>
+  <td align="center">Periodic Event</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER Unknown<sup>4</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Periodic Event</td>
+  <td align="center">run, on</td>
+  <td>Run Periodic Event</td>
+  <td>stat/topic/POWER Unknown<sup>4</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Periodic Event</td>
+  <td align="center">off</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Periodic Event</td>
+  <td align="center">toggle</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Periodic Event</td>
+  <td align="center">run, on value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td align="center">Periodic Event</td>
+  <td align="center">value</td>
+  <td>Not Supported</td>
+  <td>-</td>
+ </tr>
+  <tr>
+  <td align="center">Timer</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER Ringing|Running|Stopped 0:00:00.00<sup>6</sup></td>
+ </tr>
+  <tr>
+  <td align="center">Timer</td>
+  <td align="center">start</td>
+  <td>Start Timer</td>
+  <td>stat/topic/POWER Running HHH:MM:SS.hh<sup>6</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Timer</td>
+  <td align="center">stop</td>
+  <td>Stop Timer</td>
+  <td>stat/topic/POWER Stopped HHH:MM:SS.hh<sup>6</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Timer</td>
+  <td align="center">clear</td>
+  <td>Clear Timer</td>
+  <td>stat/topic/POWER Stopped 00:00:00.00<sup>6</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Timer</td>
+  <td align="center">load 0 30 00 00</td>
+  <td>Load Timer with HHH:MM:SS.hh and Start</td>
+  <td>stat/topic/POWER Running 0:29:55.00<sup>6</sup></td>
+ </tr>
+ <tr>
+  <td align="center">Timer</td>
+  <td align="center">load 0:30:00.00</td>
+  <td>Load Timer with HHH:MM:SS.hh and Start</td>
+  <td>stat/topic/POWER Running 0:29:55.00<sup>6</sup></td>
+ </tr></table>
+ <br>
+ <br>
+ <table border="1" cellspacing="0">
+ <tr>
+  <th>Object Type</th>
+  <th>Var as Flag</th>
+  <th>Use 2 Vars</th>
+  <th>Payload</th>
+  <th>Action</th>
+  <th>Response<sup>1,2</sup></th>
+ </tr>
+  <tr>
+  <td align="center">Variable</td>
+  <td align="center">x</td>
+  <td align="center">x</td>
+  <td align="center">none or &quot;?&quot;</td>
+  <td>None</td>
+  <td>stat/topic/POWER {value}</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">x</td>
+  <td align="center">x</td>
+  <td align="center">on </td>
+  <td>Set Variable to 1</td>
+  <td>stat/topic/POWER 1</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">x</td>
+  <td align="center">x</td>
+  <td align="center">off</td>
+  <td>Set Variable to 0</td>
+  <td>stat/topic/POWER 0</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">x</td>
+  <td align="center">x</td>
+  <td align="center">toggle</td>
+  <td>Mask Variable value with 0x01, if 1, then Set to 0; if 0, then
+  Set to 1</td>
+  <td>stat/topic/POWER 0|1</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">Yes</td>
+  <td align="center">-</td>
+  <td align="center">on value</td>
+  <td>Mask value with 0x01. If 1, Set Var to 1. If 0, Set Var to 0</td>
+  <td>stat/topic/POWER 0|1</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">Yes</td>
+  <td align="center">-</td>
+  <td align="center">value</td>
+  <td>Mask value with 0x01. If 1, Set Var to 1. If 0, Set Var to 0</td>
+  <td>stat/topic/POWER 0|1</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">Yes</td>
+  <td align="center">-</td>
+  <td align="center">{Count text}</td>
+  <td>No Action</td>
+  <td></td>
+ </tr> <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">No</td>
+  <td align="center">on value</td>
+  <td>Mask value with 0xFF, Set Variable with result</td>
+  <td>stat/topic/POWER {value}</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">No</td>
+  <td align="center">value</td>
+  <td>Mask value with 0xFF, Set
+  Variable with result</td>
+  <td>stat/topic/POWER {value}</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">No</td>
+  <td align="center">{Count text}</td>
+  <td>Increment Var</td>
+  <td>stat/topic/POWER {value}</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">Yes</td>
+  <td align="center">on value</td>
+  <td>Mask value with 0xFFFF. Set
+  Var with LSB, Set Var+1 with MSB</td>
+  <td>stat/topic/POWER {value}</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">Yes</td>
+  <td align="center">value</td>
+  <td>Mask value with 0xFFFF. Set
+  Var with LSB, Set Var+1 with MSB</td>
+  <td>stat/topic/POWER {value}</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">Yes</td>
+  <td align="center">{Count text}</td>
+  <td>Increment Var, Increment Var+1 if Var overflows</td>
+  <td>stat/topic/POWER {value}</td>
+ </tr>
+</table>
+</div>
+<br>
+<br>
+<sup>1</sup> Order of "cmnd", "stat", "topic", "POWER" depend on topic settings. Prefix and Postfix are defaults.
+<br>
+<sup>2</sup> Stat responses for X10, Custom Lights and IR will respond with an OFF/ON/ON {level} or 0-100 format, depending on the setting of the Response Option Settings.
+Stat RESULT response may be in addition to or replace POWER response depending on State Response settings.
+<br>
+<sup>3</sup> One or more of these items can be included in the same payload.
+If conflicting items for the same mode are present, the last one takes effect.
+Items are case insensitive.
+<br>
+<sup>4</sup> "Unknown" is sent in response to a state query since IR, Macro, Scheduled Events and Periodic Events objects have no state.
+<br>
+<sup>5</sup> Default is 1. If value is outside the range of 1-9, it is set to the the closest allowed value (e.g., 0=&gt;1, 20=&gt;9). 
+<br>
+<sup>6</sup> If "State Response":"RESULT" is checked, Timer status will report like this:
+<pre>
+    stat/topic/RESULT {"STATE":"Running","TIME":"0:29:55.00"}
+</pre>
+<br><br>
+Payload Notes:
+<ul>
+<li>cmnd payloads are case-insensitive.
+<li>If Payload is a floating point number, it is truncated to an integer first.
+<li>A Payload starting with {Count text} can contain additional trailing words (which are ignored).
+</ul>
+
+
+
+</body>
+</html>

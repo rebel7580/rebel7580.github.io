@@ -148,9 +148,10 @@ An empty payload requests the device to publish its state without changing the s
 <br>
 HomeVision objects *subscribe* to command topics so that external entities can control them.
 For a full list of Actions based on the received topic and payload, see 
-<!-- <a href="MQTT_Actions_int.html">Object Actions</a>
--->
+<a href="MQTT_Actions_int.html">Object Actions</a>
+<!-- 
 [[Help: Object Actions|Help:-Object-Actions]]
+-->
 
 ### Standard State Topic
 For each external device, the plug-in *subscribes* to the following topic (assuming "<*topic*> in the "Topic" field):
@@ -160,9 +161,9 @@ For each external device, the plug-in *subscribes* to the following topic (assum
 ```
 When a POWER topic is received, the plug-in looks for a message of "on" or "off" and takes action according to the device's settings in the **Ext Devices Tab**.
 For a full list of Actions based on the received topic and payload, see
-<!-- <a href="MQTT_Actions_ext.html">External Device Actions</a> -->
-[[Help: External Device Actions|Help:-External-Device-Actions]]
-.
+<a href="MQTT_Actions_ext.html">External Device Actions</a> 
+<!-- [[Help: External Device Actions|Help:-External-Device-Actions]]
+-->.
 <br>
 <br>
 When an internal object changes state, the plug-in will *publish* a state message to indicate the object's new state.
@@ -419,7 +420,7 @@ However, responses to this command are determined by the affected objects' setti
 * "Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
 
 ## Responding to External Device State Changes
-Refer to <!-- <a href="MQTT_Actions_ext.html">External Device Actions</a> --> [[Help: External Device Actions|Help:-External-Device-Actions]]
+Refer to <a href="MQTT_Actions_ext.html">External Device Actions</a>  <!-- [[Help: External Device Actions|Help:-External-Device-Actions]]-->
 for responses to received messages.
 <br>
 <br>

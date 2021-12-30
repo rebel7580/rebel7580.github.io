@@ -1,0 +1,377 @@
+<!-- $Revision: 1.6 $ -->
+<!-- $Date: 2021/03/15 23:10:31 $ -->
+<html>
+<head>
+<title>
+MQTT External Device Actions
+</title>
+</head>
+<body>
+The following Table describes the Action when External Devices send the following state topic and payload.
+<pre>
+     <b>topic: stat/topic/POWER<sup>1</sup></b>
+</pre>
+<div align=center>
+<table border="1" cellspacing="0">
+<th colspan="6">Cmd/Trig = None</th>
+ <tr>
+  <th>Flag/Var</th>
+  <th>Var as Flag</th>
+  <th>Use 2 Vars</th>
+  <th>Macro</th>
+  <th>Payload</th>
+  <th>Action</th>
+ </tr>
+ <tr>
+  <td align="center">x</td>
+  <td align="center">x</td>
+  <td align="center">x</td>
+  <td align="center">x</td>
+  <td align="center">None</td>
+  <td>No Action</td>
+ </tr>
+ <tr>
+  <td align="center">None</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">on</td>
+  <td>Run Macro A, if any</td>
+ </tr>
+ <tr>
+  <td align="center">None</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">off</td>
+  <td>Run Macro B, if any</td>
+ </tr>
+ <tr>
+  <td align="center">None</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">value</td>
+  <td>Run Macro A, if any</td>
+ </tr>
+ <tr>
+  <td align="center">None</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">on value</td>
+  <td>Run Macro A, if any</td>
+ </tr>
+ <tr>
+  <td align="center">None</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">{Count text}</td>
+  <td>No Action</td>
+ </tr>
+ <tr>
+  <td align="center">Flag</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">on</td>
+  <td>Set Flag, then Run Macro A, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Flag</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">off</td>
+  <td>Clear Flag, then Run Macro B, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Flag</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">value</td>
+  <td>Mask value with 0x01. If
+  1, Set Flag, then Run Macro A, if any<br>
+    If 0, Clear Flag, then Run Macro B, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Flag</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">on value</td>
+  <td>Mask value with 0x01. If
+  1, Set Flag, then Run Macro A, if any<br>
+    If 0, Clear Flag, then Run Macro B, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Flag</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">{Count text}</td>
+  <td>No Action</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">Yes</td>
+  <td align="center">x</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">on</td>
+  <td>Set Var to 1, then Run Macro A, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">Yes</td>
+  <td align="center">x</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">off</td>
+  <td>Set Var to 0, then Run Macro B, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">Yes</td>
+  <td align="center">x</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">value</td>
+  <td >Mask value with 0x01. If
+  1, Set Var to 1, then Run Macro A, if any.<br>
+    If 0, Set Var to 0, then Run Macro B, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">Yes</td>
+  <td align="center">x</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">on value</td>
+  <td >Mask value with 0x01. If
+  1, Set Var to 1, then Run Macro A, if any.<br>
+    If 0, Set Var to 0, then Run Macro B, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">Yes</td>
+  <td align="center">x</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">{Count text}</td>
+  <td>No Action</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">x</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">on</td>
+  <td>No Action</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">x</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">off</td>
+  <td>No Action</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">No</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">value</td>
+  <td>Mask value with 0xFF. Set
+  Var with result, then Run Macro A, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">No</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">on value</td>
+  <td>Mask value with 0xFF. Set
+  Var with result, then Run Macro A, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">Yes</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">value</td>
+  <td>Mask value with 0xFFFF. Set
+  Var with LSB, Set Var+1 with MSB, then Run Macro A, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">Yes</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">on value</td>
+  <td>Mask value with 0xFFFF. Set
+  Var with LSB, Set Var+1 with MSB, then Run Macro A, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">No</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">{Count text}</td>
+  <td>Increment Var, then Run Macro A, if any</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">Yes</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">{Count text}</td>
+  <td>Increment Var, Increment Var+1 if Var overflows, then Run Macro A, if any</td>
+ </tr>
+<th colspan="6">Cmd/Trig = Command</th>
+ <tr>
+  <th>Flag/Var</th>
+  <th>Var as Flag</th>
+  <th>Use 2 Vars</th>
+  <th>Macro</th>
+  <th>Payload</th>
+  <th>Action</th>
+ </tr>
+ <tr>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-/-</td>
+  <td align="center">any text</td>
+  <td>Run command in "Command" field, if any, with topic and payload as arguments.</td>
+ </tr>
+<th colspan="6">Cmd/Trig = Trigger, Topic Type = Standard, All</th>
+ <tr>
+  <th>Flag/Var</th>
+  <th>Var as Flag</th>
+  <th>Use 2 Vars</th>
+  <th>Macro</th>
+  <th>Payload</th>
+  <th>Action</th>
+ </tr>
+ <tr>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-/-</td>
+  <td align="center">on</td>
+  <td>Run trigger in "Trigger On" field, if any.</td>
+ </tr>
+ <tr>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-/-</td>
+  <td align="center">off</td>
+  <td>Run trigger in "Trigger On" field, if any.</td>
+ </tr>
+ <tr>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-/-</td>
+  <td align="center">value</td>
+  <td>Run trigger in "Trigger On" field, if any.</td>
+ </tr>
+ <tr>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-/-</td>
+  <td align="center">on value</td>
+  <td>Run trigger in "Trigger On" field, if any.</td>
+ </tr>
+ <tr>
+  <td align="center">x</td>
+  <td align="center">x</td>
+  <td align="center">x</td>
+  <td align="center">x/x</td>
+  <td align="center">{Count text}</td>
+  <td>Same Actions as <b>Cmd/Trig = None</b>.</td>
+ </tr>
+<th colspan="6">Cmd/Trig = Trigger, Topic Type = Standard, On/Off</th>
+ <tr>
+  <th>Flag/Var</th>
+  <th>Var as Flag</th>
+  <th>Use 2 Vars</th>
+  <th>Macro</th>
+  <th>Payload</th>
+  <th>Action</th>
+ </tr>
+ <tr>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-/-</td>
+  <td align="center">on</td>
+  <td>Run trigger in "Trigger On" field, if any.</td>
+ </tr>
+ <tr>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-/-</td>
+  <td align="center">off</td>
+  <td>Run trigger in "Trigger Off" field, if any.</td>
+ </tr>
+ <tr>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-/-</td>
+  <td align="center">value</td>
+  <td>If value = 0, Run trigger in "Trigger Off" field, if any.
+  Otherwise, Run trigger in "Trigger ON" field, if any.</td>
+ </tr>
+ <tr>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-/-</td>
+  <td align="center">on value</td>
+  <td>If value = 0, Run trigger in "Trigger Off" field, if any.
+  Otherwise, Run trigger in "Trigger ON" field, if any.</td>
+ </tr>
+ <tr>
+  <td align="center">x</td>
+  <td align="center">x</td>
+  <td align="center">x</td>
+  <td align="center">x/x</td>
+  <td align="center">{Count text}</td>
+  <td>Same Actions as <b>Cmd/Trig = None</b>.</td>
+ </tr>
+<th colspan="6">Cmd/Trig = Trigger, Topic Type = Custom</th>
+ <tr>
+  <th>Flag/Var</th>
+  <th>Var as Flag</th>
+  <th>Use 2 Vars</th>
+  <th>Macro</th>
+  <th>Payload</th>
+  <th>Action</th>
+ </tr>
+ <tr>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-/-</td>
+  <td align="center">any text</td>
+  <td>Run trigger in "Trigger" field, if any.</td>
+ </tr>
+</table>
+</div>
+<br>
+<br>
+<sup>1</sup> Order of "stat", "topic", "POWER" depend on topic settings. Prefix and Postfix are defaults.
+<br>
+<br>
+Payload Note:
+<ul>
+<li>If Payload is a floating point number, it is truncated to an integer first,
+except for "Cmd/Trig = Command" or "Cmd/Trig = Trigger, Topic Type = Custom", where the payload remains unchanged.
+<li>A Payload starting with {Count text} can contain additional trailing words (which are ignored).
+</ul>
+</body>
+</html>
