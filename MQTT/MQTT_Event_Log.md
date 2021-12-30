@@ -46,10 +46,11 @@ Notes:
 * The Home Assistant screens could be made better looking with some more effort, but they are functionally equivalant (or better) than the NetIO ones.
 * The MQTT Dash screens have less capability for customizing the 'look and feel' but, even so, these examples may not take advantage of possible customizations.
 
-## Home Assistant Configuration.yaml Setup for Log Mssages
+## Home Assistant Configuration Setup for Log Mssages
 
 Create four sensors in configuration.yaml like this:
 
+{% raw %}
 ``` yaml
 sensor:
   - platform: mqtt
@@ -69,12 +70,16 @@ sensor:
     name: "HV Log4"
     state_topic: "stat/HVLog/part4"
 ```
+{% endraw %}
 
-Create a GUI. Example like this:
+## Home Assistant Setup for Log GUI
 
+Create a GUI. Example like this,
+with corresponding yaml. Do this easily with the GUI editor, yaml shown here just for detail:
 
-with corresponding yaml. Do this easily with the GUI editor, yaml shown here for detail:
+![Log GUI](HV_Log_GUI.gif)
 
+{% raw %}
 ``` yaml
  - title: Log
     path: log
@@ -179,3 +184,4 @@ with corresponding yaml. Do this easily with the GUI editor, yaml shown here for
             hold_action:
               action: none
 ```
+{% endraw %}
