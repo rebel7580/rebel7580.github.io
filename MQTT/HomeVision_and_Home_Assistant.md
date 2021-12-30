@@ -141,7 +141,7 @@ You do not need to create both automations if you only want to either just read 
 If you wish to enter directly in YAML, here is an example.
 You will need to replicate these three sets of code for each variable you want to support, making sure you change the Var names and topics.
 {% raw %}
-```
+``` yaml
 # Example configuration.yaml entry using 'input_number' in an action in an automation
 input_number:
   var_145:
@@ -154,7 +154,7 @@ input_number:
 {% endraw %}
 The automations should be in <i>automation.yaml</i> or after the <code>automation: !include automations.yaml</code> line in <i>configuration.yaml</i>.
 {% raw %}
-```
+``` yaml
 # This automation script runs when a value is received via MQTT
 # It sets the value slider on the GUI. Note: the next line may be different if this automation is contained in <i>automation.yaml</i> instead of <i>configuration.yaml</i>.
 automation myvars:
@@ -201,7 +201,7 @@ You'd like the state/icon of the button to show the door's state.
 You don't need to run MQTT discovery for these, but it won't hurt if you do so you can use them in Home Assistant for other reasons, as well as in this case.
 * Manually add something like the following to your configuration.yaml:
 {% raw %}
-```
+``` yaml
   - platform: mqtt
     unique_id: "MA_GarageDoor1"
     name: "MA_GarageDoor1"
@@ -216,12 +216,14 @@ You don't need to run MQTT discovery for these, but it won't hurt if you do so y
 {% endraw %}
 Note this uses the macro for the command topic and the input for the state topic.
 * Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
-<pre>
+{% raw %}
+``` yaml
     type: button
     entity: switch.ma_garagedoor1
     icon: 'mdi:garage'
     name: Ron's Garage Door
-</pre>
+```
+{% endraw %}
 
 
 When the button is pressed, the macro will run to toggle the door, and the input will report back the door's position, which will be reflected in the button's state and/or icon.
@@ -255,7 +257,7 @@ First, in MQTT Configuration Ext Devices, set up an virtual external device with
 <br>
 Next set up a switch in Home Assistant's <i>configuration.yaml</i> (Since this is an external device, you can't use MQTT discovery):
 {% raw %}
-```
+``` yaml
 - switch:
   - platform: mqtt
     unique_id: "HA_Outside_Deco"
