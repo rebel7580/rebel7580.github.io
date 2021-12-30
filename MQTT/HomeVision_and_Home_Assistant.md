@@ -140,7 +140,8 @@ You do not need to create both automations if you only want to either just read 
 <br>
 If you wish to enter directly in YAML, here is an example.
 You will need to replicate these three sets of code for each variable you want to support, making sure you change the Var names and topics.
-<pre>
+{% raw %}
+```
 # Example configuration.yaml entry using 'input_number' in an action in an automation
 input_number:
   var_145:
@@ -149,9 +150,11 @@ input_number:
     max: 255
     step: 1
     unit_of_measurement: step
-</pre>
+```
+{% endraw %}
 The automations should be in <i>automation.yaml</i> or after the <code>automation: !include automations.yaml</code> line in <i>configuration.yaml</i>.
-<pre>
+{% raw %}
+```
 # This automation script runs when a value is received via MQTT
 # It sets the value slider on the GUI. Note: the next line may be different if this automation is contained in <i>automation.yaml</i> instead of <i>configuration.yaml</i>.
 automation myvars:
@@ -164,8 +167,7 @@ automation myvars:
       data:
         entity_id: input_number.var_145
         value: "{{ trigger.payload_json.STATE }}"
-</pre>
-<pre>
+
 # This second automation script runs when the slider is moved.
 # It publishes its value to the same MQTT topic as myvars.
   - alias: slider moved
@@ -178,7 +180,8 @@ automation myvars:
         topic: 'cmnd/Var145/POWER'
         payload: "{{ states('input_number.var_145') | int }}"
 
-</pre>
+```
+{% endraw %}
 <h3>Running Macros</h3>
 Macros can be run directly by configuring them in the "Int Objects" screen and running MQTT Discovery.
 A simple button or switch in Home Assistant can be configured to use the corresponding macro switch entity.
@@ -197,7 +200,8 @@ You'd like the state/icon of the button to show the door's state.
 * Add the "Door1" input and "Toggle Garage Door 1" macro to the "Int Objects" list.
 You don't need to run MQTT discovery for these, but it won't hurt if you do so you can use them in Home Assistant for other reasons, as well as in this case.
 * Manually add something like the following to your configuration.yaml:
-<pre>
+{% raw %}
+```
   - platform: mqtt
     unique_id: "MA_GarageDoor1"
     name: "MA_GarageDoor1"
@@ -208,7 +212,8 @@ You don't need to run MQTT discovery for these, but it won't hurt if you do so y
     state_on: "Open"
     state_off: "Closed"
     qos: 1
-</pre>
+```
+{% endraw %}
 Note this uses the macro for the command topic and the input for the state topic.
 * Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
 <pre>
@@ -249,7 +254,8 @@ First, in MQTT Configuration Ext Devices, set up an virtual external device with
 <br>
 <br>
 Next set up a switch in Home Assistant's <i>configuration.yaml</i> (Since this is an external device, you can't use MQTT discovery):
-<pre>
+{% raw %}
+```
 - switch:
   - platform: mqtt
     unique_id: "HA_Outside_Deco"
@@ -261,7 +267,8 @@ Next set up a switch in Home Assistant's <i>configuration.yaml</i> (Since this i
     state_on: "ON 1"
     state_off: "OFF"
     qos: 1
-</pre>
+```
+{% endraw %}
 Note that <i>command_topic</i> and the <i>state_topic</i> are the same. Since HomeVisionXL responds to state messages to execute actions, Home Assistant must send a "stat" message to the MQTT plug-in. Home Assistant also will listen to the <i>state_topic</i>, so will hear its own message an assure that the switch is in the correct state.
 
 Lastly, add in a switch to your UI.
@@ -304,7 +311,8 @@ The compete trigger command (obscured in the screen shot) is:
 </pre>
 In this example, IR is used, but with a virtual external device to allow for more complex command execution. Consequently, a switch should be added manually to your <i>configuration.yaml</i>. Here is what the switch code would look like:
 
-<pre>
+{% raw %}
+``` yaml
 switch:
   - platform: mqtt
     unique_id: IR_HA_NBC
@@ -316,7 +324,8 @@ switch:
     state_on: "ON"
     state_off: "Unknown"
     qos: 1
-</pre>
+```
+{% endraw %}
 
 <h3>Running Scheduled and Periodic Events</h3>
 The MQTT plug-in provides for direct execution of Scheduled and Periodic Events, similar to Macros, by defining them in "Int Objects" configuration.
