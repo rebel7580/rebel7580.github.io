@@ -17,7 +17,7 @@ Control of the Event Log is accomplished via several MQTT messages and results a
 ## Command Messages
 
 ```
-cmnd/HVLog/update      # refresh to the latest log
+cmnd/HVLog/update
 
 cmnd/HVLog/get last
 cmnd/HVLog/get first
@@ -42,7 +42,8 @@ stat/HVLog/part4 {log lines 16-20}
 ```
 
 Note:
-* The payload for each stat message contains five lines of lig information, each ending in a newline.
+* The payload for each stat message contains five lines of log information, each ending in a newline.
+* All four messages are always sent.
 
 ## Home Assistant Configuration Setup for Log Messages
 
