@@ -8,7 +8,7 @@ MQTT helper plug-in, *MQTT_evlog.hap*,
 provides an MQTT interface to the *Netio_evlog.hap* helper plug-in,
 which in turn provides an interface to the HomeVision Event Log.
 
-The MQTT helper plug-in was designed with Home Assistant in mind but is useful in other use cases as well.
+The MQTT helper plug-in was designed with Home Assistant in mind but is useful in other MQTT environments as well.
 Control of the Event Log is accomplished via several MQTT messages and results are reported via four MQTT messages. MQTT payloads for HA are max 256 characters, so the 20-line log view is broken into 4 separate MQTT messages.
 
 ## Command Messages
@@ -21,8 +21,8 @@ cmnd/HVLog/get first
 cmnd/HVLog/get next
 cmnd/HVLog/get prev
 ```
-* *update*: refreshes to the latest log entries. This takes some time. While retrieving the log information, progress stat messages are sent aput every 10 seconds. The "stat/HVLog/part1" response will
-contain a % complete message, while the other three will be five "blank" lines. 
+* *update*: refreshes to the latest log entries. This takes some time. While retrieving the log information, progress stat messages are sent about every 10 seconds. The ```stat/HVLog/part1``` response will
+contain a percent complete message, while the other three will contain five "blank" lines. 
 Once the log retrieval is complete, the last 20 lines of the log will be sent (as if a ```cmnd/HVLog/get last``` command had been sent.
 * *last*: return last 20 lines of log. 
 * *first*: return first 20 lines of log. 
@@ -46,3 +46,136 @@ Notes:
 * The Home Assistant screens could be made better looking with some more effort, but they are functionally equivalant (or better) than the NetIO ones.
 * The MQTT Dash screens have less capability for customizing the 'look and feel' but, even so, these examples may not take advantage of possible customizations.
 
+## Home Assistant Configuration.yaml Setup for Log Mssages
+
+Create four sensors in configuration.yaml like this:
+
+``` yaml
+sensor:
+  - platform: mqtt
+    unique_id: hv_log1
+    name: "HV Log1"
+    state_topic: "stat/HVLog/part1"
+  - platform: mqtt
+    unique_id: hv_log2
+    name: "HV Log2"
+    state_topic: "stat/HVLog/part2"
+  - platform: mqtt
+    unique_id: hv_log3
+    name: "HV Log3"
+    state_topic: "stat/HVLog/part3"
+  - platform: mqtt
+    unique_id: hv_log4
+    name: "HV Log4"
+    state_topic: "stat/HVLog/part4"
+```
+
+Create a GUI. Example like this:
+
+
+with corresponding yaml. Do this easily with the GUI editor, yaml shown here for detail:
+
+``` yaml
+ - title: Log
+    path: log
+    visible:
+      - user: xxxxxxxxxxxxxxxxxxxxxxx
+    badges: []
+    cards:
+      - type: markdown
+        content: >-
+          ### HV Event Log
+
+          {{ states('sensor.hv_log1') }}{{ states('sensor.hv_log2') }}{{
+          states('sensor.hv_log3') }} {{ states('sensor.hv_log4') }} 
+      - type: horizontal-stack
+        cards:
+          - type: button
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                retain: 0
+                payload: ''
+                topic: cmnd/HVLog/get
+                qos: 0
+            entity: sensor.hv_log1
+            name: Get Log
+            show_icon: false
+            hold_action:
+              action: none
+          - type: button
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                retain: 0
+                payload: ''
+                topic: cmnd/HVLog/update
+                qos: 0
+            entity: sensor.hv_log1
+            name: Update
+            show_icon: false
+            hold_action:
+              action: none
+      - type: horizontal-stack
+        cards:
+          - type: button
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                retain: 0
+                payload: next
+                topic: cmnd/HVLog/get
+                qos: 0
+            entity: sensor.hv_log1
+            name: Next
+            show_icon: false
+            hold_action:
+              action: none
+          - type: button
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                retain: 0
+                payload: prev
+                topic: cmnd/HVLog/get
+                qos: 0
+            entity: sensor.hv_log1
+            name: Previous
+            show_icon: false
+            hold_action:
+              action: none
+      - type: horizontal-stack
+        cards:
+          - type: button
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                retain: 0
+                payload: first
+                topic: cmnd/HVLog/get
+                qos: 0
+            entity: sensor.hv_log1
+            name: First
+            show_icon: false
+            hold_action:
+              action: none
+          - type: button
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                retain: 0
+                payload: last
+                topic: cmnd/HVLog/get
+                qos: 0
+            entity: sensor.hv_log1
+            name: Last
+            show_icon: false
+            hold_action:
+              action: none
+```
