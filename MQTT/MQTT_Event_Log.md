@@ -38,15 +38,10 @@ stat/HVLog/part3 {log lines 11-15}
 stat/HVLog/part4 {log lines 16-20}
 ```
 
+Note:
+* The payload for each stat message contains five lines of lig information, each ending in a newline.
 
-
-
-Notes:
-* The NetIO screens were the model for creating the other screens.
-* The Home Assistant screens could be made better looking with some more effort, but they are functionally equivalant (or better) than the NetIO ones.
-* The MQTT Dash screens have less capability for customizing the 'look and feel' but, even so, these examples may not take advantage of possible customizations.
-
-## Home Assistant Configuration Setup for Log Mssages
+## Home Assistant Configuration Setup for Log Messages
 
 Create four sensors in configuration.yaml like this:
 
