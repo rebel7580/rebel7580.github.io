@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- $Revision: 1.1 $ -->
 <!-- $Date: 2015/02/05 20:24:38 $ -->
 <html>
@@ -32,10 +31,12 @@ This is the preferred way to explicitly update weather data.
 Example:
 <dl>
 <dt>Fetch the latest current and forecast data.
+</dt>
 <dd>
 <pre>
 sends: netioaction wxfc update
 </pre>
+</dd>
 </dl>
 <p>
 The Weather plug-in can also fetch weather data 
@@ -59,28 +60,35 @@ However, there is no need to configure which items are available - all are.
 <p>
 <dl>
 <dt>The <i>get</i> command for weather has the following format:
+</dt>
 <dd>
 <pre>
 <b>get</b> <b>wx</b>|<b>fc</b> <i>weather_item</i> ?<b>best</b>? ?;?<b>get</b>? <b>wx</b>|<b>fc</b> <i>weather_item</i> ?<b>best</b>?<i> ...</i>?
 </pre>
 <p>
+</dd>
 </dl>
 Where:
 <dl>
 <dt>
 <b>wx</b>|<b>fc</b>
+</dt>
 <dd>
 Choose <b>wx</b> or <b>fc</b>.
 Either will work for both current or forecast weather items,
 although for clarity you may want to use
 <b>wx</b> for current weather items and
 <b>fc</b> for forecast items.
+</dd>
 <dt>
 <i>weather_item</i>
+</dt>
 <dd>Can be any item in <a href="controlvars"><b>Table 2</b></a>,
 or <a href="controlvars"><b>Table 3</b></a>, but is case-insensitive.
+</dd>
 <dt>
 <b>best</b>
+</dd>
 <dd>Optional. If present, must be <b>best</b>.
 Only valid for FcDay, FcSc, FcLc, FcPop, FcImg items.
 Ignored otherwise.
@@ -91,6 +99,7 @@ for the first or last day are provided.
 For example, a weather fetch in the evening will usually have only the "night" forecast for that day.
 For these situations, <b>best</b> chooses the best information
 (either the day or the night data) for a specified day.
+</dd>
 </dl>
 The <i>get</i> command may consist of several separate commands.
 Multiple commands are separated with semi-colons.
@@ -100,6 +109,7 @@ Each command can be a different object type.
 Examples: 
 <dl>
 <dt>Get current temperature in Celsius (<i>TempC</i>).
+</dt>
 <dd>
 <pre>
     reads:          get wx tempc 
@@ -109,21 +119,27 @@ Examples:
     Result:         21&deg; 
 </pre>
 <p>
+</dd>
 <dt>Get forecast location (<i>Fcloc</i>).
+</dt>
 <dd>
 <pre>
     reads:          get fc fcloc
 
     Result:         New York, NY, US
 </pre>
+</dd>
 <dt>Get forecast night day name for day 2 (<i>Fcdayn2</i>).
+</dt>
 <dd>
 <pre>
     reads:          get fc fcdayn2
 
     Result:         Thu Night
 </pre>
+</dd>
 <dt>Get forecast High and Low temps for day 3 (<i>FcHi3, FcLo3</i>).
+</dt>
 <dd>
 <pre>
     reads:          get fc FcHi3; fc fclo3
@@ -132,8 +148,10 @@ Examples:
 
     Result:         High/Low: 43/21
 </pre>
+</dd>
 <dt>
 Get either the day (preferred) or night short forecast for day one, depending on which is available:
+</dt>
 <dd>
 <pre>
     reads:          get fc fcday1 best; fc fcsc1 best
@@ -142,6 +160,7 @@ Get either the day (preferred) or night short forecast for day one, depending on
 
     Result:         Wed Night: Mostly Cloudy
 </pre>
+</dd>
 </dl>
 <i>A Note about weather icons</i>: Getting a weather icon (img) returns an <i>image name</i>, complete with its extension (i.e., cond001.png), not the image itself.
 For the image to be displayed,
@@ -162,6 +181,5 @@ Since there are dozens of possible weather icons, getting icons may not be worth
 <a href="wxtriggers">Triggering Weather Fetches</a><br>
 <a href="custom">Custom Objects and Websockets</a><br>
 <a href="disclaimer">Disclaimer</a><br>
-</body>
-</html>
+
 

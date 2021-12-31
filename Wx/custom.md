@@ -76,7 +76,7 @@ if the object type is "wx", "fc", or null.
 and eventually call <b>wsupdate</b> for "wx" and/or "fc", accordingly.
 Note that unless the object type is present and does NOT match "wx" or "fc", state data for both "wx" and "fc" will be generated if they are both enabled in the Weather plug-in, regardless of
 which is requested. This is OK since the only harm is that the plug-in may track unneeded object information.
-</dl>
+</dd></dl>
 <br>
 <br>
 The "custom" plug-in should call the following:
@@ -121,7 +121,6 @@ Entries may be as simple as a numerical state value, e.g., "0" or "1" to indicat
 or may be more complex structures like a list of key-value pairs, e.g., {"tempf": 29, "dewpointf": 27}
 </dd>
 </dl>
-</dd>
 <br>
 <br>
 <dt>
