@@ -47,7 +47,7 @@ the NWS material incorporated and stating that such material is not subject to c
 
 For more information go to <a href="http://www.weather.gov/disclaimer.php">http://www.weather.gov/disclaimer.php</a>
 <h2>OpenWeather.org</h2><br>
-You can freely use OpenWeather’s products and data for non-commercial or commercial purposes by crediting OpenWeather (TM) as a weather data provider in your product.
+You can freely use OpenWeather's products and data for non-commercial or commercial purposes by crediting OpenWeather (TM) as a weather data provider in your product.
 <br>
 <br>
 OpenWeather provide their products under Creative Commons Attribution-ShareAlike 4.0 International licence (CC BY-SA 4.0).

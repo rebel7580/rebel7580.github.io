@@ -61,12 +61,15 @@ Calling the procedure will actually run the procedure in each plug-in that publi
 <br>
 <br>
 Here is a simple example, as used in the Weather plug-in:
-<pre>
+{% raw %}
+ <pre>
     hvPublic get_update
     proc get_update {{type wx}} {
         if {$type in "wx fc"} {WeatherSetVar}
     }
 </pre>
+{% endraw %}
+
 In this case, <b>get_update</b> calls <b>WeatherSetVar</b>, another procedure within the Weather plug-in,
 if the object type is "wx", "fc", or null.
 <b>WeatherSetVar</b> will fetch weather info according to its configuration
@@ -126,6 +129,7 @@ State information consists of two key-value pairs.
 For demonstration purposes,
 the values of these two keys are incremented each time the <i>get_update</i> procedure is called.
 Once started, it will simulate periodic (5 minute) state changes.
+{% raw %}
 <pre>
 # Sample custom object generator plug-in
 
@@ -152,6 +156,8 @@ proc dm {{type dm}} {
 }
 
 </pre>
+{% endraw %}
+
 The dm object info can be added to the example from <a href="wxws.html">Weather Websockets</a>,
 showing how weather and "custom" objects can be integrated into one web page (as can standard HomeVision objects):
 <pre>
