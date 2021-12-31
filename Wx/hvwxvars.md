@@ -136,7 +136,7 @@ HomeVision Controller Weather Variable Setup
 <ul>
 <li>
 Open the Configuration dialog: Plugins-&gt;Weather.
-<li>
+</li><li>
 Select the <i>HV Vars</i> tab and make sure <i>Enable Update</i>
 in the HomeVision Controller Weather Variable Update section is checked.
 The first 6 items in <b>Table 4</b> will be written to the HomeVision controller
@@ -144,26 +144,26 @@ during future fetches.
 <br><br>
 <center><img  alt="Data Source Configure" src="wxconfighv1.gif">.</center>
 <br>
-<li>
+</li><li>
 To load the remainder of the possible items into the HomeVision controller,
 choose a HomeVision controller variable to use for each
 item desired.
 Leave any item set to "None" to prevent its loading to the HomeVision controller.
-<li>
+</li><li>
 The <i>Weather Condition</i> variable will be loaded with a code corresponding to the current
 weather conditions in <b>Table 5</b>.
-<li>
+</li><li>
 Observation time and date are loaded as separate items,
 stored in two variables each: minutes, hours for the time, and day, month for the date.
-<li>
+</li><li>
 The plug-in automatically checks to make sure there is room to store the data, and that none of the items overlap.
 If there is overflow (past the end of the defined variables) or overlap with another weather item, one or more of the variables will be reset to "None".
 Select another variable to avoid the conflict.
-<li> While the plug-in prevents overflow and overlap, the specific HV variables to use must be determined with care to make sure
+</li><li> While the plug-in prevents overflow and overlap, the specific HV variables to use must be determined with care to make sure
 that they are not used by any other unrelated function in the schedule.
 Pay particular attention to the multi-variable items (observation time and date, StationID)
 to avoid overlapping with other variable usage.
-</ul>
+</li></ul>
 
 <p>
 <b>
@@ -179,11 +179,11 @@ OpenWeather icons are mapped into the original 28 conditions as appropriate. Add
 <ul>
 <li>
 Blanks in the OpenWeather columns mean there is no close, equivalent match to NWS conditions.
-<li>
+</li><li>
 Blanks in the NWS Icon column mean that this OpenWeather description has no direct NWS equivalent, but is assigned to a similar code.
-<li>
+</li><li>
 Codes above 28 are new and mean that the OpenWeather description has no direct NWS equivalent, and does not match any of the existing codes.
-</ul>
+</li></ul>
 <p>
 You can find OpenWeather conditions at
 <a href="http://openweathermap.org/weather-conditions#Weather-Condition-Codes-2">OpenWeather Icon Descriptions</a>.
