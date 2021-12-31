@@ -195,20 +195,8 @@ Table 5 - Weather Condition Codes
 </b></center>
  <table border="3" cellpadding="2" cellspacing="0">
   <tbody>
-   <tr>
-      <th>Code</th>
-      <th>Weather Conditions</th>
-      <th>NWS Icon</th>
-      <th colspan="2">OpenWeather</th>
-   </tr>
-   <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>Code</th>
-      <th>Icon</th>
-   </tr>
-   
+    <tr><th>Code</th><th>Weather Conditions</th><th>NWS Icon</th><th colspan="2">OpenWeather</th></tr>
+    <tr><th></th><th></th><th></th><th>Code</th><th>Icon</th></tr>
     <tr><td align="center">0</td><td>Unknown</td><td align="center">na</td><td></td><td></td></tr>
     <tr><td align="center">1</td><td>Fair/Clear</td><td align="center">skc/nskc</td><td align="center">800</td><td align="center">01d</td></tr>
     <tr><td align="center">2</td><td>A Few Clouds</td><td align="center">few/nfew</td><td align="center">801</td><td align="center">02d</td></tr>
@@ -231,7 +219,7 @@ Table 5 - Weather Condition Codes
     <tr><td align="center">10</td><td>Heavy Shower Rain And Drizzle</td><td align="center"></td><td align="center">314</td><td align="center">09d</td></tr>
     <tr><td align="center">10</td><td>Shower Drizzle</td><td align="center"></td><td align="center">321</td><td align="center">09d</td></tr>
     <tr><td align="center">10</td><td>Light Rain</td><td align="center"></td><td align="center">500</td><td align="center">10d</td></tr>
-    <tr> <td align="center">10</td><td>Light Intensity Shower Rain</td><td align="center"></td><td align="center">520</td><td align="center">09d</td></tr>
+    <tr><td align="center">10</td><td>Light Intensity Shower Rain</td><td align="center"></td><td align="center">520</td><td align="center">09d</td></tr>
     <tr><td align="center">11</td><td>Rain/Heavy Rain </td><td align="center">ra/nra</td><td align="center"></td><td align="center"></td></tr>
     <tr><td align="center">11</td><td>Moderate Rain</td><td align="center"></td><td align="center">501</td><td align="center">10d</td></tr>
     <tr><td align="center">11</td><td>Heavy Intensity Rain</td><td align="center"></td><td align="center">502</td><td align="center">10d</td></tr>
@@ -267,8 +255,8 @@ Table 5 - Weather Condition Codes
     <tr><td align="center">21</td><td>Thunderstorm With Light Drizzle</td><td align="center"></td><td align="center">230</td><td align="center">11d</td></tr>
     <tr><td align="center">21</td><td>Thunderstorm With Drizzle</td><td align="center"></td><td align="center">231</td><td align="center">11d</td></tr>
     <tr><td align="center">21</td><td>Thunderstorm With Heavy Drizzle</td><td align="center"></td><td align="center">232</td><td align="center">11d</td></tr>
-    <tr><tr><td align="center">22</td><td>Tornado/Water Spout</td><td align="center">nsvrtsra</td><td align="center">781</td><td align="center">50d</td></tr>
-    <tr><tr><td align="center">23</td><td>Haze</td><td align="center">mist</td><td align="center">721</td><td align="center">50d</td></tr>
+    <tr><td align="center">22</td><td>Tornado/Water Spout</td><td align="center">nsvrtsra</td><td align="center">781</td><td align="center">50d</td></tr>
+    <tr><td align="center">23</td><td>Haze</td><td align="center">mist</td><td align="center">721</td><td align="center">50d</td></tr>
     <tr><td align="center">23</td><td>Mist</td><td align="center"></td><td align="center">701</td><td align="center">50d</td></tr>
     <tr><td align="center">24</td><td>Smoke</td><td align="center">smoke/fu</td><td align="center">711</td><td align="center">50d</td></tr>
     <tr><td align="center">25</td><td>Sand/Dust Whirls</td><td align="center"></td><td align="center">731</td><td align="center">50d</td></tr>
@@ -298,5 +286,4 @@ Table 5 - Weather Condition Codes
 <a href="controlvars">Using Weather Control Variables</a><br>
 <a href="forecast">Forecast Examples</a><br>
 <a href="disclaimer">Disclaimer</a><br>
-</body>
-</html>
+
