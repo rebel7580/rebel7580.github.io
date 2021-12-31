@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- $Revision: 1.7 $ -->
 <!-- $Date: 2021/10/05 02:07:52 $ -->
 <html>
@@ -21,7 +20,7 @@ Speech Setup
 <ul>
 <li>
 Open the Configuration dialog: Plugins-&gt;Weather.
-<li>
+</li><li>
 Select the <i>Speech</i> tab and make sure <i>Enable</i> is set to <i>Always</i>
 or <i>Serial Cmd Only</i>.
 When <i>Always</i> is selected,
@@ -31,16 +30,16 @@ weather data is spoken only if triggered by a serial command.
 (See <a href="wxtriggers">Triggering Weather Fetches</a>).<br><br>
 <center><img  alt="Speech Configure" src="weatherspeech.gif">.</center>
 <br>
-<li>
+</li><li>
 Weather items can be moved from Inactive to Active by double-clicking the items or by selecting them
 in the Inactive box and clicking the right arrow button.
 Weather items can be moved from Active to Inactive by double-clicking the items or selecting them
 in the Active box and clicking the left arrow button.
-<li>
+</li><li>
 Items in the Active box can be rearranged by selecting them and clicking
 the up and down arrow buttons.
 Weather data will be spoken in the order items are listed in the Active box.
-</ul>
+</li></ul>
 
 </p>
 <p>Spoken Weather data will use the same units of measure as set in the
@@ -53,7 +52,7 @@ may NOT be spoken.
 The particular weather item simply wasn't reported by the weather site
 (or contained in the source file).
 This can happen to just about any item.
-<li>
+</li><li>
 The item is not valid for the current conditions.
 For example, heat index is only valid if the temp is greater than 80 F
 and the humidity is greater than 40%.
@@ -62,7 +61,7 @@ and the wind speed is greater than 3 MPH.
 So if you have BOTH heat index and wind chill
 selected, at best, only one will be spoken, and often neither will
 (like on a calm, dry day in the 70's).
-</ul>
+</li></ul>
 </p>
 <br><font color="#0000FF"><b>Next:</b></font><br>
 <a href="wxtriggers">Triggering Weather Fetches</a><br>
@@ -77,5 +76,4 @@ selected, at best, only one will be spoken, and often neither will
 <a href="hvwxvars">HomeVision Controller Weather Variables</a><br>
 <a href="localwx">Local Weather Data Files</a><br>
 <a href="disclaimer">Disclaimer</a><br>
-</body>
-</html>
+
