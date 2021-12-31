@@ -850,5 +850,4 @@ See <a href="wxtriggers.html">Triggering Weather Fetches</a> for complete detail
 <a href="index.html">Introduction to the Weather Plug-in</a><br>
 <a href="webwx.html">Web-Based Weather Data</a><br>
 <a href="disclaimer.html">Disclaimer</a><br>
-</body>
-</html>
+
