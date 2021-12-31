@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- $Revision: 1.8 $ -->
 <!-- $Date: 2021/10/05 02:07:52 $ -->
 <html>
@@ -244,11 +243,11 @@ Notes:
 <li>Running WeatherSet and WeatherSetVar in a web page changes the weather info stored by the Weather plug-in,
 as is the case for any other way to trigger weather fetches. If you are also using weather variables with Control Plug-in,
 or sending weather info to the HomeVision controller, that data will be affected by these two commands.
-<li>Usually, WeatherSetVar should be run with a "1" argument,
+</li><li>Usually, WeatherSetVar should be run with a "1" argument,
 signaling WeatherSetVar to complete fetching weather info from the Internet <u>before</u> returning.
 Normally, data is fetched from the Internet in the background. However, in the web page scenario,
 new data may not arrive in time to be captured by a following Run tag.
-</ul>
+</li></ul>
 
 <p>
 See the Web plug-in Help pages for more info on the Run and Image tags.
@@ -290,6 +289,5 @@ No user configuration is needed in either plug-in.
 <a href="localwx">Local Weather Data Files</a><br>
 <a href="speechwx">Speaking Weather Data</a><br>
 <a href="disclaimer">Disclaimer</a><br>
-</body>
-</html>
+
 

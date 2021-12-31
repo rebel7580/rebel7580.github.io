@@ -41,7 +41,6 @@ the up and down arrow buttons.
 Weather data will be spoken in the order items are listed in the Active box.
 </li></ul>
 
-</p>
 <p>Spoken Weather data will use the same units of measure as set in the
 <i>General Settings</i> tab.
 <p>
