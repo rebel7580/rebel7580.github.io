@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- $Revision: 1.4 $ -->
 <!-- $Date: 2015/02/06 02:47:47 $ -->
 <html>
@@ -40,11 +39,11 @@ to get weather data in "real-time", the following is needed:
 <ul>
 <li>
 One or more HTML tags that define the desired data.
-<li>
+</li><li>
 A Script tag that sources the weather websocket functions (<i>wxwebsocket.js</i>).
-<li>
+</li><li>
 A JavaScript array that describes how to handle each tag.
-</ul>
+</li></ul>
 <p>
 Example:
 <pre>
@@ -128,14 +127,14 @@ There are two separate "sub-arrays", one for current weather info - "wx", and on
 <ul>
 <li>
 The "element" part identifies a specific HTML tag, according to the tag's "id".
-<li>
+</li><li>
 The "index" is always "0" for current weather items. For forecast information,
 index "0" contains general information items for the forecast (e.g., location).
 Index "1" through "7" contain the day-specific forecast information for day "n".
-<li>
+</li><li>
 The "function" and "type" parts specify the weather helper function and its "sub-function".
 The helper function retrieves specific weather information from data received over the websocket.
-</ul>
+</li></ul>
 <p>
 <b>Weather Helper Functions</b>
 <p>
@@ -170,7 +169,7 @@ Example: <i>TempC</i> would be
 <pre>
     "index": 0, "function": wxf, "type": "tempc"
 </pre>
-</ul>
+</li></ul>
 <p>
 For forecast weather, "function" is "fcf" and the sub function ("type") is as follows:
 <ul>
@@ -183,7 +182,7 @@ Example: <i>Fcloc</i> would be
 <pre>
     "index": 0, "function": fcf, "type": "loc"
 </pre>
-<li>
+</li><li>
 For items in <a href="controlvars.html"><b>Table 3</b></a> that have a day number,
 the sub function ("type") is  the name of the variable <i>without the leading "fc"</i> and <i>without the trailing day number</i>,
 and <i>in lower case</i>.
@@ -193,7 +192,7 @@ Example: <i>Fcdayn2</i> would be
 <pre>
     "index": 2, "function": fcf, "type": "dayn"
 </pre>
-<li>
+</li><li>
 When using the NWS as a source, both "day" and "night" forecasts are available for any specific day.
 However, sometimes only one of the "day" and "night" sets of infomation
 for the first or last day are provided.
@@ -206,7 +205,7 @@ Example: To get either the day or night icon for day one, depending on which was
 <pre>
     "index": 1, "function": fcf, "type": "bestimg"
 </pre>
-</ul>
+</li></ul>
 <p>
 <b>Changing Weather Settings Via a Web Page</b>
 <p>
@@ -252,6 +251,5 @@ and another button to trigger a new weather fetch with the new zipcode informati
 <a href="speechwx.html">Speaking Weather Data</a><br>
 <a href="wxtriggers.html">Triggering Weather Fetches</a><br>
 <a href="disclaimer.html">Disclaimer</a><br>
-</body>
-</html>
+
 

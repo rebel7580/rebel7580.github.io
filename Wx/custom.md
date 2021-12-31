@@ -45,11 +45,11 @@ Where:
 <dl>
 <dt>
 <i>object_type</i>
-<dd>
+</dt><dd>
 If called <u>with</u> an <i>object_type</i>, <b>get_update</b> should create the object's state information
 only if <i>object_type</i> matches one of the objects that it supports.
 If called <u>without</u> an <i>object_type</i>, <b>get_update</b> should create the state information for all objects it supports.
-</dl>
+</dd></dl>
 Note 1: <i>object_type</i> must be a unique name.
 <br>
 Note 2: <b>get_update</b> doesn't return anything directly.
@@ -85,6 +85,7 @@ The "custom" plug-in should call the following:
 <dl>
 <dt>
 <b>wsupdate Procedure</b>
+</dt>
 <br>
 <br>
 <dd>
@@ -107,19 +108,25 @@ Where:
 <dl>
 <dt>
 <i>object_type</i>
+</dt>
 <dd>
 The object type being reported.
+</dd>
 <dt>
 <i>state_value_list</i>
+</dt>
 <dd>
 This is a list of object state information. one entry for each valid ID.
 Entries may be as simple as a numerical state value, e.g., "0" or "1" to indicate an object's state is clear or set,
 or may be more complex structures like a list of key-value pairs, e.g., {"tempf": 29, "dewpointf": 27}
+</dd>
 </dl>
+</dd>
 <br>
 <br>
 <dt>
 <b>Full Example of a Custom Object Plug-in</b>
+</dt>
 <br>
 <br>
 <dd>
@@ -220,6 +227,7 @@ showing how weather and "custom" objects can be integrated into one web page (as
 Note that for simplicity, this example uses the weather helper functions from <i>wxwebsocket.js</i>.
 If the "custom" objects need unique helper functions,
 then they should be included in a separate javascript file.
+</dd>
 </dl>
 <p>
 <br>
@@ -237,5 +245,4 @@ then they should be included in a separate javascript file.
 <a href="wxtriggers">Triggering Weather Fetches</a><br>
 <a href="wxws">Weather Websockets</a><br>
 <a href="disclaimer">Disclaimer</a><br>
-</body>
-</html>
+
