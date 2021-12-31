@@ -221,66 +221,66 @@ Table 5 - Weather Condition Codes
     <tr><td align="center">9</td><td>Showers in Vicinity</td><td align="center">hi_shwrs/hi_nshwrs</td><td align="center">521</td><td align="center">10d</td></tr>
     <tr><td align="center">9</td><td>Ragged Shower Rain</td><td align="center"></td><td align="center">531</td><td align="center">10d</td></tr>
     <tr><td align="center">10</td><td>Light Rain/Drizzle</td><td align="center">ra1</td><td align="center">500</td><td align="center">10d</td></tr>
-    <td align="center">10</td><td>Light Intensity Drizzle</td><td align="center"></td><td align="center">300</td><td align="center">09d</td></tr>
-    <td align="center">10</td><td>Drizzle</td><td align="center"></td><td align="center">301</td><td align="center">09d</td></tr>
-    <td align="center">10</td><td>Heavy Intensity Drizzle</td><td align="center"></td><td align="center">302</td><td align="center">09d</td></tr>
-    <td align="center">10</td><td>Light Intensity Drizzle Rain</td><td align="center"></td><td align="center">310</td><td align="center">09d</td></tr>
-    <td align="center">10</td><td>Drizzle Rain</td><td align="center"></td><td align="center">311</td><td align="center">09d</td></tr>
-    <td align="center">10</td><td>Heavy Intensity Drizzle Rain</td><td align="center"></td><td align="center">312</td><td align="center">09d</td></tr>
-    <td align="center">10</td><td>Shower Rain And Drizzle</td><td align="center"></td><td align="center">313</td><td align="center">09d</td></tr>
-    <td align="center">10</td><td>Heavy Shower Rain And Drizzle</td><td align="center"></td><td align="center">314</td><td align="center">09d</td></tr>
-    <td align="center">10</td><td>Shower Drizzle</td><td align="center"></td><td align="center">321</td><td align="center">09d</td></tr>
-    <td align="center">10</td><td>Light Rain</td><td align="center"></td><td align="center">500</td><td align="center">10d</td></tr>
-     <td align="center">10</td><td>Light Intensity Shower Rain</td><td align="center"></td><td align="center">520</td><td align="center">09d</td></tr>
-   <tr><td align="center">11</td><td>Rain/Heavy Rain </td><td align="center">ra/nra</td><td align="center"></td><td align="center"></td></tr>
-    <td align="center">11</td><td>Moderate Rain</td><td align="center"></td><td align="center">501</td><td align="center">10d</td></tr>
-    <td align="center">11</td><td>Heavy Intensity Rain</td><td align="center"></td><td align="center">502</td><td align="center">10d</td></tr>
-    <td align="center">11</td><td>Very Heavy Rain</td><td align="center"></td><td align="center">503</td><td align="center">10d</td></tr>
-    <td align="center">11</td><td>Extreme Rain</td><td align="center"></td><td align="center">504</td><td align="center">10d</td></tr>
-    <td align="center">11</td><td>Heavy Intensity Shower Rain</td><td align="center"></td><td align="center">522</td><td align="center">09d</td></tr>
-    <td align="center">11</td><td>Ragged Shower Rain</td><td align="center"></td><td align="center">531</td><td align="center">09d</td></tr>
+    <tr><td align="center">10</td><td>Light Intensity Drizzle</td><td align="center"></td><td align="center">300</td><td align="center">09d</td></tr>
+    <tr><td align="center">10</td><td>Drizzle</td><td align="center"></td><td align="center">301</td><td align="center">09d</td></tr>
+    <tr><td align="center">10</td><td>Heavy Intensity Drizzle</td><td align="center"></td><td align="center">302</td><td align="center">09d</td></tr>
+    <tr><td align="center">10</td><td>Light Intensity Drizzle Rain</td><td align="center"></td><td align="center">310</td><td align="center">09d</td></tr>
+    <tr><td align="center">10</td><td>Drizzle Rain</td><td align="center"></td><td align="center">311</td><td align="center">09d</td></tr>
+    <tr><td align="center">10</td><td>Heavy Intensity Drizzle Rain</td><td align="center"></td><td align="center">312</td><td align="center">09d</td></tr>
+    <tr><td align="center">10</td><td>Shower Rain And Drizzle</td><td align="center"></td><td align="center">313</td><td align="center">09d</td></tr>
+    <tr><td align="center">10</td><td>Heavy Shower Rain And Drizzle</td><td align="center"></td><td align="center">314</td><td align="center">09d</td></tr>
+    <tr><td align="center">10</td><td>Shower Drizzle</td><td align="center"></td><td align="center">321</td><td align="center">09d</td></tr>
+    <tr><td align="center">10</td><td>Light Rain</td><td align="center"></td><td align="center">500</td><td align="center">10d</td></tr>
+    <tr> <td align="center">10</td><td>Light Intensity Shower Rain</td><td align="center"></td><td align="center">520</td><td align="center">09d</td></tr>
+    <tr><td align="center">11</td><td>Rain/Heavy Rain </td><td align="center">ra/nra</td><td align="center"></td><td align="center"></td></tr>
+    <tr><td align="center">11</td><td>Moderate Rain</td><td align="center"></td><td align="center">501</td><td align="center">10d</td></tr>
+    <tr><td align="center">11</td><td>Heavy Intensity Rain</td><td align="center"></td><td align="center">502</td><td align="center">10d</td></tr>
+    <tr><td align="center">11</td><td>Very Heavy Rain</td><td align="center"></td><td align="center">503</td><td align="center">10d</td></tr>
+    <tr><td align="center">11</td><td>Extreme Rain</td><td align="center"></td><td align="center">504</td><td align="center">10d</td></tr>
+    <tr><td align="center">11</td><td>Heavy Intensity Shower Rain</td><td align="center"></td><td align="center">522</td><td align="center">09d</td></tr>
+    <tr><td align="center">11</td><td>Ragged Shower Rain</td><td align="center"></td><td align="center">531</td><td align="center">09d</td></tr>
     <tr><td align="center">12</td><td>Rain/Ice Pellets</td><td align="center">raip/nraip</td><td></td><td></td></tr>
     <tr><td align="center">13</td><td>Rain/Freezing Rain, Drizzle</td><td align="center">fzrara</td><td align="center"></td><td align="center"></td></tr>
     <tr><td align="center">14</td><td>Freezing Rain</td><td align="center">fzra</td><td align="center">511</td><td align="center">13d</td></tr>
-    <td align="center">14</td><td>Sleet</td><td align="center"></td><td align="center">611</td><td align="center">13d</td></tr>
-    <td align="center">14</td><td>Light Shower Sleet</td><td align="center"></td><td align="center">612</td><td align="center">13d</td></tr>
-    <td align="center">14</td><td>Shower Sleet</td><td align="center"></td><td align="center">613</td><td align="center">13d</td></tr>
+    <tr><td align="center">14</td><td>Sleet</td><td align="center"></td><td align="center">611</td><td align="center">13d</td></tr>
+    <tr><td align="center">14</td><td>Light Shower Sleet</td><td align="center"></td><td align="center">612</td><td align="center">13d</td></tr>
+    <tr><td align="center">14</td><td>Shower Sleet</td><td align="center"></td><td align="center">613</td><td align="center">13d</td></tr>
     <tr><td align="center">15</td><td>Freezing Rain/Snow </td><td align="center">mix/nmix</td><td></td><td></td></tr>
     <tr><td align="center">16</td><td>Rain/Snow </td><td align="center">rasn/nrasn</td><td align="center">616</td><td align="center">50d</td></tr>
-    <td align="center">16</td><td>Light Rain And Snow</td><td align="center"></td><td align="center">615</td><td align="center">13d</td></tr>
+    <tr><td align="center">16</td><td>Light Rain And Snow</td><td align="center"></td><td align="center">615</td><td align="center">13d</td></tr>
     <tr><td align="center">17</td><td>Snow</td><td align="center">sn/nsn</td><td align="center">601</td><td align="center">50d</td></tr>
-    <td align="center">17</td><td>Light Snow</td><td align="center"></td><td align="center">600</td><td align="center">13d</td></tr>
-    <td align="center">17</td><td>Heavy Snow</td><td align="center"></td><td align="center">602</td><td align="center">13d</td></tr>
-    <td align="center">17</td><td>Light Shower Snow</td><td align="center"></td><td align="center">620</td><td align="center">13d</td></tr>
-    <td align="center">17</td><td>Shower Snow</td><td align="center"></td><td align="center">621</td><td align="center">13d</td></tr>
-    <td align="center">17</td><td>Heavy Shower Snow</td><td align="center"></td><td align="center">622</td><td align="center">13d</td></tr>
+    <tr><td align="center">17</td><td>Light Snow</td><td align="center"></td><td align="center">600</td><td align="center">13d</td></tr>
+    <tr><td align="center">17</td><td>Heavy Snow</td><td align="center"></td><td align="center">602</td><td align="center">13d</td></tr>
+    <tr><td align="center">17</td><td>Light Shower Snow</td><td align="center"></td><td align="center">620</td><td align="center">13d</td></tr>
+    <tr><td align="center">17</td><td>Shower Snow</td><td align="center"></td><td align="center">621</td><td align="center">13d</td></tr>
+    <tr><td align="center">17</td><td>Heavy Shower Snow</td><td align="center"></td><td align="center">622</td><td align="center">13d</td></tr>
     <tr><td align="center">18</td><td>Ice Pellets/Hail</td><td align="center">ip</td><td></td><td></td></tr>
     <tr><td align="center">19</td><td>Thunderstorm in Vicinity</td><td align="center">hi_tsra/hi_ntsra</td><td align="center"></td><td align="center"></td></tr>
     <tr><td align="center">20</td><td>Scattered Thunderstorms</td><td align="center">scttsra/nscttrsa</td><td align="center"></td><td align="center"></td></tr>
     <tr><td align="center">21</td><td>Thunderstorm</td><td align="center">tsra/ntsra</td><td align="center">211</td><td align="center">11d</td></tr>
-    <td align="center">21</td><td>Thunderstorm With Light Rain</td><td></td><td align="center">200</td><td align="center">11d</td></tr>
-    <td align="center">21</td><td>Thunderstorm With Rain</td><td align="center"></td><td align="center">201</td><td align="center">11d</td></tr>
-    <td align="center">21</td><td>Thunderstorm With Heavy Rain</td><td align="center"></td><td align="center">202</td><td align="center">11d</td></tr>
-    <td align="center">21</td><td>Light Thunderstorm</td><td align="center"></td><td align="center">210</td><td align="center">11d</td></tr>
-    <td align="center">21</td><td>Heavy Thunderstorm</td><td align="center"></td><td align="center">212</td><td align="center">11d</td></tr>
-    <td align="center">21</td><td>Ragged Thunderstorm</td><td align="center"></td><td align="center">221</td><td align="center">11d</td></tr>
-    <td align="center">21</td><td>Thunderstorm With Light Drizzle</td><td align="center"></td><td align="center">230</td><td align="center">11d</td></tr>
-    <td align="center">21</td><td>Thunderstorm With Drizzle</td><td align="center"></td><td align="center">231</td><td align="center">11d</td></tr>
-    <td align="center">21</td><td>Thunderstorm With Heavy Drizzle</td><td align="center"></td><td align="center">232</td><td align="center">11d</td></tr>
-    <tr><td align="center">22</td><td>Tornado/Water Spout</td><td align="center">nsvrtsra</td><td align="center">781</td><td align="center">50d</td></tr>
-    <tr><td align="center">23</td><td>Haze</td><td align="center">mist</td><td align="center">721</td><td align="center">50d</td></tr>
-    <td align="center">23</td><td>Mist</td><td align="center"></td><td align="center">701</td><td align="center">50d</td></tr>
+    <tr><td align="center">21</td><td>Thunderstorm With Light Rain</td><td></td><td align="center">200</td><td align="center">11d</td></tr>
+    <tr><td align="center">21</td><td>Thunderstorm With Rain</td><td align="center"></td><td align="center">201</td><td align="center">11d</td></tr>
+    <tr><td align="center">21</td><td>Thunderstorm With Heavy Rain</td><td align="center"></td><td align="center">202</td><td align="center">11d</td></tr>
+    <tr><td align="center">21</td><td>Light Thunderstorm</td><td align="center"></td><td align="center">210</td><td align="center">11d</td></tr>
+    <tr><td align="center">21</td><td>Heavy Thunderstorm</td><td align="center"></td><td align="center">212</td><td align="center">11d</td></tr>
+    <tr><td align="center">21</td><td>Ragged Thunderstorm</td><td align="center"></td><td align="center">221</td><td align="center">11d</td></tr>
+    <tr><td align="center">21</td><td>Thunderstorm With Light Drizzle</td><td align="center"></td><td align="center">230</td><td align="center">11d</td></tr>
+    <tr><td align="center">21</td><td>Thunderstorm With Drizzle</td><td align="center"></td><td align="center">231</td><td align="center">11d</td></tr>
+    <tr><td align="center">21</td><td>Thunderstorm With Heavy Drizzle</td><td align="center"></td><td align="center">232</td><td align="center">11d</td></tr>
+    <tr><tr><td align="center">22</td><td>Tornado/Water Spout</td><td align="center">nsvrtsra</td><td align="center">781</td><td align="center">50d</td></tr>
+    <tr><tr><td align="center">23</td><td>Haze</td><td align="center">mist</td><td align="center">721</td><td align="center">50d</td></tr>
+    <tr><td align="center">23</td><td>Mist</td><td align="center"></td><td align="center">701</td><td align="center">50d</td></tr>
     <tr><td align="center">24</td><td>Smoke</td><td align="center">smoke/fu</td><td align="center">711</td><td align="center">50d</td></tr>
-    <td align="center">25</td><td>Sand/Dust Whirls</td><td align="center"></td><td align="center">731</td><td align="center">50d</td></tr>
-    <td align="center">25</td><td>Sand</td><td align="center"></td><td align="center">751</td><td align="center">50d</td></tr>
+    <tr><td align="center">25</td><td>Sand/Dust Whirls</td><td align="center"></td><td align="center">731</td><td align="center">50d</td></tr>
+    <tr><td align="center">25</td><td>Sand</td><td align="center"></td><td align="center">751</td><td align="center">50d</td></tr>
     <tr><td align="center">25</td><td>Dust/Sand</td><td align="center">dust</td><td align="center">761</td><td align="center">50d</td></tr>
-    <td align="center">25</td><td>Dust</td><td align="center"></td><td align="center">761</td><td align="center">50d</td></tr>
+    <tr><td align="center">25</td><td>Dust</td><td align="center"></td><td align="center">761</td><td align="center">50d</td></tr>
     <tr><td align="center">26</td><td>Blizzard</td><td align="center">blizzard</td><td align="center"></td><td align="center"></td></tr>
     <tr><td align="center">27</td><td>Cold</td><td align="center">cold</td><td></td><td></td></tr>
     <tr><td align="center">28</td><td>Hot</td><td align="center">hot</td><td></td><td></td></tr>
     <tr><td align="center"></td><td></td><td align="center"></td><td></td><td></td></tr>
-    <td align="center">30</td><td>Volcanic Ash</td><td align="center"></td><td align="center">762</td><td align="center">50d</td></tr>
-    <td align="center">31</td><td>Squalls</td><td align="center"></td><td align="center">771</td><td align="center">50d</td></tr>
+    <tr><td align="center">30</td><td>Volcanic Ash</td><td align="center"></td><td align="center">762</td><td align="center">50d</td></tr>
+    <tr><td align="center">31</td><td>Squalls</td><td align="center"></td><td align="center">771</td><td align="center">50d</td></tr>
 </tbody>
 </table>
 
