@@ -164,20 +164,20 @@ the sub function ("type") is exactly the name of the variable,
 but <i>in lower case</i>.
 One exception is "WeatherIcon", which uses the sub function "img".
 The "index" is always "0".
-<p>
+
 Example: <i>TempC</i> would be
 <pre>
     "index": 0, "function": wxf, "type": "tempc"
 </pre>
 </li></ul>
-<p>
+
 For forecast weather, "function" is "fcf" and the sub function ("type") is as follows:
 <ul>
 <li>
 For items in <a href="controlvars.html"><b>Table 3</b></a> that have no day number,
 the sub function ("type") is the name of the variable <i>without the leading "fc"</i>, and <i>in lower case</i>.
 The "index" is "0".
-<p>
+
 Example: <i>Fcloc</i> would be
 <pre>
     "index": 0, "function": fcf, "type": "loc"
