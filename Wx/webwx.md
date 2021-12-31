@@ -34,7 +34,7 @@ anything between 0 and 9999.
 For convenience, the arrows in the entry field increment or decrement the current value by 5 minutes.
 Setting <i>Read Interval</i> to 0 <u>disables</u> periodic fetching of weather data.
 (There are other ways to trigger weather data fetches.
-See <a href="wxtriggers.html">Triggering Weather Fetches</a>.)
+See <a href="wxtriggers">Triggering Weather Fetches</a>.)
 <li>
 Select the <i>Data Source</i> tab.
 <li>
@@ -274,7 +274,7 @@ each day having one "day" period and one "night" period.
 Day periods start at 06:00
 and night periods start at 18:00.
 OpenWeather has POP for up to 7 daily periods (no day/night).
-See <a href="controlvars.html">Using Weather Control Variables</a> for details of POP Control Variables.
+See <a href="controlvars">Using Weather Control Variables</a> for details of POP Control Variables.
 <p>
 To store a POP value to the HomeVision Controller,
 in the <i>Forecast Settings</i> section set <i>Prop. of Precip.</i>
@@ -286,7 +286,7 @@ However, due to the way real time "slides" through the first (and sometimes the 
 values over 144 hours may point to POP periods that are invalid, resulting in a "255" being loaded into the HomeVision Controller.
 This shouldn't be a real problem, since POP predictions that far in advance are unreliable anyway.
 Note also, for the POP to be loaded into the HomeVision Controller, a controller variable must be defined in the
-<i>HV Vars</i> tab as well (see <a href="hvwxvars.html">HomeVision Controller Weather Variables</a>).
+<i>HV Vars</i> tab as well (see <a href="hvwxvars">HomeVision Controller Weather Variables</a>).
 </p>
 <li>
 Press <i>OK</i> to save changes.
@@ -300,17 +300,17 @@ except for the stations list, if downloaded.
 </p>
 </ul>
 <br><font color="#0000FF"><b>Next:</b></font><br>
-<a href="controlvars.html">Using Weather Control Variables</a><br>
-<a href="forecast.html">Forecast Examples</a><br>
-<a href="hvwxvars.html">HomeVision Controller Weather Variables</a><br>
-<a href="localwx.html">Local Weather Data Files</a><br>
-<a href="speechwx.html">Speaking Weather Data</a><br>
-<a href="wxtriggers.html">Triggering Weather Fetches</a><br>
-<a href="wxws.html">Weather Websockets</a><br>
-<a href="custom.html">Custom Objects and Websockets</a><br>
-<a href="netio.html">Weather Info for NetIO</a><br>
+<a href="controlvars">Using Weather Control Variables</a><br>
+<a href="forecast">Forecast Examples</a><br>
+<a href="hvwxvars">HomeVision Controller Weather Variables</a><br>
+<a href="localwx">Local Weather Data Files</a><br>
+<a href="speechwx">Speaking Weather Data</a><br>
+<a href="wxtriggers">Triggering Weather Fetches</a><br>
+<a href="wxws">Weather Websockets</a><br>
+<a href="custom">Custom Objects and Websockets</a><br>
+<a href="netio">Weather Info for NetIO</a><br>
 <font color="#0000FF"><b>See Also:</b></font><br>
-<a href="index.html">Introduction to the Weather Plug-in</a><br>
-<a href="disclaimer.html">Disclaimer</a><br>
+<a href="index">Introduction to the Weather Plug-in</a><br>
+<a href="disclaimer">Disclaimer</a><br>
 </body>
 </html>

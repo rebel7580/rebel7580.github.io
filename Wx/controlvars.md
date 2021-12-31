@@ -687,7 +687,7 @@ the Control plug-in may need to be restarted (disabled/enabled via the Plugin Ma
 If weather info is being displayed on web pages via the weather websocket,
 select which variables are sent over the websocket by selecting <i>Web</i>.
 Then select <i>Current</i> and <i>Forecast</i> and move variables to the Active List to have them sent over the weather websocket.
-See <a href="wxws.html">Weather Websockets</a> for set up details.
+See <a href="wxws">Weather Websockets</a> for set up details.
 <p>
 If weather info is being sent via MQTT, further setup is necessary. See <i>MQTT Setup</i> below.
 <p>
@@ -846,21 +846,21 @@ Trigger a Weather fetch in the background:
     Topic: cmnd/weather/set
     Payload: "WeatherSetVar"
 </pre>
-See <a href="wxtriggers.html">Triggering Weather Fetches</a> for complete details of the WeatherSet and WeatherSetVar syntax.
+See <a href="wxtriggers">Triggering Weather Fetches</a> for complete details of the WeatherSet and WeatherSetVar syntax.
 
 <br>
 <br><font color="#0000FF"><b>Next:</b></font><br>
-<a href="forecast.html">Forecast Examples</a><br>
-<a href="hvwxvars.html">HV Controller Weather Variables</a><br>
-<a href="localwx.html">Local Weather Data Files</a><br>
-<a href="speechwx.html">Speaking Weather Data</a><br>
-<a href="wxtriggers.html">Triggering Weather Fetches</a><br>
-<a href="wxws.html">Weather Websockets</a><br>
-<a href="custom.html">Custom Objects and Websockets</a><br>
-<a href="netio.html">Weather Info for NetIO</a><br>
+<a href="forecast">Forecast Examples</a><br>
+<a href="hvwxvars">HV Controller Weather Variables</a><br>
+<a href="localwx">Local Weather Data Files</a><br>
+<a href="speechwx">Speaking Weather Data</a><br>
+<a href="wxtriggers">Triggering Weather Fetches</a><br>
+<a href="wxws">Weather Websockets</a><br>
+<a href="custom">Custom Objects and Websockets</a><br>
+<a href="netio">Weather Info for NetIO</a><br>
 <font color="#0000FF"><b>See Also:</b></font><br>
-<a href="index.html">Introduction to the Weather Plug-in</a><br>
-<a href="webwx.html">Web-Based Weather Data</a><br>
-<a href="disclaimer.html">Disclaimer</a><br>
+<a href="index">Introduction to the Weather Plug-in</a><br>
+<a href="webwx">Web-Based Weather Data</a><br>
+<a href="disclaimer">Disclaimer</a><br>
 </body>
 </html>

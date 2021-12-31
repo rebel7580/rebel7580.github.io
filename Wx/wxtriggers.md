@@ -17,7 +17,7 @@ The plug-in can triggered by the following methods:
 <dl>
 <dt><b>Timed</b>
 <dd>
-Select the <a href="webwx.html"><i>Data Source</i></a> tab and make sure <i>Enable Fetch</i> is checked
+Select the <a href="webwx"><i>Data Source</i></a> tab and make sure <i>Enable Fetch</i> is checked
 and the <i>Read Interval</i> is set to the desire fetch interval (in minutes).
 <i>Read Interval</i> determines how often the weather
 plug-in will fetch the weather data.
@@ -58,7 +58,7 @@ This serial command has no effect on the <i>Read Interval</i> timer.
 <dt><pre>weather: fetch enable|disable</pre></dt>
 <dd>
 Enable/disable fetching of weather info.
-(Sets/clears the <i>Fetch Enable</i> checkbox in the Configuration <a href="webwx.html"><i>Data Source</i></a> tab.)
+(Sets/clears the <i>Fetch Enable</i> checkbox in the Configuration <a href="webwx"><i>Data Source</i></a> tab.)
 No weather can be fetched by any means when disabled
 </dd>
 
@@ -76,7 +76,7 @@ Restarts the Read Interval timer.
 <dt><pre>weather: speak never|always|serialonly</pre></dt>
 <dd>
 Controls  speaking of the weather.
-(Sets the <i>Never</i>, <i>Always</i>, or <i>Serial Cmd Only</i> radio button in the Configuration <a href="speechwx.html"><i>Speech</i></a> tab.)
+(Sets the <i>Never</i>, <i>Always</i>, or <i>Serial Cmd Only</i> radio button in the Configuration <a href="speechwx"><i>Speech</i></a> tab.)
 </dd>
 
 <dt><pre>weather: speak now</pre></dt>
@@ -89,7 +89,7 @@ Speak the current weather.
 <dd>
 Enable/disable loading of the HomeVision Controller weather variables when the weather is fetched.
 (Sets/clears the <i>Enable Update</i> checkbox
-in the Configuration <a href="hvwxvars.html"><i>HV Vars</i></a> tab.)
+in the Configuration <a href="hvwxvars"><i>HV Vars</i></a> tab.)
 </dd>
 
 <dt><pre>weather: station "<i>stationid</i>"</pre></dt>
@@ -191,7 +191,7 @@ If "Table" is not present, weather data will be returned as a simple text string
 An exception is the weather item <i>weathericon</i>,
 which will return an HTML &lt;img&gt; tag inserted in the string if other items are present.
 <p><i>Weather_items</i> can be any combination of the items found in the <i>Control Variable</i>
-column of <a href="controlvars.html"><b>Table 2</b></a> and <a href="controlvars.html"><b>Table 3</b></a>. The names are not case-sensitive when used in tags.
+column of <a href="controlvars"><b>Table 2</b></a> and <a href="controlvars"><b>Table 3</b></a>. The names are not case-sensitive when used in tags.
 <p>
 Weather items <i>WeatherIcon</i> and <i>FcImgn</i>,
 will return HTML &lt;img&gt; tags.
@@ -210,7 +210,7 @@ If omitted, it is assumed to be ".png".
 If <i>icon</i> is not specified,
 the weather icon for the current weather is provided.
 <p>
-<i>Icon</i> should be one of the icon names in the Icon column of <a href="hvwxvars.html"><b>Table 5</b></a> or one of the forecast icons.
+<i>Icon</i> should be one of the icon names in the Icon column of <a href="hvwxvars"><b>Table 5</b></a> or one of the forecast icons.
 <p>
 This method is slightly different from
 <pre>
@@ -265,7 +265,7 @@ or
 <pre>
 events wx|fc|wxfc|fcwx
 </pre>
-For more details, see <a href="netio.html">Weather Info for NetIO</a>.
+For more details, see <a href="netio">Weather Info for NetIO</a>.
 <p>
 <dt><b>Via The Control Plug-in</b>
 <dd>
@@ -278,18 +278,18 @@ No user configuration is needed in either plug-in.
 </dl>
 <br>
 <br><font color="#0000FF"><b>Next:</b></font><br>
-<a href="wxws.html">Weather Websockets</a><br>
-<a href="custom.html">Custom Objects and Websockets</a><br>
-<a href="netio.html">Weather Info for NetIO</a><br>
+<a href="wxws">Weather Websockets</a><br>
+<a href="custom">Custom Objects and Websockets</a><br>
+<a href="netio">Weather Info for NetIO</a><br>
 <font color="#0000FF"><b>See Also:</b></font><br>
-<a href="index.html">Introduction to the Weather Plug-in</a><br>
-<a href="webwx.html">Web-Based Weather Data</a><br>
-<a href="controlvars.html">Using Weather Control Variables</a><br>
-<a href="forecast.html">Forecast Examples</a><br>
-<a href="hvwxvars.html">HomeVision Controller Weather Variables</a><br>
-<a href="localwx.html">Local Weather Data Files</a><br>
-<a href="speechwx.html">Speaking Weather Data</a><br>
-<a href="disclaimer.html">Disclaimer</a><br>
+<a href="index">Introduction to the Weather Plug-in</a><br>
+<a href="webwx">Web-Based Weather Data</a><br>
+<a href="controlvars">Using Weather Control Variables</a><br>
+<a href="forecast">Forecast Examples</a><br>
+<a href="hvwxvars">HomeVision Controller Weather Variables</a><br>
+<a href="localwx">Local Weather Data Files</a><br>
+<a href="speechwx">Speaking Weather Data</a><br>
+<a href="disclaimer">Disclaimer</a><br>
 </body>
 </html>
 

@@ -107,7 +107,7 @@ Example:
 Some weather data is available in both string and numeric formats, as in the examples above.
 </p><p>
 If used as a substitute for loading a local file into the HomeVision Controller Weather Variables,
-tags should be restricted to those found in <a href="hvwxvars.html"><b>Table 4</b></a> and must use the numeric format.
+tags should be restricted to those found in <a href="hvwxvars"><b>Table 4</b></a> and must use the numeric format.
 <p>The suggested naming convention for NWS XML current weather files is {StationID}.xml,
 where StationID is the 4 or 5 character station ID. For XML files, this convention is optional.
 </p>
@@ -231,18 +231,18 @@ No Station ID is needed in the Stations Configuration dialog, as it should be co
 </ul>
 <br>
 <br><font color="#0000FF"><b>Next:</b></font><br>
-<a href="speechwx.html">Speaking Weather Data</a><br>
-<a href="wxtriggers.html">Triggering Weather Fetches</a><br>
-<a href="wxws.html">Weather Websockets</a><br>
-<a href="custom.html">Custom Objects and Websockets</a><br>
-<a href="netio.html">Weather Info for NetIO</a><br>
+<a href="speechwx">Speaking Weather Data</a><br>
+<a href="wxtriggers">Triggering Weather Fetches</a><br>
+<a href="wxws">Weather Websockets</a><br>
+<a href="custom">Custom Objects and Websockets</a><br>
+<a href="netio">Weather Info for NetIO</a><br>
 <font color="#0000FF"><b>See Also:</b></font><br>
-<a href="index.html">Introduction to the Weather Plug-in</a><br>
-<a href="webwx.html">Web-Based Weather Data</a><br>
-<a href="controlvars.html">Using Weather Control Variables</a><br>
-<a href="forecast.html">Forecast Examples</a><br>
-<a href="hvwxvars.html">HomeVision Controller Weather Variables</a><br>
-<a href="disclaimer.html">Disclaimer</a><br>
+<a href="index">Introduction to the Weather Plug-in</a><br>
+<a href="webwx">Web-Based Weather Data</a><br>
+<a href="controlvars">Using Weather Control Variables</a><br>
+<a href="forecast">Forecast Examples</a><br>
+<a href="hvwxvars">HomeVision Controller Weather Variables</a><br>
+<a href="disclaimer">Disclaimer</a><br>
 </body>
 </html>
 

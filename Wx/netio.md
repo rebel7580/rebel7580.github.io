@@ -77,8 +77,8 @@ although for clarity you may want to use
 <b>fc</b> for forecast items.
 <dt>
 <i>weather_item</i>
-<dd>Can be any item in <a href="controlvars.html"><b>Table 2</b></a>,
-or <a href="controlvars.html"><b>Table 3</b></a>, but is case-insensitive.
+<dd>Can be any item in <a href="controlvars"><b>Table 2</b></a>,
+or <a href="controlvars"><b>Table 3</b></a>, but is case-insensitive.
 <dt>
 <b>best</b>
 <dd>Optional. If present, must be <b>best</b>.
@@ -152,16 +152,16 @@ Since there are dozens of possible weather icons, getting icons may not be worth
 <br>
 <br>
 <font color="#0000FF"><b>See Also:</b></font><br>
-<a href="index.html">Introduction to the Weather Plug-in</a><br>
-<a href="webwx.html">Web-Based Weather Data</a><br>
-<a href="controlvars.html">Using Weather Control Variables</a><br>
-<a href="forecast.html">Forecast Examples</a><br>
-<a href="hvwxvars.html">HomeVision Controller Weather Variables</a><br>
-<a href="localwx.html">Local Weather Data Files</a><br>
-<a href="speechwx.html">Speaking Weather Data</a><br>
-<a href="wxtriggers.html">Triggering Weather Fetches</a><br>
-<a href="custom.html">Custom Objects and Websockets</a><br>
-<a href="disclaimer.html">Disclaimer</a><br>
+<a href="index">Introduction to the Weather Plug-in</a><br>
+<a href="webwx">Web-Based Weather Data</a><br>
+<a href="controlvars">Using Weather Control Variables</a><br>
+<a href="forecast">Forecast Examples</a><br>
+<a href="hvwxvars">HomeVision Controller Weather Variables</a><br>
+<a href="localwx">Local Weather Data Files</a><br>
+<a href="speechwx">Speaking Weather Data</a><br>
+<a href="wxtriggers">Triggering Weather Fetches</a><br>
+<a href="custom">Custom Objects and Websockets</a><br>
+<a href="disclaimer">Disclaimer</a><br>
 </body>
 </html>
 
