@@ -74,10 +74,13 @@ sensor:
 ```
 {% endraw %}
 
+These sensor entities can be used in automations, dashboard GUIs, etc.
+
 ## Home Assistant Setup for Log GUI
 
 Create a GUI. Example like this,
-with corresponding yaml. Do this easily with the GUI editor, yaml shown here just for detail:
+with corresponding yaml. Do this easily with the GUI editor, 
+with a markdown card for the log itself, and three horizontal-stacks of two buttons each. (yaml is shown here just for detail.)
 
 ![Log GUI](HV_Log_GUI.gif)
 
@@ -97,20 +100,8 @@ with corresponding yaml. Do this easily with the GUI editor, yaml shown here jus
           states('sensor.hv_log3') }} {{ states('sensor.hv_log4') }} 
       - type: horizontal-stack
         cards:
-          - type: button
-            tap_action:
-              action: call-service
-              service: mqtt.publish
-              service_data:
-                retain: 0
-                payload: ''
-                topic: cmnd/HVLog/get
-                qos: 0
-            entity: sensor.hv_log1
-            name: Get Log
-            show_icon: false
-            hold_action:
-              action: none
+          - type: 'custom:button-card'
+            color_type: blank-card
           - type: button
             tap_action:
               action: call-service
