@@ -17,20 +17,7 @@ The Weather plug-in supplies built-in "custom" procedures (netio, netioaction an
 <b>Triggering a Weather Fetch via NetIO</b>
 <p>
 A weather fetch can be triggered in the NetIO application by the <i>netioaction</i> command:
-<pre>
-    <b>netioaction wx</b>|<b>fc</b>|<b>wxfc</b>|<b>fcwx</b> <b>update</b>
-</pre>
-<b>wx</b> fetches new current weather only, <b>fc</b> fetches new forecast weather only, <b>wxfc</b> or <b>fcwx</b>
-fetches both (the order is not significant).
-When this command is executed, the NetIO Server plug-in calls the <i>netioaction</i> procedure which the Weather plug-in recognizes.
-The requested weather data is fetched immediately.
-<p>Note 1: When <b>wx</b> or <b>fc</b> is used, older data for the opposite type may exist.
-<br>Note 2: The command does not reset the current Read Interval.
-<p>
-This is the preferred way to explicitly update weather data.
-<p>
 
-<i>A Note about weather icons</i>: Getting a weather icon (img) returns an <i>image name</i>, complete with its extension (i.e., cond001.png), not the image itself.
 For the image to be displayed,
 you must manually download image files from the appropriate weather web site
 and pre-load them into the NetIO application's data space.
