@@ -1,17 +1,19 @@
 # MQTT Event Log Helper Plug-ins
 
-[Back to Projects Index](/index)
+[Back to Projects](/index)
+
+[Back to MQTT Index](/MQTT/MQTT_index)
 
 ## Overview
 
 MQTT helper plug-in, *MQTT_evlog.hap*,
-provides an MQTT interface to the *Netio_evlog.hap* helper plug-in,
+provides an MQTT interface to the *netio_evlog.hap* helper plug-in,
 which in turn provides an interface to the HomeVision Event Log.
-You must have both *MQTT_evlog.hap* and *Netio_evlog.hap* enabled.
+You must have both *MQTT_evlog.hap* and *netio_evlog.hap* enabled.
 You *do not* need the *NetIO plug-in* enabled for the MQTT part to work;
-*MQTT_evlog.hap* and *Netio_evlog.hap* run independently of the *NetIO plug-in*.
+*MQTT_evlog.hap* and *netio_evlog.hap* run independently of the *NetIO plug-in*.
 
-The MQTT helper plug-in was designed with Home Assistant in mind but is useful in other MQTT environments as well.
+The MQTT helper plug-in was designed with Home Assistant in mind but could useful in other MQTT environments as well.
 Control of the Event Log is accomplished via several MQTT messages and results are reported via four MQTT messages. MQTT payloads for HA are max 256 characters, so the 20-line log view (of a total of 256 lines for the complete log) is broken into 4 separate MQTT messages.
 Commands allow for "scrolling" through the 256 lines, 20 lines at a time.
 
@@ -25,7 +27,7 @@ cmnd/HVLog/get first
 cmnd/HVLog/get next
 cmnd/HVLog/get prev
 ```
-* *update*: refreshes to the latest log entries. This takes some time. While retrieving the log information, progress stat messages are sent about every 10 seconds. The ```stat/HVLog/part1``` response will
+* *update*: refreshes to the latest log entries. This takes some time, as the entire log is read from the HomeVision controller. While retrieving the log information, progress stat messages are sent about every 10 seconds. The ```stat/HVLog/part1``` response will
 contain a percent complete message, while the other three will contain five "blank" lines. 
 Once the log retrieval is complete, the last 20 lines of the log will be sent (as if a ```cmnd/HVLog/get last``` command had been sent.
 * *last*: return last 20 lines of log. 
