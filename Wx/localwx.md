@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- $Revision: 1.10 $ -->
 <!-- $Date: 2021/10/05 02:07:51 $ -->
 <html>
@@ -212,23 +211,23 @@ where StationID is the 4 character station ID that is also contained in the META
 <ul>
 <li>
 Open the Configuration dialog: Plugins-&gt;Weather.
-<li>
+</li><li>
 Select the <i>General Settings</i> tab and make sure <i>Enable Fetch</i> is checked
 and a <i>Read Interval</i> is set as appropriate.
-<li>
+</li><li>
 Select the <i>Data Source</i> tab
-<li>
+</li><li>
 Select <i>File</i> as the <i>Source</i>.
-<li>
+</li><li>
 Click on <i>Edit Web and File Links</i>
-<li>
+</li><li>
 Enter (or browse for) the desired Current and/or Forecast files.
-<li>
+</li><li>
 No Station ID is needed in the Stations Configuration dialog, as it should be contained in the file/filename.
 (Note: In fact, the Stations tab is disabled in this mode.)
 <br><br>
 <center><img  alt="Data Source Configure" src="wxconfigdsmetfile.gif">.</center>
-</ul>
+</li></ul>
 <br>
 <br><font color="#0000FF"><b>Next:</b></font><br>
 <a href="speechwx">Speaking Weather Data</a><br>
@@ -243,6 +242,5 @@ No Station ID is needed in the Stations Configuration dialog, as it should be co
 <a href="forecast">Forecast Examples</a><br>
 <a href="hvwxvars">HomeVision Controller Weather Variables</a><br>
 <a href="disclaimer">Disclaimer</a><br>
-</body>
-</html>
+
 
