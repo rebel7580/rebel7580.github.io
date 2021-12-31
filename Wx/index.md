@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- $Revision: 1.13 $ -->
 <!-- $Date: 2021/10/05 02:07:51 $ -->
 <html>
@@ -61,5 +60,4 @@ NetIO Server plug-in verion 3.2 is required for NetIO access to weather data.
 <a href="netio">Weather Info for NetIO</a><br>
 <br><font color="#0000FF"><b>See Also:</b></font><br>
 <a href="disclaimer">Disclaimer</a><br>
-</body>
-</html>
+

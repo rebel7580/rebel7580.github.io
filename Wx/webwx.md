@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- $Revision: 1.19 $ -->
 <!-- $Date: 2021/10/08 22:00:34 $ -->
 <html>
@@ -23,9 +22,9 @@ OpenWeather.org provides JSON formatted weather data and is available for locati
 <ul>
 <li>
 Open the Configuration dialog: Plugins-&gt;Weather.
-<li>
+</li><li>
 Select the <i>General Settings</i> tab and make sure <i>Fetch Enable</i> is checked.
-<li>
+</li><li>
 Set the <i>Read Interval</i>.
 <i>Read Interval</i> determines how often the weather
 plug-in will fetch the weather data from the appropriate web site.
@@ -35,27 +34,27 @@ For convenience, the arrows in the entry field increment or decrement the curren
 Setting <i>Read Interval</i> to 0 <u>disables</u> periodic fetching of weather data.
 (There are other ways to trigger weather data fetches.
 See <a href="wxtriggers">Triggering Weather Fetches</a>.)
-<li>
+</li><li>
 Select the <i>Data Source</i> tab.
-<li>
+</li><li>
 Select the <I>Current Weather</I> type as <i>NWS</i>, <i>METAR</i> or <i>OpenWeather</i>.
 If no current weather is desired. select <I>None</I>.
-<li>
+</li><li>
 Select the <I>Forecast Weather</I> type as <i>NWS</i> or <i>OpenWeather</i>.
 If no forecast weather is desired, select <I>None</I>.
-<li>
+</li><li>
 Select <i>Web</i> as the <i>Source</i>.
-<li>
+</li><li>
 If OpenWeather is selected in either <I>Current Weather</I> or <I>Forecast Weather</I>,
 an OpenWeather API Key must be entered. You can get free keys at
 <a href="http://openweathermap.org/full-price#current">OpenWeather.org</a>.
 You must select a package (most likely you would want select: Free > Get API Key), and follow instructions to get your key.
 Copy the API Key and into the Weather plug-in Configuration Data Source screen.
-<li>
+</li><li>
 OpenWeather icon size selection allows for three different size icons: 
 "standard" (50x50), 2X (100x100), or 4X (200x200).
 Select the one(s) you want.
-<li>
+</li><li>
 The <i>Edit Web and File Links</i> button brings up a screen that allows the standard Web links to be changed.
 The <i>METAR</i>, <i>NWS</i> and <i>OpenWeather</i> fields contain the base URLs/ftp addresses
 for the Web data.
@@ -76,7 +75,7 @@ If <i>Source</i> is set to <i>File</i>, then the files for current and forecast 
 <center><img  alt="Data Source Configure" src="wxconfigdsxmlweb.gif">.</center>
 <br>
 <br>
-<li>
+</li><li>
 Select the <i>Stations</i> tab.
 This screen shows the possible ways of setting the location for which
 current and forecast weather is desired.
@@ -229,7 +228,7 @@ Stations marked for deletion can be changed back to hidden or unhidden until
 If you use NWS and select latitude/longitude or HV location as station selectors,
 the plug-in will search the the station list for the closest station.
 Hidden stations are ignored during the search.
-<li>
+</li><li>
 Your selected station and the stations actually used for current and forecast weather
 can now be mapped using Google Maps (or an alternative mapping site as long as it accepts location info in the form of latitude and longitude in its URL).
 Once you have fetched weather info at least once,
@@ -243,21 +242,21 @@ You can modify the mapping URL by going to <i>Data Source</i> and clicking on
 <i>Edit Web and File Links</i>.
 Within the Map URL, create your URL and use &lt;lat&gt; and &lt;lon&gt; as placeholders for latitude and longitude.
 Actual latitude and longitude values will replace the placeholders before the browser is launched.
-<li>
+</li><li>
 When checked, <i>Use Current Weather values for Forecasts</i> "copies" values in the current entries to the forecast entries.
 While checking <i>Use Current Weather values for Forecasts</i> disables the forecast entry boxes,
 the forecast radio buttons are still enabled to allow independent forecast selection when NWS is also selected.
 
 Typically, when OpenWeather data is fetched, it returns both the current weather and the forecast in one shot. This means that if the station selection is the same for both current and forecast only one fetch need be done. To achieve this, you should 1) Check 
 <i>Use Current Weather values for Forecasts</i>, and 2) Set Current and Forecast station selection radio buttons to the same type.
-<li>
+</li><li>
 Select the <i>General Settings</i> tab.
-<li>
+</li><li>
 In the <i>Units</i> section, select the desired time format, temperature scale,
 wind speed and pressure units.
 If "HV Pref" for Time Format or Temp Scale is chosen, the Weather plug-in uses
 the corresponding setting in HomeVisionXL's Preferences.
-</p>
+</li></p>
 <br>
 <center><img  alt="General Configure" src="wxconfiggeneral.gif">.</center> <br>
 <br>
@@ -267,7 +266,7 @@ Long forecasts often take a lot of characters. You can adjust where the forecast
 This should be set to match the width of any control screen widget used to display forecast text.
 For convenience, the arrows in the entry field increment or decrement the current value by 10 characters.
 A length of 70 typically fits forecasts of up to three lines.
-<li>
+</li><li>
 Probability of precipitation (POP) for NWS is available for
 (up to) 14 12-hour periods over the seven day forecast,
 each day having one "day" period and one "night" period.
@@ -287,7 +286,7 @@ values over 144 hours may point to POP periods that are invalid, resulting in a 
 This shouldn't be a real problem, since POP predictions that far in advance are unreliable anyway.
 Note also, for the POP to be loaded into the HomeVision Controller, a controller variable must be defined in the
 <i>HV Vars</i> tab as well (see <a href="hvwxvars">HomeVision Controller Weather Variables</a>).
-</p>
+</li></p>
 <li>
 Press <i>OK</i> to save changes.
 <p>
@@ -296,7 +295,7 @@ current settings are saved even if HomeVisionXL is exited.
 </p><p>
 Pressing <i>Cancel</i>
 will discard all changes made during the current configuration session,
-except for the stations list, if downloaded.
+except for the stations list, if downloaded.</li>
 </p>
 </ul>
 <br><font color="#0000FF"><b>Next:</b></font><br>
@@ -312,5 +311,4 @@ except for the stations list, if downloaded.
 <font color="#0000FF"><b>See Also:</b></font><br>
 <a href="index">Introduction to the Weather Plug-in</a><br>
 <a href="disclaimer">Disclaimer</a><br>
-</body>
-</html>
+
