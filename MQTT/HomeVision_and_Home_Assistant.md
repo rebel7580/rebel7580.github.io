@@ -408,7 +408,7 @@ with the two timer entities, the two helpers and two buttons
 (to get timer status and send commands to the timer).
 
 Here is the yaml for the above implementation.
-This was created using the GUI editor, which is a lot easier than writing in yaml, but is shown here to see the details.
+This was created using the GUI editor, which is a lot easier than writing in yaml, but is shown here to see the details, especially for the Update payload, which needs to be entered in the payload template in the GUI editor as shown in the yaml.
 {% raw %}
 ``` yaml
 type: grid
