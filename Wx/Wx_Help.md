@@ -2,6 +2,7 @@
 
 [Back to Weather Index](/Wx/Wx_index)
 
+<a href="index.html">Introduction to the Weather Plug-in</a><br>
 <a href="webwx.html">Web-Based Weather Data</a><br>
 <a href="controlvars.html">Using Weather Control Variables</a><br>
 <a href="forecast.html">Forecast Examples</a><br>
