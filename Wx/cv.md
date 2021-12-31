@@ -1,5 +1,5 @@
 # Using Weather Control Variables
-
+<!--
 <p>
 The Weather plug-in can pass on to the
 Control plug-in, the web and MQTT the <i>current weather</i> info in <b>Table 2</b>, if available in the retrieved weather data.
@@ -831,7 +831,7 @@ Trigger a Weather fetch in the background:
     Payload: "WeatherSetVar"
 </pre>
 See <a href="wxtriggers.html">Triggering Weather Fetches</a> for complete details of the WeatherSet and WeatherSetVar syntax.
-
+-->
 <br>
 <br><font color="#0000FF"><b>Next:</b></font><br>
 <a href="forecast.html">Forecast Examples</a><br>
