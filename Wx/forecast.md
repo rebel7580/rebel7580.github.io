@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- $Revision: 1.7 $ -->
 <!-- $Date: 2021/10/05 02:07:51 $ -->
 <html>

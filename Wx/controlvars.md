@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- $Revision: 1.15 $ -->
 <!-- $Date: 2021/12/10 18:45:36 $ -->
 <html>
@@ -669,7 +668,6 @@ Variables on the Active list will be sent when weather information is fetched.
 To move a variable from one list to the other,
 double-click it or
 select the variable(s) and click on the corresponding arrow.
-
 </ul>
 <br>
 <center><img alt="Control Variable Selection" src="ctlvarcur.gif"></center>

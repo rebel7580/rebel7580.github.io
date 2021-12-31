@@ -193,7 +193,6 @@ Some OpenWeather icons may have a "day" and "night" version. E.g., "01d" and "01
 <center><b>
 Table 5 - Weather Condition Codes
 </b></center>
-<div align="center">
  <table border="3" cellpadding="2" cellspacing="0">
   <tbody>
    <tr>
@@ -284,7 +283,6 @@ Table 5 - Weather Condition Codes
     <td align="center">31</td><td>Squalls</td><td align="center"></td><td align="center">771</td><td align="center">50d</td></tr>
 </tbody>
 </table>
-</div>
 
 <br>
 <br><font color="#0000FF"><b>Next:</b></font><br>
