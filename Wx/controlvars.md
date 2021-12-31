@@ -1,16 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- $Revision: 1.15 $ -->
-<!-- $Date: 2021/12/10 18:45:36 $ -->
-<html>
-<head>
-  <title>Weather Plug-in - Using Weather Control Variables</title>
-  <link rel="prev" href="webwx">
-  <link rel="next" href="forecast">
-</head>
 
-<body style="" lang="EN-US" link="blue" vlink="purple">
-
-<font color="#0000ff" size="12"><b>Using Weather Control Variables</b></font>
+# Using Weather Control Variables
 
 <p>
 The Weather plug-in can pass on to the
