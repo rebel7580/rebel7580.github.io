@@ -1,3 +1,7 @@
+[Back to Projects Index](/index)
+
+[Back to Weather Index](/Wx_index)
+
 <a href="webwx.html">Web-Based Weather Data</a><br>
 <a href="controlvars.html">Using Weather Control Variables</a><br>
 <a href="forecast.html">Forecast Examples</a><br>
