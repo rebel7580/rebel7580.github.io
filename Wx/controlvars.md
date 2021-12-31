@@ -1,4 +1,3 @@
-
 # Using Weather Control Variables
 
 <p>
