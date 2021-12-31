@@ -48,9 +48,8 @@ Other object types (standard or custom) can be combined with weather objects.
 When this command is executed,
 the NetIO Server plug-in calls the <i>get_update</i> procedure which the Weather plug-in recognizes.
 Otherwise, this command works identically to the <i>netioaction</i> command above.
-
-
-<p>
+<br>
+<br>
 <b>Getting Weather Items via NetIO</b>
 <p>
 The Weather plug-in provides a <i>netio</i> procedure to return weather information in response to NetIO <i>get</i> commands.
@@ -88,7 +87,7 @@ or <a href="controlvars"><b>Table 3</b></a>, but is case-insensitive.
 </dd>
 <dt>
 <b>best</b>
-</dd>
+</dt>
 <dd>Optional. If present, must be <b>best</b>.
 Only valid for FcDay, FcSc, FcLc, FcPop, FcImg items.
 Ignored otherwise.

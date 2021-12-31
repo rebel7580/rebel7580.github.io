@@ -86,8 +86,7 @@ The "custom" plug-in should call the following:
 <dt>
 <b>wsupdate Procedure</b>
 </dt>
-<br>
-<br>
+
 <dd>
 This public procedure is made available in the <i>wxjsondata.hap</i> plug-in.
 (It may also be available in other plug-ins that want object state data.)
@@ -121,13 +120,10 @@ Entries may be as simple as a numerical state value, e.g., "0" or "1" to indicat
 or may be more complex structures like a list of key-value pairs, e.g., {"tempf": 29, "dewpointf": 27}
 </dd>
 </dl>
-<br>
-<br>
+</dd>
 <dt>
 <b>Full Example of a Custom Object Plug-in</b>
 </dt>
-<br>
-<br>
 <dd>
 Here's an example of a plug-in that uses all of the above procedures. It creates an object "dm"
 which has only one ID ("0").
