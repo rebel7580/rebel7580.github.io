@@ -4,7 +4,6 @@
 The Weather plug-in can pass on to the
 Control plug-in, the web and MQTT the <i>current weather</i> info in <b>Table 2</b>, if available in the retrieved weather data.
 <br>
-<div align="center">
 <b>Table 2 - Current Weather Control Variables</b>
  <table border="3" cellpadding="2" cellspacing="0">
   <tbody>
@@ -285,7 +284,6 @@ Control plug-in, the web and MQTT the <i>current weather</i> info in <b>Table 2<
     </tr>
   </tbody>
 </table>
-</div>
 <p>
 * Case sensitive
 </p><p>
@@ -321,7 +319,6 @@ Since zip codes may not even be available, it might be easier to just use FcLoc.
 <p>The Weather plug-in can pass on to the
 Control plug-in, the web and MQTT the <i>forecast weather</i> info in <b>Table 3</b>, if available in the retrieved weather data.
 <br>
-<div align="center">
 <center><b>
 Table 3 - Forecast Control Variables
 </b></center>
@@ -589,7 +586,6 @@ Table 3 - Forecast Control Variables
     </tr>
   </tbody>
  </table>
-</div>
 <p>
 * Case sensitive
 </p>
