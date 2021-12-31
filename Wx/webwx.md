@@ -286,7 +286,7 @@ values over 144 hours may point to POP periods that are invalid, resulting in a 
 This shouldn't be a real problem, since POP predictions that far in advance are unreliable anyway.
 Note also, for the POP to be loaded into the HomeVision Controller, a controller variable must be defined in the
 <i>HV Vars</i> tab as well (see <a href="hvwxvars">HomeVision Controller Weather Variables</a>).
-</li></p>
+</li>
 <li>
 Press <i>OK</i> to save changes.
 <p>
@@ -296,7 +296,6 @@ current settings are saved even if HomeVisionXL is exited.
 Pressing <i>Cancel</i>
 will discard all changes made during the current configuration session,
 except for the stations list, if downloaded.</li>
-</p>
 </ul>
 <br><font color="#0000FF"><b>Next:</b></font><br>
 <a href="controlvars">Using Weather Control Variables</a><br>
