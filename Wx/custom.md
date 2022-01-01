@@ -27,7 +27,7 @@ The "custom" plug-in should provide the following:
 <dl>
 <dt>
 <b>get_update Procedure</b>
-</dt><br>
+</dt>
 <br>
 <dd>
 The providing plug-in should have a public (via hvPublic) <b>get_update</b> procedure
@@ -76,8 +76,6 @@ and eventually call <b>wsupdate</b> for "wx" and/or "fc", accordingly.
 Note that unless the object type is present and does NOT match "wx" or "fc", state data for both "wx" and "fc" will be generated if they are both enabled in the Weather plug-in, regardless of
 which is requested. This is OK since the only harm is that the plug-in may track unneeded object information.
 </dd></dl>
-<br>
-<br>
 The "custom" plug-in should call the following:
 <br>
 <br>
@@ -100,7 +98,6 @@ Its format should be:
     <b>wsupdate</b> <i>object_type state_value_list</i>
 </pre>
 
-<p>
 Where:
 <dl>
 <dt>
