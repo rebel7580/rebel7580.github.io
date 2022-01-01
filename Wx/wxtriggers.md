@@ -276,6 +276,14 @@ This ensures that weather data variables in control screens are updated
 as soon as the Control plug-in starts.
 
 No user configuration is needed in either plug-in.
+</dd>
+<br><br>
+<dt><b>Via MQTT</b>
+<dd>
+Most setting can be set and weather fetches triggered via MQTT.
+See the <b>MQTT Setup</b> section of <a href="hvwxvars">HomeVision Controller Weather Variables</a>
+for details.
+</dd>
 </dl>
 <br>
 <br><font color="#0000FF"><b>Next:</b></font><br>
