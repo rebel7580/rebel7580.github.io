@@ -18,18 +18,21 @@ Caseta switches are automatically configured in the plug-in using a file obtaine
 <ol>
 <li>Before you can set up the plug-in, you must configure the lights and scenes within the Lutron application.
 The names you assign to your switches are the names you will use in the plug-in.
+</li>
 <br><br>
 <li>
 If you are using the iOS version of the Lutron application, you will need to access the OS settings and find the Lutron application. After you select the Lutron application, enable Advanced settings. Once you have enabled the Advanced settings go back to the Lutron application.
 <br>
 <br>
 If you are using the Android version of the Lutron application, go to settings within the Lutron application and click the check box to show Advanced settings.
+</li>
 <br><br>
 <li>
 Choose Integration and then
 "enable telnet support"
 and then
 "Send integration report".
+</li>
 <br><br>
 <li>
 The integration report will be sent to your email address that you have registered via the application. 
@@ -39,25 +42,33 @@ The plug-in will read this file and pick up the switch names.
 <br><br>
 Note: If you subsequently add or remove any Caseta devices, you must generate a new integration report and create an up-to-date json file.
 You must restart the Caseta plug-in to read any changes to the json file for them to take effect.
+</li>
 <br><br>
 <li>
 Find the IP of the Lutron Smart Bridge Pro. It might make sense to lock this IP in (make it static) on your router so it doesn't change.
+</li>
 <br><br>
 <li>
 Proceed to Caseta plug-in configuration by enabling the Caseta plug-in
 and going to the Caseta entry in the HomeVisionXL <i>Plugins</i> menu.
+</li>
 </ol>
+
 <h3>Settings Tab</h3>
 <ul>
 <li>
 "Lutron Smart Bridge Pro IP Address" should be set to the Smart Bridge Pro's IP address from Step 5 above.
+</li>
 <li>
 "Lutron Smart Bridge Pro Port" defaults to "23" (for a telnet connection) and probably won't need to change.
+</li>
 <li>
 Fill in the "Username" and "Password".
 Default values are "lutron" and "integration", respectively and probably won't need to change.
+</li>
 <li>
 Make sure "Caseta Config File" points to the file in Step 4 above.
+</li>
 <li>
 If logging is desired, check "Create log file".
 Doing so will display an entry box for the folder for the logs.
@@ -65,6 +76,7 @@ Log files will be created in this folder.
 You can enter the folder name directly, or click the "..." button to browse to or create it.
 To keep file sizes to a reasonable length, a new file is created each day there is logging information.
 The file name is "CasetaLogYYMMDD", with a ".txt" extension if HomeVisionXL is running in Windows.
+</li>
 <li>
 If you want the Caseta switches to use MQTT, check "Enable MQTT".
 You must have the MQTT plug-in enabled.
@@ -72,8 +84,10 @@ Switches will be subscribed using the MQTT plug-in's standard command/power topi
 <pre>
     cmnd/Dimmer 1/POWER
 </pre>
+</li>
 <li>
 "Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
+</li>
 </ul>
 <h3>Devices Tab</h3>
 This tab displays a list of devices from the Caseta Config file.
@@ -87,14 +101,18 @@ This "device" is supressed, at least until there is a definite use for it.)
 <li>
 The name of the device for use by serial and NetIO commands is shown.
 This name can only be changed via the Lutron Caseta application.
+</li>
 <li>
 <i>ID</i> is the ID assigned by the Lutron Smart Bridge Pro.
+</li>
 <li>
 The <i>Flag/Var</i> column shows the Flag (FL-#) or Variable (VA-#) assigned to the device.
 If none is assigned, a "-" will show.
+</li>
 <li>
 The <i>Macro</i> column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
 If no macro is assigned, a "-/-" will show. 
+</li>
 <li>
 The <i>State</i> column will usually show "ON {level}" or "OFF", depending on the reported state of the device.
 When the state has not (yet) been reported, a "--" will show. 
@@ -114,6 +132,7 @@ If a variable is selected, an additional option is available.
 <ul>
 <li>
 "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If the received value is 0, it represents "off"; all other values represent "on". The variable will be set  to "0" or "1" accordingly.
+</li>
 <li>
 If "Use Variable as Flag" is NOT selected, then the received value is written as a 1-byte integer number to the specified Variable.
 </ul>
@@ -122,13 +141,16 @@ Macros can be assigned for "On" and "Off" states.
 The same macro can be assigned to both states, or different macros can be assigned.
 You can also assign a macro to just one of the states, leaving the other set to "None".
 When a device changes state, any Flag/Var assigned is always set before a macro is run.
+</li>
 <li>
 Choose whether to log messages sent to or received from this device.
+</li>
 <li>
 Click "OK" to accept edits or "Cancel" to discard edits.
 </ul>
 <li>
 When "Done" is clicked, if there were changes, the client connection to the Lutron Smart Bridge Pro is restarted.
+</li>
 </ul>
 Note 1: For PICO remotes, each remote has a further dropdown that shows the available buttons.
 PICO remotes send out a "pressed" signal when the button is depressed, and a "released" signal when the botton is released.
@@ -226,18 +248,25 @@ If <i>status_type</i> is not present, it defaults to "status".
 <ul>
 <li>state
 - [Off | On]
+</li>
 <li>status
 - [Off | On [level]%]
+</li>
 <li>slider
 - [level]
+</li>
 <li>name
 - [device name]
+</li>
 <li>namestate
 - [device name]: [Off | On]
+</li>
 <li>namestatus
 - [device name]: [Off | On [level]%]
+</li>
 <li>image
 - [gray | green]
+</li>
 </ul>
 
 An empty string is returned if the current state is unknown.
