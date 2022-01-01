@@ -11,6 +11,7 @@
 <h1>Lutron Caseta Plugin for HomeVisionXL</h1>
 <h2>Overview</h2>
 The Caseta Client plug-in provides a way to interface Lutron Caseta switches to HomeVision.
+<br><br>
 <h3>Getting Started</h3>
 <b>This plug-in only works with the Lutron Smart Bridge Pro, NOT the non-Pro version!</b>
 <br><br>
@@ -48,7 +49,6 @@ Proceed to Caseta plug-in configuration by enabling the Caseta plug-in
 and going to the Caseta entry in the HomeVisionXL <i>Plugins</i> menu.
 </li>
 </ol>
-<br><br>
 <h3>Settings Tab</h3>
 <ul>
 <li>
@@ -168,7 +168,7 @@ Note 4: For the same reason as in Note 1,
 the right-click menu for Devices only has "On" enabled.
 If clicked, this will simulate a button press,
 which may result in the action of Note 3.
-
+<br><br>
 <h2>Controlling Devices</h2>
 <h3>Device Display Area</h3>
 Right-clicking on a device line in the Device tab
@@ -198,7 +198,6 @@ When a switch changes state, it will automatically report its state. E.g.,
     stat/Dimmer 1/POWER ON 50    Dimmer 1 is on at 50%
     stat/Dimmer 1/POWER OFF      Dimmer 1 is off
 </pre>
-<br><br>
 <h3>Serial Control</h3>
 Caseta switches can be controlled within a schedule via serial commands which take the form:
 <pre>
@@ -274,6 +273,7 @@ If <i>status_type</i> is not present, it defaults to "status".
 
 An empty string is returned if the current state is unknown.
 <br>
+<br>
 <h2>Responding to Switch State Changes</h2>
 The plug-in will update switch states in the Device Tab when switches change state.
 If a Flag/Variable or Macro is defined, that object will be set accordingly.
@@ -282,6 +282,8 @@ If a Flag/Variable or Macro is defined, that object will be set accordingly.
 If MQTT is enabled, a "stat" message will be sent with the new state info.
 If the MQTT plug-in has such a "stat" message defined in its "Ext Devices" section,
 it will respond to the "stat" message and execute any actions that may be defined in that plug-in. 
+<br>
+<br>
 <h2>MQTT Discovery for Home Assistant</h2>
 The Caseta plug-in supports switch and dimmer discovery for Home Assistant. For details, see the MQTT help at:
 
