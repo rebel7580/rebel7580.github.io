@@ -125,8 +125,8 @@ The following command topic is supported (using default prefixes and postfixes) 
 ```
         Full Topic     Payload
     cmnd/*topic*/POWER  ON
-    cmnd/*topic*/POWER  ON *level**
-    cmnd/*topic*/POWER  *level**
+    cmnd/*topic*/POWER  ON *level*
+    cmnd/*topic*/POWER  *level*
     cmnd/*topic*/POWER  OFF
     cmnd/*topic*/POWER  TOGGLE
     cmnd/*topic*/POWER  empty or "?"** 
