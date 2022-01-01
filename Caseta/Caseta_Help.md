@@ -111,6 +111,7 @@ If no macro is assigned, a "-/-" will show.
 <li>
 The <i>State</i> column will usually show "ON {level}" or "OFF", depending on the reported state of the device.
 When the state has not (yet) been reported, a "--" will show. 
+</li>
 </ul>
 <h4>Editing Zone/Device Settings</h4>
 <ul>
@@ -130,7 +131,9 @@ If a variable is selected, an additional option is available.
 </li>
 <li>
 If "Use Variable as Flag" is NOT selected, then the received value is written as a 1-byte integer number to the specified Variable.
+</li>
 </ul>
+</li>
 <li>
 Macros can be assigned for "On" and "Off" states.
 The same macro can be assigned to both states, or different macros can be assigned.
@@ -142,6 +145,7 @@ Choose whether to log messages sent to or received from this device.
 </li>
 <li>
 Click "OK" to accept edits or "Cancel" to discard edits.
+</li>
 </ul>
 <li>
 When "Done" is clicked, if there were changes, the client connection to the Lutron Smart Bridge Pro is restarted.
@@ -171,6 +175,7 @@ When clicked, the appropriate command is sent to the selected switch.
 <br><br>
 Note: The Lutron Smart Bridge Pro returns levels to two decimal places.
 The plug-in will accept levels with decimals; however, they will be truncated to a whole (integer) number when sent to the switch.
+<br><br>
 <h3>MQTT Control</h3>
 When MQTT is enabled, switches can be controlled by issuing the appropriate MQTT topic. E.g.,
 <pre>
@@ -191,6 +196,7 @@ When a switch changes state, it will automatically report its state. E.g.,
     stat/Dimmer 1/POWER ON 50    Dimmer 1 is on at 50%
     stat/Dimmer 1/POWER OFF      Dimmer 1 is off
 </pre>
+<br><br>
 <h3>Serial Control</h3>
 Caseta switches can be controlled within a schedule via serial commands which take the form:
 <pre>
