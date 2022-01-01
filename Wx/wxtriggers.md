@@ -53,6 +53,7 @@ Serial port 1 (Main serial port):
 This serial command has no effect on the <i>Read Interval</i> timer.
 </dd>
 </dl>
+<br><br>
 <b> Complete List of Weather Related Serial Commands</b>
 <dl>
 <dt><pre>weather: fetch enable|disable</pre></dt>
