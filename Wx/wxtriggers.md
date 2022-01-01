@@ -23,6 +23,7 @@ plug-in will fetch the weather data.
 <br><br>
 <b>This is the most common method to trigger weather fetches.</b>
 <br><br>
+</dd>
 <dt><b>Via Serial Commands</b></dt>
 <dd>
 Weather related serial commands allow your HomeVision Controller schedule
