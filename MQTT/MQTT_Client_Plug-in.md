@@ -312,7 +312,7 @@ Devices with custom topics are subscribed only to the topic as-is.
 
 ### Int Objects Tab
 This tab contains a list of supported internal objects.
-These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, or HVAC.
+These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, Macros, Scheduled Event, Periodic Events, Timers or HVAC.
 Add only those objects that need to be visible to or acted on by the MQTT network.
 * *ID* is the internal object ID.
 X-10 object IDs show with their A-P house/unit code format.
@@ -333,6 +333,7 @@ Variables always show a "-" for the state.
 X-10 and Light objects show their level in percent, while Variables show their value.
 * Rows can be sorted in ascending or descending order by *ID*, *Object Name* or *Topic* by clicking on the column header.
 When sorting by ID, object types are always grouped together and sorted within those groups by ID.
+* At the bottom of the screen, check the Object Type(s) you want to enter. Checking object types here simply limits the Object drop-down list on the Configure New screen to make it easier to find the object you're looking to configure. It doesn't affect any objects already configured.
 
 *New/Edit/Delete Internal Objects*
 
