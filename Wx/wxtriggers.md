@@ -172,8 +172,8 @@ hvImport WeatherSet
 <br><br>
 The Timed method can also be used simultaneously.
 However, a plug-in triggered fetch will restart the <i>Read Interval</i> timer.
-<br><br>
 </dd>
+<br><br>
 <dt><b>Via The Web</b></dt>
 <dd>
 Two additional commands are provided mainly to access weather information using &lt;HV&gt; tags in HTML pages.
