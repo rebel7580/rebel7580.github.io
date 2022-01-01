@@ -289,3 +289,5 @@ The Caseta plug-in supports switch and dimmer discovery for Home Assistant. For 
 
 [How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to)
 [Back to Caseta Index](/Caseta/Caseta_index)
+
+heres some more text.
