@@ -125,7 +125,7 @@ METAR is only valid for current weather.
 </dd>
 </dl>
 <br>
-<dt><b>Via Other Plug-ins</b>
+<dt><b>Via Other Plug-ins</b></dt>
 <dd>
 A weather fetch can be triggered from other plug-ins
 using the following code in the other plug-in:
@@ -173,7 +173,7 @@ hvImport WeatherSet
 The Timed method can also be used simultaneously.
 However, a plug-in triggered fetch will restart the <i>Read Interval</i> timer.
 <br><br>
-<dt><b>Via The Web</b>
+<dt><b>Via The Web</b></dt>
 <dd>
 Two additional commands are provided mainly to access weather information using <HV> tags in HTML pages.
 However, they can also be used by other plug-ins, similar to the method in the previous section.
@@ -255,7 +255,7 @@ new data may not arrive in time to be captured by a following Run tag.
 See the Web plug-in Help pages for more info on the Run and Image tags.
 Web plug-on 4.0 or later is required for this functionality.
 <br><br>
-<dt><b>Via The NetIO Server Plug-in</b>
+<dt><b>Via The NetIO Server Plug-in</b></dt>
 <dd>
 A weather fetch is triggered by the NetIO Server plug-in
 by the <i>events</i> or <i>netioaction</i> commands:
@@ -268,7 +268,7 @@ events wx|fc|wxfc|fcwx
 </pre>
 For more details, see <a href="netio">Weather Info for NetIO</a>.
 <br><br>
-<dt><b>Via The Control Plug-in</b>
+<dt><b>Via The Control Plug-in</b></dt>
 <dd>
 A weather fetch is triggered by the Control plug-in
 automatically when the Control plug-in starts up.
@@ -278,7 +278,7 @@ as soon as the Control plug-in starts.
 No user configuration is needed in either plug-in.
 </dd>
 <br><br>
-<dt><b>Via MQTT</b>
+<dt><b>Via MQTT</b></dt>
 <dd>
 Most setting can be set and weather fetches triggered via MQTT.
 See the <b>MQTT Setup</b> section of <a href="hvwxvars">HomeVision Controller Weather Variables</a>
