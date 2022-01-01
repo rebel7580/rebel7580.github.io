@@ -255,8 +255,8 @@ new data may not arrive in time to be captured by a following Run tag.
 <br><br>
 See the Web plug-in Help pages for more info on the Run and Image tags.
 Web plug-on 4.0 or later is required for this functionality.
-<br><br>
 </dd>
+<br><br>
 <dt><b>Via The NetIO Server Plug-in</b></dt>
 <dd>
 A weather fetch is triggered by the NetIO Server plug-in
