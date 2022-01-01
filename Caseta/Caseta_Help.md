@@ -123,6 +123,7 @@ For each device, an HV Flag or Variable can be assigned.
 These can be used to reflect the state of the Caseta device in your schedule.
 Assigning a Flag or Variable is optional.
 There is no checking to make sure a Flag or Variable is not used more than once.
+</li>
 <li>
 If a variable is selected, an additional option is available.
 <ul>
