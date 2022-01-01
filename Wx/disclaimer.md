@@ -49,7 +49,7 @@ consequential, special or exemplary damages or lost profit resulting from any us
 <b><i>As required by 17 U.S.C. 403, third parties producing copyrighted works consisting predominantly
 of the material appearing in NWS Web pages must provide notice with such work(s) identifying
 the NWS material incorporated and stating that such material is not subject to copyright protection.
-</b></i>
+</i></b>
 </li>
 </ul>
 
