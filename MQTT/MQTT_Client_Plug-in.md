@@ -209,9 +209,10 @@ When a message is received in the form:
 ```
 for each defined object matching *object_type*
 (one of
-x10, light, var, flag, hvac, temp, analog, input or output)
-or for all object types if not specified, the plug-in will *publish* a state message for each object to indicate its current state.
+x10, light, var, flag, hvac, temp, analog, timer, input or output)
+or for all of these object types if not specified, the plug-in will *publish* a state message for each object to indicate its current state.
 *Only those objects specified in the **Int Objects Tab** are reported*.
+Macros, Scheduled Events, Periodic Events and IR are not reported as they have no "state".
 This feature can be used by an MQTT entity to quickly sync up with HomeVision object states.
 <br>
 <br>
