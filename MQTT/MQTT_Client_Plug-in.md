@@ -466,7 +466,7 @@ Here's a sequence chart example that might make it more clear:
                    <--- HV cmd to toggle Den
     sends X-10 cmd
      to toggle Den
-                   ---> stat/den/POWER            --->
+                   ---> stat/den/POWER {value}    --->
 ```
 
 ### Serial Control
