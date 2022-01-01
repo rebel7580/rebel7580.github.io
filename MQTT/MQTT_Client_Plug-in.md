@@ -203,9 +203,9 @@ The MQTT plug-in automatically subscribes to:
 ```
 When a message is received in the form:
 ```
-        Full Topic                        Payload
+        Full Topic                           Payload
     cmnd/homevision/*object_type*/POWER    empty or "?"
-    cmnd/homevision/POWER               empty or "?"
+    cmnd/homevision/POWER                  empty or "?"
 ```
 for each defined object matching *object_type*
 (one of
