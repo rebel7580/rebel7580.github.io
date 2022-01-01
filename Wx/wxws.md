@@ -10,7 +10,7 @@
 <body style="" lang="EN-US" link="blue" vlink="purple">
 
 <font color="#0000ff" size="12"><b>Weather Info on Web Pages using Websockets</b></font>
-<p>
+<br><br>
 While weather data can be displayed in web pages using
 &lt;HV:Run </i>&gt;
 and
@@ -18,22 +18,21 @@ and
 (See <a href="wxtriggers.html">Triggering Weather Fetches</a>),
 the weather data is determined at the time the web page is sent to the browser and is static thereafter.
 The Weather plug-in can send "real-time" weather data to web pages via the Web plug-in's websockets.
-<p>
-<p>
+<br><br>
 Web plug-in version 7.2 or later is required to support websockets.
 See the "<b>Real-time Updates of Web Pages</b>" help page in the Web plug-in for more details on websockets.
-<p>
+<br><br>
 An additional supplementary plug-in, <i>wxjsondata.hap</i>, provides support for websockets.
 If websocket support is desired, this plug-in should be enabled.
 Also, if other custom objects are supported, then <i>wxjsondata.hap</i>  should be enabled.
 Otherwise, it can remain disabled.
-<p>
+<br><br>
 An additional supplementary JavaScript file containing websocket setup and weather helper functions, <i>wxwebsocket.js</i>,
 is also required.
 This file is placed in  the plugin/html directory when the weather plug-in is installed.
 If your web server uses a directory other than plugin/html to store its web files,
 you must manually move <i>wxwebsocket.js</i> to that directory.
-<p>
+<br><br>
 Like the Web plug-in's "real-time" support for HomeVision objects,
 to get weather data in "real-time", the following is needed:
 <ul>
@@ -44,7 +43,7 @@ A Script tag that sources the weather websocket functions (<i>wxwebsocket.js</i>
 </li><li>
 A JavaScript array that describes how to handle each tag.
 </li></ul>
-<p>
+<br><br>
 Example:
 <pre>
     &lt;center&gt;
@@ -90,16 +89,16 @@ Example:
      ]
      &lt;/script&gt;
 </pre>
-<p>
+<br><br>
 Let's go through this rather simple example.
-<p>
+<br><br>
 The first part has a series of HTML tags that will show the current weather icon and the current wind,
 followed by the forecast location, "day 1" day name, weather icon, and the short weather description.
 Note each HTML tag of interest has a unique ID.
 The &lt;HV:Image&gt; tag will generate an HTML &lt;img&gt; tag with the included "id".
 The other &lt;HV&gt; tags need a surrounding HTML tag.
 In this case, a simple &lt;span&gt; tag will do.
-<p>
+<br><br>
 Technically, when using websockets to provide weather data, the  &lt;HV&gt; tags
 are not necessary.
 An "empty" HTML tag like this:
@@ -109,7 +108,7 @@ An "empty" HTML tag like this:
 would display the right weather text via websockets.
 However, it is probably a good idea to include the corresponding &lt;HV&gt; tag
 so that some information will be shown even if a browser that doesn't support websockets is used.
-<p>
+<br><br>
 Next, the <i>wxwebsocket.js</i> script is sourced.
 This JavaScript file sets up the websocket and provides weather helper functions.
 <br>
@@ -121,7 +120,7 @@ comes AFTER
 <pre>
     &lt;script src="hvwebsocket.tcl" type="text/javascript"&gt;&lt;/script&gt;
 </pre>
-<p>
+<br><br>
 Lastly, the hvobjs array is set up with an entry for each weather item.
 There are two separate "sub-arrays", one for current weather info - "wx", and one for forecast info - "fc".
 <ul>
@@ -135,16 +134,16 @@ Index "1" through "7" contain the day-specific forecast information for day "n".
 The "function" and "type" parts specify the weather helper function and its "sub-function".
 The helper function retrieves specific weather information from data received over the websocket.
 </li></ul>
-<p>
+<br><br>
 <b>Weather Helper Functions</b>
-<p>
+<br><br>
 The weather helper functions are divided into two main functions: "wxf" for current weather, and "fcf" for forecast weather.
 Each has its own "sub functions", which are specified in the "type" field.
 Note that when specifying the helper function in the "function" field of the array, it is NOT quoted.
 However, the "sub function" specified in the "type" filed IS quoted.
-<p>
+<br><br>
 <b>Selecting Weather Items and Corresponding Helper Functions</b>
-<p>
+<br><br>
 Possible weather items for web use are the same as those for the Control plug-in. In the same way as for the Control plug-in,
 a subset of items can be selected for web use,
 but independently of those selected for the Control plug-in.
@@ -152,10 +151,10 @@ Since there are a lot of possible weather items,
 some of which can be very wordy,
 it is a good idea to minimize the amount of data transmitted over the websocket by selecting only those items actually needed by the web pages.
 See <a href="controlvars.html">Using Weather Control Variables</a> for how to set up which items to send over the websocket.
-<p>
+<br><br>
 To use a weather item on a web page,
 you must configure its corresponding array entry to use the right helper function and sub function.
-<p>
+<br><br>
 For current weather, "function" is "wxf" and the sub function ("type") is as follows:
 <ul>
 <li>
@@ -187,7 +186,7 @@ For items in <a href="controlvars.html"><b>Table 3</b></a> that have a day numbe
 the sub function ("type") is  the name of the variable <i>without the leading "fc"</i> and <i>without the trailing day number</i>,
 and <i>in lower case</i>.
 The "index" is "<i>n</i>". where <i>n</i> is the day number.
-<p>
+<br><br>
 Example: <i>Fcdayn2</i> would be
 <pre>
     "index": 2, "function": fcf, "type": "dayn"
@@ -200,22 +199,22 @@ For example, a weather fetch in the evening will usually have only the "night" f
 For these situations, a set of forecast sub functions are available that choose the best information
 (either the day or the night data) for a specific day:
 "bestday", "bestsc", "bestlc", "bestpop", "bestimg".
-<p>
+<br><br>
 Example: To get either the day or night icon for day one, depending on which was available:
 <pre>
     "index": 1, "function": fcf, "type": "bestimg"
 </pre>
 </li></ul>
-<p>
+<br><br>
 <b>Changing Weather Settings Via a Web Page</b>
-<p>
+<br><br>
 The <i>wxinvoke</i> function is used primarily with an HTML button or input object's "onclick" attribute.
 <i>wxinvoke</i> sends an <i>WeatherSet</i> command through the websocket to the web server,
 which in turn sends it to the Weather plug-in for execution.
 Using <i>wxinvoke</i> allows web control of any action that <i>WeatherSet</i> can do.
 Arguments for <i>wxinvoke</i> are the same as those used for the <i>WeatherSet</i> command.
 See <a href="wxtriggers.html">Triggering Weather Fetches</a> for details.
-<p>
+<br><br>
 Here's an example that has an entry box to put in the zipcode, a button to send the entry box's value,
 and another button to trigger a new weather fetch with the new zipcode information.
 <pre>
@@ -238,7 +237,8 @@ and another button to trigger a new weather fetch with the new zipcode informati
     &lt;/script&gt;
 </pre>
 <br>
-<br><font color="#0000FF"><b>Next:</b></font><br>
+<br>
+<font color="#0000FF"><b>Next:</b></font><br>
 <a href="custom.html">Custom Objects and Websockets</a><br>
 <a href="netio.html">Weather Info for NetIO</a><br>
 <font color="#0000FF"><b>See Also:</b></font><br>

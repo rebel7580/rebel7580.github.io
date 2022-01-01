@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- $Revision: 1.10 $ -->
 <!-- $Date: 2021/10/08 22:00:35 $ -->
 <html>
@@ -271,9 +270,9 @@ Table 5 - Weather Condition Codes
     <tr><td align="center">31</td><td>Squalls</td><td align="center"></td><td align="center">771</td><td align="center">50d</td></tr>
 </tbody>
 </table>
-
 <br>
-<br><font color="#0000FF"><b>Next:</b></font><br>
+<br>
+<font color="#0000FF"><b>Next:</b></font><br>
 <a href="localwx">Local Weather Data Files</a><br>
 <a href="speechwx">Speaking Weather Data</a><br>
 <a href="wxtriggers">Triggering Weather Fetches</a><br>

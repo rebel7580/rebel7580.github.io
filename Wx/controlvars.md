@@ -11,7 +11,7 @@
 
 <font color="#0000ff" size="12"><b>Using Weather Control Variables</b></font>
 
-<p>
+<br><br>
 The Weather plug-in can pass on to the
 Control plug-in, the web and MQTT the <i>current weather</i> info in <b>Table 2</b>, if available in the retrieved weather data.
 <br>
@@ -297,9 +297,9 @@ Control plug-in, the web and MQTT the <i>current weather</i> info in <b>Table 2<
   </tbody>
 </table>
 </div>
-<p>
+<br><br>
 * Case sensitive
-</p><p>
+<br><br>
 Notes:
 <br>
 <sup>1</sup> These items are the values to use for station <i>selection</i>, based on the value of <i>SearchType</i>.
@@ -327,9 +327,9 @@ Since zip codes may not even be available, it might be easier to just use FcLoc.
 <br>
 <sup>8</sup> Winds are expressed according to the <i>Wind Speed</i> setting in the
 <i>General Settings</i> tab.
-</p>
-<br>
-<p>The Weather plug-in can pass on to the
+
+<br><br>
+The Weather plug-in can pass on to the
 Control plug-in, the web and MQTT the <i>forecast weather</i> info in <b>Table 3</b>, if available in the retrieved weather data.
 <br>
 <div align="center">
@@ -601,10 +601,9 @@ Table 3 - Forecast Control Variables
   </tbody>
  </table>
 </div>
-<p>
+<br><br>
 * Case sensitive
-</p>
-<p>
+<br><br>
 Notes:
 <br>
 <sup>1</sup> FcLoc is a combination of FcCity, FcState, zipcode, and FcCountry.
@@ -643,12 +642,11 @@ Does not necessarily correspond to the same time period as FcHi, FcLo
 <br>
 <sup>10</sup> Winds are expressed according to the <i>Wind Speed</i> setting in the
 <i>General Settings</i> tab.
-</p>
-<p>
+<br><br>
 <b>Configuring Variables</b>
-<p>
+<br><br>
 Variables can be selected independently for sending to the Control plug-in, web pages via websockets, and to MQTT.
-<p>
+<br><br>
 There are a large number of potential variables for current and forecast weather.
 To avoid having long lists of "user variables" in the Control plug-in,
 or sending unneeded information through the websocket or via MQTT,
@@ -671,39 +669,37 @@ select the variable(s) and click on the corresponding arrow.
 </ul>
 <br>
 <center><img alt="Control Variable Selection" src="ctlvarcur.gif"></center>
-<br>
-<p>
+<br><br>
 If only the current weather or only the forecast weather is being used,
 then ALL of the variables of the other type can be put on the Inactive list.
-<p>
+<br><br>
 Moving a variable to the Inactive list only prevents that variable
 from being sent to the Control plug-in in the future.
 It does NOT explicitly remove it from the Control plug-in.
 To see newly inactive variable names disappear from the Control plug-in User Variable list,
 the Control plug-in may need to be restarted (disabled/enabled via the Plugin Manager, for example).
-<p>
+<br><br>
 If weather info is being displayed on web pages via the weather websocket,
 select which variables are sent over the websocket by selecting <i>Web</i>.
 Then select <i>Current</i> and <i>Forecast</i> and move variables to the Active List to have them sent over the weather websocket.
 See <a href="wxws">Weather Websockets</a> for set up details.
-<p>
+<br><br>
 If weather info is being sent via MQTT, further setup is necessary. See <i>MQTT Setup</i> below.
-<p>
+<br><br>
 <b>
 Control Screen Weather Variable Setup
 </b>
-<p>
+<br><br>
 Edit the control screen to add labels, buttons, etc. to display
 the values of the weather variables using the Control Variable names in
 <b>Table 2</b> and
 <b>Table 3</b>.
 For example, to display the temperature in degrees
 Fahrenheit on a widget - add a new widget, select a style, and then
-setup the text tab on the label properties screen similar to this:</p>
+setup the text tab on the label properties screen similar to this:
 <br>
 <center><img alt="Text Properties Dialog" src="textproperties.gif"></center>
-<br>
-<p>The % will be replaced with the value of the
+<br><br>
 <i>TempF</i>
 variable.
 
@@ -712,9 +708,9 @@ then <u>Type</u> can be set to
 <i>User Variable</i> and <u>Object</u> to the variable desired.
 If used in expressions, variable name should be surrounded by "${}".
 Remember that control variable names are case sensitive.
-See the Control plug-in Help for more information.</p>
+See the Control plug-in Help for more information.
 
-<p>To display an icon depicting the current
+<br><br>To display an icon depicting the current
 conditions, after adding a new widget and selecting a style, use the
 image tab to set up the name of the <i>WeatherIcon</i> control variable.
 The weather site updates icons according to both weather conditions
@@ -723,43 +719,41 @@ Note: not all icons have day and night versions,
 and any particular station may
 or may not use the night versions of the icons totally consistent
 with real time.
-METAR stations do not support night versions.</p>
+METAR stations do not support night versions.
 
-<p>The weather icons are dynamically loaded as needed into a weather/images subdirectory of
-the plug-in directory. This directory should be used for the path to the icon file.</p>
-<p>
+<br><br>The weather icons are dynamically loaded as needed into a weather/images subdirectory of
+the plug-in directory. This directory should be used for the path to the icon file.
+<br><br>
 Since most icons are jpeg coded,
 the Pixane library needs to be loaded for the Control plug-in to display them properly.
 See the "Control Plug-in - Pixane library" help page for more info on loading Pixane.
-</p>
-<p>A simple label for a weather icon can be set up like this:</p>
-<br>
+<br><br>
 <center><img  alt="Weather Example" src="weatherproperties.gif"></center>
-<br>
-<p>Similar icons can be set up for forecast weather using the <i>FcImg</i> variables.
-<p>A more complete example of how various weather variables
+<br><br>
+Similar icons can be set up for forecast weather using the <i>FcImg</i> variables.
+<br><br>A more complete example of how various weather variables
 can be displayed is shown below.
 This display consists of three label widgets:
 one with just the names of the data, right-justified,
 a second one abutting it on the right, with data values left-justified,
 and a third one (like the above example)
 with just the weather icon image overlaid on the first one near the bottom.
-</p>
+
 <br>
 <center><img  alt="Weather Example" src="weatherexample.gif"></center>
-<p>
+<br><br>
 <b>MQTT Setup</b>
-<p>
+<br><br>
 When <i>MQTT</i> is selected in the <i>Variable Type</i> section, The <i>MQTT Settings</i> section is enabled for editing.
-<p>
+<br><br>
 <i>Sending Weather Information</i>
-<p>
+<br><br>
 To send weather information via MQTT, define a <i>State Topic</i> to use.
 If you wish the state messages to be retained by the MQTT broker, check <i>Set Retain Flag</i>.
-<p>
+<br><br>
 Current and forecast weather is sent in separate MQTT messages with the same topic.
 The payload is in JSON format.
-<p>
+<br><br>
 Current weather example (formatted for readability):
 <pre>
 {
@@ -778,7 +772,7 @@ Current weather example (formatted for readability):
     }
 }
 </pre>
-<p>
+<br><br>
 Forecast weather example (formatted for readability):
 <pre>
 {
@@ -810,15 +804,15 @@ Forecast weather example (formatted for readability):
 }
 </pre>
 Note that in the forecast payload, there may be some general items, like "loc", and then forecast-day specific items. These are grouped under "day1", "day2", etc.. Only days that have Active variables will show up. For example, if you only made Active items for "Day2" and "Day4", there will be no "Day1", "Day3", "Day5", "Day6" or "Day7" in the JSON payload.
-<p>
+<br><br>
 <i>Controlling Weather Settings</i>
-<p>
+<br><br>
 To control weather settings via MQTT,
 define a "Command Topic" to use.
 The payload to use is identical to "WeatherSetVar" and "WeatherSet".
-<p>
+<br><br>
 Examples, assuming the <i>Command Topic</i> is set to "cmnd/weather/set":
-<p>
+<br><br>
 Set <i>Location Selection</i> to "HVLatLong":
 <pre>
     Topic: cmnd/weather/set
@@ -847,7 +841,8 @@ Trigger a Weather fetch in the background:
 See <a href="wxtriggers">Triggering Weather Fetches</a> for complete details of the WeatherSet and WeatherSetVar syntax.
 
 <br>
-<br><font color="#0000FF"><b>Next:</b></font><br>
+<br>
+<font color="#0000FF"><b>Next:</b></font><br>
 <a href="forecast">Forecast Examples</a><br>
 <a href="hvwxvars">HV Controller Weather Variables</a><br>
 <a href="localwx">Local Weather Data Files</a><br>

@@ -10,9 +10,8 @@
 <body style="" lang="EN-US" link="blue" vlink="purple">
 
 <font color="#0000ff" size="12"><b>Triggering Weather Fetches</b></font>
-<p>
+<br><br>
 The plug-in can triggered by the following methods:
-</p>
 <dl>
 <dt><b>Timed</b>
 <dd>
@@ -21,37 +20,38 @@ and the <i>Read Interval</i> is set to the desire fetch interval (in minutes).
 <i>Read Interval</i> determines how often the weather
 plug-in will fetch the weather data.
 <i>Read Interval</i> set to 0 disables timed fetches.
-<p>
+<br><br>
 <b>This is the most common method to trigger weather fetches.</b>
-<p>
+<br><br>
 <dt><b>Via Serial Commands</b>
 <dd>
 Weather related serial commands allow your HomeVision Controller schedule
 to control how the Weather plug-in fetches and speaks the weather
 and whether or not it loads the controller's weather variables.
-<p>
+<br><br>
 To use a serial command to trigger a weather fetch,
 send a serial command from the HomeVision Controller
 with the text "weather: fetch bkgnd".
 An example line in the schedule would be like this:
-<PRE>
+<pre>
 Serial port 1 (Main serial port):
             Transmit string 'weather: fetch bkgnd'
-</PRE>
+</pre>
 The Timed method can also be used simultaneously.
 However,
 a serial command triggered fetch will restart the <i>Read Interval</i> timer.
-<p>
+<br><br>
 A serial command from the HomeVision Controller with the text "weather: speak now"
 will speak the <i>previously</i> fetched weather
 (it does <i>not</i> fetch new data).
 An example line in the schedule would be like this:
-<PRE>
+<pre>
 Serial port 1 (Main serial port):
             Transmit string 'weather: speak now'
-</PRE>
+</pre>
 This serial command has no effect on the <i>Read Interval</i> timer.
-<p>
+</dd>
+</dl>
 <b> Complete List of Weather Related Serial Commands</b>
 <dl>
 <dt><pre>weather: fetch enable|disable</pre></dt>
@@ -121,13 +121,13 @@ The data source types are not case sensitive.
 METAR is only valid for current weather.
 </dd>
 </dl>
-<p>
+<br><br>
 
 <dt><b>Via Other Plug-ins</b>
 <dd>
 A weather fetch can be triggered from other plug-ins
 using the following code in the other plug-in:
-<p>
+<br><br>
 <b>WeatherSetVar</b>
 <pre>
 WeatherSetVar <i>?0</i> | <i>1</i> ?<i>wx</i> | <i>fc</i> | <i>wxfc</i> | <i>fcwx</i>??
@@ -136,13 +136,13 @@ Runs a weather fetch.
 If a first argument exists and is not a zero, then the weather data is fetched immediately before returning.
 if there is a second argument, it determines whether the current (wx), forecast (fc), or both (wxfc/fcwx) is fetched.
 If there are no arguments, the fetch is run in the background for both current and forecast weather.
-<p>
+<br><br>
 The plug-in must import the command via:
-<PRE>
+<pre>
 hvImport WeatherSetVar
-</PRE>
+</pre>
 
-<p>
+<br><br>
 <b>WeatherSet</b>
 <pre>
 WeatherSet ?<i>current</i> | <i>forecast</i> | <i>both</i>? \
@@ -152,79 +152,79 @@ WeatherSet ?<i>current</i> | <i>forecast</i> | <i>both</i>? \
     <i>HVLatLong</i> | \
     <i>None</i> | <i>NWS</i> | <i>METAR</i> | <i>OpenWeather</i> | \
     <i>Go</i>
-</PRE>
+</pre>
 Sets station information
 and typically would be used before WeatherSetVar
 to set the station information to be used for current and forecast fetches.
 If <i>current</i>, <i>forecast</i> or <i>both</i> is not present as the first argument,
 then the setting is applied for both current and forecast weather.
 <i>WeatherSet Go</i> is identical to <i>WeatherSetVar 1 wxfc</i>.
-<p>
+<br><br>
 The plug-in must import the command via:
-<PRE>
+<pre>
 hvImport WeatherSet
-</PRE>
-<p>
+</pre>
+<br><br>
 "WeatherSet Station" is the same as "WeatherSetStation".
 "WeatherSetStation" remains available for backwards compatibility.
-<p>
+<br><br>
 The Timed method can also be used simultaneously.
 However, a plug-in triggered fetch will restart the <i>Read Interval</i> timer.
-<p>
+<br><br>
 <dt><b>Via The Web</b>
 <dd>
 Two additional commands are provided mainly to access weather information using <HV> tags in HTML pages.
 However, they can also be used by other plug-ins, similar to the method in the previous section.
-<p>
+<br><br>
 <b>WeatherGet</b>
 <pre>
 &lt;HV:Run WeatherGet ?Table? <i>weather_item</i> <i>?weather_item ...?</i>&gt;
 </pre>
 Returns weather information.
-<p>
+<br><br>
 If "Table" is present, a table will be returned, with a table header and one row per weather item.
 The table uses the same style as the built-in tables provided by the Web plug-in.
 However, the style can be overridden by use of additional style definitions.
-<p>
+<br><br>
 If "Table" is not present, weather data will be returned as a simple text string of concatenated weather items.
 An exception is the weather item <i>weathericon</i>,
 which will return an HTML &lt;img&gt; tag inserted in the string if other items are present.
-<p><i>Weather_items</i> can be any combination of the items found in the <i>Control Variable</i>
+<br><br><i>Weather_items</i> can be any combination of the items found in the <i>Control Variable</i>
 column of <a href="controlvars"><b>Table 2</b></a> and <a href="controlvars"><b>Table 3</b></a>. The names are not case-sensitive when used in tags.
-<p>
+<br><br>
 Weather items <i>WeatherIcon</i> and <i>FcImgn</i>,
 will return HTML &lt;img&gt; tags.
 If used in another plug-in (as opposed to within a web page), <i>WeatherGetIcon</i> should be used instead.
-<p>
+<br><br>
 <b>WeatherGetIcon</b>
 <pre>
 &lt;HV:Image png WeatherGetIcon <i>?icon?</i>&gt;
 </pre>
 Returns weather icon image via an HTML &lt;img&gt; tag.
 When used in a plug-in, <i>WeatherGetIcon</i> returns icon image data.
-<p>
+<br><br>
 If <i>icon</i> is specified, that icon will be provided.
 <i>Icon</i> may contain the  extension, or the extension may be omitted.
 If omitted, it is assumed to be ".png".
 If <i>icon</i> is not specified,
 the weather icon for the current weather is provided.
-<p>
+<br><br>
 <i>Icon</i> should be one of the icon names in the Icon column of <a href="hvwxvars"><b>Table 5</b></a> or one of the forecast icons.
-<p>
+<br><br>
 This method is slightly different from
 <pre>
 &lt;HV:Run WeatherGet WeatherIcon&gt;
 </pre>
 In fact, the Run method simply determines the weather icon for the current weather and calls an Image WeatherGetIcon command with the explicit icon name.
 The difference is only important if you use something similar to the example below.
-<p>
+<br><br>
 <b>Using WeatherSetVar and WeatherSet with HV:Run Tags</b>
-<p>
+<br><br>
 Tags using WeatherGet or WeatherGetIcon typically display data for the <u>current</u> weather
 (i.e., the last weather info fetched).
 They do not fetch new weather data on their own.
 However, WeatherSetVar and WeatherSet can be used in a Run tag to get new data for specific stations.
-<p>
+<br><br>
 Examples:
 <pre>
 &lt;HV:Run WeatherSet Station KNYC CentralPark&gt;
@@ -237,7 +237,7 @@ Examples:
 </pre>
 
 produces a table of info for Central Park, followed by one with info for Wasilla.
-<p>
+<br><br>
 Notes:
 <ul>
 <li>Running WeatherSet and WeatherSetVar in a web page changes the weather info stored by the Weather plug-in,
@@ -249,10 +249,10 @@ Normally, data is fetched from the Internet in the background. However, in the w
 new data may not arrive in time to be captured by a following Run tag.
 </li></ul>
 
-<p>
+<br><br>
 See the Web plug-in Help pages for more info on the Run and Image tags.
 Web plug-on 4.0 or later is required for this functionality.
-<p>
+<br><br>
 <dt><b>Via The NetIO Server Plug-in</b>
 <dd>
 A weather fetch is triggered by the NetIO Server plug-in
@@ -265,7 +265,7 @@ or
 events wx|fc|wxfc|fcwx
 </pre>
 For more details, see <a href="netio">Weather Info for NetIO</a>.
-<p>
+<br><br>
 <dt><b>Via The Control Plug-in</b>
 <dd>
 A weather fetch is triggered by the Control plug-in
