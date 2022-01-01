@@ -43,7 +43,6 @@ A Script tag that sources the weather websocket functions (<i>wxwebsocket.js</i>
 </li><li>
 A JavaScript array that describes how to handle each tag.
 </li></ul>
-<br>
 Example:
 <pre>
     &lt;center&gt;
@@ -89,7 +88,6 @@ Example:
      ]
      &lt;/script&gt;
 </pre>
-<br>
 Let's go through this rather simple example.
 <br><br>
 The first part has a series of HTML tags that will show the current weather icon and the current wind,
@@ -120,7 +118,6 @@ comes AFTER
 <pre>
     &lt;script src="hvwebsocket.tcl" type="text/javascript"&gt;&lt;/script&gt;
 </pre>
-<br>
 Lastly, the hvobjs array is set up with an entry for each weather item.
 There are two separate "sub-arrays", one for current weather info - "wx", and one for forecast info - "fc".
 <ul>
@@ -134,7 +131,6 @@ Index "1" through "7" contain the day-specific forecast information for day "n".
 The "function" and "type" parts specify the weather helper function and its "sub-function".
 The helper function retrieves specific weather information from data received over the websocket.
 </li></ul>
-<br>
 <b>Weather Helper Functions</b>
 <br><br>
 The weather helper functions are divided into two main functions: "wxf" for current weather, and "fcf" for forecast weather.

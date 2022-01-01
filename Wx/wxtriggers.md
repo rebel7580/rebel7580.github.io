@@ -13,7 +13,7 @@
 <br><br>
 The plug-in can triggered by the following methods:
 <dl>
-<dt><b>Timed</b>
+<dt><b>Timed</b></dt>
 <dd>
 Select the <a href="webwx"><i>Data Source</i></a> tab and make sure <i>Enable Fetch</i> is checked
 and the <i>Read Interval</i> is set to the desire fetch interval (in minutes).
@@ -23,7 +23,7 @@ plug-in will fetch the weather data.
 <br><br>
 <b>This is the most common method to trigger weather fetches.</b>
 <br><br>
-<dt><b>Via Serial Commands</b>
+<dt><b>Via Serial Commands</b></dt>
 <dd>
 Weather related serial commands allow your HomeVision Controller schedule
 to control how the Weather plug-in fetches and speaks the weather
@@ -60,7 +60,7 @@ Enable/disable fetching of weather info.
 (Sets/clears the <i>Fetch Enable</i> checkbox in the Configuration <a href="webwx"><i>Data Source</i></a> tab.)
 No weather can be fetched by any means when disabled
 </dd>
-
+<br><br>
 <dt><pre>weather: fetch bkgnd</pre></dt>
 <dd>
 Fetches new weather info in the background.
@@ -71,31 +71,31 @@ an immediate fetch is not reliable as it may cause the serial command to time ou
 Restarts the Read Interval timer.
 <i>Fetch Enable</i> must be set.
 </dd>
-
+<br><br>
 <dt><pre>weather: speak never|always|serialonly</pre></dt>
 <dd>
 Controls  speaking of the weather.
 (Sets the <i>Never</i>, <i>Always</i>, or <i>Serial Cmd Only</i> radio button in the Configuration <a href="speechwx"><i>Speech</i></a> tab.)
 </dd>
-
+<br><br>
 <dt><pre>weather: speak now</pre></dt>
 <dd>
 Speak the current weather.
 <i>Always</i> or <i>Serial Cmd Only</i> must be set.
 </dd>
-
+<br><br>
 <dt><pre>weather: hvwxvars enable|disable</pre></dt>
 <dd>
 Enable/disable loading of the HomeVision Controller weather variables when the weather is fetched.
 (Sets/clears the <i>Enable Update</i> checkbox
 in the Configuration <a href="hvwxvars"><i>HV Vars</i></a> tab.)
 </dd>
-
+<br><br>
 <dt><pre>weather: station "<i>stationid</i>"</pre></dt>
 <dd>
 Set the Station ID for current weather. <i>stationid</i> <b>must</b> be contained within quotes.
 </dd>
-
+<br><br>
 <dt><pre>
 weather: current|forecast|both station "<i>stationid</i>"
 weather: current|forecast|both zipcode "<i>zipcode</i>"
@@ -108,7 +108,7 @@ The location value <b>must</b> be contained within quotes.
 Note for the latlong value, the latitude and longitude are separated with a "," but no spaces.
 The location type is also selected as the current source.
 </dd>
-
+<br><br>
 <dt><pre>
 weather: current|forecast|both none
 weather: current|forecast|both NWS
@@ -121,8 +121,7 @@ The data source types are not case sensitive.
 METAR is only valid for current weather.
 </dd>
 </dl>
-<br><br>
-
+<br>
 <dt><b>Via Other Plug-ins</b>
 <dd>
 A weather fetch can be triggered from other plug-ins
