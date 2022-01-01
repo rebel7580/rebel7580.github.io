@@ -455,7 +455,8 @@ the MQTT broker will send it right back to the plug-in,
 which will then set the object to the requested state.
 If the command topic causes an object state change, the plug-in completes the sequence by publishing a state topic showing the new state.
 Here's a sequence chart example that might make it more clear:
-```    HomeVision              Plug-in                       MQTT Broker
+```
+    HomeVision              Plug-in                       MQTT Broker
 
                      Right-click X-10 object "Den"
                          and click "Toggle":
