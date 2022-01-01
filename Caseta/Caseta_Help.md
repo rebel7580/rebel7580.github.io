@@ -133,7 +133,6 @@ If a variable is selected, an additional option is available.
 If "Use Variable as Flag" is NOT selected, then the received value is written as a 1-byte integer number to the specified Variable.
 </li>
 </ul>
-</li>
 <li>
 Macros can be assigned for "On" and "Off" states.
 The same macro can be assigned to both states, or different macros can be assigned.
