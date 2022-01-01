@@ -52,10 +52,10 @@ Serial port 1 (Main serial port):
 </pre>
 This serial command has no effect on the <i>Read Interval</i> timer.
 </dd>
-</dl>
 <br>
-<b> Complete List of Weather Related Serial Commands</b>
+<dt><b> Complete List of Weather Related Serial Commands</b></dt>
 <br><br>
+<dd>
 <dl>
 <dt><pre>weather: fetch enable|disable</pre></dt>
 <dd>
@@ -124,6 +124,7 @@ The data source types are not case sensitive.
 METAR is only valid for current weather.
 </dd>
 </dl>
+</dd>
 <br>
 <dt><b>Via Other Plug-ins</b></dt>
 <dd>
