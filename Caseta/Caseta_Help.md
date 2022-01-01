@@ -4,6 +4,8 @@
 
 [Back to Caseta Index](/Caseta/Caseta_index)
 
+[How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to)
+
 <!-- $Revision: 1.3 $ -->
 <!-- $Date: 2019/11/08 20:22:51 $ -->
 <html>
