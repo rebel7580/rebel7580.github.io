@@ -176,7 +176,7 @@ However, a plug-in triggered fetch will restart the <i>Read Interval</i> timer.
 </dd>
 <dt><b>Via The Web</b></dt>
 <dd>
-Two additional commands are provided mainly to access weather information using <HV> tags in HTML pages.
+Two additional commands are provided mainly to access weather information using &lt;HV&gt; tags in HTML pages.
 However, they can also be used by other plug-ins, similar to the method in the previous section.
 <br><br>
 <b>WeatherGet</b>
