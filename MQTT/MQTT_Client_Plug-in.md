@@ -1013,8 +1013,8 @@ The *mqttlog* command has the following format:
 ``` tcl
     mqttLog *string* {*color*}
 ```
-* string*: String to log.
-*color*: If "debug" is imported into the calling proc,
+* *string*: String to log.
+* *color*: If "debug" is imported into the calling proc,
 will send string to the debug plug-in in *color*, Default: red.
 
 #### mqttReady
