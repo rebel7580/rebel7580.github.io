@@ -13,5 +13,6 @@
 <a href="wxws">Weather Websockets</a><br>
 <a href="custom">Custom Objects and Websockets</a><br>
 <a href="netio">Weather Info for NetIO</a><br>
+<a href="wxmqtt">Weather with MQTT</a><br>
 <br><font color="#0000FF"><b>See Also:</b></font><br>
 <a href="disclaimer">Disclaimer</a><br>

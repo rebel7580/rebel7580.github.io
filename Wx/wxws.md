@@ -237,6 +237,7 @@ and another button to trigger a new weather fetch with the new zipcode informati
 <font color="#0000FF"><b>Next:</b></font><br>
 <a href="custom.html">Custom Objects and Websockets</a><br>
 <a href="netio.html">Weather Info for NetIO</a><br>
+<a href="wxmqtt">Weather with MQTT</a><br>
 <font color="#0000FF"><b>See Also:</b></font><br>
 <a href="index.html">Introduction to the Weather Plug-in</a><br>
 <a href="webwx.html">Web-Based Weather Data</a><br>

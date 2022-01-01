@@ -279,6 +279,7 @@ Table 5 - Weather Condition Codes
 <a href="wxws">Weather Websockets</a><br>
 <a href="custom">Custom Objects and Websockets</a><br>
 <a href="netio">Weather Info for NetIO</a><br>
+<a href="wxmqtt">Weather with MQTT</a><br>
 <font color="#0000FF"><b>See Also:</b></font><br>
 <a href="index">Introduction to the Weather Plug-in</a><br>
 <a href="webwx">Web-Based Weather Data</a><br>

@@ -66,4 +66,6 @@ Data and database are open and licensed by Open Data Commons Open Database Licen
 <a href="wxtriggers">Triggering Weather Fetches</a><br>
 <a href="wxws">Weather Websockets</a><br>
 <a href="custom">Custom Objects and Websockets</a><br>
+<a href="netio">Weather Info for NetIO</a><br>
+<a href="wxmqtt">Weather with MQTT</a><br>
 
