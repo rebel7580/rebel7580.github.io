@@ -115,7 +115,6 @@ Examples:
 
     Result:         21&deg; 
 </pre>
-<p>
 </dd>
 <dt>Get forecast location (<i>Fcloc</i>).
 </dt>
@@ -165,7 +164,6 @@ For the image to be displayed,
 you must manually download image files from the appropriate weather web site
 and pre-load them into the NetIO application's data space.
 Since there are dozens of possible weather icons, getting icons may not be worth the effort.
-<p>
 <br>
 <br>
 <font color="#0000FF"><b>See Also:</b></font><br>
