@@ -27,7 +27,7 @@ The "custom" plug-in should provide the following:
 <dl>
 <dt>
 <b>get_update Procedure</b>
-<br>
+</dt><br>
 <br>
 <dd>
 The providing plug-in should have a public (via hvPublic) <b>get_update</b> procedure
@@ -40,7 +40,6 @@ to quickly get the object's initial status.
     <b>get_update</b> <i>{object_type}</i>
 </pre>
 
-<p>
 Where:
 <dl>
 <dt>
@@ -86,7 +85,6 @@ The "custom" plug-in should call the following:
 <dt>
 <b>wsupdate Procedure</b>
 </dt>
-
 <dd>
 This public procedure is made available in the <i>wxjsondata.hap</i> plug-in.
 (It may also be available in other plug-ins that want object state data.)
