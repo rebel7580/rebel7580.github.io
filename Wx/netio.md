@@ -89,7 +89,7 @@ or <a href="controlvars"><b>Table 3</b></a>, but is case-insensitive.
 <dd>Optional. If present, must be <b>best</b>.
 Only valid for FcDay, FcSc, FcLc, FcPop, FcImg items.
 Ignored otherwise.
-<p>
+
 Both "day" and "night" forecasts are available for any specific day.
 However, sometimes only one of the "day" and "night" sets of information
 for the first or last day are provided.
