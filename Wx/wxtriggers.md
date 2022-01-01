@@ -173,6 +173,7 @@ hvImport WeatherSet
 The Timed method can also be used simultaneously.
 However, a plug-in triggered fetch will restart the <i>Read Interval</i> timer.
 <br><br>
+</dd>
 <dt><b>Via The Web</b></dt>
 <dd>
 Two additional commands are provided mainly to access weather information using <HV> tags in HTML pages.
@@ -255,6 +256,7 @@ new data may not arrive in time to be captured by a following Run tag.
 See the Web plug-in Help pages for more info on the Run and Image tags.
 Web plug-on 4.0 or later is required for this functionality.
 <br><br>
+</dd>
 <dt><b>Via The NetIO Server Plug-in</b></dt>
 <dd>
 A weather fetch is triggered by the NetIO Server plug-in
@@ -267,6 +269,7 @@ or
 events wx|fc|wxfc|fcwx
 </pre>
 For more details, see <a href="netio">Weather Info for NetIO</a>.
+</dd>
 <br><br>
 <dt><b>Via The Control Plug-in</b></dt>
 <dd>
@@ -274,7 +277,6 @@ A weather fetch is triggered by the Control plug-in
 automatically when the Control plug-in starts up.
 This ensures that weather data variables in control screens are updated
 as soon as the Control plug-in starts.
-
 No user configuration is needed in either plug-in.
 </dd>
 <br><br>
