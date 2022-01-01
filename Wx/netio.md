@@ -165,6 +165,8 @@ and pre-load them into the NetIO application's data space.
 Since there are dozens of possible weather icons, getting icons may not be worth the effort.
 <br>
 <br>
+<font color="#0000FF"><b>Next:</b></font><br>
+<a href="webwx">Web-Based Weather Data</a><br>
 <font color="#0000FF"><b>See Also:</b></font><br>
 <a href="index">Introduction to the Weather Plug-in</a><br>
 <a href="webwx">Web-Based Weather Data</a><br>

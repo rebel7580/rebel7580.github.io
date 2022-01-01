@@ -119,6 +119,11 @@ See <a href="wxtriggers">Triggering Weather Fetches</a> for complete details of 
 <br>
 <br>
 <font color="#0000FF"><b>Next:</b></font><br>
+<a href="netio">Weather Info for NetIO</a><br>
+<font color="#0000FF"><b>See Also:</b></font><br>
+<a href="index">Introduction to the Weather Plug-in</a><br>
+<a href="webwx">Web-Based Weather Data</a><br>
+<a href="controlvars">Using Weather Control Variables</a><br>
 <a href="forecast">Forecast Examples</a><br>
 <a href="hvwxvars">HV Controller Weather Variables</a><br>
 <a href="localwx">Local Weather Data Files</a><br>
@@ -126,11 +131,6 @@ See <a href="wxtriggers">Triggering Weather Fetches</a> for complete details of 
 <a href="wxtriggers">Triggering Weather Fetches</a><br>
 <a href="wxws">Weather Websockets</a><br>
 <a href="custom">Custom Objects and Websockets</a><br>
-<a href="netio">Weather Info for NetIO</a><br>
-<font color="#0000FF"><b>See Also:</b></font><br>
-<a href="index">Introduction to the Weather Plug-in</a><br>
-<a href="webwx">Web-Based Weather Data</a><br>
-<a href="controlvars">Using Weather Control Variables</a><br>
 <a href="disclaimer">Disclaimer</a><br>
 </body>
 </html>
