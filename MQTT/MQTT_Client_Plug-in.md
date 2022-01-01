@@ -135,7 +135,8 @@ The following command topic is supported (using default prefixes and postfixes) 
 <br>Payloads are case-insensitive for incoming messages.<br>
 *level* is expressed as a percentage, 0-100.
 For X-10 devices, it  is converted to the nearest discrete level supported.
-Any status reports back will have the discrete level.
+Any status message will report back the discrete level as a percentage, so it may not match exactly what was received.
+For example, sending level "60" to an X-10 Standard lamp module will return "56".
 <br>
 ** "?" for those external entities that don't allow an empty payload.
 <br>
