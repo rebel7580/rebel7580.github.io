@@ -655,19 +655,19 @@ a subset of variables can be selected for each method.
 <ul>
 <li>
 Open the Configuration dialog: Plugins-&gt;Weather.
-<li>
+</li><li>
 Select the <i>Ctrl/Web/MQTT Vars</i> tab.
-<li>
+</li><li>
 Select <i>Control</i>, <i>Web</i>, or <i>MQTT</i> in the <i>Variable Type</i> section.
-<li>
+</li><li>
 Select <i>Current</i> to see the Inactive and Active lists of current weather variables for that type.
 Variables on the Active list will be sent when weather information is fetched.
-<li>
+</li><li>
 To move a variable from one list to the other,
 double-click it or
 select the variable(s) and click on the corresponding arrow.
-</ul>
-<br>
+</li></ul>
+<br><br>
 <center><img alt="Control Variable Selection" src="ctlvarcur.gif"></center>
 <br><br>
 If only the current weather or only the forecast weather is being used,
@@ -697,7 +697,7 @@ the values of the weather variables using the Control Variable names in
 For example, to display the temperature in degrees
 Fahrenheit on a widget - add a new widget, select a style, and then
 setup the text tab on the label properties screen similar to this:
-<br>
+<br><br>
 <center><img alt="Text Properties Dialog" src="textproperties.gif"></center>
 <br><br>
 <i>TempF</i>

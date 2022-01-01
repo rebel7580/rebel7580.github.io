@@ -10,11 +10,11 @@
 <body style="" lang="EN-US" link="blue" vlink="purple">
 
 <font color="#0000ff" size="12"><b>Forecast Examples</b></font>
-<p>
+<br><br>
 <b>
 Forecast Example 1
 </b>
-<p>
+<br><br>
 Here is an example of using the forecast data in a Control plug-in screen,
 optimized for Weatherbug forecasts. (Layout courtesy of Bob Gardner.)
 
@@ -23,11 +23,11 @@ optimized for Weatherbug forecasts. (Layout courtesy of Bob Gardner.)
 <br>
 
 Day names, Icons and forecasts use the "day" variables only.
-<p>
+<br><br>
 <b>
 Forecast Example 2
 </b>
-<p>
+<br><br>
 Here is an example based on NWS forecasts, using the same screen layout.
 
 <br>
@@ -45,11 +45,11 @@ FcImg1 and FcLc1 using conditional expressions like the following:
 <center><img  alt="Forecast Example" src="forecastwidget1.gif"></center>
 <br>
 The rest of the forecast can use the "day" variables without using expressions.
-<p>
+<br><br>
 <b>
 Forecast Example 3
 </b>
-<p>
+<br><br>
 Here is an example based on NWS forecasts, using separate "day" and "night" sections:
 
 <br>
@@ -60,8 +60,8 @@ A technique similar to the above can be used to make sure
 all items are NOT displayed if the icon is not available.
 <br>
 Not valid for OpenWeather forecasts, as it does not have day/night distinctions.
-<p>
-<br><font color="#0000FF"><b>Next:</b></font><br>
+<br><br>
+<font color="#0000FF"><b>Next:</b></font><br>
 <a href="hvwxvars">HomeVision Controller Weather Variables</a><br>
 <a href="localwx">Local Weather Data Files</a><br>
 <a href="speechwx">Speaking Weather Data</a><br>
