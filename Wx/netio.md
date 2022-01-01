@@ -166,7 +166,7 @@ Since there are dozens of possible weather icons, getting icons may not be worth
 <br>
 <br>
 <font color="#0000FF"><b>Next:</b></font><br>
-<a href="webwx">Web-Based Weather Data</a><br>
+<a href="wxmqtt">Weather with MQTT</a><br>
 <font color="#0000FF"><b>See Also:</b></font><br>
 <a href="index">Introduction to the Weather Plug-in</a><br>
 <a href="webwx">Web-Based Weather Data</a><br>
@@ -176,8 +176,8 @@ Since there are dozens of possible weather icons, getting icons may not be worth
 <a href="localwx">Local Weather Data Files</a><br>
 <a href="speechwx">Speaking Weather Data</a><br>
 <a href="wxtriggers">Triggering Weather Fetches</a><br>
+<a href="wxws">Weather Websockets</a><br>
 <a href="custom">Custom Objects and Websockets</a><br>
-<a href="wxmqtt">Weather with MQTT</a><br>
 <a href="disclaimer">Disclaimer</a><br>
 
 

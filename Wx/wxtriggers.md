@@ -284,8 +284,8 @@ No user configuration is needed in either plug-in.
 <dt><b>Via MQTT</b></dt>
 <dd>
 Most setting can be set and weather fetches triggered via MQTT.
-See the <b>MQTT Setup</b> section of <a href="hvwxvars">HomeVision Controller Weather Variables</a>
-for details.
+See <a href="wxmqtt">Weather with MQTT</a><br>
+for complete details of the Weather with MQTT.
 </dd>
 </dl>
 <br>

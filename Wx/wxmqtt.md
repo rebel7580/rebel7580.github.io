@@ -12,7 +12,7 @@
 <font color="#0000ff" size="12"><b>Weather with MQTT</b></font>
 
 <br><br>
-The Weather plug-in can send via MQTT the <i>current</i> and <i>forecast</i> weather if available in the retrieved weather data.
+The Weather plug-in can send via MQTT selected <i>current</i> and <i>forecast</i> weather items, if available in the retrieved weather data.
 <br><br>
 
 <b>MQTT Setup</b>
@@ -118,8 +118,6 @@ See <a href="wxtriggers">Triggering Weather Fetches</a> for complete details of 
 
 <br>
 <br>
-<font color="#0000FF"><b>Next:</b></font><br>
-<a href="netio">Weather Info for NetIO</a><br>
 <font color="#0000FF"><b>See Also:</b></font><br>
 <a href="index">Introduction to the Weather Plug-in</a><br>
 <a href="webwx">Web-Based Weather Data</a><br>
@@ -131,6 +129,7 @@ See <a href="wxtriggers">Triggering Weather Fetches</a> for complete details of 
 <a href="wxtriggers">Triggering Weather Fetches</a><br>
 <a href="wxws">Weather Websockets</a><br>
 <a href="custom">Custom Objects and Websockets</a><br>
+<a href="netio">Weather Info for NetIO</a><br>
 <a href="disclaimer">Disclaimer</a><br>
 </body>
 </html>
