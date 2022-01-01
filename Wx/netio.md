@@ -10,11 +10,11 @@
 <body style="" lang="EN-US" link="blue" vlink="purple">
 
 <font color="#0000ff" size="12"><b>Weather Info for NetIO</b></font>
-<p>
+<br><br>
 The Weather plug-in supplies built-in "custom" procedures (netio, netioaction and get_update) to support NetIO. 
-<p>
+<br><br>
 <b>Triggering a Weather Fetch via NetIO</b>
-<p>
+<br><br>
 A weather fetch can be triggered in the NetIO application by the <i>netioaction</i> command:
 <pre>
     <b>netioaction wx</b>|<b>fc</b>|<b>wxfc</b>|<b>fcwx</b> <b>update</b>
@@ -23,11 +23,11 @@ A weather fetch can be triggered in the NetIO application by the <i>netioaction<
 fetches both (the order is not significant).
 When this command is executed, the NetIO Server plug-in calls the <i>netioaction</i> procedure which the Weather plug-in recognizes.
 The requested weather data is fetched immediately.
-<p>Note 1: When <b>wx</b> or <b>fc</b> is used, older data for the opposite type may exist.
+<br><br>Note 1: When <b>wx</b> or <b>fc</b> is used, older data for the opposite type may exist.
 <br>Note 2: The command does not reset the current Read Interval.
-<p>
+<br><br>
 This is the preferred way to explicitly update weather data.
-<p>
+<br><br>
 Example:
 <dl>
 <dt>Fetch the latest current and forecast data.
@@ -38,7 +38,7 @@ sends: netioaction wxfc update
 </pre>
 </dd>
 </dl>
-<p>
+<br><br>
 The Weather plug-in can also fetch weather data 
 by providing a weather specifier as one of the "objects" in the <i>events</i> command:
 <pre>
@@ -51,12 +51,12 @@ Otherwise, this command works identically to the <i>netioaction</i> command abov
 <br>
 <br>
 <b>Getting Weather Items via NetIO</b>
-<p>
+<br><br>
 The Weather plug-in provides a <i>netio</i> procedure to return weather information in response to NetIO <i>get</i> commands.
-<p>
+<br><br>
 Possible weather items for NetIO use are the same as those for the Control and Web plug-ins. 
 However, there is no need to configure which items are available - all are.
-<p>
+<br><br>
 <dl>
 <dt>The <i>get</i> command for weather has the following format:
 </dt>
@@ -102,7 +102,7 @@ The <i>get</i> command may consist of several separate commands.
 Multiple commands are separated with semi-colons.
 The keyword <i>get</i> is only needed once but could be present for each command.
 Each command can be a different object type.
-<p>
+<br><br>
 Examples: 
 <dl>
 <dt>Get current temperature in Celsius (<i>TempC</i>).

@@ -219,7 +219,6 @@ If the "custom" objects need unique helper functions,
 then they should be included in a separate javascript file.
 </dd>
 </dl>
-<p>
 <br>
 <br>
 <font color="#0000FF"><b>Next:</b></font><br>
