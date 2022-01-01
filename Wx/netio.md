@@ -64,9 +64,7 @@ However, there is no need to configure which items are available - all are.
 <pre>
 <b>get</b> <b>wx</b>|<b>fc</b> <i>weather_item</i> ?<b>best</b>? ?;?<b>get</b>? <b>wx</b>|<b>fc</b> <i>weather_item</i> ?<b>best</b>?<i> ...</i>?
 </pre>
-<p>
 </dd>
-</dl>
 Where:
 <dl>
 <dt>
@@ -160,6 +158,7 @@ Get either the day (preferred) or night short forecast for day one, depending on
     Result:         Wed Night: Mostly Cloudy
 </pre>
 </dd>
+</dl>
 </dl>
 <i>A Note about weather icons</i>: Getting a weather icon (img) returns an <i>image name</i>, complete with its extension (i.e., cond001.png), not the image itself.
 For the image to be displayed,
