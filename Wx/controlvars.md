@@ -738,7 +738,6 @@ one with just the names of the data, right-justified,
 a second one abutting it on the right, with data values left-justified,
 and a third one (like the above example)
 with just the weather icon image overlaid on the first one near the bottom.
-
 <br>
 <center><img  alt="Weather Example" src="weatherexample.gif"></center>
 <br><br>
@@ -746,100 +745,13 @@ with just the weather icon image overlaid on the first one near the bottom.
 <br><br>
 When <i>MQTT</i> is selected in the <i>Variable Type</i> section, The <i>MQTT Settings</i> section is enabled for editing.
 <br><br>
-<i>Sending Weather Information</i>
-<br><br>
 To send weather information via MQTT, define a <i>State Topic</i> to use.
 If you wish the state messages to be retained by the MQTT broker, check <i>Set Retain Flag</i>.
 <br><br>
-Current and forecast weather is sent in separate MQTT messages with the same topic.
-The payload is in JSON format.
-<br><br>
-Current weather example (formatted for readability):
-<pre>
-{
-    "wx": {
-        "location":"Lincroft, New Jersey, US",
-        "lat":40.36,
-        "long":-74.13,
-        "temp":"66 F (19 C)",
-        "humidity":72,
-        "pressure":"29.88\"",
-        "weather":"Clear sky",
-        "wind":"From the southwest at 3 MPH",
-        "uvi":0,
-        "sunrise":"06:50:04 AM",
-        "sunset":"06:43:59 PM"
-    }
-}
-</pre>
-<br><br>
-Forecast weather example (formatted for readability):
-<pre>
-{
-    "fc": {
-        "loc": "Lincroft, New Jersey, US",
-        "time":"28 Sep 2021 03:33:16 PM",
-        "day1": {
-            "clouds": 76,
-            "day": "Tue",
-            "flhi": 73,
-            "lc": "Moderate rain",
-            "pop": 100
-        },
-        "day2": {
-            "clouds": 1,
-            "day": "Wed",
-            "flhi": 65,
-            "lc": "Clear sky",
-            "pop": 5
-        },
-        "day3": {
-            "clouds": 17,
-            "day": "Thu",
-            "flhi": 61,
-            "lc": "Few clouds",
-            "pop": 0
-        }
-    }
-}
-</pre>
-Note that in the forecast payload, there may be some general items, like "loc", and then forecast-day specific items. These are grouped under "day1", "day2", etc.. Only days that have Active variables will show up. For example, if you only made Active items for "Day2" and "Day4", there will be no "Day1", "Day3", "Day5", "Day6" or "Day7" in the JSON payload.
-<br><br>
-<i>Controlling Weather Settings</i>
-<br><br>
 To control weather settings via MQTT,
 define a "Command Topic" to use.
-The payload to use is identical to "WeatherSetVar" and "WeatherSet".
 <br><br>
-Examples, assuming the <i>Command Topic</i> is set to "cmnd/weather/set":
-<br><br>
-Set <i>Location Selection</i> to "HVLatLong":
-<pre>
-    Topic: cmnd/weather/set
-    Payload: "WeatherSet HVLatLong"
-</pre>
-Set <i>Location Selection</i> to "Lat/Long", with new values:
-<pre>
-    Topic: cmnd/weather/set
-    Payload: "WeatherSet LatLong 40 -74"
-</pre>
-Set <i>Data Source</i> to "NWS" for both current and forecasts:
-<pre>
-    Topic: cmnd/weather/set
-    Payload: "WeatherSet NWS"
-</pre>
-Set <i>Data Source</i> to "OpenWeather" for forecasts:
-<pre>
-    Topic: cmnd/weather/set
-    Payload: "WeatherSet forecast OpenWeather"
-</pre>
-Trigger a Weather fetch in the background:
-<pre>
-    Topic: cmnd/weather/set
-    Payload: "WeatherSetVar"
-</pre>
 See <a href="wxtriggers">Triggering Weather Fetches</a> for complete details of the WeatherSet and WeatherSetVar syntax.
-
 <br>
 <br>
 <font color="#0000FF"><b>Next:</b></font><br>
@@ -851,6 +763,7 @@ See <a href="wxtriggers">Triggering Weather Fetches</a> for complete details of 
 <a href="wxws">Weather Websockets</a><br>
 <a href="custom">Custom Objects and Websockets</a><br>
 <a href="netio">Weather Info for NetIO</a><br>
+<a href="wxmqtt">Weather with MQTT</a><br>
 <font color="#0000FF"><b>See Also:</b></font><br>
 <a href="index">Introduction to the Weather Plug-in</a><br>
 <a href="webwx">Web-Based Weather Data</a><br>
