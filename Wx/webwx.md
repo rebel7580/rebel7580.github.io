@@ -10,13 +10,15 @@
 <body style="" lang="EN-US" link="blue" vlink="purple">
 
 <font color="#0000ff" size="12"><b>Web-Based Weather Data</b></font>
-<p>
+<br>
+<br>
 This mode gets weather data from a web site operated by the
 U.S. National Weather Service (NWS) or OpenWeather.org.
 The NWS supplies XML-formatted or METAR-formatted weather data.
 NWS XML data is available for locations in the U.S. and some of its possessions.
 METAR data is available for locations worldwide.
-OpenWeather.org provides JSON formatted weather data and is available for locations worldwide.</p>
+OpenWeather.org provides JSON formatted weather data and is available for locations worldwide.
+<br>
 <br>
 <b>Configuring for Web-based Data</b>
 <ul>
@@ -141,7 +143,9 @@ Table 1 - Data Source/Station Selection
 </div>
 <br>
 Notes:
-<p><sup>1</sup> METAR only supports current weather.
+<br>
+<br>
+<sup>1</sup> METAR only supports current weather.
 <br>
 <sup>2</sup> StationID cannot be used directly for NWS forecasts or either current or forecasts for OpenWeather,
 so the StationID's latitude and longitude is used instead.
@@ -155,24 +159,29 @@ If none are found, uses HV location latitude/longitude.
 <sup>4</sup> Latitude and Longitude values are used to find the closest StationID found in Station Data.
 A "square" of approximately 400 mi/650 km per side is searched for the nearest station.
 If no stations are found, the fetch will fail.
-</p>
+<br>
+<br>
 <i>About Station Selection</i>
-<p>
+<br>
+<br>
 As can be seen, there are multiple choices for where to get weather data,
 and how to specify the locations to be reported.
-<p>
+<br>
+<br>
 OpenWeather uses Latitude and Longitude to determine weather.
 If StationID or ZipCode are selected, the plug-in attempts to find required Latitude and Longitude.
 If it can't, no weather if fetched.
-<p>
+<br>
+<br>
 The StationID can be manually entered into the StationID field
 if it is already known.
 Station IDs must be 4 or 5 alphanumeric characters in length.
 Most land-based station IDs are 4 characters.
-</p><br>
+<br>
+<br>
 <center><img  alt="Station Configure" src="wxconfigstation1.gif">.</center>
 <br>
-<p>
+<br>
 Optionally, the plug-in can get a list of available
 <a href="http://w1.weather.gov/xml/current_obs">U.S. StationIDs</a>,
 organized by state/possession, by clicking on <i>Get Stations</i>.
@@ -181,7 +190,8 @@ Choose a state,
 and click on the desired station in the list.
 To populate the StationID fields in the <i>Stations</i> tab,
 click the appropriate button at the bottom of the screen.
-</p><p>
+<br>
+<br>
 Note: <i>Retrieve Stations</i> only produces a list of U.S.-based stations.
 Most of these stations directly support both NWS and METAR current weather reports
 and can support current and forecast OpenWeather weather reports if latitude and longitude are reported for the desired station.
@@ -192,8 +202,8 @@ to find the station you want.
 <br><br>
 StationIDs do not need to be in the current station list; however, those combinations in <b>Table 1</b>
 that depend on a station's latitude/longitude information will not work.
-</p>
-<p>
+<br>
+<br>
 After the list of stations is fetched from the web once,
 a local cache file is kept for future use.
 If this file exists when the Weather plug-in starts,
@@ -201,8 +211,8 @@ it will read station info from it
 faster than downloading it again from the web.
 The station data does not need to be updated from the web more than once
 (except in the rare case that a new station is added that you want to use.)
-</p>
-<p>
+<br>
+<br>
 <i><b>Note: The station web file contains a very large number of stations,
 many of which do not provide any useful weather information.
 Depending on the Internet connection and PC speed,
@@ -211,7 +221,8 @@ the download and processing of the station list may take a long time.
 To decrease the size of the saved cache file (and decrease the time it takes to load it again at plug-in startup),
 check the "Retrieve Short List" checkbox. This filters out stations with other than 4 character IDs (unless the station name contains "air")
 and any with IDs that consist of the state abbreviation followed by numerals.
-<p>
+<br>
+<br>
 Even with this filter, some stations will still be useless (i.e., not presenting any weather info).
 You can "hide" useless stations by right-clicking on them and selecting "Hide".
 You can "unhide" them in a similar way.
@@ -223,8 +234,8 @@ As with hidden stations, deleted stations will show in the list or not,
 depending on the "Show Hidden Stations" setting.
 Stations marked for deletion can be changed back to hidden or unhidden until
 "OK" is clicked, at which point they are permanently deleted from the station list and the station cache file.
-</p>
-<p>
+<br>
+<br>
 If you use NWS and select latitude/longitude or HV location as station selectors,
 the plug-in will search the the station list for the closest station.
 Hidden stations are ignored during the search.
@@ -237,7 +248,8 @@ will launch your default browser
 using the reporting latitude and longitude in a maps query.
 There is a "Map Selected Station" in the "Get Stations" configuration screen
 That will map the selected station there.
-<p>
+<br>
+<br>
 You can modify the mapping URL by going to <i>Data Source</i> and clicking on
 <i>Edit Web and File Links</i>.
 Within the Map URL, create your URL and use &lt;lat&gt; and &lt;lon&gt; as placeholders for latitude and longitude.
@@ -256,7 +268,7 @@ In the <i>Units</i> section, select the desired time format, temperature scale,
 wind speed and pressure units.
 If "HV Pref" for Time Format or Temp Scale is chosen, the Weather plug-in uses
 the corresponding setting in HomeVisionXL's Preferences.
-</li></p>
+</li>
 <br>
 <center><img  alt="General Configure" src="wxconfiggeneral.gif">.</center> <br>
 <br>
@@ -274,7 +286,8 @@ Day periods start at 06:00
 and night periods start at 18:00.
 OpenWeather has POP for up to 7 daily periods (no day/night).
 See <a href="controlvars">Using Weather Control Variables</a> for details of POP Control Variables.
-<p>
+<br>
+<br>
 To store a POP value to the HomeVision Controller,
 in the <i>Forecast Settings</i> section set <i>Prop. of Precip.</i>
 to the number of hours in the future for which the POP is desired.
@@ -289,15 +302,19 @@ Note also, for the POP to be loaded into the HomeVision Controller, a controller
 </li>
 <li>
 Press <i>OK</i> to save changes.
-<p>
+<br>
+<br>
 Once the plug-in is configured,
 current settings are saved even if HomeVisionXL is exited.
-</p><p>
+<br>
+<br>
 Pressing <i>Cancel</i>
 will discard all changes made during the current configuration session,
 except for the stations list, if downloaded.</li>
 </ul>
-<br><font color="#0000FF"><b>Next:</b></font><br>
+<br>
+<br>
+<font color="#0000FF"><b>Next:</b></font><br>
 <a href="controlvars">Using Weather Control Variables</a><br>
 <a href="forecast">Forecast Examples</a><br>
 <a href="hvwxvars">HomeVision Controller Weather Variables</a><br>

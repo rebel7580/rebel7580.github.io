@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- $Revision: 1.9 $ -->
 <!-- $Date: 2021/10/05 05:17:50 $ -->
 <html>
@@ -67,5 +66,4 @@ Data and database are open and licensed by Open Data Commons Open Database Licen
 <a href="wxtriggers">Triggering Weather Fetches</a><br>
 <a href="wxws">Weather Websockets</a><br>
 <a href="custom">Custom Objects and Websockets</a><br>
-</body>
-</html>
+
