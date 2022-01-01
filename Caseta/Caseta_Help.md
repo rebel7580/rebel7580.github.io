@@ -19,21 +19,18 @@ Caseta switches are automatically configured in the plug-in using a file obtaine
 <li>Before you can set up the plug-in, you must configure the lights and scenes within the Lutron application.
 The names you assign to your switches are the names you will use in the plug-in.
 </li>
-<br><br>
 <li>
 If you are using the iOS version of the Lutron application, you will need to access the OS settings and find the Lutron application. After you select the Lutron application, enable Advanced settings. Once you have enabled the Advanced settings go back to the Lutron application.
 <br>
 <br>
 If you are using the Android version of the Lutron application, go to settings within the Lutron application and click the check box to show Advanced settings.
 </li>
-<br><br>
 <li>
 Choose Integration and then
 "enable telnet support"
 and then
 "Send integration report".
 </li>
-<br><br>
 <li>
 The integration report will be sent to your email address that you have registered via the application. 
 Copy the configuration and save it to a file on the computer running HomeVisionXL.
@@ -43,17 +40,15 @@ The plug-in will read this file and pick up the switch names.
 Note: If you subsequently add or remove any Caseta devices, you must generate a new integration report and create an up-to-date json file.
 You must restart the Caseta plug-in to read any changes to the json file for them to take effect.
 </li>
-<br><br>
 <li>
 Find the IP of the Lutron Smart Bridge Pro. It might make sense to lock this IP in (make it static) on your router so it doesn't change.
 </li>
-<br><br>
 <li>
 Proceed to Caseta plug-in configuration by enabling the Caseta plug-in
 and going to the Caseta entry in the HomeVisionXL <i>Plugins</i> menu.
 </li>
 </ol>
-
+<br><br>
 <h3>Settings Tab</h3>
 <ul>
 <li>
