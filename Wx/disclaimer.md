@@ -8,7 +8,7 @@
 <body style="" lang="EN-US" link="blue" vlink="purple">
 
 <font color="#0000ff" size="12"><b>Weather Plug-in - Disclaimer</b></font>
-<h2> NOAA/NWS/METAR</h2><br>
+<h2>NOAA/NWS/METAR</h2>
 The Weather plug-in uses <b><i>data</i></b> and <b><i>icons</i></b> provided by the U.S. Government.
 As such, this data is in the public domain and is free to use, subject to the following:
 <br>
@@ -56,8 +56,7 @@ the NWS material incorporated and stating that such material is not subject to c
 For more information go to <a href="http://www.weather.gov/disclaimer.php">http://www.weather.gov/disclaimer.php</a>
 <br>
 <br>
-
-<h2>OpenWeather.org</h2><br>
+<h2>OpenWeather.org</h2>
 You can freely use OpenWeather's products and data for non-commercial or commercial purposes by crediting OpenWeather (TM) as a weather data provider in your product.
 <br>
 <br>
