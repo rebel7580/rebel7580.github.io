@@ -147,6 +147,7 @@ Choose whether to log messages sent to or received from this device.
 Click "OK" to accept edits or "Cancel" to discard edits.
 </li>
 </ul>
+</li>
 <li>
 When "Done" is clicked, if there were changes, the client connection to the Lutron Smart Bridge Pro is restarted.
 </li>
