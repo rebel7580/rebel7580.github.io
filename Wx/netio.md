@@ -145,8 +145,7 @@ Examples:
     Result:         High/Low: 43/21
 </pre>
 </dd>
-<dt>
-Get either the day (preferred) or night short forecast for day one, depending on which is available:
+<dt>Get either the day (preferred) or night short forecast for day one, depending on which is available:
 </dt>
 <dd>
 <pre>
