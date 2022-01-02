@@ -600,7 +600,6 @@ Table 3 - Forecast Control Variables
   </tbody>
  </table>
 </div>
-<br><br>
 * Case sensitive
 <br><br>
 Notes:
