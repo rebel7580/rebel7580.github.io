@@ -67,12 +67,12 @@ Control plug-in, the web and MQTT the <i>current weather</i> info in <b>Table 2<
     <tr>
       <td>ObservationTime</td>
       <td>Time of latest observation</td>
-      <td>Last Updated on Aug 3, 1:53 PM<sup>7</sup></td>
+      <td>Last Updated on Jan 3, 1:53 PM<sup>7</sup></td>
     </tr>
     <tr>
       <td>ObservationTimerfc822</td>
       <td>Latest observation in ARPA format </td>
-      <td>Thu, 3 Aug 2008 13:53:00 -0400 EDT</td>
+      <td>Thu, 3 Jan 2022 13:53:00 -0400 EDT</td>
     </tr>
     <tr>
       <td>Weather</td>
