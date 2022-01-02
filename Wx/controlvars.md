@@ -297,7 +297,6 @@ Control plug-in, the web and MQTT the <i>current weather</i> info in <b>Table 2<
   </tbody>
 </table>
 </div>
-<br><br>
 * Case sensitive
 <br><br>
 Notes:
