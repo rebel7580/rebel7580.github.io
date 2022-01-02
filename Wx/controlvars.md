@@ -751,7 +751,7 @@ If you wish the state messages to be retained by the MQTT broker, check <i>Set R
 To control weather settings via MQTT,
 define a "Command Topic" to use.
 <br><br>
-See <a href="wxmqtt">Weather with MQTT</a><br>
+See <a href="wxmqtt">Weather with MQTT</a>
 for complete details of the Weather with MQTT.
 <br>
 <br>
