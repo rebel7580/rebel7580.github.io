@@ -57,7 +57,7 @@ Discovery tab visibility as well as the selection of settings on the Discovery s
 
 ## Manual Method
 
-The MQTT Plug-in contains a public procedure to do discovery from withing other plug-ins. To use, the plug-in must have the following line:
+The MQTT Plug-in contains a public procedure to do discovery from within other plug-ins. To use, the plug-in must have the following line:
 <pre>
     hvImport haObjectDiscovery
 </pre>
