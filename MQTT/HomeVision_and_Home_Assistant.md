@@ -98,7 +98,7 @@ Valid object types are x10, light, var, flag, flag_b input, output, analog, temp
 Other plug-ins that support objects that can be discovered can add object types.
 <br>
 <br>
-Due to the complexities of proper handling of variables, they are included in discovery as sensors (read-only). More complex variable handling must be done manually. See <a href="#Variables">Variable Options</a> in the <a href="#Tips">Tips</a> section for more information.
+Due to the complexities of proper handling of variables, they are included in discovery as sensors (read-only). More complex variable handling must be done manually. See <a href="#variables">Variable Options</a> in the <a href="#tips">Tips</a> section for more information.
 <br>
 <br>
 You can find out more about how to run Discovery here:
@@ -108,11 +108,11 @@ You can find out more about how to run Discovery here:
 -->
 ## Tips
 <!--
-<h2 id="Tips">Tips</h2>
+<h2 id="tips">Tips</h2>
 -->
-### Variables
+### Variable Options
 <!--
-<h3 id="Variables">Variable Options</h3>
+<h3 id="variables">Variable Options</h3>
 -->
 Straightforward, bi-directional control of variables from the Home Assistant UI is not supported via MQTT Discovery.
 For applications other than sensors, it is possible to include HomeVision variables as part of automations, so application-specific configurations could be done.
