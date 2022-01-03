@@ -608,15 +608,11 @@ the "Flag/Var", "On Macro" and "Off Macro" fields are ignored.
 However, the action command can be used in the procedure to manipulate flags, vars, macros, etc..
 <br>
 <br>
-**CAUTION:
-There is little validation of the name of the custom procedure.
-Care should be taken to avoid any standard TCL procedure names
-as inadvertently using an existing procedure name may result in abnormal behavior!
-**
+**CAUTION: There is little validation of the name of the custom procedure. Care should be taken to avoid any standard TCL procedure names as inadvertently using an existing procedure name may result in abnormal behavior!**
 <br>
 <br>
 The procedure must be defined in another enabled plug-in, 
-and must be made public via the <pre>hvPublic</pre> command.
+and must be made public via the ```hvPublic``` command.
 A plug-in can contain several different procedures that are called by different messages.
 <br>
 <br>
