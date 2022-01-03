@@ -30,7 +30,10 @@ Emphasis is on using MQTT as the connecting method and assumes you have an MQTT 
 With the versatility of the MQTT plug-in with respect to how many different ways you can use it to control your devices along with the complexity and power of Home Assistant, the possible combinations are almost endless.
 This document tries to give a few of the more obvious solutions to common situations.
 
+## Basics of the HomeVisionXL MQTT plug-in
+<!--
 <h2>Basics of the HomeVisionXL MQTT plug-in</h2>
+-->
 First let's go over the basics. The MQTT plug-in provides support for monitoring and controlling of both HomeVision "internal" objects like x10, lights, vars, flags, etc. via MQTT, and "External" devices such as ESP8266 based products running
 <!--
 <a href="https://tasmota.github.io/docs/">Tasmota</a>
@@ -43,7 +46,10 @@ This Help doesn't go into all the details of the MQTT plug-in. See
 <a href="index.html">MQTT Help</a>
 -->
 for that.
+### How the MQTT plug-in Handles Internal Objects
+<!--
 <h3>How the MQTT plug-in Handles Internal Objects</h3>
+-->
 The MQTT plug-in exposes internal objects to the MQTT system by <i>publishing</i> STATE topics to report an object's state and by <i>subscribing</i> to COMMAND topics that can control the internal object. Only internal objects included in the MQTT plug-in's "Int Objects" configuration screen are exposed.
 
 When an exposed internal object changes state, it typically produces one or two MQTT messages, depending on options chosen in "Settings":
@@ -64,7 +70,10 @@ An internal object can be controlled by sending an MQTT message like this:
     cmnd/topic/POWER ON 50
 </pre>
 
+### How the MQTT plug-in Handles External Devices
+<!--
 <h3>How the MQTT plug-in Handles External Devices</h3>
+-->
 The MQTT plug-in can track the state of and control external devices by <i>subscribing</i> to STATE topics and <i>publishing</i> command messages. Only external devices included in the MQTT plug-in's "Ext Devices" configuration screen are monitored.
 
 When an external device changes state, it typically produces one or two MQTT messages, depending on device settings:
@@ -89,8 +98,10 @@ An external device can be controlled by sending an MQTT message like this:
 </pre>
 
 It's important to keep in mind that the above are examples, and there is significant variation in how all this is done, which can be taken advantage of when interfacing with Home Assistant. For Home Assistant, this means that **virtual** external devices can be created and used to cause actions in HomeVision.
+## MQTT Auto Discovery
+<!--
 <h2>MQTT Auto Discovery</h2>
-
+-->
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
 <br>
 <br>
