@@ -609,7 +609,7 @@ However, the action command can be used in the procedure to manipulate flags, va
 <br>
 <br>
 **CAUTION:
-*There is little validation of the name of the custom procedure.
+There is little validation of the name of the custom procedure.
 Care should be taken to avoid any standard TCL procedure names
 as inadvertently using an existing procedure name may result in abnormal behavior!
 **
