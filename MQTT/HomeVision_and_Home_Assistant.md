@@ -188,7 +188,10 @@ automation myvars:
 
 ```
 {% endraw %}
+### Running Macros
+<!--
 <h3>Running Macros</h3>
+-->
 Macros can be run directly by configuring them in the "Int Objects" screen and running MQTT Discovery.
 A simple button or switch in Home Assistant can be configured to use the corresponding macro switch entity.
 This is the easiest way to run a macro.
@@ -236,7 +239,10 @@ When the button is pressed, the macro will run to toggle the door, and the input
 Since the button's state is controlled by the Door1 state, it can be "On" and "Off".
 If "On", the button when press will send the "off" payload,
 so both command payloads are set to "ON" since that's what the macro expects.
+### Running Macros, Setting Flags and Variables and Executing Other Actions
+<!--
 <h3>Running Macros, Setting Flags and Variables and Executing Other Actions</h3>
+-->
 While macros can be run directly by configuring them in the "Int Objects" screen and running MQTT Discovery,
 there may be situations where more flexibility is needed.
 For example,
@@ -335,7 +341,10 @@ switch:
 ```
 {% endraw %}
 
+### Running Scheduled and Periodic Events
+<!--
 <h3>Running Scheduled and Periodic Events</h3>
+-->
 The MQTT plug-in provides for direct execution of Scheduled and Periodic Events, similar to Macros, by defining them in "Int Objects" configuration.
 <br>
 <br>
@@ -351,13 +360,19 @@ To do this, in a virtual external device's "Configure Device" screen, select "Tr
 </pre>
 
 which will run Scheduled Event #3.
+### Running Other Objects
+<!--
 <h3>Running Other Objects</h3>
+-->
 The previous Tip was called out specifically because it can be used to add in macro capability for those who have run out of macro space.
 However the idea can be extended to virtually all items in HomeVisionXL. Since the trigger simply sends whatever is there to HomeVisionXL's serial command processor, you can set triggers for anything the Action plug-in can do (or any other plug-in with its own defined serial commands), and, along with the trigger's capability to make run-time substitutions in a trigger string, Home Assistant may be able to trigger different things based on the payload sent.
 In an extreme case, the trigger could be just "%M", in which case Home Assistant would put in the payload the complete trigger string to execute. See
 [Triggers](/MQTT/MQTT_Client_Plug-in#triggers) in [MQTT Help](/MQTT/MQTT_Client_Plug-in)
 for more details.
+### Timers
+<!--
 <h3>Timers</h3>
+-->
 HomeVision timers can be controlled via MQTT.
 There is no simple "MQTT Discovery" defined in Home Assistant that is appropriate for Timers,
 so the MQTT Plug-in's Discovery sets up two "sensor" entities,
@@ -467,7 +482,10 @@ square: false
 <b>Note:</b> The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
 "stat" updates occur whenever a timer command (load, start,stop,clear or query - i.e., "?") is sent to the timer.
 
+### Refreshing HomeVision Objects
+<!--
 <h3>Refreshing HomeVision Objects</h3>
+-->
 There may be instances (like restarting Home Assistant) where the current status of HomeVision objects is not reflected by Home Assistant. The MQTT plug-in provides a special topic to force all listed objects to report their status: 
 <pre>
         Full Topic                        Payload
@@ -477,7 +495,10 @@ or
 </pre>
 
 If you have this issue, you may want to consider adding a button to send this message, or create an automation to issue the command at an appropriate time.
+### Retain Option for Objects
+<!--
 <h3>Retain Option for Objects</h3>
+-->
 You may also want to consider, as a possible alternative to the previous, whether to enable "retain" for objects that are tracked by Home Assistant.
 This should allow Home Assistant to automatically pick up status via the MQTT broker's retained messages feature.
 "Retain" is an option in the MQTT plug-in's <i>Configure Object</i> screen.
