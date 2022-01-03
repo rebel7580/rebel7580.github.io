@@ -78,8 +78,8 @@ These sensor entities can be used in automations, dashboard GUIs, etc.
 
 ## Home Assistant Setup for Log GUI
 
-Create a GUI. Example like this,
-with corresponding yaml. Do this easily with the GUI editor, 
+Create a GUI. Here is an example design,
+with its corresponding yaml. You can do this (relatively!) easily with the GUI editor, 
 with a markdown card for the log itself, and three horizontal-stacks of two buttons each. (yaml is shown here just for detail.)
 
 ![Log GUI](HV_Log_GUI.gif)
