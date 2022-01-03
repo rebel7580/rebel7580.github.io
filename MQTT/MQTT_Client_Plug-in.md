@@ -361,7 +361,7 @@ The retain flag will cause most brokers to "remember" the status and send it to 
   * Choose whether to log MQTT messages sent or received by this device.
 * Objects can be edited by clicking the "Edit" button. This brings up the same window used for adding a new object.
 * Use the "Delete" button to delete an object. When a object is deleted, the plug-in unsubscribes to any topics related to that device.
-* When "Done" is clicked, objects with standard topics are subscribed to their <b>command</b> full topics.Objects with custom topics are subscribed only to the topic as-is.
+* When "Done" is clicked, objects with standard topics are subscribed to their <b>command</b> full topics. Objects with custom topics are subscribed only to the topic as-is.
 *Click "Done" for changes to become effective!*
 
 ### Settings Tab
