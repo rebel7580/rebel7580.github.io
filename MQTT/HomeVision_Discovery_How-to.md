@@ -439,12 +439,7 @@ homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
 Defined as "sensor" entities. 
 "device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
 See <i>"Variable Options"</i> in the <i>"Tips"</i> section of
-
-[[Tips for interfacing HomeVision with Home Assistant.|Tips-for-Interfacing-HomeVision-with-Home-Assistant]]
-<!--
-<a href="HomeVision and Home Assistant.html">Tips for interfacing HomeVision with Home Assistant.</a>
--->
-for other uses of variables.
+<a href="HomeVision and Home Assistant">Tips for interfacing HomeVision with Home Assistant</a> for other uses of variables.
 {% raw %}
 <pre>
 homeassistant/sensor/HVXLb1d0d912ed315aad_VA-145/config
