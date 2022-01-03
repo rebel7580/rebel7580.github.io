@@ -102,7 +102,7 @@ Due to the complexities of proper handling of variables, they are included in di
 <br>
 <br>
 You can find out more about how to run Discovery here:
-[[How to Use the MQTT Plug-in's Home Assistant Auto Discovery.|How-to-Use-the-MQTT-Plug-in's-Home-Assistant-Auto-Discovery]]
+[How to Use the MQTT Plug-in's Home Assistant Auto Discovery.](HomeVision_Discovery_How-to)
 <!--
 <a href="HomeVision Discovery How-to.html">How to Use the MQTT Plug-in's Home Assistant Auto Discovery.</a>
 -->
