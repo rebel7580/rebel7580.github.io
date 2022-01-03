@@ -28,6 +28,14 @@
 
 # Overview
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
+<br>
+<br>
+<b>Caution:</b>
+Auto Discovery assumes that in MQTT Configuration "Settings", the "State Response" settings are all checked, and "Response uses OFF/ON" are all checked.
+<i>Changing these settings will likely result in Discovered entities not working as expected.</i>
+<br>
+<br>
+Auto Discovery does use the "Command Prefix", "State Prefix" and "Power Postfix" settings, and works with Object topics in any of the six standard topic templates: &lt;T&gt;, &gt;T&lt;, &lt;&gt;T, T&lt;&gt;, &gt;&lt;T, T&gt;&lt;.
 ## Built-in Method
 The MQTT plug-in supports a User Interface for Discovery.
 Because this is a feature that most users won't need, and for those who do use it, it is likely a one-time or seldom used feature, it is accessed by a normally "hidden" tab.
@@ -307,13 +315,6 @@ The following entity types and devices are created according to the Object type:
   <td>HomeVisionXL Timer</td>
  </tr>
  </table>
-<br>
-<br>
-Auto Discovery assumes that in MQTT Configuration "Settings", the "State Response" settings are all checked, and "Response uses OFF/ON" are all checked.
-<i>Changing these settings will likely result in Discovered entities not working as expected.</i>
-<br>
-<br>
-Auto Discovery does use the "Command Prefix", "State Prefix" and "Power Postfix" settings, and works with Object topics in any of the six standard topic templates: &lt;T&gt;, &gt;T&lt;, &lt;&gt;T, T&lt;&gt;, &gt;&lt;T, T&gt;&lt;.
 
 ### Discovery Messages
 Here are examples of what is sent to Home Assistant during discovery.
