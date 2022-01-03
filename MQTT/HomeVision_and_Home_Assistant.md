@@ -106,8 +106,14 @@ You can find out more about how to run Discovery here:
 <!--
 <a href="HomeVision Discovery How-to.html">How to Use the MQTT Plug-in's Home Assistant Auto Discovery.</a>
 -->
+## Tips
+<!--
 <h2 id="Tips">Tips</h2>
+-->
+### Variables
+<!--
 <h3 id="Variables">Variable Options</h3>
+-->
 Straightforward, bi-directional control of variables from the Home Assistant UI is not supported via MQTT Discovery.
 For applications other than sensors, it is possible to include HomeVision variables as part of automations, so application-specific configurations could be done.
 <br>
