@@ -404,7 +404,6 @@ A Demonstration on how to implement a Timer GUI is as follows.
 (Configuration->Helpers->Add Helper->Select).
 This is used to specify what timer command to send.
 Use the following values:
-
 <pre>
     Options:
         Load
@@ -417,7 +416,6 @@ Use the following values:
 <li>Create the input_text helper for the timer's set time. (Configuration->Helpers->Add Helper->Text).
 This is used to specify what timer value to send.
 Use the following values:
-
 <pre>
     Max: 12
     Min: 10
