@@ -758,9 +758,6 @@ No checking is done to make sure the string is a valid device class.
 There are no spaces around the ":".
 Other text is allowed in the Description as well.
 If there is, there should be at least one space separating any other text from 
-<pre>
-dc:<i>device_class</i>
-</pre>
-```dc:*device_class*```
+"dc:<i>device_class</i>"
 
 
