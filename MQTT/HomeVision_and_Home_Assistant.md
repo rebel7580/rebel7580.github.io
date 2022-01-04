@@ -422,7 +422,7 @@ Use the following values:
     Max: 12
     Min: 10
     Regex pattern: ^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d\\.)?([0-9][0-9]$
-<pre>
+</pre>
 
 </li>
 </ul>
