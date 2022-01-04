@@ -750,8 +750,12 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 
 #### Device Class Note
 For sensors and binary sensors, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
-(Other text is allowed in the Description as well.)
 <pre>
    dc:<i>device_class</i>
 </pre>
-where <i>device_class</i> is a valid device class name for the sensor or binary sensor. No checking is done to make sure the string is a valid device class. 
+where <i>device_class</i> is a valid device class name for the sensor or binary sensor.
+No checking is done to make sure the string is a valid device class. 
+There are no spaces around the ":".
+Other text is allowed in the Description as well.
+If there is, there should be at least one space separating any other text from <pre>dc:<i>device_class</i></pre>.
+
