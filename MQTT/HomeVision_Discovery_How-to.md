@@ -236,8 +236,8 @@ The following entity types and devices are created according to the Object type:
 <br>
 <table>
  <tr>
-  <th>HomeVision Object</th>
-  <th>Entity Type</th>
+  <th align="center">HomeVision Object</th>
+  <th align="center">Entity Type</th>
   <th>Device Name</th>
  </tr>
  <tr>
