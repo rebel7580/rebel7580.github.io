@@ -39,7 +39,6 @@ You can "tune" to an Application by right-clicking on an App and clicking "Tune"
 A command will be sent to the Roku to launch that App.
 <h2>Serial Commands</h2>
 You can send serial commands to the Roku plug-in from your schedule or from other plug-ins.
-
 <pre>
     roku: *command*;
 </pre>
