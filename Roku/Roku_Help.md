@@ -38,7 +38,9 @@ You can "tune" to an Application by right-clicking on an App and clicking "Tune"
 A command will be sent to the Roku to launch that App.
 <h2>Serial Commands</h2>
 You can send serial commands to the Roku plug-in from your schedule or from other plug-ins.
-<pre>roku: *command*;</pre>
+<pre>
+    roku: *command*;
+</pre>
 *command* can be any of the following:
 <dl>
 <dt>An App ID:</dt>
@@ -94,20 +96,16 @@ You can send serial commands to the Roku plug-in from your schedule or from othe
 The Roku plug-in can be controlled by MQTT and can send MQTT status messages for the active App and the App list.
 
 <h3>MQTT Setup</h3>
-<br><br>
 Setup is done in the <i>Settings</i> tab.
 Enter the desired topic in the "MQTT Topic:" field.
 If you place "<>" in the topic (e.g., <topic>), the standard MQTT format will be used.
 This is the preferred way to enter topics, since this topic is used for both receiving command messages and sending state messages.
-<br><br>
 <h3>MQTT commands</h3>
 Command payloads take the same format as serial and NetIO.
 
 <h3>MQTT State</h3>
-<br><br>
 State information is sent in response to reception of the App list or the Active App.
 <br><br>
-
 The App List is NOT automatically queried, so the response comes only when the plug-in receives an App List query, or the user clicks "Update" in the <i>Apps</i> tab.
 <br><br>
 The plug-in queries for the active app in response to other commands, so it will send Active App responses at those times.
@@ -115,6 +113,7 @@ The plug-in queries for the active app in response to other commands, so it will
 State information is sent in JSON format.
 <br><br>
 Active App response (formatted for readability):
+
 <pre>
 {
     "active-app": {
@@ -123,8 +122,10 @@ Active App response (formatted for readability):
     }
 }
 </pre>
+
 <br><br>
  App list response (formatted for readability):
+
 <pre>
 {
     "apps": {
