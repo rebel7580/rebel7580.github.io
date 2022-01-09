@@ -73,7 +73,7 @@ You can send serial commands to the Roku plug-in from your schedule or from othe
     InputHDMI2,
     InputHDMI3,
     InputHDMI4,
-    InputAV1,
+    InputAV1
 </dd>
 <dt>A Query:</dt>
 <dd>One of: apps,
@@ -85,11 +85,15 @@ You can send serial commands to the Roku plug-in from your schedule or from othe
     tv-active-channel
 </dd>
 </dl>
-Note: Of the queries, only "apps" and "active-app" currently return a response. See <i>MQTT State</i>.
+Notes: 
+<ul>
+<li>Keypress and Query payloads are case sensitive.</li>
+<li>Of the queries, only "apps" and "active-app" currently return a response. See <i>MQTT State</i>.</li>
+</ul>
 
 Examples:
 
-Launch a channel/app:
+Launch the NetFlix channel (12):
 <pre>
     roku: 12;
 </pre>
