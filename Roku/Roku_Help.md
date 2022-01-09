@@ -8,6 +8,11 @@
 <body style="" lang="EN-US" link="blue" vlink="purple">
 
 <font color="#0000ff" size="12"><b>Roku Plug-in</b></font>
+The Roku plug-in provides an interface to Roku streaming devices.
+This plug-in was tested with a Roku 3 streaming device.
+
+Some commands for Roku Tvs have been included but not tested.
+<h2>Configuration</h2>
 <h3>Settings Tab</h3>
 <ul>
 <li>
@@ -23,14 +28,70 @@ You must have the MQTT plug-in enabled.
 See <i>MQTT Setup</i> for details.
 </li>
 </ul>
+<h3>Apps Tab</h3>
+This tab shows the current Applications installed on the Roku and the currently active Application.
 
+The list is populated when "Update" is clicked
+or an Apps query is received via serial, NetIO, or MQTT.
+
+You can "tune" to an Application by right-clicking on an App and clicking "Tune".
+A command will be sent to the Roku to launch that App.
 <h2>Serial Commands</h2>
-<pre>roku: hvwxvars enable|disable</pre>
-<h2>NetIO COmmands</h2>
-<h2>MQTT></h2>
-<br><br>
+You can send serial commands to the Roku plug-in from your schedule or from other plug-ins.
+<pre>roku: *command*;</pre>
+*command* can be any of the following:
+<dl>
+<dt>An App ID:</dt>
+<dd>The numeric Application id.</dd>
+<dt>A Keypress:</dt>
+<dd>Home
+    Rev
+    Fwd
+    Play
+    Select
+    Left
+    Right
+    Down
+    Up
+    Back
+    InstantReplay
+    Info
+    Backspace
+    Search
+    Enter
+    FindRemote
+    VolumeDown
+    VolumeMute
+    VolumeUp
+    PowerOff
+    ChannelUp
+    ChannelDown
+    InputTuner
+    InputHDMI1
+    InputHDMI2
+    InputHDMI3
+    InputHDMI4
+    InputAV1
+</dd>
+<dt>A Query:</dt>
+<dd>apps
+    active-app
+    media-player
+    device-info
+    icon
+    tv-channels
+    tv-active-channel
+</dd>
+</dl>
+<h2>NetIO Commands</h2>
+<pre>
+    netioaction roku *command*
+</pre>
+
+*command* is the same as for serial.
+
+<h2>MQTT</h2>
 The Roku plug-in can be controlled by MQTT and can send MQTT status messages for the active App and the App list.
-<br><br>
 
 <h3>MQTT Setup</h3>
 <br><br>
