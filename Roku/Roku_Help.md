@@ -46,42 +46,42 @@ You can send serial commands to the Roku plug-in from your schedule or from othe
 <dt>An App ID:</dt>
 <dd>The numeric Application id.</dd>
 <dt>A Keypress:</dt>
-<dd>Home
-    Rev
-    Fwd
-    Play
-    Select
-    Left
-    Right
-    Down
-    Up
-    Back
-    InstantReplay
-    Info
-    Backspace
-    Search
-    Enter
-    FindRemote
-    VolumeDown
-    VolumeMute
-    VolumeUp
-    PowerOff
-    ChannelUp
-    ChannelDown
-    InputTuner
-    InputHDMI1
-    InputHDMI2
-    InputHDMI3
-    InputHDMI4
-    InputAV1
+<dd>Home,
+    Rev,
+    Fwd,
+    Play,
+    Select,
+    Left,
+    Right,
+    Down,
+    Up,
+    Back,
+    InstantReplay,
+    Info,
+    Backspace,
+    Search,
+    Enter,
+    FindRemote,
+    VolumeDown,
+    VolumeMute,
+    VolumeUp,
+    PowerOff,
+    ChannelUp,
+    ChannelDown,
+    InputTuner,
+    InputHDMI1,
+    InputHDMI2,
+    InputHDMI3,
+    InputHDMI4,
+    InputAV1,
 </dd>
 <dt>A Query:</dt>
-<dd>apps
-    active-app
-    media-player
-    device-info
-    icon
-    tv-channels
+<dd>apps,
+    active-app,
+    media-player,
+    device-info,
+    icon/{id},
+    tv-channels,
     tv-active-channel
 </dd>
 </dl>
@@ -148,5 +148,3 @@ Active App response (formatted for readability):
 }
 </pre>
 
-</body>
-</html>
