@@ -46,7 +46,7 @@ You can send serial commands to the Roku plug-in from your schedule or from othe
 <dt>An App ID:</dt>
 <dd>The numeric Application id.</dd>
 <dt>A Keypress:</dt>
-<dd>Home,
+<dd>One of: Home,
     Rev,
     Fwd,
     Play,
@@ -76,7 +76,7 @@ You can send serial commands to the Roku plug-in from your schedule or from othe
     InputAV1,
 </dd>
 <dt>A Query:</dt>
-<dd>apps,
+<dd>One of: apps,
     active-app,
     media-player,
     device-info,
@@ -85,6 +85,22 @@ You can send serial commands to the Roku plug-in from your schedule or from othe
     tv-active-channel
 </dd>
 </dl>
+Note: Of the queries, only "apps" and "active-app" currently return a response. See <i>MQTT State</i>.
+
+Examples:
+
+Launch a channel/app:
+<pre>
+    roku: 12;
+</pre>
+
+Query for the active app:
+
+<pre>
+    roku: active-app;
+</pre>
+
+
 <h2>NetIO Commands</h2>
 <pre>
     netioaction roku *command*
