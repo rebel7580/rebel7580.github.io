@@ -98,9 +98,32 @@ The Roku plug-in can be controlled by MQTT and can send MQTT status messages for
 <h3>MQTT Setup</h3>
 Setup is done in the <i>Settings</i> tab.
 Enter the desired topic in the "MQTT Topic:" field.
-If you place "<>" in the topic (e.g., <topic>), the standard MQTT format will be used.
+If you place "<>" in the topic (e.g., &lt;topic&gt;), the standard MQTT format will be used.
 This is the preferred way to enter topics, since this topic is used for both receiving command messages and sending state messages.
+<pre>
+    cmnd/roku/POWER *command*
+    stat/roku/POWER *state info*
+</pre>
+
+In fact, if "POWER" seems an odd postfix for a streaming device, then you can define a postfix explicitly while preserving the standard prefixes.
+A topic defined like this:
+<pre>
+    &lt;roku/State
+</pre>
+would receive commands like this:
+<pre>
+    cmnd/roku/State *command*
+</pre>
+and state responses like this:
+<pre>
+    stat/roku/State *state info*
+</pre>
+
 <h3>MQTT commands</h3>
+<pre>
+    cmnd/roku/POWER *command*
+</pre>
+
 Command payloads take the same format as serial and NetIO.
 
 <h3>MQTT State</h3>
