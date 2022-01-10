@@ -8,12 +8,12 @@
 <font color="#0000ff" size="12"><b>Roku Plug-in</b></font>
 <h2>Overview</h2>
 The Roku plug-in provides an interface to Roku streaming devices.
-This plug-in was tested with a Roku 3 streaming device.
 
 The main purpose of this plug-in is to enable HomeVision and other related plug-ins to change channels/applications on a Roku streaming device.
 
 The rest of this plug-in's features are there "just for fun"!
 
+This plug-in was tested with a Roku 3 streaming device.
 Some commands for Roku TVs have been included but not tested.
 <h2>Configuration</h2>
 <h3>Settings Tab</h3>
