@@ -40,8 +40,6 @@ Notes:
   <td align="center">Easy</td>
  </tr>
  <tr>
-
- <tr>
   <td align="center">Flexibility/Features</td>
   <td align="center">Medium</td>
   <td align="center">Very flexible and feature rich</td>
