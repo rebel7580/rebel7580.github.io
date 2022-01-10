@@ -16,10 +16,10 @@ Notes:
 <table border="1" cellspacing="0">
 
  <tr>
-  <th width="10%">Feature/Function</th>
-  <th width="30%">NetIO</th>
-  <th width="30%">Home Assistant</th>
-  <th width="30%">MQTT Dash</th>
+  <th align="center">Feature/Function</th>
+  <th align="center">NetIO</th>
+  <th align="center">Home Assistant</th>
+  <th align="center">MQTT Dash</th>
  </tr>
  <tr>
   <td align="center">Connection to HomeVisionXL</td>
