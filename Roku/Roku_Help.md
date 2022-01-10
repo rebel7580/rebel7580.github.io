@@ -134,7 +134,7 @@ would receive commands like this:
 <pre>
     cmnd/roku/State *command*
 </pre>
-and state responses like this:
+and send state responses like this:
 <pre>
     stat/roku/State *state info*
 </pre>
