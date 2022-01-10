@@ -10,12 +10,16 @@
 The Roku plug-in provides an interface to Roku streaming devices.
 This plug-in was tested with a Roku 3 streaming device.
 
-Some commands for Roku Tvs have been included but not tested.
+The main purpose of this plug-in is to enable HomeVision and other related plug-ins to change channels/applications on a Roku streaming device.
+
+The rest of this plug-in's features are there "just for fun"!
+
+Some commands for Roku TVs have been included but not tested.
 <h2>Configuration</h2>
 <h3>Settings Tab</h3>
 <ul>
 <li>
-"Roku IP address" "Roku port number" should be set to the Roku's IP address and port.
+"Roku IP address" and "Roku port number" should be set to the Roku's IP address and port.
 If "Use discovered Roku IP" is checked, the plug-in will search for a Roku device and automatically populate the IP address and port.
 </li>
 <li>
