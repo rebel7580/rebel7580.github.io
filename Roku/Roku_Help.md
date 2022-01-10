@@ -164,8 +164,9 @@ Active App response (formatted for readability):
 <pre>
 {
     "active-app": {
-        "app":"NetFlix",
-        "id":12
+        "NetFlix": {
+            "id": 12
+        }
     }
 }
 </pre>
