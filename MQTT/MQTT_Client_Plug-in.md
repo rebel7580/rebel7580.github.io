@@ -81,8 +81,8 @@ To provide additional flexibility in defining a system's topic structure, standa
 The following are possible (where "T" is the sub-topic):
 ```
    Template        Example
-      <T>       cmnd/T/POWER    --> Tasmota standard and MQTT plug-in default
-      T<>       T/cmnd/POWER    
+      <T>       cmnd/T/POWER   --> Tasmota and MQTT plug-in default
+      T<>       T/cmnd/POWER
       <>T       cmnd/POWER/T
       >T<       POWER/T/cmnd
       T><       T/POWER/cmnd
