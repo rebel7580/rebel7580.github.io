@@ -812,7 +812,7 @@ Off Trigger:
 ```
 <br>
 Tune a TV to a channel on a streaming service.
-(Turn on TV, .5 second delay for TV to turn on, select streaming device input, then select streaming channel.)
+(Turn on TV, 0.5 second delay for TV to turn on, select streaming device input, then select streaming channel.)
 This example shows how two separate plug-in triggers (action and roku) can work together in one trigger string.
 <br>
 ```
@@ -824,7 +824,7 @@ On Trigger:
 Off Trigger:
     {empty}
 ```
-Note: *roku* is a custom plug-in not generally available.
+Note: <i>roku</i> is a custom plug-in. [See Here](/Roku/Roku_index).
 
 ### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
 
@@ -835,9 +835,9 @@ A plug-in can be essentially independent of processing that is done in the MQTT 
 <br>
 Other plug-ins can interface with the MQTT plug-in via the *mqttComm* command.
 The calling plug-in should import the command via:
-``` tcl
+<pre>
     hvImport mqttComm
-```
+</pre>
 The *mqttComm* command has the following formats:
 <pre>
     mqttComm {-log} sub|unsub <<i>topic</i>>|<i>topic</i> <i>callback</i> 
