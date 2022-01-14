@@ -122,15 +122,15 @@ Most of the examples in the rest of this Help follow the Tasmota standard.
 
 ### Standard Command Topic
 The following command topic is supported (using default prefixes and postfixes) with various payloads:
-
+<pre>
         Full Topic     Payload
-    cmnd/*topic*/POWER  ON
-    cmnd/*topic*/POWER  ON *level*
-    cmnd/*topic*/POWER  *level*
-    cmnd/*topic*/POWER  OFF
-    cmnd/*topic*/POWER  TOGGLE
+    cmnd/<i>topic</i>/POWER  ON
+    cmnd/<i>topic</i>/POWER  ON <i>level</i>
+    cmnd/<i>topic</i>/POWER  <i>level</i>
+    cmnd/<i>topic</i>/POWER  OFF
+    cmnd/<i>topic</i>/POWER  TOGGLE
     cmnd/<i>topic</i>/POWER  empty or "?"** 
-
+</pre>
 *topic* is defined during device configuration.
 <br>Payloads are case-insensitive for incoming messages.<br>
 *level* is expressed as a percentage, 0-100.
