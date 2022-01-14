@@ -473,7 +473,7 @@ Here's a sequence chart example that might make it more clear:
 ### Serial Control
 MQTT devices can be controlled within a schedule via serial commands which take the form:
 ```
-    mqtt: *device_name/object_name* *command*;
+    mqtt: <i>device_name/object_name</i> <i>command,</i>;
 ```
 For example, to toggle a device *named* "sonoff1",
 the serial command would be:
