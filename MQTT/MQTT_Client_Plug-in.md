@@ -155,10 +155,10 @@ For a full list of Actions based on the received topic and payload, see
 
 ### Standard State Topic
 For each external device, the plug-in *subscribes* to the following topic (assuming "<*topic*> in the "Topic" field):
-```
+<pre>
         Full Topic                     Payload
-    stat/*topic*/POWER*x*           OFF/ON/ON *level*/*level*
-```
+    stat/<i>topic</i>/POWER<i>x</i>           OFF/ON/ON <i>level</i>/<i>level</i>
+</pre>
 When a POWER topic is received, the plug-in looks for a message of "on" or "off" and takes action according to the device's settings in the **Ext Devices Tab**.
 For a full list of Actions based on the received topic and payload, see
 <a href="MQTT_Actions_ext.html">External Device Actions</a> 
@@ -173,19 +173,19 @@ In fact, RESULT state messages can be sent from the device when many other actio
 <br>
 <br>
 To receive such messages, they must explicitly be entered as a device in the **Ext Devices Tab** with a *custom command* defined to process the message.
-```
+<pre>
           Topic                         Payload
-    stat/*topic*/RESULT               a JSON string
-```
+    stat/<i>topic</i>/RESULT               a JSON string
+</pre>
 ### Last Will and Testament Topic
 For each external device with a *standard topic*
 that has "Subscribe to Last Will and Testament" checked,
 the plug-in automatically *subscribes* to
 a *Last Will and Testament* topic as follows:
-```
+<pre>
         Full Topic     
-      tele/*topic*/LWT
-```
+      tele/<i>topic</i>/LWT
+</pre>
 If received, the plug-in looks for a message of "online" or "offline" and attempt to display this message in the **Ext Devices Tab**.
 <br>
 <br>
@@ -200,12 +200,13 @@ The MQTT plug-in automatically subscribes to:
         Full Topic
     cmnd/homevision/#
 ```
-When a message is received in the form:
-```
+<pre>
+
         Full Topic                           Payload
-    cmnd/homevision/*object_type*/POWER    empty or "?"
+    cmnd/homevision/<i>object_type</i>/POWER    empty or "?"
     cmnd/homevision/POWER                  empty or "?"
-```
+</pre>
+
 for each defined object matching *object_type*
 (one of
 x10, light, var, flag, hvac, temp, analog, timer, input or output)
