@@ -924,7 +924,7 @@ So how is that handled when a plug-in uses *mqttComm* to subscribe to a topic?
 This is best explained by example.
 Let's assume a plug-in wants to subscribe to a topic:
 ``` tcl
-    mqttComm sub <utilityroom> cascb     
+    mqttComm sub <utilityroom> cascb
 ```
 This results in a subscription to
 ```
@@ -969,9 +969,9 @@ The calling plug-in should import the command via:
     hvImport topicTemplate
 ```
 The *topicTemplate* command has the following format:
-``` tcl
-    topicTemplate *topic*
-```
+<pre>
+    topicTemplate <i>topic</i>
+</pre>
 *topic*: fulltopic received by the callback.
 
 topicTemplate returns a list containing a dict with the following key/values:
@@ -980,12 +980,12 @@ topicTemplate returns a list containing a dict with the following key/values:
 
   | Key | Value |
   | :---: | --- |
-  | template | One of <T>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.| 
+  | template | One of \<T\>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.| 
   | pre pos | Prefix position 1-3, -1 if no prefix.| 
   | pre type | Prefix string, "" if no prefix.| 
   | topic pos | Sub-topic position 1-3| 
   | topic name | Sub-topic string| 
-  | topic type | "s" (standard-contains both < and >), "ns" (non-standard) otherwise.| 
+  | topic type | "s" (standard: contains both < and >), "ns" (non-standard) otherwise.| 
   | post pos | Postfix position 1-3, -1 if no postfix.| 
   | post type | Postfix string, "" if no prefix.| 
   | post ntype | Post type with "Relay" number striped off.| 
@@ -1003,13 +1003,13 @@ Puts an entry into the current MQTT log file.
 <br>
 <br>
 The calling plug-in should import the command via:
-``` tcl
+<pre>
     hvImport mqttLog
-```
+</pre>
 The *mqttlog* command has the following format:
-``` tcl
-    mqttLog *string* {*color*}
-```
+<pre>
+    mqttLog <i>string</i> {<i>color</i>}
+</pre>
 * *string*: String to log.
 * *color*: If "debug" is imported into the calling proc,
 will send string to the debug plug-in in *color*, Default: red.
