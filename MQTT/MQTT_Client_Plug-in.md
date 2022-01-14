@@ -382,19 +382,19 @@ change it to the MQTT broker's domain or explicit IP address.
 *Valid only for internal objects!*
 <br>
 "Power" enables a standard response like this:
-```
+<pre>
         Full Topic                     Payload
-    stat/*topic*/POWER*x*               OFF/ON/ON *level*/*level*
+    stat/<i>topic</i>/POWER<i>x</i>           OFF/ON/ON <i>level</i>/<i>level</i>
 ```
 "RESULT" enables a response like this, if "Dimming" is unchecked:
 ```
         Full Topic                     Payload
-    stat/*topic*/RESULT          {"POWER*x*":"OFF/ON/ON *level*/*level*"}
+    stat/<i>topic</i>/RESULT        {"POWER<i>x</i>":"OFF/ON/ON <i>level</i>/<i>level</i>"}
 ```
 or like this if "Dimming" is checked:
 ```
         Full Topic                     Payload
-    stat/*topic*/RESULT          {"POWER*x*":"OFF/ON","Dimmer":*level*}*
+    stat/<i>topic</i>/RESULT        {"POWER<i>x</i>":"OFF/ON","Dimmer":<i>level</i>}*
 ```
 * Note: If set to "Response uses 0-100" (see next item), the POWER value will still be "OFF" if 0 and "ON" if otherwise.
 <br>
@@ -523,17 +523,17 @@ If the device's state has not yet been reported, the last value of the Flag or V
 <br>
 <br>
 Also note that this command is essentially the same as the more direct gets:
-```
-    reads:  get var state *var#*
-```
+<pre>
+    reads:  get var state <i>var#</i>
+</pre>
 or
-```
-    reads:  get flag state *flag#*
-```
+<pre>
+    reads:  get flag state <i>flag#</i>
+</pre>
 or
-```
-    reads:  get x10 state *id#*
-```
+<pre>
+    reads:  get x10 state <i>id#</i>
+</pre>
 except that no NetIO Custom Returns processing is done.
 So the direct object gets are probably better to use then the MQTT versions.
 
@@ -546,10 +546,10 @@ Generic messages can be sent by either NetIO or serial commands.
 <br>
 <br>
 Generic MQTT messages can be sent within a schedule via serial commands and take the form:
-```
-    mqtt: pub *topic* {*payload*};
-    mqtt: sub|unsub *topic* {*callback*};
-```
+<pre>
+    mqtt: pub <i>topic</i> {<i>payload</i>};
+    mqtt: sub|unsub <i>topic</i> {<i>callback</i>};
+</pre>
 For "pub" commands, if the last word in the payload is "retain",
 the command is sent with the MQTT retain flag set.
 <br>
@@ -617,9 +617,9 @@ A plug-in can contain several different procedures that are called by different 
 <br>
 <br>
 The procedure will be called like this:
-```
-    procedure_name *topic* *payload* *retain*
-```
+<pre>
+    procedure_name <i>topic</i> <i>payload</i> <i>retain</i>
+</pre>
 Example:
 <br>
 <br>
@@ -1022,9 +1022,9 @@ The using plug-in should make the command public via:
     hvPublic mqttReady
 ```
 When the MQTT connection changes, the MQTT plug-in calls *mqttReady* like this:
-``` tcl
-    mqttReady *status*
-```
+<pre>
+    mqttReady <i>status</i>
+</pre>
 *status* is a dict  of either {state connected} or {state disconnected reason *reason*}.
 Possible values for *reason* are:
 ```
@@ -1048,9 +1048,10 @@ Typical use:
     proc mqttReady {status} {
     
         if {[dict get $status state] eq "connected"} {
-            #code to run when MQTT is ready.
+            # Code to run when MQTT is ready.
+            # Typically a "subscribe" or "init" procedure.
         } else {
-            #code to run when MQTT is not ready.
+            # Code to run when MQTT is not ready.
         }
     }
 ```
