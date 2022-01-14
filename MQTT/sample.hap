@@ -1,0 +1,62 @@
+# Sample plug-in using MQTT for HomeVision
+# This plug-in uses its own subscriptions,
+#  so does not require entries in the MQTT plug-in's Devices lists.
+
+hvImport debug
+# Also import action plug-in, if used.
+hvImport action
+
+proc init {} {
+
+    # Init some stuff
+
+    # Subscribe
+    subscribe
+}
+
+# Callback with only one possible topic. Just need to look at payload.
+hvPublic samplecb
+proc samplecb {topic payload {retain 0}} {
+
+    debug "Sample callback: topic:$topic,msg:$payload;" blue
+    # process payload
+}
+
+# Callback with multiple possible topics. Need to look at topic and payload.
+hvPublic haspcb
+proc haspcb {topic payload {retain 0}} {
+
+    debug "hasp callback: topic:$topic,msg:$payload;" blue
+
+    lassign [split $topic "/"] prefix display state last
+    if {$state eq "state"} {
+        # Further process a "state" topic & payload
+    } elseif {$state eq "sensor" } {
+        # Further process a "sensor" topic & payload
+    }
+}
+
+hvImport mqttComm
+proc subscribe {{type sub}} {
+    global cfg
+
+    debug "subscribe: $type" blue
+    if {$type ni {sub unsub}} {return}
+
+    mqttComm $type <sample_topic> samplecb
+    # Add more subscribes as needed.
+    #    Make sure to add more callbacks if not using the same one for all topics.
+    # The following use both non-standard topics, and the # wildcard.
+    mqttComm $type hasp/hasp01/state/# haspcb
+    mqttComm $type hasp/hasp01/sensor/# haspcb
+}
+
+hvPublic mqttReady
+proc mqttReady {status} {
+    if {[dict get $status state] eq "connected"} {
+        init
+    }
+}
+
+hvEventHook ready [list init]
+hvEventHook exit [list subscribe unsub]

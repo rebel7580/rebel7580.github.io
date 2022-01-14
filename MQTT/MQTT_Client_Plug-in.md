@@ -1052,6 +1052,8 @@ Typical use:
     }
 ```
 
+A sample plug-in using <i>mqttComm</i> and <i>mqttReady</i> that does its own subscribing and needs no entries in the MQTT plug-in's device lists can be found <a href="sample.hap">here</a>.
+
 ### MQTT Discovery for Home Assistant
 
 [Tips for Interfacing HomeVision with Home Assistant](https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL/wiki/Tips-for-Interfacing-HomeVision-with-Home-Assistant)
