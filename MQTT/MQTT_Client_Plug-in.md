@@ -977,7 +977,6 @@ The *topicTemplate* command has the following format:
 topicTemplate returns a list containing a dict with the following key/values:
 <br>
 <br>
-
   | Key | Value |
   | :---: | --- |
   | template | One of \<T\>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.| 
@@ -991,7 +990,6 @@ topicTemplate returns a list containing a dict with the following key/values:
   | post ntype | Post type with "Relay" number striped off.| 
   | post index | "Relay" number or "[0-9]*" if none, or "" if no postfix.| 
   | match | Regexp expression to match the full topic.| 
-
 <br>
 <br>
 There are some details and cautions concerning the use of this helper proc.
