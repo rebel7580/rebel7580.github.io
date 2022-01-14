@@ -201,9 +201,8 @@ The MQTT plug-in automatically subscribes to:
     cmnd/homevision/#
 ```
 <pre>
-
         Full Topic                           Payload
-    cmnd/homevision/<i>object_type</i>/POWER    empty or "?"
+    cmnd/homevision/<i>object_type</i>/POWER      empty or "?"
     cmnd/homevision/POWER                  empty or "?"
 </pre>
 
@@ -840,11 +839,11 @@ The calling plug-in should import the command via:
     hvImport mqttComm
 ```
 The *mqttComm* command has the following formats:
-``` tcl
-    mqttComm {-log} sub|unsub <*topic*>|*topic* *callback* 
-    mqttComm {-exactstat -nodim -log -retain} stat|cmnd <*topic*>|*topic* {*payload*}
-    mqttComm {-log -retain} pub *topic* {*payload*}
-```
+<pre>
+    mqttComm {-log} sub|unsub <<i>topic</i>>|<i>topic</i> <i>callback</i> 
+    mqttComm {-exactstat -nodim -log -retain} stat|cmnd <<i>topic</i>>|<i>topic</i> {<i>payload</i>}
+    mqttComm {-log -retain} pub <i>topic</i> {<i>payload</i>}
+</pre>
 
 * Note: In previous versions (< 1.76), "type", the name of the calling plug-in, was the first argument. This has been deprecated. However, for backward compatibility, new versions of the command will allow (and ignore) a "type" argument.
 * -log: Log the command. This argument is optional.
