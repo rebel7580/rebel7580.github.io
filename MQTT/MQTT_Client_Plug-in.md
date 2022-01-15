@@ -29,7 +29,7 @@
       * Custom Processing of Received Messages
         * Custom Commands
         * Triggers
-      * mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
+      * <b>mqttComm</b> - Sending/Receiving MQTT Messages from/to Another Plug-in
       * Other Public Procedures Supplied/Called by the MQTT Plug-in
         * topicTemplate
         * mqttLog
@@ -700,7 +700,7 @@ Create a plug-in containing the following:
         }
     }
 ```
-(See next Section for a description of "mqttComm".)
+(See next Section for a description of <b>mqttComm</b>.)
 <br>
 <br>
 Procedure *humid* is called whenever a humidity status message is received. It processes the JSON status message to get the humidity and turns the fan on or off depending on the humidity level.
@@ -833,12 +833,12 @@ this method takes "Custom Commands" a step farther.
 A plug-in can be essentially independent of processing that is done in the MQTT plug-in, except for using it as a MQTT transport mechanism.
 <br>
 <br>
-Other plug-ins can interface with the MQTT plug-in via the <i>mqttComm</i> command.
+Other plug-ins can interface with the MQTT plug-in via the <b>mqttComm</b> command.
 The calling plug-in should import the command via:
 <pre>
     hvImport mqttComm
 </pre>
-The <i>mqttComm</i> command has the following formats:
+The <b>mqttComm</b> command has the following formats:
 <pre>
     mqttComm {-log} sub|unsub <<i>topic</i>>|<i>topic</i> <i>callback</i> 
     mqttComm {-exactstat -nodim -log -retain} stat|cmnd <<i>topic</i>>|<i>topic</i> {<i>payload</i>}
@@ -874,7 +874,7 @@ When the standard form is used with "sub" or "unsub", a "cmnd" pre-fix is assume
 To subscribe or unsubscribe to a "stat" type topic, use the topic without the <.
 Example: To subscribe to a stat message:
 <pre>
-    mqttComm sub stat/utilityroom> cascallback
+    <b>mqttComm</b> sub stat/utilityroom> cascallback
 </pre>
 which will subscribe to
 <pre>
@@ -888,15 +888,15 @@ The MQTT client allows multiple, different callback procs to be assigned to the 
 This could be useful, but normally it will cause unexpected behavior.
 <br>
 <br>
-The mqttComm proc returns an empty string if mqtt is not ready.
+The <b>mqttComm</b> proc returns an empty string if mqtt is not ready.
 This can be used to trigger retries until MQTT is ready.
 <br>
 <br>
-The mqttComm proc returns 0 if the type, action or topic is missing or NULL,
+The <b>mqttComm</b> proc returns 0 if the type, action or topic is missing or NULL,
 or if there is no payload for a cmnd or stat command.
 <br>
 <br>
-The mqttComm proc returns 1 for a successful operation.
+The <b>mqttComm</b> proc returns 1 for a successful operation.
 <br>
 <br>
 Examples:
@@ -914,11 +914,11 @@ Examples:
 ```
 <br>
 <br>
-*Callbacks with the "sub" form of mqttComm*
+*Callbacks with the "sub" form of <b>mqttComm</b>*
 <br>
 <br>
 When something subscribes to a topic, the assumption is that some action should be taken when a message with that topic arrives.
-So how is that handled when a plug-in uses *mqttComm* to subscribe to a topic?
+So how is that handled when a plug-in uses <b>mqttComm</b> to subscribe to a topic?
 <br>
 <br>
 This is best explained by example.
@@ -939,7 +939,7 @@ When the mqtt plug-in received the appropriate message, it calls the callback pr
     cascb cmnd/utilityroom/POWER "?" 0
 ```
 A proc "cascb" must be defined in the calling plug-in to handle the message.
-In this case, it should eventually use another mqttComm command to send back status, maybe like this:
+In this case, it should eventually use another <b>mqttComm</b> command to send back status, maybe like this:
 
 ``` tcl
     mqttComm stat <utilityroom> On 50   --->   stat/utilityroom/POWER ON 50
@@ -1012,7 +1012,7 @@ will also send the string to the debug plug-in in *color*, Default: red.
 
 #### mqttReady
 
-This proc is <i>called</i> by the MQTT plug-in to indicate whether it is connected or disconnected to the MQTT broker (and hence ready to take mqttComm calls).
+This proc is <i>called</i> by the MQTT plug-in to indicate whether it is connected or disconnected to the MQTT broker (and hence ready to take <b>mqttComm</b> calls).
 The using plug-in should make the command public via:
 <pre>
     hvPublic mqttReady
@@ -1052,7 +1052,7 @@ Typical use:
     }
 ```
 
-A sample plug-in using <i>mqttComm</i> and <i>mqttReady</i> that does its own subscribing and needs no entries in the MQTT plug-in's device lists can be downloaded from <a href="sample.hap">here</a>.
+A sample plug-in using <b>mqttComm</b> and <i>mqttReady</i> that does its own subscribing and needs no entries in the MQTT plug-in's device lists can be downloaded from <a href="sample.hap">here</a>.
 
 ### MQTT Discovery for Home Assistant
 
