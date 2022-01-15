@@ -81,12 +81,12 @@ To provide additional flexibility in defining a system's topic structure, standa
 The following are possible (where "T" is the sub-topic):
 <pre>
    Template        Example
-      <T>       cmnd/T/POWER   --> Tasmota and MQTT plug-in default
-      T<>       T/cmnd/POWER
-      <>T       cmnd/POWER/T
-      >T<       POWER/T/cmnd
-      T><       T/POWER/cmnd
-      ><T       POWER/cmnd/T
+      &lt;T&gt;       cmnd/T/POWER   --&gt; Tasmota and MQTT plug-in default
+      T&lt;&gt;       T/cmnd/POWER
+      &lt;&gt;T       cmnd/POWER/T
+      &gt;T&lt;       POWER/T/cmnd
+      T&gt;&lt;       T/POWER/cmnd
+      &gt;&lt;T       POWER/cmnd/T
 
 </pre>
 To accommodate certain Tasmota devices that have multiple relays or switches, one or more digits can follow the ">" postfix index to specify the relay or switch.
