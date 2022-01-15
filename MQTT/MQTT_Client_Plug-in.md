@@ -1015,8 +1015,6 @@ The <b>topicTemplate</b> command should be used like this:
   | post index | "Relay" number or "[0-9]*" if none, or "" if no postfix.| 
   | match | Regexp expression to match the full topic.| 
 
-There are some details and cautions concerning the use of this helper procedure.
-Contact the author for further support.
 
 #### mqttLog
 
@@ -1031,9 +1029,12 @@ The <b>mqttLog</b> command has the following format:
 <pre>
     mqttLog <i>string</i> {<i>color</i>}
 </pre>
-* <i>string</i>: String to log.
-* <i>color</i>: If the "debug" is imported into the calling procedure,
+<ul>
+<li><i>string</i>: String to log.
+</li><li><i>color</i>: If the "debug" is imported into the calling procedure,
 will also send the string to the debug plug-in in *color*, Default: red.
+</li>
+</ul>
 
 #### mqttReady
 
