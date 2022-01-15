@@ -96,7 +96,7 @@ For example, an external device of this type that sends out state reports like t
 </pre>
 should be set up with this topic structure:
 <pre>
-    <FloorLamp>2
+    &lt;FloorLamp&gt;2
 </pre>
 Devices that send out reports for several "relays" should have separate entries in the <b>Ext Devices Tab</b> for each "relay".
 <br>
@@ -729,7 +729,7 @@ Once selected, the "Topic Type" options are available.
 <br>
 <br>
 Selecting "Standard" is used with standard topics
-(generally, those of the form <topic>),
+(generally, those of the form &lt;topic&gt;),
 so "stat" messages with payloads of "on", "off","on {level}" and "{level}" are available.
 If "All" is selected, then only one trigger entry is provided, and this is run regardless of the payload.
 If "On/Off" is selected, there are separate entries for the "on" and "off" states. However, one of the two fields can be empty, which means that nothing will happen for messages received with that state.
