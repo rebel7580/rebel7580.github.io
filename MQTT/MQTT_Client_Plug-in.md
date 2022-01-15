@@ -87,6 +87,7 @@ The following are possible (where "T" is the sub-topic):
       >T<       POWER/T/cmnd
       T><       T/POWER/cmnd
       ><T       POWER/cmnd/T
+
 </pre>
 To accommodate certain Tasmota devices that have multiple relays or switches, one or more digits can follow the ">" postfix index to specify the relay or switch.
 For example, an external device of this type that sends out state reports like this:
