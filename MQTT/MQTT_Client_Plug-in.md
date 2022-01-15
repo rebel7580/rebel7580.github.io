@@ -247,18 +247,18 @@ It must be unique among both external and internal device names.
 See below for Name rules.
 <i>Topic</i> is the topic used for publishing and subscribing.
 See below for Topic rules.
-* The <i>Flag/Var</i> column shows the Flag (FL-#) or Variable (VA-#) assigned to the device.
+<ul><li>The <i>Flag/Var</i> column shows the Flag (FL-#) or Variable (VA-#) assigned to the device.
 If none is assigned, a "-" will show.
-* The <i>Macro</i> column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
+</li><li>The <i>Macro</i> column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
 If no macro is assigned, a "-" will show. 
-* The <i>State</i> column will usually show "On" or "Off", depending on the reported state of the device.
+</li><li>he <i>State</i> column will usually show "On" or "Off", depending on the reported state of the device.
 If the payload was an number, its value, potentially masked and/or truncated, will be displayed.
 When the state has not (yet) been reported, a "-" will show.
-* For each device, its row will be displayed in RED text if the device is reported as "off line" by an LWT message.
+</li><li>For each device, its row will be displayed in RED text if the device is reported as "off line" by an LWT message.
 However, if an "on Line" LWT or a POWER state message is received,
 the row will display in BLACK text.
-* Rows can be sorted in ascending or descending order by <i>Device Name</i> or <i>Topic</i> by clicking on the column header. 
-
+</li><li>Rows can be sorted in ascending or descending order by <i>Device Name</i> or <i>Topic</i> by clicking on the column header. 
+</li></ul>
 <i>New/Edit/Delete External Devices</i>
 * To enter a new device, click the "New" button, and start with the <i>Topic</i>.
   * Topics are case-sensitive!
@@ -285,16 +285,15 @@ Alphanumeric and the underscore are the only allowed characters.
 Assigning a Flag or Variable is optional.
 There is no checking to make sure a Flag or Variable is not used more than once.
   * If a variable is selected, two additional options are available.
-<ul><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
-</li><li>If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
+    * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+    * If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
 can be selected.
 If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1.
 If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
 <br>
 <br>
 Note: When "Use Variable as Flag" is not selected, Payloads with "on" or "off" do not cause any Actions, except for updating the "State" display.
-</li>
-</ul>
+
   * Macros can be assigned for "On" and "Off" states.
 The same macro can be assigned to both states, or different macros can be assigned.
 A macro can be assigned to just one of the states, leaving the other set to "None".
