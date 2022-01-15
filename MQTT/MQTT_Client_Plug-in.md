@@ -896,30 +896,28 @@ The <b>mqttComm</b> proc returns 1 for a successful operation.
 Examples:
 <pre>
     mqttComm sub &lt;uroom&gt; cascallback
-        subscribes to cmnd/uroom/POWER
-             with callback cascallback
-             
+        subscribes to cmnd/uroom/POWER with callback cascallback
+
     mqttComm unsub stat/uroom/power mycallback
-        unsubscribes to stat/uroom/power
-             with callback mycalback
-             
+        unsubscribes to stat/uroom/power with callback mycallback
+
     mqttComm cmnd &lt;uroom&gt; on
         publishes cmnd/uroom/POWER on
-        
+
     mqttComm stat &lt;uroom&gt; on
         publishes stat/uroom/POWER on and/or
                   stat/uroom/RESULT {"POWER":"ON","Dimming":100}
-                  
+
     mqttComm -nodim stat &lt;uroom&gt; on
         publishes stat/uroom/POWER on and/or
                   stat/uroom/RESULT {"POWER":"ON"}
-                  
+
     mqttComm -exactstat stat &lt;uroom&gt; on
         publishes stat/uroom/POWER on 
-        
+
     mqttComm stat "cmnd/room 2/state" on
         publishes cmnd/room 2/state on
-        
+
     mqttComm pub "cmnd/room 2/state" on
         publishes cmnd/room 2/state on
 </pre>
