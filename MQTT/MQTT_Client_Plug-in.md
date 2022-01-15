@@ -567,12 +567,12 @@ If <i>callback</i> is not present, then the serial command essentially does noth
 <br>
 <br>
 Examples:
-```
+<pre>
     mqtt: sub tele/somedevice/state mycb;
     mqtt: unsub tele/somedevice/state mycb;
     mqtt: pub "cmnd/living room/POWER" some payload info;
     mqtt: pub "cmnd/living room/POWER" some payload info retain;
-```
+</pre>
 Note: If a topic has spaces, the entire topic should be enclosed in double-quotes or braces {}.
 <br>
 Note: Double-quotes or braces are NOT necessary for any spaces in the payload portion.
@@ -582,12 +582,12 @@ Generic MQTT messages can be sent via NetIO using a "netioaction" command in the
 <br>
 <br>
 Examples:
-```
+<pre>
     sends:  netioaction mqtt sub tele/somedevice/state mycb
     sends:  netioaction mqtt unsub tele/somedevice/state mycb
     sends:  netioaction mqtt pub {cmnd/living room/POWER} some payload info
     sends:  netioaction mqtt pub {cmnd/living room/POWER} some payload info retain
-```
+</pre>
 Note: For NetIO, a topic with spaces must be enclosed by braces {}.
 Double-quotes are not allowed due to the way NetIO handles arguments of the netioaction command.
 
@@ -598,9 +598,9 @@ Double-quotes are not allowed due to the way NetIO handles arguments of the neti
 Sometimes a topic may not fit the standard forms supported by the plug-in, or the actions taken (setting flags, variables and running macros)
 may not be powerful enough.
 There are two methods that provide more advanced processing:
-* Custom commands - Create a plug-in and define a command to run when a topic is received;
-* Triggers - Send trigger strings to HomeVisionXL or plug-ins.
-
+<ul><li>Custom commands - Create a plug-in and define a command to run when a topic is received;
+</li><li>Triggers - Send trigger strings to HomeVisionXL or plug-ins.
+</li></ul>
 
 #### Custom Commands
 To have custom processing of received messages for a topic,
@@ -630,8 +630,7 @@ Example:
 <br>
 Suppose we have a device (named BathHumidity) running Tasmota software with a AM2301 temperature/humidity sensor attached , and we want to turn on a ventilator fan (named BathFan) when the humidity gets high (>70) and turn it off when it is low (<55).
 We would get periodic MQTT tele reports like this:
-```
-
+<pre>
     tele/BathHumidity/SENSOR {
         "Time":"2020-05-20T15:13:25",
         "Switch2":"OFF",
@@ -641,29 +640,30 @@ We would get periodic MQTT tele reports like this:
         },
         "TempUnit": "F"
     }
+</pre>
 
-```
 (The JSON payload is expanded here for readability.)
 <br>
 <br>
 In the <b>Ext Devices Tab</b>, add an external device for the humidity sensor with a full topic of
-```
+<pre>
     tele/BathHumidity/SENSOR
-```
+</pre>
+
 The MQTT Plug-in will explicitly subscribe to this topic instead of the normal standard state topics.
 Click "Command" and set the *Command* entry field to "humid".
 Click "OK" to save this entry.
 <br>
 <br>
 Add another external device for the fan with a standard topic
-```
+<pre>
     <BathFan>
-```
+</pre>
 so that it will report status
 in the standard way, like this:
-```
+<pre>
     stat/BathFan/POWER ON
-```
+</pre>
 Click "Command" and set the <i>Command</i> entry field to "bathfan".
 Click "OK" to save this entry.
 <br>
@@ -672,7 +672,7 @@ Click "Done" for changes to be effective!
 <br>
 <br>
 Create a plug-in containing the following:
-``` tcl
+<pre>
     tcl::tm::path add [file dirname [info script]]
     package require json 1.0
 
@@ -704,7 +704,7 @@ Create a plug-in containing the following:
             }
         }
     }
-```
+</pre>
 (See next Section for a description of <b>mqttComm</b>.)
 <br>
 <br>
