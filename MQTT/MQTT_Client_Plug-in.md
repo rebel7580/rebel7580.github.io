@@ -858,10 +858,10 @@ The <b>mqttComm</b> command has the following formats:
 <pre>
     callback <i>fulltopic payload retain</i>
 </pre>
+
 </li><ul><li><i>fulltopic</i>: the complete topic, as received, including any prefix or postfix.
 </li><li><i>payload</i>: the message payload.
 </li><li>When a new subscription is made by a client, all retained messages that match the full topic are reported with <i>retain</i> set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
-</ul>
 </li>
 </ul>
 
