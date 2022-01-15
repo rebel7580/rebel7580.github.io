@@ -614,7 +614,7 @@ However, the action command can be used in the procedure to manipulate flags, va
 <br>
 <br>
 The procedure must be defined in another enabled plug-in, 
-and must be made public via the <pre>hvPublic</pre> command.
+and must be made public via the <code>hvPublic</code> command.
 A plug-in can contain several different procedures that are called by different messages.
 <br>
 <br>
