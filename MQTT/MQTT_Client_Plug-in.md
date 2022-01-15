@@ -657,7 +657,7 @@ Click "OK" to save this entry.
 <br>
 Add another external device for the fan with a standard topic
 <pre>
-    <BathFan>
+    &lt;BathFan&gt;
 </pre>
 so that it will report status
 in the standard way, like this:
