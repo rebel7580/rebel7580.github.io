@@ -740,16 +740,17 @@ Only one trigger entry is available and is run regardless of the payload content
 <br>
 The following special character strings will cause substitutions for every occurrence in a trigger string(s).
 (Note: %X, %P, %E, %L don't make sense for "Custom" trigger strings, but, if used, will result in a "0" being substituted.)
-* **%X** Substitute a received 0-100 level scaled to 0-16 (standard **X**10).
-* **%P** Substitute a received 0-100 level scaled to 0-31 (**P**cs).
-* **%E** Substitute a received 0-100 level scaled to 0-63 (dir**E**ct to level).
-* **%L** Substitute a received 0-100 **L**evel unscaled.
-* **%O** Substitute the t**O**pic.
-* **%M** Substitute the entire payload  (**M**essage) unmodified.
-* **%m** Substitute the entire payload  (**m**essage), substituting single quotes for double quotes.
-* **%D** Substitute the current **D**ate in the form YYYYMMDD.
-* **%T** Substitute the current **T**ime in the form HH:MM:SS.
+* <b>%X</b> Substitute a received 0-100 level scaled to 0-16 (standard <b>X</b>10).
+* <b>%P</b> Substitute a received 0-100 level scaled to 0-31 (<b>P</b>cs).
+* <b>%E</b> Substitute a received 0-100 level scaled to 0-63 (dir<b>E</b>ct to level).
+* <b>%L</b> Substitute a received 0-100 <b>L</b>evel unscaled.
+* <b>%O</b> Substitute the t<b>O</b>pic.
+* <b>%M</b> Substitute the entire payload  (<b>M</b>essage) unmodified.
+* <b>%m</b> Substitute the entire payload  (<b>m</b>essage), substituting single quotes for double quotes.
+* <b>%D</b> Substitute the current <b>D</b>ate in the form YYYYMMDD.
+* <b>%T</b> Substitute the current <b>T</b>ime in the form HH:MM:SS.
 <br>
+
 Examples:
 <br>
 <br>
@@ -772,7 +773,6 @@ Options: Standard, All.
 Trigger:
     write to file "filename%D" "%T: %O:%M"
 </pre>
-<br>
 <br>
 Write a daily log file, where the payload may have double quotes in it (i.e., a JSON string).
 In that case, the double quotes must be converted to single quotes to avoid confusing the "write to file" processing.
