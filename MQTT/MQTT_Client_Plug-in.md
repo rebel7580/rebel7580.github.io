@@ -1019,18 +1019,19 @@ The <b>topicTemplate</b> command should be used like this:
   | match | Regexp expression to match the full topic.| 
 
 <table>
-<tr><th>Key</th><th>Value</th></tr>
-<tr><td>template</td><td>One of \<T\>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.</td></tr>
-<tr><td>pre pos</td><td>Prefix position 1-3, -1 if no prefix.</td></tr>
-<tr><td>pre type</td><td>Prefix string, "" if no prefix.</td></tr>
-<tr><td>topic pos</td><td>Sub-topic position 1-3</td></tr>
-<tr><td>topic name</td><td>Sub-topic string</td></tr>
-<tr><td>topic type</td><td>"s" (standard: contains both < and >), "ns" (non-standard) otherwise.</td></tr>
-<tr><td>post pos</td><td>Postfix position 1-3, -1 if no postfix.</td></tr>
-<tr><td>post type</td><td>Postfix string, "" if no prefix.</td></tr>
-<tr><td>post ntype</td><td>Post type with "Relay" number striped off.</td></tr>
-<tr><td>post index</td><td>"Relay" number or "[0-9]*" if none, or "" if no postfix.</td></tr>
-<tr><td>match</td><td>Regexp expression to match the full topic.</td></tr>
+<tr><th style="text-align:center">Key</th><th>Value</th></tr>
+<tr><th style="text-align:center">-</th><th>-</th></tr>
+<tr><td style="text-align:center">template</td><td>One of \<T\>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.</td></tr>
+<tr><td style="text-align:center">pre pos</td><td>Prefix position 1-3, -1 if no prefix.</td></tr>
+<tr><td style="text-align:center">pre type</td><td>Prefix string, "" if no prefix.</td></tr>
+<tr><td style="text-align:center">topic pos</td><td>Sub-topic position 1-3</td></tr>
+<tr><td style="text-align:center">topic name</td><td>Sub-topic string</td></tr>
+<tr><td style="text-align:center">topic type</td><td>"s" (standard: contains both < and >), "ns" (non-standard) otherwise.</td></tr>
+<tr><td style="text-align:center">post pos</td><td>Postfix position 1-3, -1 if no postfix.</td></tr>
+<tr><td style="text-align:center">post type</td><td>Postfix string, "" if no prefix.</td></tr>
+<tr><td style="text-align:center">post ntype</td><td>Post type with "Relay" number striped off.</td></tr>
+<tr><td style="text-align:center">post index</td><td>"Relay" number or "[0-9]*" if none, or "" if no postfix.</td></tr>
+<tr><td style="text-align:center">match</td><td>Regexp expression to match the full topic.</td></tr>
 </table>
 
 
