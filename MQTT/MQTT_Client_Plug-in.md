@@ -754,7 +754,6 @@ The following special character strings will cause substitutions for every occur
 </li><li><b>%T</b> Substitute the current <b>T</b>ime in the form HH:MM:SS.
 </li></ul>
 <br>
-
 Examples:
 <br>
 <br>
@@ -846,21 +845,23 @@ The <b>mqttComm</b> command has the following formats:
     mqttComm {-exactstat -nodim -log -retain} stat|cmnd <<i>topic</i>>|<i>topic</i> {<i>payload</i>}
     mqttComm {-log -retain} pub <i>topic</i> {<i>payload</i>}
 </pre>
-
-* Note: In previous versions (< 1.76), "type", the name of the calling plug-in, was the first argument. This has been deprecated. However, for backward compatibility, new versions of the command will allow (and ignore) a "type" argument.
-* -log: Log the command. This argument is optional.
-* -retain: The sent message is retained by the broker. This argument is optional.
-* -exactstat: Sends only a POWER stat response regardless of power/result settings.
-* -nodim: Don't include Dimming in a RESULT response.
-* <i>topic</i>: Can either be enclosed in "<>" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "<" nor ">" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "<" or ">", should be enclosed in double-quotes.
-* <i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
-* <i>callback</i>: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
+<ul>
+<li>Note: In previous versions (&lt; 1.76), "type", the name of the calling plug-in, was the first argument. This has been deprecated. However, for backward compatibility, new versions of the command will allow (and ignore) a "type" argument.
+</li><li>-log: Log the command. This argument is optional.
+</li><li>-retain: The sent message is retained by the broker. This argument is optional.
+</li><li>-exactstat: Sends only a POWER stat response regardless of power/result settings.
+</li><li>-nodim: Don't include Dimming in a RESULT response.
+</li><li><i>topic</i>: Can either be enclosed in "<>" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "<" nor ">" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "<" or ">", should be enclosed in double-quotes.
+</li><li><i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
+</li><li><i>callback</i>: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
 <pre>
     callback <i>fulltopic payload retain</i>
 </pre>
- * *fulltopic*: the complete topic, as received, including any prefix or postfix.
- * <i>payload</i>: the message payload.
- * When a new subscription is made by a client, all retained messages that match the full topic are reported with *retain* set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
+</li><li><i>fulltopic</i>: the complete topic, as received, including any prefix or postfix.
+</li><li><i>payload</i>: the message payload.
+</li><li>When a new subscription is made by a client, all retained messages that match the full topic are reported with <i>retain</i> set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
+</li>
+</ul>
 
 
 See below for further details on the use of callbacks!
