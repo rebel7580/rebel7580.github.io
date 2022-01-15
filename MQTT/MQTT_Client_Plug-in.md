@@ -260,18 +260,19 @@ the row will display in BLACK text.
 </li><li>Rows can be sorted in ascending or descending order by <i>Device Name</i> or <i>Topic</i> by clicking on the column header. 
 </li></ul>
 <i>New/Edit/Delete External Devices</i>
-* To enter a new device, click the "New" button, and start with the <i>Topic</i>.
-  * Topics are case-sensitive!
-  * A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
+
+<ul><li>To enter a new device, click the "New" button, and start with the <i>Topic</i>.
+<ul><li>Topics are case-sensitive!
+</li><li>A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
 is indicated by enclosing it in "<" and ">"
 (or one of the variations mentioned previously).
 E.g., "&lt;<i>topic</i>&gt;".
 <i>This should be the default method for specifying topics.</i>
 To help with this, a new device will have "<>" already inserted in the topic field.
 (Delete or modify as needed.)
-  * Topics can contain multiple levels, indicated by "/", but should not start or end with a "/".
-  * A topic with <i>default</i> processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
-  * A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
+</li><li>Topics can contain multiple levels, indicated by "/", but should not start or end with a "/".
+</li><li>A topic with <i>default</i> processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
+</li><li>A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
 Use of wildcards should adhere to the MQTT standards.
 However, care should be taken when using them. It's probably a bad idea to have "#" as a topic, as it will subscribe to EVERYTHING!
 Device <i>Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
@@ -280,40 +281,39 @@ If the topic is multi-level, <i>Name</i> must be simpler.
 <i>Name</i> cannot contain "<", ">", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
 <i>Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
-  * There is some validation of the <i>Topic</i> and <i>Name</i> fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
-  * For each device, an HV Flag or Variable can be assigned. 
+</li><li>There is some validation of the <i>Topic</i> and <i>Name</i> fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
+</li><li>For each device, an HV Flag or Variable can be assigned. 
 Assigning a Flag or Variable is optional.
 There is no checking to make sure a Flag or Variable is not used more than once.
-  * If a variable is selected, two additional options are available.
-    * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
-    * If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
+<ul><li>If a variable is selected, two additional options are available.
+</li><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+</li><li>If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
 can be selected.
 If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1.
 If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
 <br>
 <br>
 Note: When "Use Variable as Flag" is not selected, Payloads with "on" or "off" do not cause any Actions, except for updating the "State" display.
-
-  * Macros can be assigned for "On" and "Off" states.
+</li></ul>
+</li><li>Macros can be assigned for "On" and "Off" states.
 The same macro can be assigned to both states, or different macros can be assigned.
 A macro can be assigned to just one of the states, leaving the other set to "None".
-  * To have custom processing of received messages or triggers for this topic, select the appropriate mode and enter command/triggers.
+</li><li>To have custom processing of received messages or triggers for this topic, select the appropriate mode and enter command/triggers.
 See <b>Custom Processing of Received Messages</b> for details.
-  * Check "Subscribe to Last Will and Testament" to subscribe standard topics to LWT.
+</li><li>Check "Subscribe to Last Will and Testament" to subscribe standard topics to LWT.
 If the topic is not in the form of a standard topic,
 this selection has no effect.
-  * Choose whether to log MQTT messages sent or received by this device.
-  * Click "OK" to save edits, or "Cancel" to discard them.
-
-* Devices can be edited by clicking the "Edit" button.
+</li><li>Choose whether to log MQTT messages sent or received by this device.
+</li><li>Click "OK" to save edits, or "Cancel" to discard them.
+</li></ul>
+</li><li>Devices can be edited by clicking the "Edit" button.
 This brings up the same window used for adding a new device.
-* Use the "Delete" button to delete a device.
+</li><li>Use the "Delete" button to delete a device.
 When a device is deleted, the plug-in unsubscribes to any topics related to that device.
-* When "Done" is clicked, devices with standard topics are subscribed to their state and LWT full topics.
+</li><li>When "Done" is clicked, devices with standard topics are subscribed to their state and LWT full topics.
 Devices with custom topics are subscribed only to the topic as-is.
-*Click "Done" for changes to become effective!*
-
-
+<i>Click "Done" for changes to become effective!</i>
+</li></ul>
 ### Int Objects Tab
 This tab contains a list of supported internal objects.
 These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, Macros, Scheduled Event, Periodic Events, Timers or HVAC.
@@ -482,16 +482,16 @@ MQTT devices can be controlled within a schedule via serial commands which take 
 </pre>
 For example, to toggle a device *named* "sonoff1",
 the serial command would be:
-```
+<pre>
     mqtt: sonoff1 toggle;
-```
+</pre>
 "mqtt:" is whatever the "Serial string prefix" is defined as.
 ";' is whatever the "Serial string terminator character(s)" is defined as.
 "toggle" or "2", "on" or "1", "off" or "0", and "state" are allowed.
 X-10 and Custom Lights can be set to a level by using "on <i>level</i>". E.g.,
-```
+<pre>
     mqtt: den on 50;
-```
+</pre>
 The device <i>name</i> is case-insensitive when matching a device <i>name</i> in the Device list.
 The <i>command</i> portion is sent as-is, case-wise.
 <br>
@@ -503,9 +503,9 @@ In either case, the plug-in will publish a state change topic if the state actua
 MQTT devices can be controlled via NetIO using a "netioaction" command in the NetIO application.
 For example, to have a button set up to toggle a device <i>named</i> "sonoff1",
 the button's <i>sends</i> attribute would be set to:
-```
+<pre>
     sends:  netioaction mqtt sonoff1 toggle
-```
+</pre>
 "mqtt" is whatever the "Netio string" is defined as.
 "toggle" or "2", "on" or "1", "off" or "0", and "state" are allowed.
 <br>
@@ -515,9 +515,9 @@ The <i>command</i> portion is sent as-is, case-wise.
 <br>
 <br>
 The state of the device can get retrieved by:
-```
+<pre>
     reads:  get mqtt sonoff1
-```
+</pre>
 The <i>get</i> command will return the object's state string, depending on the state of the device.
 <br>
 <br>
@@ -1068,7 +1068,7 @@ Reasons "1", "2", and "4" are fatal and need to be corrected before a connection
 <br>
 To use, define an <b>mqttReady</b> procedure to respond to the connected and/or disconnected states.
 Typical use:
-``` tcl
+<pre>
     hvPublic mqttReady
     proc mqttReady {status} {
     
@@ -1079,7 +1079,7 @@ Typical use:
             # Code to run when MQTT is not ready.
         }
     }
-```
+</pre>
 
 A sample plug-in using <b>mqttComm</b> and <b>mqttReady</b> that does its own subscribing and needs no entries in the MQTT Plug-in's device lists can be downloaded from <a href="sample.hap">here</a>.
 
