@@ -1012,24 +1012,24 @@ will send string to the debug plug-in in *color*, Default: red.
 
 #### mqttReady
 
-This proc is *called* by the MQTT plug-in to indicate whether it is connected or disconnected to the MQTT broker (and hence ready to take mqttComm calls).
+This proc is <i>called</i> by the MQTT plug-in to indicate whether it is connected or disconnected to the MQTT broker (and hence ready to take mqttComm calls).
 The using plug-in should make the command public via:
-``` tcl
+<pre>
     hvPublic mqttReady
-```
-When the MQTT connection changes, the MQTT plug-in calls *mqttReady* like this:
+</pre>
+When the MQTT connection changes, the MQTT plug-in calls <i>mqttReady</i> like this:
 <pre>
     mqttReady <i>status</i>
 </pre>
-*status* is a dict  of either {state connected} or {state disconnected reason *reason*}.
-Possible values for *reason* are:
-```
+<i>status</i> is a dict  of either {state connected} or {state disconnected reason <i>reason</i>}.
+Possible values for <i>reason</i> are:
+<pre>
     0 Normal disconnect
     1 Unacceptable protocol version
     2 Identifier rejected
     3 Server unavailable
     4 Bad user name or password
-```
+</pre>
 
 Using this proc is only necessary to make sure the plug-in's subscriptions are re-done automatically in the case the connection to the broker going down and then recovers (with a {state connected} return).
 <br>
