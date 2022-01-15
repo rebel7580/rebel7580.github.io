@@ -264,7 +264,7 @@ the row will display in BLACK text.
   * A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
 is indicated by enclosing it in "<" and ">"
 (or one of the variations mentioned previously).
-E.g., "<<i>topic</i>>".
+E.g., "&lt;<i>topic</i>&gt;".
 <i>This should be the default method for specifying topics.</i>
 To help with this, a new device will have "<>" already inserted in the topic field.
 (Delete or modify as needed.)
@@ -273,13 +273,13 @@ To help with this, a new device will have "<>" already inserted in the topic fie
   * A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
 Use of wildcards should adhere to the MQTT standards.
 However, care should be taken when using them. It's probably a bad idea to have "#" as a topic, as it will subscribe to EVERYTHING!
-<i>Device Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
+Device <i>Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
 If the topic is simple and descriptive, it can be copied to the <i>Name</i> field.
 If the topic is multi-level, <i>Name</i> must be simpler.
 <i>Name</i> cannot contain "<", ">", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
-*Device Name* cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
-  * There is some validation of the <i>Topic</i> and <i>Device Names</i> fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
+<i>Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
+  * There is some validation of the <i>Topic</i> and <i>Name</i> fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
   * For each device, an HV Flag or Variable can be assigned. 
 Assigning a Flag or Variable is optional.
 There is no checking to make sure a Flag or Variable is not used more than once.
@@ -332,7 +332,7 @@ Topic rules are the same as external devices with default processing (i.e., no M
 The auto reporting feature for objects must be turned on, or the HomeVision schedule must explicitly send updates for this to work.
 When the state has not (yet) been reported, a "-" may show.
 Variables always show a "-" for the state.
-* *Level* shows the reported object level or value as appropriate.
+* <i>Level</i> shows the reported object level or value as appropriate.
 X-10 and Light objects show their level in percent, while Variables show their value.
 * Rows can be sorted in ascending or descending order by <i>ID</i>, <i>Object Name</i> or <i>Topic</i> by clicking on the column header.
 When sorting by ID, object types are always grouped together and sorted within those groups by ID.
@@ -348,7 +348,7 @@ Objects included in the list are those that have been checked in the
     * If "Use Variable as Flag" is NOT selected, then "Use Two Variables" can be selected. If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1. If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
   * If an X-10 object is selected, then choose a Model.
 Model is used to determine how level changes are done.
-  * Clicking "Copy Object to Topic, Name" will populate the "Topic" and "Name" fields with an appropriate version of the object name.
+  * Clicking "Copy Object to Topic, Name" will populate the <i>Topic</i> and <i>Name</i> fields with an appropriate version of the object name.
 Some validation is done on the <i>Topic</i> and <i>Name</i> fields; the "OK" button will be grayed out if either field fails validation. 
 The <i>Topic</i> and <i>Name</i> fields can be modified, keeping in mind the rules above for topics and object/device names.
 <br>
@@ -381,7 +381,7 @@ change it to the MQTT broker's domain or explicit IP address.
 * QOS values for Publish and Subscribe messages can be set for brokers that do not support the defaults of QOS 1 for Publish and QOS 2 for Subscribe.
 * If a username and password is used to log into the broker, check the "Use Username/Password" box and then fill in the username and password.
 * Select the type(s) of state responses desired.
-*Valid only for internal objects!*
+<i>Valid only for internal objects!</i>
 <br>
 "Power" enables a standard response like this:
 <pre>
@@ -400,12 +400,12 @@ or like this if "Dimming" is checked:
 </pre>
 * Note: If set to "Response uses 0-100" (see next item), the POWER value will still be "OFF" if 0 and "ON" if otherwise.
 <br>
-One or both of "Power" or "RESULT" *must* be selected.
+One or both of "Power" or "RESULT" <i>must</i> be selected.
 If both are *unchecked*, "Power" will be re-selected automatically.
 "Dimming" has no effect if "Power" only is selected.
 * Select the format of device state responses for "stat" MQTT messages.
-*Valid only for internal objects!*
-Responses can be either the "OFF"/"ON"/"ON *level*" format or strictly "*level*", i.e., 0-100.
+<i>Valid only for internal objects!</i>
+Responses can be either the "OFF"/"ON"/"ON <i>level</i>" format or strictly "<i>level</i>", i.e., 0-100.
 Response format can be set separately for appliance modules (which normally would be best set to "OFF/ON") and all others (standard X-10, PCS, Custom Lights, etc.).
 * If logging is desired, check "Create log file".
 Doing so will display an entry box for the folder for the logs.
@@ -485,21 +485,21 @@ the serial command would be:
 "mqtt:" is whatever the "Serial string prefix" is defined as.
 ";' is whatever the "Serial string terminator character(s)" is defined as.
 "toggle" or "2", "on" or "1", "off" or "0", and "state" are allowed.
-X-10 and Custom Lights can be set to a level by using "on *level*". E.g.,
+X-10 and Custom Lights can be set to a level by using "on <i>level</i>". E.g.,
 ```
     mqtt: den on 50;
 ```
-The device *name* is case-insensitive when matching a device *name* in the Device list.
+The device <i>name</i> is case-insensitive when matching a device <i>name</i> in the Device list.
 The <i>command</i> portion is sent as-is, case-wise.
 <br>
 <br>
-Note: Device *names* are limited to alphas, numbers and the underscore.
+Note: Device <i>names</i> are limited to alphas, numbers and the underscore.
 <br>Note: While serial commands in the schedule can change the state of internal objects as well as external devices, it may make more sense to just set the internal object directly in the schedule.
 In either case, the plug-in will publish a state change topic if the state actually changed.
 ### NetIO
 MQTT devices can be controlled via NetIO using a "netioaction" command in the NetIO application.
-For example, to have a button set up to toggle a device *named* "sonoff1",
-the button's *sends* attribute would be set to:
+For example, to have a button set up to toggle a device <i>named</i> "sonoff1",
+the button's <i>sends</i> attribute would be set to:
 ```
     sends:  netioaction mqtt sonoff1 toggle
 ```
@@ -507,7 +507,7 @@ the button's *sends* attribute would be set to:
 "toggle" or "2", "on" or "1", "off" or "0", and "state" are allowed.
 <br>
 <br>
-The device *name* is case-insensitive when matching a device *name* in the Device list.
+The device <i>name</i> is case-insensitive when matching a device <i>name</i> in the Device list.
 The <i>command</i> portion is sent as-is, case-wise.
 <br>
 <br>
@@ -515,7 +515,7 @@ The state of the device can get retrieved by:
 ```
     reads:  get mqtt sonoff1
 ```
-The *get* command will return the object's state string, depending on the state of the device.
+The <i>get</i> command will return the object's state string, depending on the state of the device.
 <br>
 <br>
 Note: This is a "convenience" command, since it actually just reads the state of the Flag or Variable associated with an external device,
@@ -556,11 +556,11 @@ For "pub" commands, if the last word in the payload is "retain",
 the command is sent with the MQTT retain flag set.
 <br>
 <br>
-For sub and unsub, if *callback* is given,
+For sub and unsub, if <i>callback</i> is given,
 then a public callback procedure must exist somewhere.
 <br>
 <br>
-If *callback* is not present, then the serial command essentially does nothing.
+If <i>callback</i> is not present, then the serial command essentially does nothing.
 <br>
 <br>
 Examples:
@@ -589,7 +589,7 @@ Note: For NetIO, a topic with spaces must be enclosed by braces {}.
 Double-quotes are not allowed due to the way NetIO handles arguments of the netioaction command.
 
 ### Custom Processing of Received Messages
-**Note: This section applies to external devices only.**
+<b>Note: This section applies to external devices only.</b>
 <br>
 <br>
 Sometimes a topic may not fit the standard forms supported by the plug-in, or the actions taken (setting flags, variables and running macros)
@@ -610,11 +610,11 @@ the "Flag/Var", "On Macro" and "Off Macro" fields are ignored.
 However, the action command can be used in the procedure to manipulate flags, vars, macros, etc..
 <br>
 <br>
-**CAUTION: There is little validation of the name of the custom procedure. Care should be taken to avoid any standard TCL procedure names as inadvertently using an existing procedure name may result in abnormal behavior!**
+<b>CAUTION: There is little validation of the name of the custom procedure. Care should be taken to avoid any standard TCL procedure names as inadvertently using an existing procedure name may result in abnormal behavior!</b>
 <br>
 <br>
 The procedure must be defined in another enabled plug-in, 
-and must be made public via the ```hvPublic``` command.
+and must be made public via the <pre>hvPublic</pre> command.
 A plug-in can contain several different procedures that are called by different messages.
 <br>
 <br>
