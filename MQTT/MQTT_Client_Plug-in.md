@@ -251,7 +251,7 @@ See below for Topic rules.
 If none is assigned, a "-" will show.
 </li><li>The <i>Macro</i> column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
 If no macro is assigned, a "-" will show. 
-</li><li>he <i>State</i> column will usually show "On" or "Off", depending on the reported state of the device.
+</li><li>The <i>State</i> column will usually show "On" or "Off", depending on the reported state of the device.
 If the payload was an number, its value, potentially masked and/or truncated, will be displayed.
 When the state has not (yet) been reported, a "-" will show.
 </li><li>For each device, its row will be displayed in RED text if the device is reported as "off line" by an LWT message.
@@ -318,27 +318,27 @@ Devices with custom topics are subscribed only to the topic as-is.
 This tab contains a list of supported internal objects.
 These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, Macros, Scheduled Event, Periodic Events, Timers or HVAC.
 Add only those objects that need to be visible to or acted on by the MQTT network.
-* <i>ID</i> is the internal object ID.
+<ul><li><i>ID</i> is the internal object ID.
 X-10 object IDs show with their A-P house/unit code format.
 Input and Output object IDs have an "I" or "O" prepended to their usual A-Q codes to distinguish them from X-10 ids.
 Other objects show using a "Fake" code of the first two letters of their standard HV object type name. For example, Custom Lights show as "LI".
-* <i>Object Name</i> is the name of the object for use by serial and NetIO commands.
+</li><li><i>Object Name</i> is the name of the object for use by serial and NetIO commands.
 It must be unique among both external and internal names. It can be the same as the topic, but cannot contain "<", ">", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
 <i>Object Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
 <b>N.B.:</b> HomeVision allows duplicate names among objects, so some modification to the suggested default names will be necessary to achieve uniqueness in the object lists.
-* <i>Topic</i> is the topic used for publishing and subscribing.
+</li><li><i>Topic</i> is the topic used for publishing and subscribing.
 Topic rules are the same as external devices with default processing (i.e., no MQTT wildcards).
-* The <i>State</i> column will show the reported state of the object.
+</li><li>The <i>State</i> column will show the reported state of the object.
 The auto reporting feature for objects must be turned on, or the HomeVision schedule must explicitly send updates for this to work.
 When the state has not (yet) been reported, a "-" may show.
 Variables always show a "-" for the state.
-* <i>Level</i> shows the reported object level or value as appropriate.
+</li><li><i>Level</i> shows the reported object level or value as appropriate.
 X-10 and Light objects show their level in percent, while Variables show their value.
-* Rows can be sorted in ascending or descending order by <i>ID</i>, <i>Object Name</i> or <i>Topic</i> by clicking on the column header.
+</li><li>Rows can be sorted in ascending or descending order by <i>ID</i>, <i>Object Name</i> or <i>Topic</i> by clicking on the column header.
 When sorting by ID, object types are always grouped together and sorted within those groups by ID.
-* At the bottom of the screen, check the Object Type(s) you want to enter. Checking object types here simply limits the Object drop-down list on the Configure New screen to make it easier to find the object you're looking to configure. It doesn't affect any objects already configured.
-
+</li><li>At the bottom of the screen, check the Object Type(s) you want to enter. Checking object types here simply limits the Object drop-down list on the Configure New screen to make it easier to find the object you're looking to configure. It doesn't affect any objects already configured.
+</li></ul>
 <i>New/Edit/Delete Internal Objects</i>
 
 * To enter a new object, Click the "New" button and start by selecting an object from the drop-down list.
