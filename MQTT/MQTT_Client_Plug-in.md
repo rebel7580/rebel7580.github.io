@@ -345,8 +345,9 @@ When sorting by ID, object types are always grouped together and sorted within t
 Objects included in the list are those that have been checked in the
 "Object Type List Enable" section of the <b>Int Object Tab</b>.
 <ul><li>If a variable is selected, two additional options are available.
-</li><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+<ul><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
 </li><li>If "Use Variable as Flag" is NOT selected, then "Use Two Variables" can be selected. If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1. If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
+</li></ul>
 </li><li>If an X-10 object is selected, then choose a Model.
 Model is used to determine how level changes are done.
 </li><li>Clicking "Copy Object to Topic, Name" will populate the <i>Topic</i> and <i>Name</i> fields with an appropriate version of the object name.
