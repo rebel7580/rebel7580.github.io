@@ -404,7 +404,7 @@ or like this if "Dimming" is checked:
 
 <pre>
         Full Topic                     Payload
-    stat/<i>topic</i>/RESULT        {"POWER<i>x</i>":"OFF/ON","Dimmer":<i>level</i>}
+    stat/<i>topic</i>/RESULT        {"POWER<i>x</i>":"OFF"/"ON","Dimmer":<i>level</i>}
 </pre>
 
 </li><li>Note: If set to "Response uses 0-100" (see next item), the POWER value will still be "OFF" if 0 and "ON" if otherwise.
