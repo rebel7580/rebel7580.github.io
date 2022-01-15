@@ -341,7 +341,7 @@ When sorting by ID, object types are always grouped together and sorted within t
 </li></ul>
 <i>New/Edit/Delete Internal Objects</i>
 
-* To enter a new object, Click the "New" button and start by selecting an object from the drop-down list.
+<ul><li>To enter a new object, Click the "New" button and start by selecting an object from the drop-down list.
 Objects included in the list are those that have been checked in the
 "Object Type List Enable" section of the <b>Int Object Tab</b>.
   * If a variable is selected, two additional options are available.
@@ -362,11 +362,11 @@ An exception to this is if different index numbers are appended to the topic, in
   * Choose if object status messages should be sent with the "retained" flag set.
 The retain flag will cause most brokers to "remember" the status and send it to any client that later subscribes to the status topic.
   * Choose whether to log MQTT messages sent or received by this device.
-* Objects can be edited by clicking the "Edit" button. This brings up the same window used for adding a new object.
-* Use the "Delete" button to delete an object. When a object is deleted, the plug-in unsubscribes to any topics related to that device.
-* When "Done" is clicked, objects with standard topics are subscribed to their <b>command</b> full topics. Objects with custom topics are subscribed only to the topic as-is.
-*Click "Done" for changes to become effective!*
-
+</li><li>Objects can be edited by clicking the "Edit" button. This brings up the same window used for adding a new object.
+</li><li>Use the "Delete" button to delete an object. When a object is deleted, the plug-in unsubscribes to any topics related to that device.
+</li><li>When "Done" is clicked, objects with standard topics are subscribed to their <b>command</b> full topics. Objects with custom topics are subscribed only to the topic as-is.
+<i>Click "Done" for changes to become effective!</i>
+<li></ul>
 ### Settings Tab
 
 * Prefixes and Postfixes can be set for "standard" topics.
