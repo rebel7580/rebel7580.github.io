@@ -117,7 +117,7 @@ prefix OR postfix is automatically added.
 Otherwise, the topic is used as-is without any additional portions prepended/appended to it.
 Thus by not putting "<" and ">" in a topic,
 any topic structure can be used.
-However, the plug-in does not have built-in processing when receiving MQTT topics that don't follow the standard prefixes and postfixes. In these cases custom procedures need to be provided. See **Custom Processing of Received Messages**.
+However, the plug-in does not have built-in processing when receiving MQTT topics that don't follow the standard prefixes and postfixes. In these cases custom procedures need to be provided. See <b>Custom Processing of Received Messages</b>.
 <br>
 <br>
 Most of the examples in the rest of this Help follow the Tasmota standard.
@@ -371,19 +371,19 @@ The retain flag will cause most brokers to "remember" the status and send it to 
 </li></ul>
 ### Settings Tab
 
-* Prefixes and Postfixes can be set for "standard" topics.
+<ul><li>Prefixes and Postfixes can be set for "standard" topics.
 The defaults conform to the Tasmota structure.
 They can be changed if necessary, but
 avoid Prefixes and Postfixes that have digits at the beginning or end.
-* If desired, enter the "Count" payload text.
+</li><li>If desired, enter the "Count" payload text.
 Leave blank if not used.
-* "MQTT Broker web/IP Address" defaults to "localhost" which should work if the MQTT broker is on the same (Linux) computer as HomeVisionXL.
+</li><li>"MQTT Broker web/IP Address" defaults to "localhost" which should work if the MQTT broker is on the same (Linux) computer as HomeVisionXL.
 If it doesn't work, or the broker and HomeVisionXL are on different computers,
 change it to the MQTT broker's domain or explicit IP address.
-* "MQTT Broker Port" defaults to "1883" and probably won't need to change.
-* QOS values for Publish and Subscribe messages can be set for brokers that do not support the defaults of QOS 1 for Publish and QOS 2 for Subscribe.
-* If a username and password is used to log into the broker, check the "Use Username/Password" box and then fill in the username and password.
-* Select the type(s) of state responses desired.
+</li><li>"MQTT Broker Port" defaults to "1883" and probably won't need to change.
+</li><li>QOS values for Publish and Subscribe messages can be set for brokers that do not support the defaults of QOS 1 for Publish and QOS 2 for Subscribe.
+</li><li>If a username and password is used to log into the broker, check the "Use Username/Password" box and then fill in the username and password.
+</li><li>Select the type(s) of state responses desired.
 <i>Valid only for internal objects!</i>
 <br>
 "Power" enables a standard response like this:
@@ -401,16 +401,16 @@ or like this if "Dimming" is checked:
         Full Topic                     Payload
     stat/<i>topic</i>/RESULT        {"POWER<i>x</i>":"OFF/ON","Dimmer":<i>level</i>}
 </pre>
-* Note: If set to "Response uses 0-100" (see next item), the POWER value will still be "OFF" if 0 and "ON" if otherwise.
+</li><li>Note: If set to "Response uses 0-100" (see next item), the POWER value will still be "OFF" if 0 and "ON" if otherwise.
 <br>
 One or both of "Power" or "RESULT" <i>must</i> be selected.
-If both are *unchecked*, "Power" will be re-selected automatically.
+If both are <i>unchecked</i>, "Power" will be re-selected automatically.
 "Dimming" has no effect if "Power" only is selected.
-* Select the format of device state responses for "stat" MQTT messages.
+</li><li>Select the format of device state responses for "stat" MQTT messages.
 <i>Valid only for internal objects!</i>
 Responses can be either the "OFF"/"ON"/"ON <i>level</i>" format or strictly "<i>level</i>", i.e., 0-100.
 Response format can be set separately for appliance modules (which normally would be best set to "OFF/ON") and all others (standard X-10, PCS, Custom Lights, etc.).
-* If logging is desired, check "Create log file".
+</li><li>If logging is desired, check "Create log file".
 Doing so will display an entry box for the folder for the logs.
 Log files will be created in this folder.
 Enter the folder name directly, or click the "..." button to browse to or create it.
@@ -418,14 +418,14 @@ To keep file sizes to a reasonable length, a new file is created each day there 
 The file name is "MQTTLogYYMMDD", with an extension determined by "Log File Extension".
 If "Log File Extension" is empty, the file will have a ".txt" extension if HomeVisionXL is running in Windows,
 and no extension if running in Linux.
-  * Only messages for devices/objects that have their "Log sent messages" or "Log received messages" options checked are logged.
+<ul><li>Only messages for devices/objects that have their "Log sent messages" or "Log received messages" options checked are logged.
 This includes messages sent via the "right-click" menu, serial or NetIO.
-  * "Subscribe" and "Unsubscribe" messages are not logged.
-  * Received messages to "cmnd/homevision/#" are always logged.
+</li><li>"Subscribe" and "Unsubscribe" messages are not logged.
+</li><li>Received messages to "cmnd/homevision/#" are always logged.
 However, responses to this command are determined by the affected objects' settings.
-
-* "Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
-
+</li></ul>
+</li><li>"Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
+</li></ul>
 ## Responding to External Device State Changes
 Refer to <a href="MQTT_Actions_ext.html">External Device Actions</a>  <!-- [[Help: External Device Actions|Help:-External-Device-Actions]]-->
 for responses to received messages.
@@ -454,9 +454,9 @@ Since the plug-in will have subscribed to this topic, the message will be sent r
 For internal objects, 
 the corresponding command topic is published in the same manner as external devices.
 (Some object types "interpret" the selection depending on its capability. For example, clicking "On" for a flag translates to SET, while "Off" translates to CLEAR.)
-*No action is taken directly on the internal object.*
+<i>No action is taken directly on the internal object.</i>
 Only a cmnd messages is sent out.
-However, since the internal object has *subscribed* to the command topic,
+However, since the internal object has <i>subscribed</i> to the command topic,
 the MQTT broker will send it right back to the plug-in,
 which will then set the object to the requested state.
 If the command topic causes an object state change, the plug-in completes the sequence by publishing a state topic showing the new state.
@@ -480,7 +480,7 @@ MQTT devices can be controlled within a schedule via serial commands which take 
 <pre>
     mqtt: <i>device_name/object_name</i> <i>command,</i>;
 </pre>
-For example, to toggle a device *named* "sonoff1",
+For example, to toggle a device <i>named</i> "sonoff1",
 the serial command would be:
 <pre>
     mqtt: sonoff1 toggle;
@@ -651,7 +651,7 @@ In the <b>Ext Devices Tab</b>, add an external device for the humidity sensor wi
 </pre>
 
 The MQTT Plug-in will explicitly subscribe to this topic instead of the normal standard state topics.
-Click "Command" and set the *Command* entry field to "humid".
+Click "Command" and set the <i>Command</i> entry field to "humid".
 Click "OK" to save this entry.
 <br>
 <br>
@@ -880,7 +880,7 @@ which will subscribe to
 with "cascallback" as the callback procedure.
 <br>
 <br><b>Caution:</b>
-Make sure when subscribing to a topic that the topic is unique, especially compared to *external devices* and *internal objects*.
+Make sure when subscribing to a topic that the topic is unique, especially compared to <i>external devices</i> and <i>internal objects</i>.
 The MQTT client allows multiple, different callback procs to be assigned to the same topic (via different subscriptions) resulting in all of the procs being called when the common topic arrives.
 This could be useful, but normally it will cause unexpected behavior.
 <br>
@@ -1037,7 +1037,7 @@ The <b>mqttLog</b> command has the following format:
 <ul>
 <li><i>string</i>: String to log.
 </li><li><i>color</i>: If the "debug" is imported into the calling procedure,
-will also send the string to the debug plug-in in *color*, Default: red.
+will also send the string to the debug plug-in in <i>color</i>, Default: red.
 </li>
 </ul>
 
