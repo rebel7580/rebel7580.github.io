@@ -344,12 +344,13 @@ When sorting by ID, object types are always grouped together and sorted within t
 <ul><li>To enter a new object, Click the "New" button and start by selecting an object from the drop-down list.
 Objects included in the list are those that have been checked in the
 "Object Type List Enable" section of the <b>Int Object Tab</b>.
-  * If a variable is selected, two additional options are available.
-    * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
-    * If "Use Variable as Flag" is NOT selected, then "Use Two Variables" can be selected. If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1. If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
-  * If an X-10 object is selected, then choose a Model.
+<ul><li>If a variable is selected, two additional options are available.
+</li><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+</li><li>If "Use Variable as Flag" is NOT selected, then "Use Two Variables" can be selected. If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1. If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
+</li></ul>
+</li><li>If an X-10 object is selected, then choose a Model.
 Model is used to determine how level changes are done.
-  * Clicking "Copy Object to Topic, Name" will populate the <i>Topic</i> and <i>Name</i> fields with an appropriate version of the object name.
+</li><li>Clicking "Copy Object to Topic, Name" will populate the <i>Topic</i> and <i>Name</i> fields with an appropriate version of the object name.
 Some validation is done on the <i>Topic</i> and <i>Name</i> fields; the "OK" button will be grayed out if either field fails validation. 
 The <i>Topic</i> and <i>Name</i> fields can be modified, keeping in mind the rules above for topics and object/device names.
 <br>
@@ -359,9 +360,10 @@ However, note that if a single topic is assigned to multiple objects, when ANY o
 <br>
 <br>
 An exception to this is if different index numbers are appended to the topic, in which case each will act and report independently.
-  * Choose if object status messages should be sent with the "retained" flag set.
+</li><li>Choose if object status messages should be sent with the "retained" flag set.
 The retain flag will cause most brokers to "remember" the status and send it to any client that later subscribes to the status topic.
-  * Choose whether to log MQTT messages sent or received by this device.
+</li><li>Choose whether to log MQTT messages sent or received by this device.
+</li></ul>
 </li><li>Objects can be edited by clicking the "Edit" button. This brings up the same window used for adding a new object.
 </li><li>Use the "Delete" button to delete an object. When a object is deleted, the plug-in unsubscribes to any topics related to that device.
 </li><li>When "Done" is clicked, objects with standard topics are subscribed to their <b>command</b> full topics. Objects with custom topics are subscribed only to the topic as-is.
