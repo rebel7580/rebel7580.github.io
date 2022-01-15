@@ -990,13 +990,16 @@ The calling plug-in should import the command via:
 <pre>
     hvImport topicTemplate
 </pre>
-The <b>topicTemplate</b> command has the following format:
+The <b>topicTemplate</b> command should be used like this:
 <pre>
-    topicTemplate <i>topic</i>
+    set template {*}[topicTemplate <i>topic</i>]
 </pre>
-<i>topic</i>: fulltopic received by the callback.
 
-<b>topicTemplate</b> returns a list containing a dict with the following key/values:
+<ul>
+<li><i>topic</i>: fulltopic received by the callback.
+</li><li><i>template</i>will contain a dict with the following key/values:
+</li></ul>
+
 
   | Key | Value |
   | :---: | --- |
