@@ -752,7 +752,7 @@ The following special character strings will cause substitutions for every occur
 </li><li><b>%m</b> Substitute the entire payload  (<b>m</b>essage), substituting single quotes for double quotes.
 </li><li><b>%D</b> Substitute the current <b>D</b>ate in the form YYYYMMDD.
 </li><li><b>%T</b> Substitute the current <b>T</b>ime in the form HH:MM:SS.
-</ul>
+</li></ul>
 <br>
 
 Examples:
