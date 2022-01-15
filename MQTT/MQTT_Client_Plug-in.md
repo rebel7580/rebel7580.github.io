@@ -758,37 +758,37 @@ This example shows how two separate "built-in" triggers can work together in one
 (Assumes that the sound and program functions are working.)
 <br>
 
-```
+<pre>
 Options: Custom. 
 
 Trigger:
     Play wav file "alarm"  Run program "sendtext"
-```
+</pre>
 <br>
 Write a daily log file. (This may be redundant, as the MQTT plug-in has logging capability in other forms, but shows what can be done.)
-```
+<pre>
 Options: Standard, All.
  
 Trigger:
     write to file "filename%D" "%T: %O:%M"
-```
+</pre>
 <br>
 <br>
 Write a daily log file, where the payload may have double quotes in it (i.e., a JSON string).
 In that case, the double quotes must be converted to single quotes to avoid confusing the "write to file" processing.
-```
+<pre>
 Options: Standard, All.
  
 Trigger:
     write to file "filename%D" "%T: %O:%m"
-```
+</pre>
 <br>
-*The following examples require action plug-in version 1.3 or greater.*
+<i>The following examples require action plug-in version 1.3 or greater.</i>
 <br>
 <br>
 Turn on/off other lights to same level as triggering device.
 <br>
-```
+<pre>
 Options: Standard, On/Off. 
 
 On Trigger:
@@ -796,12 +796,12 @@ On Trigger:
 
 Off Trigger:
     action: x10 off c12, x10 off a3;
-```
+</pre>
 <br>
 Tune a TV to a channel using IR.
 (Select cable input to TV, then tune a channel with a .5 second delay between digits.)
 <br>
-```
+<pre>
 Options: Standard, On/Off. 
 
 On Trigger:
@@ -809,13 +809,13 @@ On Trigger:
 
 Off Trigger:
     {empty}
-```
+</pre>
 <br>
 Tune a TV to a channel on a streaming service.
 (Turn on TV, 0.5 second delay for TV to turn on, select streaming device input, then select streaming channel.)
 This example shows how two separate plug-in triggers (action and roku) can work together in one trigger string.
 <br>
-```
+<pre>
 Options: Standard, On/Off. 
 
 On Trigger:
@@ -823,7 +823,7 @@ On Trigger:
 
 Off Trigger:
     {empty}
-```
+</pre>
 Note: <i>roku</i> is a custom plug-in. [See Here](/Roku/Roku_index).
 
 ### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
@@ -833,12 +833,12 @@ this method takes "Custom Commands" a step farther.
 A plug-in can be essentially independent of processing that is done in the MQTT plug-in, except for using it as a MQTT transport mechanism.
 <br>
 <br>
-Other plug-ins can interface with the MQTT plug-in via the *mqttComm* command.
+Other plug-ins can interface with the MQTT plug-in via the <i>mqttComm</i> command.
 The calling plug-in should import the command via:
 <pre>
     hvImport mqttComm
 </pre>
-The *mqttComm* command has the following formats:
+The <i>mqttComm</i> command has the following formats:
 <pre>
     mqttComm {-log} sub|unsub <<i>topic</i>>|<i>topic</i> <i>callback</i> 
     mqttComm {-exactstat -nodim -log -retain} stat|cmnd <<i>topic</i>>|<i>topic</i> {<i>payload</i>}
@@ -850,14 +850,14 @@ The *mqttComm* command has the following formats:
 * -retain: The sent message is retained by the broker. This argument is optional.
 * -exactstat: Sends only a POWER stat response regardless of power/result settings.
 * -nodim: Don't include Dimming in a RESULT response.
-* *topic*: Can either be enclosed in "<>" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "<" nor ">" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "<" or ">", should be enclosed in double-quotes.
-* *payload*: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
-* *callback*: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
+* <i>topic</i>: Can either be enclosed in "<>" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "<" nor ">" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "<" or ">", should be enclosed in double-quotes.
+* <i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
+* <i>callback</i>: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
 <pre>
     callback <i>fulltopic payload retain</i>
 </pre>
  * *fulltopic*: the complete topic, as received, including any prefix or postfix.
- * *payload*: the message payload.
+ * <i>payload</i>: the message payload.
  * When a new subscription is made by a client, all retained messages that match the full topic are reported with *retain* set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
 
 
@@ -873,16 +873,16 @@ A "pub" or "cmnd", when used with a standard topic, is the same as using "cmnd".
 When the standard form is used with "sub" or "unsub", a "cmnd" pre-fix is assumed.
 To subscribe or unsubscribe to a "stat" type topic, use the topic without the <.
 Example: To subscribe to a stat message:
-``` tcl
+<pre>
     mqttComm sub stat/utilityroom> cascallback
-```
+</pre>
 which will subscribe to
-```
+<pre>
     stat/utilityroom/POWER
-```
+</pre>
 with "cascallback" as the callback proc.
 <br>
-<br>**Caution:**
+<br><b>Caution:</b>
 Make sure when subscribing to a topic that the topic is unique, especially compared to *external devices* and *internal objects*.
 The MQTT client allows multiple, different callback procs to be assigned to the same topic (via different subscriptions) resulting in all of the procs being called when the common topic arrives.
 This could be useful, but normally it will cause unexpected behavior.
@@ -965,14 +965,14 @@ the mqtt plug-in makes public a helper proc that will split a full topic (the to
 <br>
 <br>
 The calling plug-in should import the command via:
-``` tcl
+<pre>
     hvImport topicTemplate
-```
-The *topicTemplate* command has the following format:
+</pre>
+The <i>topicTemplate</i> command has the following format:
 <pre>
     topicTemplate <i>topic</i>
 </pre>
-*topic*: fulltopic received by the callback.
+<i>topic</i>: fulltopic received by the callback.
 
 topicTemplate returns a list containing a dict with the following key/values:
 
@@ -1002,13 +1002,13 @@ The calling plug-in should import the command via:
 <pre>
     hvImport mqttLog
 </pre>
-The *mqttlog* command has the following format:
+The <i>mqttlog</i> command has the following format:
 <pre>
     mqttLog <i>string</i> {<i>color</i>}
 </pre>
-* *string*: String to log.
-* *color*: If "debug" is imported into the calling proc,
-will send string to the debug plug-in in *color*, Default: red.
+* <i>string</i>: String to log.
+* <i>color</i>: If the "debug" is imported into the calling proc,
+will also send the string to the debug plug-in in *color*, Default: red.
 
 #### mqttReady
 
