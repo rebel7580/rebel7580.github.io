@@ -854,20 +854,9 @@ The <b>mqttComm</b> command has the following formats:
 </li><li><i>topic</i>: Can either be enclosed in "<>" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "<" nor ">" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "<" or ">", should be enclosed in double-quotes.
 </li><li><i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
 </li><li><i>callback</i>: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". 
+See <i>Callbacks with the "sub" form of <b>mqttComm</b></i> below for more details on callbacks.
 </li>
 </ul>
-
-It will be called like this:
-
-<pre>
-    callback <i>fulltopic payload retain</i>
-</pre>
-
-<ul><li><i>fulltopic</i>: the complete topic, as received, including any prefix or postfix.
-</li><li><i>payload</i>: the message payload.
-</li><li>When a new subscription is made by a client, all retained messages that match the full topic are reported with <i>retain</i> set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
-See below for further details on the use of callbacks!
-</li></ul>
 <br>
 <br>
 A "stat" or "cmnd", when used with a topic with neither "<" nor ">", ignores the "stat" or "cmnd" and is the same as using "pub".
@@ -920,11 +909,23 @@ Examples:
 ```
 
 <br>
-*Callbacks with the "sub" form of <b>mqttComm</b>*
+<i>Callbacks with the "sub" form of <b>mqttComm</b></i>
 <br>
 <br>
 When something subscribes to a topic, the assumption is that some action should be taken when a message with that topic arrives.
 So how is that handled when a plug-in uses <b>mqttComm</b> to subscribe to a topic?
+This is where callbacks come in.
+When an incoming MQTT message arrives, the MQTT Plug-in will call the callback procedure associated with the previous subscription for that topic.
+It will be called like this:
+
+<pre>
+    callback <i>fulltopic payload retain</i>
+</pre>
+
+<ul><li><i>fulltopic</i>: the complete topic, as received, including any prefix or postfix.
+</li><li><i>payload</i>: the message payload.
+</li><li>When a new subscription is made by a client, all retained messages that match the full topic are reported with <i>retain</i> set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
+</li></ul>
 <br>
 <br>
 This is best explained by example.
