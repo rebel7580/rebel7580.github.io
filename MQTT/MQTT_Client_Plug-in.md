@@ -81,7 +81,7 @@ To provide additional flexibility in defining a system's topic structure, standa
 The following are possible (where "T" is the sub-topic):
 <pre>
    Template        Example
-      &lt;T&gt;       cmnd/T/POWER   --&gt; Tasmota and MQTT plug-in default
+      &lt;T&gt;       cmnd/T/POWER   --&gt; Tasmota and MQTT Plug-in default
       T&lt;&gt;       T/cmnd/POWER
       &lt;&gt;T       cmnd/POWER/T
       &gt;T&lt;       POWER/T/cmnd
@@ -196,7 +196,7 @@ the "Subscribe to Last Will and Testament" checkbox has no effect.
 <br>
 LWT is not supported for internal objects.
 ### Special "homevision" Topic
-The MQTT plug-in automatically subscribes to:
+The MQTT Plug-in automatically subscribes to:
 <pre>
         Full Topic
     cmnd/homevision/#
@@ -220,7 +220,7 @@ This feature can be used by an MQTT entity to quickly sync up with HomeVision ob
 The only valid Payloads are empty or "?".
 This topic cannot be used to <i>control</i> objects.
 ### Special Counting Payload
-The MQTT plug-in has special handling to provide a "counting" feature.
+The MQTT Plug-in has special handling to provide a "counting" feature.
 Certain MQTT messages will <i>increment</i> selected variable(s) each time the message is received. To activate this feature,
 create either an external device or internal object with either one or two variables selected.
 Then, in the "Count Payload Text" of the <b>Settings Tab</b>, enter the text that will indicate "Count".
@@ -647,7 +647,7 @@ In the <b>Ext Devices Tab</b>, add an external device for the humidity sensor wi
 ```
     tele/BathHumidity/SENSOR
 ```
-The MQTT plug-in will explicitly subscribe to this topic instead of the normal standard state topics.
+The MQTT Plug-in will explicitly subscribe to this topic instead of the normal standard state topics.
 Click "Command" and set the *Command* entry field to "humid".
 Click "OK" to save this entry.
 <br>
@@ -767,7 +767,7 @@ Trigger:
     Play wav file "alarm"  Run program "sendtext"
 </pre>
 <br>
-Write a daily log file. (This may be redundant, as the MQTT plug-in has logging capability in other forms, but shows what can be done.)
+Write a daily log file. (This may be redundant, as the MQTT Plug-in has logging capability in other forms, but shows what can be done.)
 <pre>
 Options: Standard, All.
  
@@ -831,10 +831,10 @@ Note: <i>roku</i> is a custom plug-in. [See Here](/Roku/Roku_index).
 
 When total control for MQTT message processing is needed,
 this method takes "Custom Commands" a step farther.
-A plug-in can be essentially independent of processing that is done in the MQTT plug-in, except for using it as a MQTT transport mechanism.
+A plug-in can be essentially independent of processing that is done in the MQTT Plug-in, except for using it as a MQTT transport mechanism.
 <br>
 <br>
-Other plug-ins can interface with the MQTT plug-in via the <b>mqttComm</b> command.
+Other plug-ins can interface with the MQTT Plug-in via the <b>mqttComm</b> command.
 The calling plug-in should import the command via:
 <pre>
     hvImport mqttComm
@@ -858,7 +858,6 @@ See <i>Callbacks with the "sub" form of <b>mqttComm</b></i> below for more detai
 </li>
 </ul>
 <br>
-<br>
 A "stat" or "cmnd", when used with a topic with neither "<" nor ">", ignores the "stat" or "cmnd" and is the same as using "pub".
 <br>
 <br>
@@ -869,11 +868,11 @@ When the standard form is used with "sub" or "unsub", a "cmnd" pre-fix is assume
 To subscribe or unsubscribe to a "stat" type topic, use the topic without the "<".
 Example: To subscribe to a stat message:
 <pre>
-    <b>mqttComm</b> sub stat/utilityroom> cascallback
+    <b>mqttComm</b> sub stat/uroom> cascallback
 </pre>
 which will subscribe to
 <pre>
-    stat/utilityroom/POWER
+    stat/uroom/POWER
 </pre>
 with "cascallback" as the callback proc.
 <br>
@@ -883,7 +882,7 @@ The MQTT client allows multiple, different callback procs to be assigned to the 
 This could be useful, but normally it will cause unexpected behavior.
 <br>
 <br>
-The <b>mqttComm</b> proc returns an empty string if mqtt is not ready.
+The <b>mqttComm</b> proc returns an empty string if MQTT is not ready.
 This can be used to trigger retries until MQTT is ready.
 <br>
 <br>
@@ -895,18 +894,22 @@ The <b>mqttComm</b> proc returns 1 for a successful operation.
 <br>
 <br>
 Examples:
-``` tcl
-    mqttComm sub <utilityroom> cascallback       subscribes to cmnd/utilityroom/POWER with callback cascallback
-    mqttComm unsub stat/utilityroom/power mycallback  unsubscribes to stat/utilityroom/power with callback mycalback
-    mqttComm cmnd <utilityroom> on               publishes cmnd/utilityroom/POWER on
-    mqttComm stat <utilityroom> on               publishes stat/utilityroom/POWER on and/or
-                                                           stat/utilityroom/RESULT {"POWER":"ON","Dimming":100}
-    mqttComm -nodim stat <utilityroom> on        publishes stat/utilityroom/POWER on and/or
-                                                           stat/utilityroom/RESULT {"POWER":"ON"}
-    mqttComm -exactstat stat <utilityroom> on    publishes stat/utilityroom/POWER on 
-    mqttComm stat "cmnd/living room/state" on    publishes cmnd/living room/state on
-    mqttComm pub "cmnd/living room/state" on     publishes cmnd/living room/state on
-```
+<pre>
+
+    mqttComm sub &lt;uroom&gt; cascallback      subscribes to cmnd/uroom/POWER
+                                                with callback cascallback
+    mqttComm unsub stat/uroom/power mycallback  unsubscribes to stat/uroom/power
+                                                with callback mycalback
+    mqttComm cmnd &lt;uroom&gt; on               publishes cmnd/uroom/POWER on
+    mqttComm stat &lt;uroom&gt; on               publishes stat/uroom/POWER on and/or
+                                                     stat/uroom/RESULT {"POWER":"ON","Dimming":100}
+    mqttComm -nodim stat &lt;uroom&gt; on        publishes stat/uroom/POWER on and/or
+                                                     stat/uroom/RESULT {"POWER":"ON"}
+    mqttComm -exactstat stat &lt;uroom&gt; on    publishes stat/uroom/POWER on 
+    mqttComm stat "cmnd/room 2/state" on   publishes cmnd/room 2/state on
+    mqttComm pub "cmnd/room 2/state" on    publishes cmnd/room 2/state on
+
+</pre>
 
 <br>
 <i>Callbacks with the "sub" form of <b>mqttComm</b></i>
@@ -931,25 +934,25 @@ It will be called like this:
 This is best explained by example.
 Let's assume a plug-in wants to subscribe to a topic:
 ``` tcl
-    mqttComm sub <utilityroom> cascb
+    mqttComm sub &lt;uroom&gt; cascb
 ```
 This results in a subscription to
 ```
-    cmnd/utilityroom/POWER
+    cmnd/uroom/POWER
 ```
 When received, this topic means either report back the current device state (with an empty or "?" payload),
 or change the device state based on the payload.
-That means that when the MQTT plug-in receives the message, it must communicate with the subscribing plug-in to complete the response.
-It does this by calling the callback proc. Let's say some external entity wants to know the state of utilityroom.
-When the mqtt plug-in received the appropriate message, it calls the callback proc like this:
+That means that when the MQTT Plug-in receives the message, it must communicate with the subscribing plug-in to complete the response.
+It does this by calling the callback proc. Let's say some external entity wants to know the state of uroom.
+When the MQTT Plug-in received the appropriate message, it calls the callback proc like this:
 ``` tcl
-    cascb cmnd/utilityroom/POWER "?" 0
+    cascb cmnd/uroom/POWER "?" 0
 ```
 A proc "cascb" must be defined in the calling plug-in to handle the message.
 In this case, it should eventually use another <b>mqttComm</b> command to send back status, maybe like this:
 
 ``` tcl
-    mqttComm stat <utilityroom> On 50   --->   stat/utilityroom/POWER ON 50
+    mqttComm stat &lt;uroom&gt; On 50   --->   stat/uroom/POWER ON 50
 ```
 There are a couple of different approaches to handling subscribed topics. Which is better depends on the goals of the plug-in.
 <br>
@@ -968,7 +971,7 @@ Either approach will work.
 #### topicTemplate
 
 To help with parsing full topics,
-the mqtt plug-in makes public a helper proc that will split a full topic (the topic returned to the callback) into its parts and provide other info about the full topic.
+the MQTT Plug-in makes public a helper proc that will split a full topic (the topic returned to the callback) into its parts and provide other info about the full topic.
 <br>
 <br>
 The calling plug-in should import the command via:
@@ -1019,12 +1022,12 @@ will also send the string to the debug plug-in in *color*, Default: red.
 
 #### mqttReady
 
-This proc is <i>called</i> by the MQTT plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
+This proc is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
 The using plug-in should make the command public via:
 <pre>
     hvPublic mqttReady
 </pre>
-When the MQTT connection changes, the MQTT plug-in calls <b>mqttReady</b> like this:
+When the MQTT connection changes, the MQTT Plug-in calls <b>mqttReady</b> like this:
 <pre>
     mqttReady <i>status</i>
 </pre>
@@ -1059,7 +1062,7 @@ Typical use:
     }
 ```
 
-A sample plug-in using <b>mqttComm</b> and <b>mqttReady</b> that does its own subscribing and needs no entries in the MQTT plug-in's device lists can be downloaded from <a href="sample.hap">here</a>.
+A sample plug-in using <b>mqttComm</b> and <b>mqttReady</b> that does its own subscribing and needs no entries in the MQTT Plug-in's device lists can be downloaded from <a href="sample.hap">here</a>.
 
 ### MQTT Discovery for Home Assistant
 
