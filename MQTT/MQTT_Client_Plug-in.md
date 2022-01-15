@@ -854,13 +854,14 @@ The <b>mqttComm</b> command has the following formats:
 </li><li><i>topic</i>: Can either be enclosed in "<>" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "<" nor ">" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "<" or ">", should be enclosed in double-quotes.
 </li><li><i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
 </li><li><i>callback</i>: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". It will be called like this:
+
 <pre>
     callback <i>fulltopic payload retain</i>
 </pre>
 </li><ul><li><i>fulltopic</i>: the complete topic, as received, including any prefix or postfix.
 </li><li><i>payload</i>: the message payload.
 </li><li>When a new subscription is made by a client, all retained messages that match the full topic are reported with <i>retain</i> set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
-</li></ul>
+</ul>
 </li>
 </ul>
 
