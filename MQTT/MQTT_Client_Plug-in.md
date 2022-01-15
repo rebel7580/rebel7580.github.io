@@ -1020,7 +1020,6 @@ The <b>topicTemplate</b> command should be used like this:
 
 <table>
 <tr><th style="text-align:center">Key</th><th>Value</th></tr>
-<tr><th style="text-align:center">-</th><th>-</th></tr>
 <tr><td style="text-align:center">template</td><td>One of \<T\>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.</td></tr>
 <tr><td style="text-align:center">pre pos</td><td>Prefix position 1-3, -1 if no prefix.</td></tr>
 <tr><td style="text-align:center">pre type</td><td>Prefix string, "" if no prefix.</td></tr>
