@@ -895,20 +895,26 @@ The <b>mqttComm</b> proc returns 1 for a successful operation.
 <br>
 Examples:
 <pre>
-
-    mqttComm sub &lt;uroom&gt; cascallback      subscribes to cmnd/uroom/POWER
-                                                with callback cascallback
-    mqttComm unsub stat/uroom/power mycallback  unsubscribes to stat/uroom/power
-                                                with callback mycalback
-    mqttComm cmnd &lt;uroom&gt; on               publishes cmnd/uroom/POWER on
-    mqttComm stat &lt;uroom&gt; on               publishes stat/uroom/POWER on and/or
-                                                     stat/uroom/RESULT {"POWER":"ON","Dimming":100}
-    mqttComm -nodim stat &lt;uroom&gt; on        publishes stat/uroom/POWER on and/or
-                                                     stat/uroom/RESULT {"POWER":"ON"}
-    mqttComm -exactstat stat &lt;uroom&gt; on    publishes stat/uroom/POWER on 
-    mqttComm stat "cmnd/room 2/state" on   publishes cmnd/room 2/state on
-    mqttComm pub "cmnd/room 2/state" on    publishes cmnd/room 2/state on
-
+    mqttComm sub &lt;uroom&gt; cascallback
+        subscribes to cmnd/uroom/POWER
+             with callback cascallback
+    mqttComm unsub stat/uroom/power mycallback
+        unsubscribes to stat/uroom/power
+             with callback mycalback
+    mqttComm cmnd &lt;uroom&gt; on
+        publishes cmnd/uroom/POWER on
+    mqttComm stat &lt;uroom&gt; on
+        publishes stat/uroom/POWER on and/or
+                  stat/uroom/RESULT {"POWER":"ON","Dimming":100}
+    mqttComm -nodim stat &lt;uroom&gt; on
+        publishes stat/uroom/POWER on and/or
+                  stat/uroom/RESULT {"POWER":"ON"}
+    mqttComm -exactstat stat &lt;uroom&gt; on
+        publishes stat/uroom/POWER on 
+    mqttComm stat "cmnd/room 2/state" on
+        publishes cmnd/room 2/state on
+    mqttComm pub "cmnd/room 2/state" on
+        publishes cmnd/room 2/state on
 </pre>
 
 <br>
@@ -933,27 +939,28 @@ It will be called like this:
 <br>
 This is best explained by example.
 Let's assume a plug-in wants to subscribe to a topic:
-``` tcl
+<pre>
     mqttComm sub &lt;uroom&gt; cascb
-```
+</pre>
 This results in a subscription to
-```
+<pre>
     cmnd/uroom/POWER
-```
+</pre>
 When received, this topic means either report back the current device state (with an empty or "?" payload),
 or change the device state based on the payload.
 That means that when the MQTT Plug-in receives the message, it must communicate with the subscribing plug-in to complete the response.
 It does this by calling the callback proc. Let's say some external entity wants to know the state of uroom.
 When the MQTT Plug-in received the appropriate message, it calls the callback proc like this:
-``` tcl
+<pre>
     cascb cmnd/uroom/POWER "?" 0
-```
+</pre>
 A proc "cascb" must be defined in the calling plug-in to handle the message.
 In this case, it should eventually use another <b>mqttComm</b> command to send back status, maybe like this:
 
-``` tcl
-    mqttComm stat &lt;uroom&gt; On 50   --->   stat/uroom/POWER ON 50
-```
+<pre>
+    mqttComm stat &lt;uroom&gt; On 50
+        --->   stat/uroom/POWER ON 50
+</pre>
 There are a couple of different approaches to handling subscribed topics. Which is better depends on the goals of the plug-in.
 <br>
 <br>
