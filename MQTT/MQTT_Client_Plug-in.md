@@ -231,9 +231,9 @@ For internal objects, a "cmnd" "Power" message will do the same.
 <br>
 For example, if "Count Payload Text" is set to "CYCLE", and an internal object is created with Var-100 and Var-101 assigned to it but re-named "Watchdog",
 then when the following is received:
-```
+<pre>
     cmnd/Watchdog/POWER CYCLE
-```
+</pre>
 Var-100 and Var-101 are incremented.
 <br>
 <br>
@@ -1017,6 +1017,23 @@ The <b>topicTemplate</b> command should be used like this:
   | post ntype | Post type with "Relay" number striped off.| 
   | post index | "Relay" number or "[0-9]*" if none, or "" if no postfix.| 
   | match | Regexp expression to match the full topic.| 
+
+<table>
+<tr><th>Key</th><th>Value</th></tr>
+<tr><td>template</td><td>One of \<T\>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.</td></tr>
+<tr><td>pre pos</td><td>Prefix position 1-3, -1 if no prefix.</td></tr>
+<tr><td>pre type</td><td>Prefix string, "" if no prefix.</td></tr>
+<tr><td>topic pos</td><td>Sub-topic position 1-3</td></tr>
+<tr><td>topic name</td><td>Sub-topic string</td></tr>
+<tr><td>topic type</td><td>"s" (standard: contains both < and >), "ns" (non-standard) otherwise.</td></tr>
+<tr><td>post pos</td><td>Postfix position 1-3, -1 if no postfix.</td></tr>
+<tr><td>post type</td><td>Postfix string, "" if no prefix.</td></tr>
+<tr><td>post ntype</td><td>Post type with "Relay" number striped off.</td></tr>
+<tr><td>post index</td><td>"Relay" number or "[0-9]*" if none, or "" if no postfix.</td></tr>
+<tr><td>match</td><td>Regexp expression to match the full topic.</td></tr>
+</table>
+
+
 
 
 #### mqttLog
