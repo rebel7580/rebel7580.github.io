@@ -150,7 +150,7 @@ An empty payload requests the device to publish its state without changing the s
 <br>
 HomeVision objects <i>subscribe</i> to command topics so that external entities can control them.
 For a full list of Actions based on the received topic and payload, see 
-<a href="MQTT_Actions_int.html">Object Actions</a>
+<a href="MQTT_Actions_int.html">Object Actions.</a>
 <!-- 
 [[Help: Object Actions|Help:-Object-Actions]]
 -->
@@ -163,9 +163,9 @@ For each external device, the plug-in <i>subscribes</i> to the following topic (
 </pre>
 When a POWER topic is received, the plug-in looks for a message of "on" or "off" and takes action according to the device's settings in the <b>Ext Devices Tab</b>.
 For a full list of Actions based on the received topic and payload, see
-<a href="MQTT_Actions_ext.html">External Device Actions</a> 
+<a href="MQTT_Actions_ext.html">External Device Actions.</a> 
 <!-- [[Help: External Device Actions|Help:-External-Device-Actions]]
--->.
+-->
 <br>
 <br>
 When an internal object changes state, the plug-in will <i>publish</i> a state message to indicate the object's new state.
