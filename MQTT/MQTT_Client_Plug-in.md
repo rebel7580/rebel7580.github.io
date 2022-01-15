@@ -135,7 +135,7 @@ The following command topic is supported (using default prefixes and postfixes) 
 <i>topic</i> is defined during device configuration.
 <br>Payloads are case-insensitive for incoming messages.<br>
 <i>level</i> is expressed as a percentage, 0-100.
-For X-10 devices, it is converted to the *next lower* discrete level supported.
+For X-10 devices, it is converted to the <i>next lower</i> discrete level supported.
 Any status message will report back the discrete level as a whole percentage, so it may not match exactly what was received.
 <br>
 ** "?" for those external entities that don't allow an empty payload.
@@ -264,22 +264,22 @@ the row will display in BLACK text.
   * A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
 is indicated by enclosing it in "<" and ">"
 (or one of the variations mentioned previously).
-E.g., "<*topic*>".
-*This should be the default method for specifying topics.*
+E.g., "<<i>topic</i>>".
+<i>This should be the default method for specifying topics.</i>
 To help with this, a new device will have "<>" already inserted in the topic field.
 (Delete or modify as needed.)
   * Topics can contain multiple levels, indicated by "/", but should not start or end with a "/".
-  * A topic with *default* processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
-  * A topic with *custom* processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
+  * A topic with <i>default</i> processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
+  * A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
 Use of wildcards should adhere to the MQTT standards.
 However, care should be taken when using them. It's probably a bad idea to have "#" as a topic, as it will subscribe to EVERYTHING!
-  *Device Names*, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
-If the "topic" is simple and descriptive, it can be copied to the *Name* field.
-If the "topic" is multi-level, *Name* must be simpler.
-*Name* cannot contain "<", ">", "/" or spaces.
+<i>Device Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
+If the topic is simple and descriptive, it can be copied to the <i>Name</i> field.
+If the topic is multi-level, <i>Name</i> must be simpler.
+<i>Name</i> cannot contain "<", ">", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
 *Device Name* cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
-  * There is some validation of the <i>Topic</i> and *Device Name* fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
+  * There is some validation of the <i>Topic</i> and <i>Device Names</i> fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
   * For each device, an HV Flag or Variable can be assigned. 
 Assigning a Flag or Variable is optional.
 There is no checking to make sure a Flag or Variable is not used more than once.
@@ -297,7 +297,7 @@ Note: When "Use Variable as Flag" is not selected, Payloads with "on" or "off" d
 The same macro can be assigned to both states, or different macros can be assigned.
 A macro can be assigned to just one of the states, leaving the other set to "None".
   * To have custom processing of received messages or triggers for this topic, select the appropriate mode and enter command/triggers.
-See **Custom Processing of Received Messages** for details.
+See <b>Custom Processing of Received Messages</b> for details.
   * Check "Subscribe to Last Will and Testament" to subscribe standard topics to LWT.
 If the topic is not in the form of a standard topic,
 this selection has no effect.
@@ -317,7 +317,7 @@ Devices with custom topics are subscribed only to the topic as-is.
 This tab contains a list of supported internal objects.
 These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, Macros, Scheduled Event, Periodic Events, Timers or HVAC.
 Add only those objects that need to be visible to or acted on by the MQTT network.
-* *ID* is the internal object ID.
+* <i>ID</i> is the internal object ID.
 X-10 object IDs show with their A-P house/unit code format.
 Input and Output object IDs have an "I" or "O" prepended to their usual A-Q codes to distinguish them from X-10 ids.
 Other objects show using a "Fake" code of the first two letters of their standard HV object type name. For example, Custom Lights show as "LI".
@@ -325,10 +325,10 @@ Other objects show using a "Fake" code of the first two letters of their standar
 It must be unique among both external and internal names. It can be the same as the topic, but cannot contain "<", ">", "/" or spaces.
 Alphanumeric and the underscore are the only allowed characters.
 <i>Object Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
-**N.B.:** HomeVision allows duplicate names among objects, so some modification to the suggested default names will be necessary to achieve uniqueness in the object lists.
+<b>N.B.:</b> HomeVision allows duplicate names among objects, so some modification to the suggested default names will be necessary to achieve uniqueness in the object lists.
 * <i>Topic</i> is the topic used for publishing and subscribing.
 Topic rules are the same as external devices with default processing (i.e., no MQTT wildcards).
-* The *State* column will show the reported state of the object.
+* The <i>State</i> column will show the reported state of the object.
 The auto reporting feature for objects must be turned on, or the HomeVision schedule must explicitly send updates for this to work.
 When the state has not (yet) been reported, a "-" may show.
 Variables always show a "-" for the state.
@@ -349,8 +349,8 @@ Objects included in the list are those that have been checked in the
   * If an X-10 object is selected, then choose a Model.
 Model is used to determine how level changes are done.
   * Clicking "Copy Object to Topic, Name" will populate the "Topic" and "Name" fields with an appropriate version of the object name.
-Some validation is done on the "Topic" and "Name" fields; the "OK" button will be grayed out if either field fails validation. 
-The "Topic" and "Name" fields can be modified, keeping in mind the rules above for topics and object/device names.
+Some validation is done on the <i>Topic</i> and <i>Name</i> fields; the "OK" button will be grayed out if either field fails validation. 
+The <i>Topic</i> and <i>Name</i> fields can be modified, keeping in mind the rules above for topics and object/device names.
 <br>
 <br>
 More than one object can have the same topic. This allows a single incoming command to control several objects.
@@ -557,7 +557,7 @@ the command is sent with the MQTT retain flag set.
 <br>
 <br>
 For sub and unsub, if *callback* is given,
-then a public callback proc must exist somewhere.
+then a public callback procedure must exist somewhere.
 <br>
 <br>
 If *callback* is not present, then the serial command essentially does nothing.
@@ -602,7 +602,7 @@ There are two methods that provide more advanced processing:
 #### Custom Commands
 To have custom processing of received messages for a topic,
 click "Command" and enter a procedure name in the "Command" field.
-The procedure becomes the callback proc for this topic.
+The procedure becomes the callback procedure for this topic.
 <br>
 <br>
 Note: If "Command" is selected,
@@ -853,7 +853,7 @@ The <b>mqttComm</b> command has the following formats:
 </li><li>-nodim: Don't include Dimming in a RESULT response.
 </li><li><i>topic</i>: Can either be enclosed in "<>" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "<" nor ">" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "<" or ">", should be enclosed in double-quotes.
 </li><li><i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
-</li><li><i>callback</i>: The name of a proc in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". 
+</li><li><i>callback</i>: The name of a procedure in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". 
 See <i>Callbacks with the "sub" form of <b>mqttComm</b></i> below for more details on callbacks.
 </li>
 </ul>
@@ -874,7 +874,7 @@ which will subscribe to
 <pre>
     stat/uroom/POWER
 </pre>
-with "cascallback" as the callback proc.
+with "cascallback" as the callback procedure.
 <br>
 <br><b>Caution:</b>
 Make sure when subscribing to a topic that the topic is unique, especially compared to *external devices* and *internal objects*.
@@ -882,15 +882,15 @@ The MQTT client allows multiple, different callback procs to be assigned to the 
 This could be useful, but normally it will cause unexpected behavior.
 <br>
 <br>
-The <b>mqttComm</b> proc returns an empty string if MQTT is not ready.
+The <b>mqttComm</b> procedure returns an empty string if MQTT is not ready.
 This can be used to trigger retries until MQTT is ready.
 <br>
 <br>
-The <b>mqttComm</b> proc returns 0 if the type, action or topic is missing or NULL,
+The <b>mqttComm</b> procedure returns 0 if the type, action or topic is missing or NULL,
 or if there is no payload for a cmnd or stat command.
 <br>
 <br>
-The <b>mqttComm</b> proc returns 1 for a successful operation.
+The <b>mqttComm</b> procedure returns 1 for a successful operation.
 <br>
 <br>
 Examples:
@@ -954,12 +954,12 @@ This results in a subscription to
 When received, this topic means either report back the current device state (with an empty or "?" payload),
 or change the device state based on the payload.
 That means that when the MQTT Plug-in receives the message, it must communicate with the subscribing plug-in to complete the response.
-It does this by calling the callback proc. Let's say some external entity wants to know the state of uroom.
-When the MQTT Plug-in received the appropriate message, it calls the callback proc like this:
+It does this by calling the callback procedure. Let's say some external entity wants to know the state of uroom.
+When the MQTT Plug-in received the appropriate message, it calls the callback procedure like this:
 <pre>
     cascb cmnd/uroom/POWER "?" 0
 </pre>
-A proc "cascb" must be defined in the calling plug-in to handle the message.
+A procedure "cascb" must be defined in the calling plug-in to handle the message.
 In this case, it should eventually use another <b>mqttComm</b> command to send back status, maybe like this:
 
 <pre>
@@ -983,7 +983,7 @@ Either approach will work.
 #### topicTemplate
 
 To help with parsing full topics,
-the MQTT Plug-in makes public a helper proc that will split a full topic (the topic returned to the callback) into its parts and provide other info about the full topic.
+the MQTT Plug-in makes public a helper procedure that will split a full topic (the topic returned to the callback) into its parts and provide other info about the full topic.
 <br>
 <br>
 The calling plug-in should import the command via:
@@ -1012,7 +1012,7 @@ The <b>topicTemplate</b> command has the following format:
   | post index | "Relay" number or "[0-9]*" if none, or "" if no postfix.| 
   | match | Regexp expression to match the full topic.| 
 
-There are some details and cautions concerning the use of this helper proc.
+There are some details and cautions concerning the use of this helper procedure.
 Contact the author for further support.
 
 #### mqttLog
@@ -1029,12 +1029,12 @@ The <b>mqttLog</b> command has the following format:
     mqttLog <i>string</i> {<i>color</i>}
 </pre>
 * <i>string</i>: String to log.
-* <i>color</i>: If the "debug" is imported into the calling proc,
+* <i>color</i>: If the "debug" is imported into the calling procedure,
 will also send the string to the debug plug-in in *color*, Default: red.
 
 #### mqttReady
 
-This proc is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
+This procedure is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
 The using plug-in should make the command public via:
 <pre>
     hvPublic mqttReady
@@ -1053,13 +1053,13 @@ Possible values for <i>reason</i> are:
     4 Bad user name or password
 </pre>
 
-Using this proc is only necessary to make sure the plug-in's subscriptions are re-done automatically in the case the connection to the broker going down and then recovers (with a {state connected} return).
+Using this procedure is only necessary to make sure the plug-in's subscriptions are re-done automatically in the case the connection to the broker going down and then recovers (with a {state connected} return).
 <br>
 <br>
 Reasons "1", "2", and "4" are fatal and need to be corrected before a connection can be made.
 <br>
 <br>
-To use, define an <b>mqttReady</b> proc to respond to the connected and/or disconnected states.
+To use, define an <b>mqttReady</b> procedure to respond to the connected and/or disconnected states.
 Typical use:
 ``` tcl
     hvPublic mqttReady
