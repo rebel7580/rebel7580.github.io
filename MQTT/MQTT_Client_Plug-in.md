@@ -65,7 +65,7 @@ other devices that follow different topic structures likely can be accommodated 
 There is a lot of flexibility in the plug-in allowing support for many different situations.
 <br>
 <br>
-**Note: To perform actions on internal objects, this plug-in uses the Actions Plug-in. The Actions Plug-in must be enabled to control internal objects.**
+<b>Note: To perform actions on internal objects, this plug-in uses the Actions Plug-in. The Actions Plug-in must be enabled to control internal objects.</b>
 ##  Supported MQTT Topics
 
 ### Standard and Custom Topics
@@ -156,7 +156,7 @@ For a full list of Actions based on the received topic and payload, see
 -->
 
 ### Standard State Topic
-For each external device, the plug-in <i>subscribes</i> to the following topic (assuming <<i>topic</i>> in the "Topic" field):
+For each external device, the plug-in <i>subscribes</i> to the following topic (assuming &lt;<i>topic</i>&gt; in the "Topic" field):
 <pre>
         Full Topic                     Payload
     stat/<i>topic</i>/POWER<i>x</i>           OFF/ON/ON <i>level</i>/<i>level</i>
@@ -259,7 +259,7 @@ However, if an "on Line" LWT or a POWER state message is received,
 the row will display in BLACK text.
 * Rows can be sorted in ascending or descending order by <i>Device Name</i> or <i>Topic</i> by clicking on the column header. 
 
-*New/Edit/Delete External Devices*
+<i>New/Edit/Delete External Devices</i>
 * To enter a new device, click the "New" button, and start with the <i>Topic</i>.
   * Topics are case-sensitive!
   * A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
@@ -285,15 +285,16 @@ Alphanumeric and the underscore are the only allowed characters.
 Assigning a Flag or Variable is optional.
 There is no checking to make sure a Flag or Variable is not used more than once.
   * If a variable is selected, two additional options are available.
-    * "Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
-    * If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
+<ul><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+</li><li>If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
 can be selected.
 If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1.
 If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
 <br>
 <br>
 Note: When "Use Variable as Flag" is not selected, Payloads with "on" or "off" do not cause any Actions, except for updating the "State" display.
-
+</li>
+</ul>
   * Macros can be assigned for "On" and "Off" states.
 The same macro can be assigned to both states, or different macros can be assigned.
 A macro can be assigned to just one of the states, leaving the other set to "None".
