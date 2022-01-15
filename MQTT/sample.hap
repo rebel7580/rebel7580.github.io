@@ -6,56 +6,76 @@ hvImport debug
 # Also import action plug-in, if used.
 hvImport action
 
-proc init {} {
+hvImport mqttComm
 
-    # Init some stuff
+# Subscribe to all topics that this plug-in is interested in.
+proc subscribe {{type sub}} {
 
-    # Subscribe
-    subscribe
+    debug "subscribe: $type" blue
+    if {$type ni {sub unsub}} {return}
+
+    # Single "standard" topic subscription:
+    mqttComm $type <sample_topic> samplecb
+
+    # Add more subscribes as needed.
+    #    Make sure to add more callbacks if not using the same one for all topics.
+    # The following use both non-standard topics, and the # wildcard,
+    #    with one callback to process all matching topics:
+    mqttComm $type display/state/# displaycb
+    mqttComm $type display/sensor/# displaycb
 }
 
 # Callback with only one possible topic. Just need to look at payload.
 hvPublic samplecb
 proc samplecb {topic payload {retain 0}} {
 
-    debug "Sample callback: topic:$topic,msg:$payload;" blue
+    debug "Sample callback: topic:$topic;" blue
+    
     # process payload
+    debug "Payload:$payload." red
 }
 
 # Callback with multiple possible topics. Need to look at topic and payload.
-hvPublic haspcb
-proc haspcb {topic payload {retain 0}} {
+hvPublic displaycb
+proc displaycb {topic payload {retain 0}} {
 
-    debug "hasp callback: topic:$topic,msg:$payload;" blue
+    debug "Display callback: topic:$topic;" blue
 
-    lassign [split $topic "/"] prefix display state last
+    lassign [split $topic "/"] display state last
     if {$state eq "state"} {
         # Further process a "state" topic & payload
+        debug "State topic detected! Last: $last, msg:$payload." red
     } elseif {$state eq "sensor" } {
         # Further process a "sensor" topic & payload
+        debug "Sensor topic detected! Last: $last, msg:$payload." red
     }
 }
 
-hvImport mqttComm
-proc subscribe {{type sub}} {
-    global cfg
-
-    debug "subscribe: $type" blue
-    if {$type ni {sub unsub}} {return}
-
-    mqttComm $type <sample_topic> samplecb
-    # Add more subscribes as needed.
-    #    Make sure to add more callbacks if not using the same one for all topics.
-    # The following use both non-standard topics, and the # wildcard.
-    mqttComm $type hasp/hasp01/state/# haspcb
-    mqttComm $type hasp/hasp01/sensor/# haspcb
-}
-
+# If MQTT should get disconnected, and re-connect, then re-init.
 hvPublic mqttReady
 proc mqttReady {status} {
     if {[dict get $status state] eq "connected"} {
         init
     }
+}
+
+# Init process
+proc init {} {
+
+    # Init some stuff
+
+    # Subscribe
+    subscribe
+
+
+    # For test demonstration!
+    # Normally, this wouldn't be here.
+    # Send MQTT messages to the subscribed topics
+    #  to trigger the callbacks.
+    mqttComm pub <sample_topic> this is the payload
+    mqttComm pub display/state/backlight on
+    mqttComm pub display/state/brightness 50
+    mqttComm pub display/sensor/pir off
 }
 
 hvEventHook ready [list init]
