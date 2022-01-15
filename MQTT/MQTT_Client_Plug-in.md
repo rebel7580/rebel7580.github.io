@@ -1003,21 +1003,6 @@ The <b>topicTemplate</b> command should be used like this:
 </li><li><i>template</i> will contain a dict with the following key/values:
 </li></ul>
 
-
-  | Key | Value |
-  | :---: | --- |
-  | template | One of \<T\>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.| 
-  | pre pos | Prefix position 1-3, -1 if no prefix.| 
-  | pre type | Prefix string, "" if no prefix.| 
-  | topic pos | Sub-topic position 1-3| 
-  | topic name | Sub-topic string| 
-  | topic type | "s" (standard: contains both < and >), "ns" (non-standard) otherwise.| 
-  | post pos | Postfix position 1-3, -1 if no postfix.| 
-  | post type | Postfix string, "" if no prefix.| 
-  | post ntype | Post type with "Relay" number striped off.| 
-  | post index | "Relay" number or "[0-9]*" if none, or "" if no postfix.| 
-  | match | Regexp expression to match the full topic.| 
-
 <table>
 <tr><th style="text-align:center">Key</th><th>Value</th></tr>
 <tr><td style="text-align:center">template</td><td>One of \<T\>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.</td></tr>
