@@ -366,7 +366,7 @@ The retain flag will cause most brokers to "remember" the status and send it to 
 </li><li>Use the "Delete" button to delete an object. When a object is deleted, the plug-in unsubscribes to any topics related to that device.
 </li><li>When "Done" is clicked, objects with standard topics are subscribed to their <b>command</b> full topics. Objects with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
-<li></ul>
+</li></ul>
 ### Settings Tab
 
 * Prefixes and Postfixes can be set for "standard" topics.
