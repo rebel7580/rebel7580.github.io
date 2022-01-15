@@ -42,13 +42,14 @@ The MQTT Client Plug-in provides a client interface to MQTT for HomeVision.
 Its main purposes are to control MQTT enabled devices via the HomeVision Schedule or NetIO and
 to control HomeVision objects by MQTT sources.
 The MQTT interface has three distinct functions:
-* For "external" MQTT-enabled devices (e.g., Sonoff switches with Tasmota SW),
+<ul>
+<li>For "external" MQTT-enabled devices (e.g., Sonoff switches with Tasmota SW),
 the MQTT Plug-in acts as an MQTT controller.
 The plug-in PUBLISHES <i>command</i> topics to these devices
 to control them
 and SUBSCRIBES to <i>status</i> topics from these devices to track their state changes.
 Changes are tracked by Actions such as setting Flags or Variables and running Macros based on that status.
-* For "internal" objects defined in HomeVision
+</li><li>For "internal" objects defined in HomeVision
 (such as X-10 modules, flags, inputs, etc.),
 the MQTT Plug-in acts as a "proxy" for them, essentially making them appear to be MQTT-enabled.
 For each selected object, the plug-in 
@@ -56,8 +57,8 @@ SUBSCRIBES to a <i>command</i> topic
 so it can be controlled
 and
 PUBLISHES a <i>status</i> topic when it changes state.
-* Generic MQTT topics can be sent from the HomeVision schedule via serial commands, from NetIO, or from custom plug-ins, independent of any configured devices.
-
+</li><li>Generic MQTT topics can be sent from the HomeVision schedule via serial commands, from NetIO, or from custom plug-ins, independent of any configured devices.
+</li></ul>
 
 While the client plug-in is designed to work easily with Tasmota based devices, using a similar topic and LWT structure,
 other devices that follow different topic structures likely can be accommodated as well.
