@@ -825,7 +825,7 @@ On Trigger:
 Off Trigger:
     {empty}
 </pre>
-Note: <i>roku</i> is a custom plug-in. [See Here](/Roku/Roku_index).
+Note: <i>roku</i> is a custom plug-in. See it [Here](/Roku/Roku_index).
 
 ### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
 
@@ -898,21 +898,28 @@ Examples:
     mqttComm sub &lt;uroom&gt; cascallback
         subscribes to cmnd/uroom/POWER
              with callback cascallback
+             
     mqttComm unsub stat/uroom/power mycallback
         unsubscribes to stat/uroom/power
              with callback mycalback
+             
     mqttComm cmnd &lt;uroom&gt; on
         publishes cmnd/uroom/POWER on
+        
     mqttComm stat &lt;uroom&gt; on
         publishes stat/uroom/POWER on and/or
                   stat/uroom/RESULT {"POWER":"ON","Dimming":100}
+                  
     mqttComm -nodim stat &lt;uroom&gt; on
         publishes stat/uroom/POWER on and/or
                   stat/uroom/RESULT {"POWER":"ON"}
+                  
     mqttComm -exactstat stat &lt;uroom&gt; on
         publishes stat/uroom/POWER on 
+        
     mqttComm stat "cmnd/room 2/state" on
         publishes cmnd/room 2/state on
+        
     mqttComm pub "cmnd/room 2/state" on
         publishes cmnd/room 2/state on
 </pre>
@@ -928,14 +935,14 @@ When an incoming MQTT message arrives, the MQTT Plug-in will call the callback p
 It will be called like this:
 
 <pre>
-    callback <i>fulltopic payload retain</i>
+    <b>callback</b> <i>fulltopic payload retain</i>
 </pre>
 
-<ul><li><i>fulltopic</i>: the complete topic, as received, including any prefix or postfix.
-</li><li><i>payload</i>: the message payload.
+<ul><li><b>callback</b>: The callback procedure name.
+</li><li><i>fulltopic</i>: The complete topic, as received, including any prefix or postfix.
+</li><li><i>payload</i>: The message payload.
 </li><li>When a new subscription is made by a client, all retained messages that match the full topic are reported with <i>retain</i> set to 1. Any messages matching the full topic that are subsequently received by the broker are reported with a value of 0.
 </li></ul>
-<br>
 <br>
 This is best explained by example.
 Let's assume a plug-in wants to subscribe to a topic:
