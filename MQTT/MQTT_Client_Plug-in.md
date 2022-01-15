@@ -458,19 +458,19 @@ the MQTT broker will send it right back to the plug-in,
 which will then set the object to the requested state.
 If the command topic causes an object state change, the plug-in completes the sequence by publishing a state topic showing the new state.
 Here's a sequence chart example that might make it more clear:
-```
-    HomeVision              Plug-in                       MQTT Broker
+<pre>
+    HomeVision              Plug-in                     MQTT Broker
 
                      Right-click X-10 object "Den"
                          and click "Toggle":
 
-                        cmnd/den/POWER TOGGLE     --->
-                                                  <--- cmnd/den/POWER TOGGLE
-                   <--- HV cmd to toggle Den
+                        cmnd/den/POWER TOGGLE   ---&gt;
+                                                &lt;--- cmnd/den/POWER TOGGLE
+                   &lt;--- HV cmd to toggle Den
     sends X-10 cmd
      to toggle Den
-                   ---> stat/den/POWER {value}    --->
-```
+                   ---&gt; stat/den/POWER {value}  ---&gt;
+</pre>
 
 ### Serial Control
 MQTT devices can be controlled within a schedule via serial commands which take the form:
@@ -761,8 +761,6 @@ Examples:
 Play a sound file and run a program when the topic is received.
 This example shows how two separate "built-in" triggers can work together in one trigger string. 
 (Assumes that the sound and program functions are working.)
-<br>
-
 <pre>
 Options: Custom. 
 
