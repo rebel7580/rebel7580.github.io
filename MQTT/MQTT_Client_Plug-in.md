@@ -997,7 +997,7 @@ The <b>topicTemplate</b> command should be used like this:
 
 <ul>
 <li><i>topic</i>: fulltopic received by the callback.
-</li><li><i>template</i>will contain a dict with the following key/values:
+</li><li><i>template</i> will contain a dict with the following key/values:
 </li></ul>
 
 
