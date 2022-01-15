@@ -31,9 +31,9 @@
         * Triggers
       * <b>mqttComm</b> - Sending/Receiving MQTT Messages from/to Another Plug-in
       * Other Public Procedures Supplied/Called by the MQTT Plug-in
-        * topicTemplate
-        * mqttLog
-        * mqttReady
+        * <b>topicTemplate</b>
+        * <b>mqttLog</b>
+        * <b>mqttReady</b>
       * MQTT Discovery for Home Assistant
 {:toc}
 
@@ -968,13 +968,13 @@ The calling plug-in should import the command via:
 <pre>
     hvImport topicTemplate
 </pre>
-The <i>topicTemplate</i> command has the following format:
+The <b>topicTemplate</b> command has the following format:
 <pre>
     topicTemplate <i>topic</i>
 </pre>
 <i>topic</i>: fulltopic received by the callback.
 
-topicTemplate returns a list containing a dict with the following key/values:
+<b>topicTemplate</b> returns a list containing a dict with the following key/values:
 
   | Key | Value |
   | :---: | --- |
@@ -1002,7 +1002,7 @@ The calling plug-in should import the command via:
 <pre>
     hvImport mqttLog
 </pre>
-The <i>mqttlog</i> command has the following format:
+The <b>mqttLog</b> command has the following format:
 <pre>
     mqttLog <i>string</i> {<i>color</i>}
 </pre>
@@ -1017,7 +1017,7 @@ The using plug-in should make the command public via:
 <pre>
     hvPublic mqttReady
 </pre>
-When the MQTT connection changes, the MQTT plug-in calls <i>mqttReady</i> like this:
+When the MQTT connection changes, the MQTT plug-in calls <b>mqttReady</b> like this:
 <pre>
     mqttReady <i>status</i>
 </pre>
@@ -1037,7 +1037,7 @@ Using this proc is only necessary to make sure the plug-in's subscriptions are r
 Reasons "1", "2", and "4" are fatal and need to be corrected before a connection can be made.
 <br>
 <br>
-To use, define an mqttReady proc to respond to the connected and/or disconnected states.
+To use, define an <b>mqttReady</b> proc to respond to the connected and/or disconnected states.
 Typical use:
 ``` tcl
     hvPublic mqttReady
@@ -1052,7 +1052,7 @@ Typical use:
     }
 ```
 
-A sample plug-in using <b>mqttComm</b> and <i>mqttReady</i> that does its own subscribing and needs no entries in the MQTT plug-in's device lists can be downloaded from <a href="sample.hap">here</a>.
+A sample plug-in using <b>mqttComm</b> and <b>mqttReady</b> that does its own subscribing and needs no entries in the MQTT plug-in's device lists can be downloaded from <a href="sample.hap">here</a>.
 
 ### MQTT Discovery for Home Assistant
 
