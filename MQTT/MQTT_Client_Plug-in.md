@@ -485,7 +485,7 @@ Here's a sequence chart example that might make it more clear:
 ### Serial Control
 MQTT devices can be controlled within a schedule via serial commands which take the form:
 <pre>
-    mqtt: <i>device_name/object_name</i> <i>command,</i>;
+    mqtt: <i>device_name/object_name</i> <i>command</i>;
 </pre>
 For example, to toggle a device <i>named</i> "sonoff1",
 the serial command would be:
@@ -1094,7 +1094,7 @@ A sample plug-in using <b>mqttComm</b> and <b>mqttReady</b> that does its own su
 
 ### MQTT Discovery for Home Assistant
 
-[Tips for Interfacing HomeVision with Home Assistant](https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL/wiki/Tips-for-Interfacing-HomeVision-with-Home-Assistant)
+[Tips for Interfacing HomeVision with Home Assistant](HomeVision_and_Home_Assistant)
 <br>
 [How to Use the MQTT Plug-in's Home-Assistant Auto Discovery](HomeVision_Discovery_How-to)
 
