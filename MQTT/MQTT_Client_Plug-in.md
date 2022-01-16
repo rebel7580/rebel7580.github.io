@@ -69,7 +69,7 @@ There is a lot of flexibility in the plug-in allowing support for many different
 ##  Supported MQTT Topics
 
 ### Standard and Custom Topics
-Topics can be assigned to devices either as abbreviated ("Standard") topics or full topics.
+Topics can be assigned to devices either as abbreviated topics (called "Standard" topics in this help) or full topics.
 Standard topics follow the Tasmota structure, so only the unique sub-topic portion need be entered. Default standard topics are indicated by enclosing the sub-topic with "<" and ">".
 If a topic starts with a "<", the appropriate prefix is automatically added.
 If a topic ends with a ">", the appropriate postfix is automatically added.
@@ -145,7 +145,7 @@ Any status message will report back the discrete level as a whole percentage, so
 The plug-in <i>publishes</i> command topics to external devices.
 Usually, after receiving one of these commands, an external device will publish its state.
 The plug-in receives this report by <i>subscribing</i> to the state topic. (See next.)
-An empty payload requests the device to publish its state without changing the state of the device.
+A command with an empty payload requests the device to publish its state without changing the state of the device.
 <br>
 <br>
 HomeVision objects <i>subscribe</i> to command topics so that external entities can control them.
@@ -286,7 +286,7 @@ Alphanumeric and the underscore are the only allowed characters.
 Assigning a Flag or Variable is optional.
 There is no checking to make sure a Flag or Variable is not used more than once.
 <ul><li>If a variable is selected, two additional options are available.
-</li><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+<ul><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
 </li><li>If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
 can be selected.
 If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1.
@@ -294,6 +294,7 @@ If the option is not selected, the received value is written as a 1-byte number 
 <br>
 <br>
 Note: When "Use Variable as Flag" is not selected, Payloads with "on" or "off" do not cause any Actions, except for updating the "State" display.
+</li></ul>
 </li></ul>
 </li><li>Macros can be assigned for "On" and "Off" states.
 The same macro can be assigned to both states, or different macros can be assigned.
