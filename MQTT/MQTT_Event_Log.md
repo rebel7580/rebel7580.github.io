@@ -97,7 +97,7 @@ with a markdown card for the log itself, and three horizontal-stacks of two butt
           ### HV Event Log
 
           {{ states('sensor.hv_log1') }}{{ states('sensor.hv_log2') }}{{
-          states('sensor.hv_log3') }} {{ states('sensor.hv_log4') }} 
+          states('sensor.hv_log3') }}{{ states('sensor.hv_log4') }} 
       - type: horizontal-stack
         cards:
           - type: 'custom:button-card'
