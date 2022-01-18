@@ -216,10 +216,36 @@ You need another entity  for that.
 For example, you have a macro ("Toggle Garage Door 1") that toggles your garage door, and an input ("Door1") that indicates the state (Open/Closed) of the door.
 You'd like the state/icon of the button to show the door's state.
 
+There are (at least) two ways to do this.
+The first is probably the best way, as it does not require manual modification of the <i>configuration.yaml</i> file. The second is the "original" method in these Tips. Both start with this step:
 
 * Add the "Door1" input and "Toggle Garage Door 1" macro to the "Int Objects" list.
-You don't need to run MQTT discovery for these, but it won't hurt if you do so you can use them in Home Assistant for other reasons, as well as in this case.
-* Manually add something like the following to your configuration.yaml:
+Run MQTT discovery for at least the "Door1" input binary sensor, but it won't hurt if you do for both, so you can use them in Home Assistant for other reasons, as well as in this case.
+<br>
+<b>Method 1:</b>
+<br>
+* Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
+{% raw %}
+``` yaml
+type: button
+tap_action:
+  action: call-service
+  service: mqtt.publish
+  service_data:
+    topic: cmnd/ToggleGarageDoor1/POWER
+    payload: Run
+  target: {}
+entity: binary_sensor.ib_5_door1
+icon: mdi:garage
+icon_height: 50px
+name: Garage Door 1
+```
+{% endraw %}
+<br>
+<b>Method 2:</b>
+<br>
+
+* Manually add the following to your configuration.yaml:
 {% raw %}
 ``` yaml
   - platform: mqtt
@@ -234,7 +260,7 @@ You don't need to run MQTT discovery for these, but it won't hurt if you do so y
     qos: 1
 ```
 {% endraw %}
-Note this uses the macro for the command topic and the input for the state topic.
+
 * Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
 {% raw %}
 ``` yaml
