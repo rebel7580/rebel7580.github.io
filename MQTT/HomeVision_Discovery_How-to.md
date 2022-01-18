@@ -749,7 +749,7 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 {% endraw %}
 
 #### Device Class Note
-For sensors and binary sensors, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
+For all objects defined as sensors or binary sensors, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
 <pre>
    dc:<i>device_class</i>
 </pre>

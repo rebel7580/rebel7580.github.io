@@ -244,7 +244,7 @@ name: Garage Door 1
 
 Done!
 
-If you want "dynamic" icons, leave "icon:" blank, and define a device class for the sensor. See <b>Device Class Note</b> at the end of [How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to#device-class-note)
+If you want "dynamic" icons, leave "icon:" blank, and define a device class for the binary sensor. See <b>Device Class Note</b> at the end of [How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to#device-class-note)
 <br><br>
 <b>Method 2:</b>
 <br>
@@ -278,6 +278,9 @@ When the button is pressed, the macro will run to toggle the door, and the input
 Since the button's state is controlled by the Door1 state, it can be "On" and "Off".
 If "On", the button when press will send the "off" payload,
 so both command payloads are set to "ON" since that's what the macro expects.
+
+Same comment as in Method 1 applies for "dynamic" icons.
+
 ### Running Macros, Setting Flags and Variables and Executing Other Actions
 <!--
 <h3>Running Macros, Setting Flags and Variables and Executing Other Actions</h3>
