@@ -244,7 +244,7 @@ name: Garage Door 1
 
 Done!
 
-If you want "dynamic" icons, leave "icon:" blank, and define a device class for the sensor. See <b>Device Class Note</b> at the end of [How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to#device-class-notes)
+If you want "dynamic" icons, leave "icon:" blank, and define a device class for the sensor. See <b>Device Class Note</b> at the end of [How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to#device-class-note)
 <br><br>
 <b>Method 2:</b>
 <br>
