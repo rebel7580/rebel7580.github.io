@@ -218,13 +218,15 @@ You'd like the state/icon of the button to show the door's state.
 
 There are (at least) two ways to do this.
 The first is probably the best way, as it does not require manual modification of the <i>configuration.yaml</i> file. The second is the "original" method in these Tips. Both start with this step:
-
-* Add the "Door1" input and "Toggle Garage Door 1" macro to the "Int Objects" list.
+<ul>
+<li>Add the "Door1" input and "Toggle Garage Door 1" macro to the "Int Objects" list.
 Run MQTT discovery for at least the "Door1" input binary sensor, but it won't hurt if you do for both, so you can use them in Home Assistant for other reasons, as well as in this case.
+</li><ul>
 <br>
 <b>Method 1:</b>
 <br>
-* Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
+<ul>
+<li>Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
 {% raw %}
 ``` yaml
 type: button
@@ -241,11 +243,13 @@ icon_height: 50px
 name: Garage Door 1
 ```
 {% endraw %}
+</li><ul>
 <br>
 <b>Method 2:</b>
 <br>
 
-* Manually add the following to your configuration.yaml:
+<ul>
+<li>Manually add the following to your configuration.yaml:
 {% raw %}
 ``` yaml
   - platform: mqtt
@@ -261,7 +265,8 @@ name: Garage Door 1
 ```
 {% endraw %}
 
-* Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
+</li><li>
+Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
 {% raw %}
 ``` yaml
     type: button
@@ -270,6 +275,7 @@ name: Garage Door 1
     name: Ron's Garage Door
 ```
 {% endraw %}
+</li><ul>
 
 
 When the button is pressed, the macro will run to toggle the door, and the input will report back the door's position, which will be reflected in the button's state and/or icon.
