@@ -241,6 +241,8 @@ icon_height: 50px
 name: Garage Door 1
 ```
 {% endraw %}
+
+Done!
 <br>
 <b>Method 2:</b>
 <br>
