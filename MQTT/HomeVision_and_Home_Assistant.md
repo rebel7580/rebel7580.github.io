@@ -225,8 +225,7 @@ Run MQTT discovery for at least the "Door1" input binary sensor, but it won't hu
 <br>
 <b>Method 1:</b>
 <br>
-<ul>
-<li>Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
+ * Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
 {% raw %}
 ``` yaml
 type: button
@@ -243,13 +242,13 @@ icon_height: 50px
 name: Garage Door 1
 ```
 {% endraw %}
-</li></ul>
+
 <br>
 <b>Method 2:</b>
 <br>
 
-<ul>
-<li>Manually add the following to your configuration.yaml:
+
+ * Manually add the following to your configuration.yaml:
 {% raw %}
 ``` yaml
   - platform: mqtt
@@ -265,7 +264,7 @@ name: Garage Door 1
 ```
 {% endraw %}
 
-</li><li>
+
 Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
 {% raw %}
 ``` yaml
