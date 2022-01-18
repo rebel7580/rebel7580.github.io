@@ -221,7 +221,7 @@ The first is probably the best way, as it does not require manual modification o
 <ul>
 <li>Add the "Door1" input and "Toggle Garage Door 1" macro to the "Int Objects" list.
 Run MQTT discovery for at least the "Door1" input binary sensor, but it won't hurt if you do for both, so you can use them in Home Assistant for other reasons, as well as in this case.
-</li><ul>
+</li></ul>
 <br>
 <b>Method 1:</b>
 <br>
@@ -243,7 +243,7 @@ icon_height: 50px
 name: Garage Door 1
 ```
 {% endraw %}
-</li><ul>
+</li></ul>
 <br>
 <b>Method 2:</b>
 <br>
@@ -275,7 +275,7 @@ Create a button in the HA GUI. Use the GUI editor, but here is the corresponding
     name: Ron's Garage Door
 ```
 {% endraw %}
-</li><ul>
+</li></ul>
 
 
 When the button is pressed, the macro will run to toggle the door, and the input will report back the door's position, which will be reflected in the button's state and/or icon.
