@@ -243,7 +243,7 @@ name: Garage Door 1
 {% endraw %}
 
 Done!
-<br>
+<br><br>
 <b>Method 2:</b>
 <br>
  * Manually add the following to your configuration.yaml:
