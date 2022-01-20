@@ -298,7 +298,7 @@ We can use these capabilities to enable Home Assistant to do these actions. The 
 <b><i>Example to run different macros when "on" and when "off". Useful for a Home Assistant UI switch.</i></b>
 <br>
 <br>
-First, in MQTT Configuration Ext Devices, set up an virtual external device with an appropriate descriptive topic and the ON and Off macros you want to run defined in the On and Off macro fields.
+First, in the MQTT Configuration <i>Ext Devices</i> Tab, set up a virtual external device with an appropriate descriptive topic and the ON and Off macros you want to run defined in the On and Off macro fields.
 <br>
 <br>
 <p align="center">
