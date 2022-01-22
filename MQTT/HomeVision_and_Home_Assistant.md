@@ -212,6 +212,21 @@ There are three "catagories" into which interactions with HomeVision and HomeAss
 </li></ul>
 Most of the following Tips can be used with almost all of the Internal Objects, not just the ones shown in the examples.
 
+#### Simple Control of Discovered Objects
+<!--
+<h4>Simple Control of Discovered Objects</h4>
+-->
+Discovered Objects like X-10 lights, flags, outputs, etc. appear in Home Assistant as appropriate entities, which in most instances can be integrated directly into your Home Assistant GUI and used without very much additional work.
+
+<br>
+<br>
+<p align="center">
+<img alt="asterBath" src="MasterBath.gif">
+</p>
+<br>
+<br>
+
+
 #### Using a Toggle Macro and a Tracking Flag
 <!--
 <h4>Using a Toggle Macro and a Tracking Flag</h4>
