@@ -98,9 +98,9 @@ An external device can be controlled by sending an MQTT message like this:
 </pre>
 
 It's important to keep in mind that the above are examples, and there is significant variation in how all this is done, which can be taken advantage of when interfacing with Home Assistant. For Home Assistant, this means that **virtual** external devices can be created and used to cause actions in HomeVision.
-### Virtual External Devices"
+#### Virtual External Devices
 <!--
-<h3>Virtual External Devices</h3>
+<h4>Virtual External Devices</h4>
 -->
 A "virtual" external device is a external device configuration entry in the MQTT Plug-in's <b>Ext Devices</b> tab that has <i>no corresponding physical device</i>.
 But, since it will have a topic, it can be accessed by any MQTT entity, and in turn it can run the Flag, Variable or Commands set up in that "virtual" external device's configuration entry.
