@@ -251,6 +251,7 @@ If you want "dynamic" icons, leave "icon:" blank, and define a device class for 
  * Manually add the following to your configuration.yaml:
 {% raw %}
 ``` yaml
+- switch:
   - platform: mqtt
     unique_id: "MA_GarageDoor1"
     name: "MA_GarageDoor1"
@@ -295,7 +296,7 @@ The handling of external devices has significant capabilities for executing acti
 We can use these capabilities to enable Home Assistant to do these actions. The way to do this is to create a "virtual" external device, i.e., one defined in the "Ext Devices" MQTT configuration screen, but does not actually physically exist. Instead, we will program Home Assistant to be that "device".
 <br>
 <br>
-<b><i>Example to run different macros when "on" and when "off". Useful for a Home Assistant UI switch.</i></b>
+<b><i>Run different macros when "on" and when "off". Useful for a Home Assistant UI switch.</i></b>
 <br>
 <br>
 First, in the MQTT Configuration <i>Ext Devices</i> Tab, set up a virtual external device with an appropriate descriptive topic and the ON and Off macros you want to run defined in the On and Off macro fields.
@@ -329,7 +330,61 @@ Note that <i>command_topic</i> and the <i>state_topic</i> are the same. Since Ho
 
 Lastly, add in a switch to your UI.
 
-Using the same basic switch design as above, here are two other ways to do things in HomeVisionXL.
+<b><i>Run different macros when "on" and when "off",  with a separate object to track state.</i></b>
+There are potentially two shortcomings of the previous solution:  It requires a "virtual" External device, and, more importantly,  there is no way keep the "state" of the switch with what is happening.
+If, for instance, the switch is used to run a macro to turn something(s) on, but the "off" macro is executed from some other place, the switch won't change and hence will not display the actual "state". 
+
+We can resolve the second concern by defining the "stat" parameters in the yaml switch to reflect the object used to track "state".
+Let's assume we have a Flag "OutsideDecoState" which tracks whether the outside decorations are on or not. Discover it as a binary sensor.
+<br><br>
+<b>Method 1:</b>
+<br>
+Use the same "virtual" External device, but include the binary sensor in the yaml:
+
+{% raw %}
+``` yaml
+- switch:
+  - platform: mqtt
+    unique_id: "HA_Outside_Deco"
+    name: "HA_Outside_Deco"
+    state_topic: "stat/OutsideDecoState/POWER"
+    command_topic: "stat/HA_Outside_Deco/POWER"
+    payload_on: "ON 1"
+    payload_off: "OFF"
+    state_on: "Set"
+    state_off: "Clear"
+    qos: 1
+```
+{% endraw %}
+
+<br><br>
+<b>Method 2:</b>
+<br>
+
+The "virtual" External device can be eliminated by using a <i>Template Switch</i>.
+
+{% raw %}
+
+``` yaml
+- switch:
+  - platform: template
+    switches:
+      outsidedeco:
+        value_template: "{{ is_state('binary_sensor.OutsideDecoState', 'on') }}"
+        turn_on:
+          service: mqtt.publish
+          data:
+            topic: 'cmnd/OutsideDecorationsOn/POWER'
+            payload: 'Run'
+        turn_off:
+          service: mqtt.publish
+          data:
+            topic: 'cmnd/OutsideDecorationsOff/POWER'
+            payload: 'Run'
+```
+{% endraw %}
+
+
 <br>
 <br>
 <b><i>Using triggers for different on/off complex actions:</i></b>
