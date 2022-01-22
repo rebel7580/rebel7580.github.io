@@ -181,7 +181,9 @@ The automations should be in <i>automation.yaml</i> or after the <code>automatio
 {% raw %}
 ``` yaml
 # This automation script runs when a value is received via MQTT
-# It sets the value slider on the GUI. Note: the next line may be different if this automation is contained in <i>automation.yaml</i> instead of <i>configuration.yaml</i>.
+# It sets the value slider on the GUI. Note: the next line may be different
+# if this automation is contained in <i>automation.yaml</i>
+# instead of <i>configuration.yaml</i>.
 automation myvars:
   - alias: Set var 145
     trigger:
