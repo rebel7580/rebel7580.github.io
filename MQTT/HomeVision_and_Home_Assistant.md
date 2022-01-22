@@ -331,7 +331,8 @@ Note that <i>command_topic</i> and the <i>state_topic</i> are the same. Since Ho
 Lastly, add in a switch to your UI.
 
 <b><i>Run different macros when "on" and when "off",  with a separate object to track state.</i></b>
-There are potentially two shortcomings of the previous solution:  It requires a "virtual" External device, and, more importantly,  there is no way keep the "state" of the switch with what is happening.
+<br><br>
+There are potentially two shortcomings of the previous solution:  It requires a "virtual" external device, and, more importantly,  there is no way keep the "state" of the switch in sync with what is happening.
 If, for instance, the switch is used to run a macro to turn something(s) on, but the "off" macro is executed from some other place, the switch won't change and hence will not display the actual "state". 
 
 We can resolve the second concern by defining the "stat" parameters in the yaml switch to reflect the object used to track "state".
@@ -339,7 +340,7 @@ Let's assume we have a Flag "OutsideDecoState" which tracks whether the outside 
 <br><br>
 <b>Method 1:</b>
 <br>
-Use the same "virtual" External device, but include the binary sensor in the yaml:
+Use the same "virtual" external device, but include the binary sensor in the yaml:
 
 {% raw %}
 ``` yaml
@@ -361,7 +362,8 @@ Use the same "virtual" External device, but include the binary sensor in the yam
 <b>Method 2:</b>
 <br>
 
-The "virtual" External device can be eliminated by using a <i>Template Switch</i>.
+To simplify further, the "virtual" external device can be eliminated by using a <i>Template Switch</i>.
+This method uses the binary sensor to set the switch state and provides for having different topics for the "on" and "off" actions.
 
 {% raw %}
 
