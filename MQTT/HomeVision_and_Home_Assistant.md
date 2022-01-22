@@ -167,7 +167,7 @@ If you wish to enter directly in YAML, here is an example.
 You will need to replicate these three sets of code for each variable you want to support, making sure you change the Var names and topics.
 {% raw %}
 ``` yaml
-# Example configuration.yaml entry using 'input_number' in an action in an automation
+# Example configuration.yaml entry using 'input_number' in an automation
 input_number:
   var_145:
     name: Var 145 Slider
@@ -181,9 +181,7 @@ The automations should be in <i>automation.yaml</i> or after the <code>automatio
 {% raw %}
 ``` yaml
 # This automation script runs when a value is received via MQTT
-# It sets the value slider on the GUI. Note: the next line may be different
-# if this automation is contained in <i>automation.yaml</i>
-# instead of <i>configuration.yaml</i>.
+# It sets the value slider on the GUI.
 automation myvars:
   - alias: Set var 145
     trigger:
