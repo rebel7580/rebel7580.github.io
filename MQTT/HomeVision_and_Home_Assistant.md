@@ -228,12 +228,11 @@ Here's a screenshot of a simple "entities card" with a selection of discovered l
 <h4>Using a Toggle Macro and a Tracking Flag</h4>
 -->
 
-Macros can be run directly by configuring them in the "Int Objects" screen and running MQTT Discovery.
-Home Assistant then automatically configures the macro as a switch entity.
+Home Assistant automatically configures macros as switch entities (as in the previous section).
 This is the easiest way to run a macro.
 <br>
 <br>
-What if you want a button that runs a macro, but also shows the result of that action?
+But what if you want a button that runs a macro, and also show the result of that action?
 You can't do it directly via the macro, since it doesn't report a useful state (as macros have none).
 You need another entity  for that.
 <br>
