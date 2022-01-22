@@ -204,6 +204,19 @@ automation myvars:
 <!--
 <h3>Running Macros, Setting Flags and Variables and Executing Other Actions</h3>
 -->
+There are three "catagories" into which interactions with HomeVision and HomeAssitant can be grouped.
+<ul>
+<li>Direct control of a Discovered object via its HomeAssistant entity.
+</li><li>Control using multiple objects via created entities in yaml.
+</li><li>Control using a "Virtual" external device as an intermediary for complex actions.
+</li></ul>
+Most of the following Tips can be used with almost all of the Internal Objects, not just the ones shown in the examples.
+
+#### Using a Toggle Macro and a Tracking Flag
+<!--
+<h4>Using a Toggle Macro and a Tracking Flag</h4>
+-->
+
 Macros can be run directly by configuring them in the "Int Objects" screen and running MQTT Discovery.
 A simple button or switch in Home Assistant can be configured to use the corresponding macro switch entity.
 This is the easiest way to run a macro.
@@ -283,6 +296,10 @@ so both command payloads are set to "ON" since that's what the macro expects.
 
 Same comment as in Method 1 applies for "dynamic" icons.
 
+#### Using Different Macros for ON and OFF via a Virtual External Device
+<!--
+<h4>Using Different Macros for ON and OFF via a Virtual External Device</h4>
+-->
 
 While macros can be run directly by configuring them in the "Int Objects" screen and running MQTT Discovery,
 there may be situations where more flexibility is needed.
@@ -327,18 +344,18 @@ Next set up a switch in Home Assistant's <i>configuration.yaml</i> (Since this i
 Note that <i>command_topic</i> and the <i>state_topic</i> are the same. Since HomeVisionXL responds to state messages to execute actions, Home Assistant must send a "stat" message to the MQTT plug-in. Home Assistant also will listen to the <i>state_topic</i>, so will hear its own message an assure that the switch is in the correct state.
 
 Lastly, add in a switch to your UI.
-
-<b><i>Run different macros when "on" and when "off",  with a separate object to track state.</i></b>
+#### Using Different Macros for ON and OFF and a Tracking Flag via a Virtual External Device
+<!--
+<h4>Using Different Macros for ON and OFF and a Tracking Flag via a Virtual External Device</h4>
+-->
 <br><br>
 There are potentially two shortcomings of the previous solution:  It requires a "virtual" external device, and, more importantly,  there is no way keep the "state" of the switch in sync with what is happening.
 If, for instance, the switch is used to run a macro to turn something(s) on, but the "off" macro is executed from some other place, the switch won't change and hence will not display the actual "state". 
 
 We can resolve the second concern by defining the "stat" parameters in the yaml switch to reflect the object used to track "state".
 Let's assume we have a Flag "OutsideDecoState" which tracks whether the outside decorations are on or not. Discover it as a binary sensor.
-<br><br>
-<b>Method 1:</b>
-<br>
-Use the same "virtual" external device, but include the binary sensor in the yaml:
+
+Use the same "virtual" external deviceas before, but include the binary sensor in the yaml:
 
 {% raw %}
 ``` yaml
@@ -356,9 +373,10 @@ Use the same "virtual" external device, but include the binary sensor in the yam
 ```
 {% endraw %}
 
-<br><br>
-<b>Method 2:</b>
-<br>
+#### Using Different Macros for ON and OFF and a Tracking Flag without a Virtual External Device
+<!--
+<h4>Using Different Macros for ON and OFF and a Tracking Flag without a Virtual External Device</h4>
+-->
 
 To simplify further, the "virtual" external device can be eliminated by using a <i>Template Switch</i>.
 This method uses the binary sensor to set the switch state and provides for having different topics for the "on" and "off" actions.
@@ -384,12 +402,11 @@ This method uses the binary sensor to set the switch state and provides for havi
 ```
 {% endraw %}
 
+#### Using triggers for different on/off complex actions with a Virtual External Device
+<!--
+<h4>Using triggers for different on/off complex actions with a Virtual External Device/h4>
+-->
 
-<br>
-<br>
-<b><i>Using triggers for different on/off complex actions:</i></b>
-<br>
-<br>
 This one shows how to use standard ON/OFF triggers to execute actions more complex than just one macro each for ON and OFF. It uses a serial command to the <i>action plug-in</i> to run the macros, then a serial command to <i>custom plug-in</i> to control a candles object.
 <br>
 <br>
@@ -399,11 +416,11 @@ This one shows how to use standard ON/OFF triggers to execute actions more compl
   <img alt="HA_Indoor_Deco_Config" src="HA_Indoor_Deco_Config.png">
 -->
 </p>
-<br>
-<br>
-<b><i>Using a single trigger for complex actions:</i></b>
-<br>
-<br>
+#### Using a single trigger for complex actions with a Virtual External Device
+<!--
+<h4>Using a single trigger for complex actions with a Virtual External Device/h4>
+-->
+
 This one shows using a single trigger (independent of ON/OFF) to send a series of IR commands. 
 <br>
 <br>
