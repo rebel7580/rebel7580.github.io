@@ -268,7 +268,9 @@ name: Garage Door 1
 
 Done!
 
-If you want "dynamic" icons, leave "icon:" blank, and define a device class for the binary sensor. See <b>Device Class Note</b> at the end of [How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to#device-class-note)
+If you want "dynamic" icons, leave "icon:" blank, and define a device class for the binary sensor.
+In this example, you would use a device class of "garage_door".
+See <b>Device Class Note</b> at the end of [How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to#device-class-note)
 <br><br>
 <b>Method 2:</b>
 <br>
@@ -319,11 +321,7 @@ you want to run different macros when sending an "on" or "off" from the same top
 <br>
 The handling of external devices has significant capabilities for executing actions within HomeVisionXL. When a MQTT <i>State</i> message is received by the MQTT plug-in, a number of actions can be done.
 We can use these capabilities to enable Home Assistant to do these actions. The way to do this is to create a "virtual" external device, i.e., one defined in the "Ext Devices" MQTT configuration screen, but does not actually physically exist. Instead, we will program Home Assistant to be that "device".
-<br>
-<br>
-<b><i>Run different macros when "on" and when "off". Useful for a Home Assistant UI switch.</i></b>
-<br>
-<br>
+
 First, in the MQTT Configuration <i>Ext Devices</i> Tab, set up a virtual external device with an appropriate descriptive topic and the ON and Off macros you want to run defined in the On and Off macro fields.
 <br>
 <br>
