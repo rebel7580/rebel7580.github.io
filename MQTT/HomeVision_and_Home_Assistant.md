@@ -98,6 +98,14 @@ An external device can be controlled by sending an MQTT message like this:
 </pre>
 
 It's important to keep in mind that the above are examples, and there is significant variation in how all this is done, which can be taken advantage of when interfacing with Home Assistant. For Home Assistant, this means that **virtual** external devices can be created and used to cause actions in HomeVision.
+### Virtual External Devices"
+<!--
+<h3>Virtual External Devices</h3>
+-->
+A "virtual" external device is a external device configuration entry in the MQTT Plug-in's <b>Ext Devices</b> tab that has <i>no corresponding physical device</i>.
+But, since it will have a topic, it can be accessed by any MQTT entity, and in turn it can run the Flag, Variable or Commands set up in that "virtual" external device's configuration entry.
+
+In the <i>Tips</i> section to follow, there are several examples where this capability is used.
 ## MQTT Auto Discovery
 <!--
 <h2>MQTT Auto Discovery</h2>
@@ -208,7 +216,7 @@ There are three "catagories" into which interactions with HomeVision and HomeAss
 <ul>
 <li>Direct control of a Discovered object via its HomeAssistant entity.
 </li><li>Control using multiple objects via created entities in yaml.
-</li><li>Control using a "Virtual" external device as an intermediary for complex actions.
+</li><li>Control using a "virtual" external device as an intermediary for complex actions.
 </li></ul>
 Most of the following Tips can be used with almost all of the Internal Objects, not just the ones shown in the examples.
 
