@@ -199,9 +199,10 @@ automation myvars:
 
 ```
 {% endraw %}
-### Running Macros
+
+### Running Macros, Setting Flags and Variables and Executing Other Actions
 <!--
-<h3>Running Macros</h3>
+<h3>Running Macros, Setting Flags and Variables and Executing Other Actions</h3>
 -->
 Macros can be run directly by configuring them in the "Int Objects" screen and running MQTT Discovery.
 A simple button or switch in Home Assistant can be configured to use the corresponding macro switch entity.
@@ -282,10 +283,7 @@ so both command payloads are set to "ON" since that's what the macro expects.
 
 Same comment as in Method 1 applies for "dynamic" icons.
 
-### Running Macros, Setting Flags and Variables and Executing Other Actions
-<!--
-<h3>Running Macros, Setting Flags and Variables and Executing Other Actions</h3>
--->
+
 While macros can be run directly by configuring them in the "Int Objects" screen and running MQTT Discovery,
 there may be situations where more flexibility is needed.
 For example,
