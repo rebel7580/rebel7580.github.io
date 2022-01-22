@@ -216,7 +216,7 @@ Most of the following Tips can be used with almost all of the Internal Objects, 
 <!--
 <h4>Simple Control of Discovered Objects</h4>
 -->
-Discovered Objects like X-10 lights, flags, outputs, etc. appear in Home Assistant as appropriate entities, which in most instances can be integrated directly into your Home Assistant GUI and used without very much additional work.
+Discovered Objects like X-10 lights, flags, outputs, macros, IR, etc. appear in Home Assistant as appropriate entities, which in most instances can be integrated directly into your Home Assistant GUI and used without very much additional work.
 Here's a screenshot of a simple "entities card" with a selection of discovered light and switch entities, with some tweaks to the icons used.
 
 <p align="center">
@@ -229,7 +229,7 @@ Here's a screenshot of a simple "entities card" with a selection of discovered l
 -->
 
 Macros can be run directly by configuring them in the "Int Objects" screen and running MQTT Discovery.
-A simple button or switch in Home Assistant can be configured to use the corresponding macro switch entity.
+Home Assistant then automatically configures the macro as a switch entity.
 This is the easiest way to run a macro.
 <br>
 <br>
