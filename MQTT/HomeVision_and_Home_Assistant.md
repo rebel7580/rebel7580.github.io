@@ -358,7 +358,7 @@ Lastly, add in a switch to your UI.
 <!--
 <h4>Using Different Macros for ON and OFF and a Tracking Flag via a Virtual External Device</h4>
 -->
-<br><br>
+
 There are potentially two shortcomings of the previous solution:  It requires a "virtual" external device, and, more importantly,  there is no way keep the "state" of the switch in sync with what is happening.
 If, for instance, the switch is used to run a macro to turn something(s) on, but the "off" macro is executed from some other place, the switch won't change and hence will not display the actual "state". 
 
@@ -412,9 +412,9 @@ This method uses the binary sensor to set the switch state and provides for havi
 ```
 {% endraw %}
 
-#### Using triggers for different on/off complex actions with a Virtual External Device
+#### Using Triggers for Different On/Off Complex Actions with a Virtual External Device
 <!--
-<h4>Using triggers for different on/off complex actions with a Virtual External Device/h4>
+<h4>Using Triggers for Different On/Off Complex Actions with a Virtual External Device/h4>
 -->
 
 This one shows how to use standard ON/OFF triggers to execute actions more complex than just one macro each for ON and OFF. It uses a serial command to the <i>action plug-in</i> to run the macros, then a serial command to <i>custom plug-in</i> to control a candles object.
@@ -426,9 +426,9 @@ This one shows how to use standard ON/OFF triggers to execute actions more compl
   <img alt="HA_Indoor_Deco_Config" src="HA_Indoor_Deco_Config.png">
 -->
 </p>
-#### Using a single trigger for complex actions with a Virtual External Device
+#### Using a Single Trigger for Complex Actions with a Virtual External Device
 <!--
-<h4>Using a single trigger for complex actions with a Virtual External Device/h4>
+<h4>Using a Single Trigger for Complex Actions with a Virtual External Device/h4>
 -->
 
 This one shows using a single trigger (independent of ON/OFF) to send a series of IR commands. 
