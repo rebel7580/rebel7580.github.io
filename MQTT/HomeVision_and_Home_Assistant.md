@@ -50,9 +50,9 @@ for that.
 <!--
 <h3>How the MQTT plug-in Handles Internal Objects</h3>
 -->
-The MQTT plug-in exposes internal objects to the MQTT system by <i>publishing</i> STATE topics to report an object's state and by <i>subscribing</i> to COMMAND topics that can control the internal object. Only internal objects included in the MQTT plug-in's "Int Objects" configuration screen are exposed.
+The MQTT plug-in exposes internal objects to the MQTT system by <i>publishing</i> STATE topics to report an object's state and by <i>subscribing</i> to COMMAND topics that can control the internal object. Only internal objects included in the MQTT plug-in's <b>Int Objects</b> configuration screen are exposed.
 
-When an exposed internal object changes state, it typically produces one or two MQTT messages, depending on options chosen in "Settings":
+When an exposed internal object changes state, it produces one or two MQTT messages, depending on options chosen in "Settings". For example:
 
 <pre>
     stat/topic/POWER ON
@@ -117,9 +117,6 @@ Valid object types are x10, light, var, flag, flag_b input, output, analog, temp
 Other plug-ins that support objects that can be discovered can add object types.
 <br>
 <br>
-Due to the complexities of proper handling of variables, they are included in discovery as sensors (read-only). More complex variable handling must be done manually. See <a href="#variable-options">Variable Options</a> in the <a href="#tips">Tips</a> section for more information.
-<br>
-<br>
 You can find out more about how to run Discovery here:
 [How to Use the MQTT Plug-in's Home Assistant Auto Discovery.](HomeVision_Discovery_How-to)
 <!--
@@ -134,12 +131,24 @@ You can find out more about how to run Discovery here:
 <h3 id="variable-options">Variable Options</h3>
 -->
 Straightforward, bi-directional control of variables from the Home Assistant UI is not supported via MQTT Discovery.
+
+Due to the complexities of proper handling of variables, they are included in discovery as sensors (read-only). 
+
 For applications other than sensors, it is possible to include HomeVision variables as part of automations, so application-specific configurations could be done.
 <br>
 <br>
 For a simple application of a variable, 
 create a slider that takes its value from a State message from HomeVisionXL and transmits back a new value if the slider is manually changed.
 This can be done by creating an "input number" entity (to create the slider) along with two automations. 
+<br>
+<br>
+For each variable you want to expose in Home Assistant:
+<ul>
+<li>First create the input_number entity for the variable you want to set/read.
+</li><li>Create an automation to <i>get</i> the value of the HomeVision variable.
+</li><li>Create an automation to <i>set</i> the value of the HomeVision variable.
+</li></ul>
+You do not need to create both automations if you only want to either just read or just set the variable.
 <br>
 <br>
 The easiest way to create the input_number entity in Home Assistant is Configuration->Helpers->Add Helper->Number.
@@ -153,21 +162,11 @@ There are blueprints for the two automations. You can get them into Home Assista
 <a href="http://github.com/rebel7580/Home-Assistant/blob/master/set_variable.yaml">https://github.com/rebel7580/Home-Assistant/blob/master/set_variable.yaml</a>
 <br>
 <br>
-For each variable you want to expose in Home Assistant:
-
-* First create the input_number entity for the variable you want to set/read.
-* Create an automation from the "Get Variable" blueprint to read the value of the HomeVision variable.
-* Create an automation from the "Set Variable" blueprint to set the value of the HomeVision variable.
-
-
-You do not need to create both automations if you only want to either just read or just set the variable.
-<br>
-<br>
 If you wish to enter directly in YAML, here is an example.
-You will need to replicate these three sets of code for each variable you want to support, making sure you change the Var names and topics.
+You will need to replicate these three sets of code for each variable you want to support, making sure you change the Variable names and topics.
 {% raw %}
 ``` yaml
-# Example configuration.yaml entry using 'input_number' in an automation
+# Example configuration.yaml using 'input_number' in an automation
 input_number:
   var_145:
     name: Var 145 Slider
@@ -251,7 +250,7 @@ You'd like the state/icon of the button to show the door's state.
 There are (at least) two ways to do this.
 The first is probably the best way, as it does not require manual modification of the <i>configuration.yaml</i> file. The second is the "original" method in these Tips. Both start with this step:
 <ul>
-<li>Add the "Door1" input and "Toggle Garage Door 1" macro to the "Int Objects" list.
+<li>Add the "Door1" input and "Toggle Garage Door 1" macro to the <b>Int Objects</b> list.
 Run MQTT discovery for at least the "Door1" input binary sensor, but it won't hurt if you do for both, so you can use them in Home Assistant for other reasons, as well as in this case.
 </li></ul>
 <b>Method 1:</b>
@@ -321,7 +320,7 @@ Same comment as in Method 1 applies for "dynamic" icons.
 <h4>Using Different Macros for ON and OFF via a Virtual External Device</h4>
 -->
 
-While macros can be run directly by configuring them in the "Int Objects" screen and running MQTT Discovery,
+While macros can be run directly by configuring them in the <b>Int Objects</b> screen and running MQTT Discovery,
 there may be situations where more flexibility is needed.
 For example,
 you want to run different macros when sending an "on" or "off" from the same topic.
@@ -475,7 +474,7 @@ switch:
 <!--
 <h3>Running Scheduled and Periodic Events</h3>
 -->
-The MQTT plug-in provides for direct execution of Scheduled and Periodic Events, similar to Macros, by defining them in "Int Objects" configuration.
+The MQTT plug-in provides for direct execution of Scheduled and Periodic Events, similar to Macros, by defining them in <b>Int Objects</b> configuration.
 <br>
 <br>
 You also can execute a Scheduled Event or Periodic Event by using the trigger option in a virtual external device.
