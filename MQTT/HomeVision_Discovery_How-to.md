@@ -761,7 +761,7 @@ If there is, there should be at least one space separating any other text from
 "dc:<i>device_class</i>".
 ## Re-discovery When Home Assistant Forgets Discovered Devices 
 Discovery messages are sent from the MQTT Plug-in with "retain" on.
-This means that when you restart Home Assistant, it wil automatically get updated with retained discovery messages.
+This means that when you restart Home Assistant, it should automatically get updated with retained discovery messages.
 
 However, this is not foolproof. If you restart both Home Assistant and the MQTT broker (for example, they are both on the same computer and it gets rebooted) and the broker is not saving retained messages persistently,
 you may find that your discovered entities are "orphaned" in Home Assistant.
@@ -770,8 +770,8 @@ When this happens, you'll want a quick way to get those devices "re-discovered"!
 
 <ul>
 <li>Create a file in your plugin directory with a name something like "my_ha_discovery.hap"
-</li><li>Add <pre>hvImport haObjectDiscovery</pre>.
-</li><li>For each object type you have discovered, add a <pre>haObjectDiscovery</pre> line with the indexes for each object.
+</li><li>Add <pre>    hvImport haObjectDiscovery</pre>
+</li><li>For each object type you have discovered, add a <pre>    haObjectDiscovery</pre> line with the indexes for each object. (and whatever options you want.)
 </li><li>When you need to re-discover, simply <i>enable</i> the plug-in in the Plugin Manager window.
 </li><li>Once it runs, <i>disable</i> it.
 </li></ul>
@@ -779,20 +779,19 @@ When this happens, you'll want a quick way to get those devices "re-discovered"!
 Example:
 
 <pre>
-hvImport haObjectDiscovery
+    hvImport haObjectDiscovery
 
-haObjectDiscovery -noid -nous 1 output
-haObjectDiscovery -noid -nous 1 input
-haObjectDiscovery -noid -nous 1 hvac
-haObjectDiscovery -noid -nous 1 ir
-haObjectDiscovery -noid -nous 1 flag_b 6 7 26
-haObjectDiscovery -noid -nous 1 flag 12 13 14 18 19 20 24 25
-haObjectDiscovery -noid -nous 1 x10
-haObjectDiscovery -noid -nous 1 light
+    haObjectDiscovery -noid -nous 1 output
+    haObjectDiscovery -noid -nous 1 input
+    haObjectDiscovery -noid -nous 1 hvac
+    haObjectDiscovery -noid -nous 1 ir
+    haObjectDiscovery -noid -nous 1 flag_b 6 7 26
+    haObjectDiscovery -noid -nous 1 flag 12 13 14 18 19 20 24 25
+    haObjectDiscovery -noid -nous 1 x10
 
 </pre>
-This example discovers all defined output, inputs, havc, ir, x10 objects,
+This example discovers all defined outputs, inputs, havc, ir, and x10 objects,
 Flags 6, 7, and 8 as binary sensors,
-and Flags 12, 13, 14, 18, 19, 2,0 24, and 25 as sensors.
+and Flags 12, 13, 14, 18, 19, 20, 24, and 25 as sensors.
 
 
