@@ -43,7 +43,7 @@ To activate the Discovery feature, open the MQTT configuration screen, hover you
 ### Using the Built-in Method
 * Select "Object Type". Select "All" to discover all objects (those that are in the "Int Objects" list, NOT all of your HomeVisionXL defined objects!)
 The "Choose Object(s)" list is NOT populated if you select "All" here.
-Note: If "All" is selected, only "flag" is included; "flag_b" is not.
+Note: If "All" is selected, only "flag" and "var" are included; "flag_b" and "var_n" are not.
 * If you selected an object type and want to further limit discovery to a subset of those objects, click on each one you want (ctrl-click for selecting more than one.) Otherwise, select "All". If you click on "All" AND also select other objects, only the selected objects will be discovered, not "All".
 * Select the discovery type: "Test", "Discover", UnDiscover".
 * Check "NO ID in Name?" to not include the object ID in the entity name. Same as the "-noid" option in the manual method.
@@ -53,7 +53,7 @@ Note: If "All" is selected, only "flag" is included; "flag_b" is not.
 Same as the "-nodevice" option in the manual method.
 * Click "Run" when all selections are complete. If you have the debug plug-in running, you will see messages for each object selected. This is particularly useful when "Test" is selected.
 
-Discovery tab visibility as well as the selection of settings on the Discovery screen are **volatile**; they are not saved when the plug-in is shut down, unlike other plug-in settings.
+Discovery tab visibility as well as the selection of settings on the Discovery screen are <b>volatile</b>; they are not saved when the plug-in is shut down, unlike other plug-in settings.
 
 ## Manual Method
 
@@ -80,7 +80,7 @@ Syntax of discovery command:
  Good for testing that the procedure generates what you expect without actually sending anything.
 * If <i>object_type</i> is not present, then it will discover (or remove) all objects (those that are in the "Int Objects" list, NOT all of your defined objects!).
 Note: If "All" is selected, only "flag" is included; "flag_b" is not.
-If you want to limit discovery or removal to one object type, put that type here. Valid built-in object_types are x10, light, var, flag, flag_b, input, output, analog, temp, ir, hvac, macro, se and pe.
+If you want to limit discovery or removal to one object type, put that type here. Valid built-in object_types are x10, light, var (var_n), var_n, flag, flag_b, input, output, analog, temp, ir, hvac, macro, se and pe.
 Also works for other plug-ins that have discoverable devices and provide the proper interface to the Discovery procedures. (Caseta is one such plug-in.)
 * If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
 
@@ -91,7 +91,7 @@ You can run discovery on a flag for both types (separately of course). Discovery
 There may be a need to have the same flag appear as both (although I don't have a use case for it!)
 <br>
 <br>
-For sensor and binary_sensor objects, if "dc:<i>device_class</i>" is found in the HomeVisionXL Description field of the var, flag (flag_b), input, analog input, or temp (DTS),
+For number, sensor and binary_sensor objects, if "dc:<i>device_class</i>" is found in the HomeVisionXL Description field of the var (var_n), flag (flag_b), input, analog input, or temp (DTS),
 a "device_class" attribute will be created with <i>device_class</i> as its value. No validation is made to make sure <i>device_class</i> is a valid "device_class" for the object, and may produce unknown behavior in Home Assistant if invalid.
 <br>
 <br>
@@ -269,6 +269,11 @@ The following entity types and devices are created according to the Object type:
   <td>HomeVisionXL Var</td>
  </tr>
  <tr>
+  <td align="center">Variable_n</td>
+  <td align="center">number</td>
+  <td>HomeVisionXL Var_n</td>
+ </tr>
+ <tr>
   <td align="center">IR</td>
   <td align="center">switch</td>
   <td>HomeVisionXL Ir</td>
@@ -436,7 +441,32 @@ homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
 </pre>
 {% endraw %}
 #### Variables
-Defined as "sensor" entities. 
+A variable can be defined as a number entity (use "var_n" as the object type). The var will be implemented as a slider.
+"device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
+{% raw %}
+<pre>
+homeassistant/sensor/HVXLb1d0d912ed315aad_VA-145n/config
+{
+        "unique_id": "HVXLb1d0d912ed315aad_VA-145",
+        "name": "VA-145 Battery Level",
+        "state_topic": "stat/BatteryLevel/RESULT",
+        "command_topic": "cmnd/BatteryLevel/POWER",
+        "value_template": "{{ value_json.STATE }}",
+        "min": 0,
+        "max": 255,
+        "qos": 1,
+        "device": {
+                "identifiers": [
+                        "HVXLb1d0d912ed315aad_Var_n"
+                ],
+                "name": "HomeVision Var_n,
+                "model": "HomeVision",
+                "manufacturer": "CustomSolutions",
+        }
+ }
+</pre>
+{% endraw %}
+Alternatively, a variable can be defined as a "sensor" entity. Just use "var".
 "device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
 See <i>"Variable Options"</i> in the <i>"Tips"</i> section of
 <a href="HomeVision and Home Assistant">Tips for interfacing HomeVision with Home Assistant</a> for other uses of variables.

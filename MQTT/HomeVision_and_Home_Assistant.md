@@ -130,16 +130,22 @@ You can find out more about how to run Discovery here:
 <!--
 <h3 id="variable-options">Variable Options</h3>
 -->
-Straightforward, bi-directional control of variables from the Home Assistant UI is not supported via MQTT Discovery.
+Variables are supported as either sensor or number entities, or both.
 
-Due to the complexities of proper handling of variables, they are included in discovery as read-only sensors.
+Straightforward, bi-directional control of variables from the Home Assistant UI is supported via the MQTT Discovery number entity.
+
+They can be included in discovery as read-only sensors.
 (The MQTT Plug-in itself allows both reading and writing of variables.)
 
-For applications other than sensors, it is possible to include HomeVision variables as part of automations, so application-specific configurations could be done.
+
 #### Variable Example
 <!--
 <h4 id="variable-options">Variable Example</h4>
 -->
+[Note: variables as number entities, which appear in the Home Assistant UI as sliders, is a recent addition to discovery. The following example, devised before number entities were available to MQTT discovery, is a technique to essentially provide the same functionality with a variable sensor. As such, it is kept here for reference as some of the techniques included may be useful.]
+
+For applications other than sensors, it is possible to include HomeVision variables as part of automations, so application-specific configurations could be done.
+
 For a simple application of a variable, 
 create a slider that takes its value from a State message from HomeVisionXL and transmits back a new value if the slider is manually changed.
 This can be done by creating an "input number" entity (to create the slider) along with two automations. 
