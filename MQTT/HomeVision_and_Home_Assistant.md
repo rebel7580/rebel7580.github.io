@@ -622,6 +622,13 @@ square: false
 <b>Note:</b> The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
 "stat" updates occur whenever a timer command (load, start,stop,clear or query - i.e., "?") is sent to the timer.
 
+### Generic HomeVision Actions
+<!--
+<h3>Generic HomeVision Actions</h3>
+-->
+This feature allows you to send a set of commands just like those allowed in an external device <i>trigger</i>.
+Since this method is not supported in MQTT discovery, It would need to be used in configuration.yaml or potentially in a GUI-based construction.
+
 ### Refreshing HomeVision Objects
 <!--
 <h3>Refreshing HomeVision Objects</h3>

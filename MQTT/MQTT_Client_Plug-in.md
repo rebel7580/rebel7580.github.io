@@ -218,8 +218,13 @@ Macros, Scheduled Events, Periodic Events and IR are never reported as they have
 This feature can be used by an MQTT entity to quickly sync up with HomeVision object states.
 <br>
 <br>
-The only valid Payloads are empty or "?".
-This topic cannot be used to <i>control</i> objects.
+When a message is received in the form:
+<pre>
+        Full Topic                           Payload
+    cmnd/homevision/action                trigger string
+</pre>
+the MQTT Plug-in will execute the trigger string. See <i>Homevision Topic</i> for details.
+
 ### Special Counting Payload
 The MQTT Plug-in has special handling to provide a "counting" feature.
 Certain MQTT messages will <i>increment</i> selected variable(s) each time the message is received. To activate this feature,
@@ -599,14 +604,12 @@ Note: For NetIO, a topic with spaces must be enclosed by braces {}.
 Double-quotes are not allowed due to the way NetIO handles arguments of the netioaction command.
 
 ### Custom Processing of Received Messages
-<b>Note: This section applies to external devices only.</b>
-<br>
-<br>
 Sometimes a topic may not fit the standard forms supported by the plug-in, or the actions taken (setting flags, variables and running macros)
 may not be powerful enough.
-There are two methods that provide more advanced processing:
+There are three methods that provide more advanced processing. The first two are functions of how an external device is configured in the MQTT Plug-in; the third is a received topic/payload:
 <ul><li>Custom commands - Create a plug-in and define a command to run when a topic is received;
 </li><li>Triggers - Send trigger strings to HomeVisionXL or plug-ins.
+</li><li>Homevision Topic - Receive an MQTT command with a payload that contains a trigger string.
 </li></ul>
 
 #### Custom Commands
@@ -836,6 +839,9 @@ Off Trigger:
     {empty}
 </pre>
 Note: <i>roku</i> is a custom plug-in. See it [Here](/Roku/Roku_index).
+#### Homevision Topic
+This feature allows you to send a set of commands just like those allowed in an external device <i>trigger</i>.
+Since this method is not supported in MQTT discovery, It would need to be used in configuration.yaml or potentially in a GUI-based construction.
 
 ### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
 
