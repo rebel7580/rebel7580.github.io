@@ -794,4 +794,6 @@ This example discovers all defined outputs, inputs, havc, ir, and x10 objects,
 Flags 6, 7, and 8 as binary sensors,
 and Flags 12, 13, 14, 18, 19, 20, 24, and 25 as sensors.
 
+Make sure as you add new objects (or remove them from Home Assistant) that you update this file.
+
 
