@@ -97,7 +97,7 @@ An external device can be controlled by sending an MQTT message like this:
     cmnd/topic/POWER ON 50
 </pre>
 
-It's important to keep in mind that the above are examples, and there is significant variation in how all this is done, which can be taken advantage of when interfacing with Home Assistant. For Home Assistant, this means that **virtual** external devices can be created and used to cause actions in HomeVision.
+It's important to keep in mind that the above are examples, and there is significant variation in how all this is done, which can be taken advantage of when interfacing with Home Assistant. For Home Assistant, this means that "virtual" external devices can be created and used to cause actions in HomeVision.
 #### Virtual External Devices
 <!--
 <h4>Virtual External Devices</h4>
@@ -113,7 +113,7 @@ In the <i>Tips</i> section to follow, there are several examples where this capa
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
 <br>
 <br>
-Valid object types are x10, light, var, flag, flag_b input, output, analog, temp, ir, macro, se, pe, timer and hvac.
+Valid object types are x10, light, var, flag, flag_b, input, output, analog, temp, ir, macro, se, pe, timer and hvac.
 Other plug-ins that support objects that can be discovered can add object types.
 <br>
 <br>
@@ -132,11 +132,14 @@ You can find out more about how to run Discovery here:
 -->
 Straightforward, bi-directional control of variables from the Home Assistant UI is not supported via MQTT Discovery.
 
-Due to the complexities of proper handling of variables, they are included in discovery as sensors (read-only). 
+Due to the complexities of proper handling of variables, they are included in discovery as read-only sensors.
+(The MQTT Plug-in itself allows both reading and writing of variables.)
 
 For applications other than sensors, it is possible to include HomeVision variables as part of automations, so application-specific configurations could be done.
-<br>
-<br>
+#### Variable Example
+<!--
+<h4 id="variable-options">Variable Example</h4>
+-->
 For a simple application of a variable, 
 create a slider that takes its value from a State message from HomeVisionXL and transmits back a new value if the slider is manually changed.
 This can be done by creating an "input number" entity (to create the slider) along with two automations. 
@@ -211,7 +214,7 @@ automation myvars:
 <!--
 <h3>Running Macros, Setting Flags and Variables and Executing Other Actions</h3>
 -->
-There are three "catagories" into which interactions with HomeVision and HomeAssitant can be grouped.
+There are at least three "categories" into which interactions with HomeVision and Home Assistant can be grouped.
 <ul>
 <li>Direct control of a Discovered object via its HomeAssistant entity.
 </li><li>Control using multiple objects via created entities in yaml.
@@ -370,7 +373,7 @@ If, for instance, the switch is used to run a macro to turn something(s) on, but
 We can resolve the second concern by defining the "stat" parameters in the yaml switch to reflect the object used to track "state".
 Let's assume we have a Flag "OutsideDecoState" which tracks whether the outside decorations are on or not. Discover it as a binary sensor.
 
-Use the same "virtual" external deviceas before, but include the binary sensor in the yaml:
+Use the same "virtual" external devices before, but include the binary sensor in the yaml:
 
 {% raw %}
 ``` yaml
