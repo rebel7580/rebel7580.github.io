@@ -770,9 +770,18 @@ When this happens, you'll want a quick way to get those devices "re-discovered"!
 
 <ul>
 <li>Create a file in your plugin directory with a name something like "my_ha_discovery.hap"
-</li><li>Add <pre>    hvImport haObjectDiscovery</pre>
-</li><li>For each object type you have discovered, add a <pre>    haObjectDiscovery</pre> line with the indexes for each object. (and whatever options you want.)
-</li><li>When you need to re-discover, simply <i>enable</i> the plug-in in the Plugin Manager window.
+</li><li>Add
+</li></ul>
+<pre>
+    hvImport haObjectDiscovery
+</pre>
+<ul><li>For each object type you have discovered, add a
+line with the indexes for each object. (and whatever options you want.)
+</li></ul>
+<pre>
+    haObjectDiscovery
+</pre>
+<ul><li>When you need to re-discover, simply <i>enable</i> the plug-in in the Plugin Manager window.
 </li><li>Once it runs, <i>disable</i> it.
 </li></ul>
 
@@ -794,6 +803,6 @@ This example discovers all defined outputs, inputs, havc, ir, and x10 objects,
 Flags 6, 7, and 8 as binary sensors,
 and Flags 12, 13, 14, 18, 19, 20, 24, and 25 as sensors.
 
-Make sure as you add new objects (or remove them from Home Assistant) that you update this file.
+Make sure that, as you add new objects (or remove them from Home Assistant), you update this file.
 
 
