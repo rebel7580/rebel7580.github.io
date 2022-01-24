@@ -223,7 +223,7 @@ When a message is received in the form:
         Full Topic                           Payload
     cmnd/homevision/action                trigger string
 </pre>
-the MQTT Plug-in will execute the trigger string. See <i>Homevision Topic</i> for details.
+the MQTT Plug-in will execute the trigger string. See [Homevision Action Topic](homevision-action-topic) for details.
 
 ### Special Counting Payload
 The MQTT Plug-in has special handling to provide a "counting" feature.
@@ -839,20 +839,24 @@ Off Trigger:
     {empty}
 </pre>
 Note: <i>roku</i> is a custom plug-in. See it [Here](/Roku/Roku_index).
-#### Homevision Topic
+#### Homevision Action Topic
 This feature allows you to send a set of commands just like those allowed in an external device <i>trigger</i>.
 Since this method is not supported in MQTT discovery, it would need to be used in configuration.yaml or in a GUI-based construction, like a button.
 
-It's strength is that you can do complex actions without needing to add a virtual external device.
-For example, you can do the previous trigger like this:
+<i>However, it is powerful enough that, in some cases, using this method could eliminate the need for "virtual" external devices and the corresponding manual configuration.yaml changes!</i>
+
+It's strength is that you can do complex actions without needing to add a "virtual" external device.
+For example, you can do the previous external device trigger like this:
 <pre>
     cmnd/homevision/action  "action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;"
 </pre>
 In response to an action command, the actions will be returned in a status message:
 <pre>
-    stat/homevision/action  "action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;"
+    stat/homevision/action  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
 </pre>
-Due to timing constraints, this message may be returned before all the actions in the trigger are completed.
+This message may be returned before all the actions in the trigger are completed, especially if the trigger contains "waits".
+
+% substitutions are NOT performed on trigger strings using this method.
 
 ### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
 
