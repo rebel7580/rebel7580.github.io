@@ -1,3 +1,4 @@
+<!-- <h1 id="tips-for-interfacing-homevision-with-home-assistant">Tips for Interfacing HomeVision with Home Assistant</h1> -->
 # Tips for Interfacing HomeVision with Home Assistant
 {:.no_toc}
 
@@ -23,33 +24,24 @@
     * Refreshing HomeVision Objects
     * Retain Option for Objects
 {:toc}
-
+<!-- <h1 id="overview">Overview</h1> -->
 # Overview
 This help discusses ways to connect Home Assistant to your HomeVision controller running HomeVisionXL.
 Emphasis is on using MQTT as the connecting method and assumes you have an MQTT broker running in your system.
 With the versatility of the MQTT plug-in with respect to how many different ways you can use it to control your devices along with the complexity and power of Home Assistant, the possible combinations are almost endless.
 This document tries to give a few of the more obvious solutions to common situations.
 
+<!-- <h2 id="basics-of-the-homevisionxl-mqtt-plug-in">Basics of the HomeVisionXL MQTT plug-in</h2> -->
 ## Basics of the HomeVisionXL MQTT plug-in
-<!--
-<h2>Basics of the HomeVisionXL MQTT plug-in</h2>
--->
 First let's go over the basics. The MQTT plug-in provides support for monitoring and controlling of both HomeVision "internal" objects like x10, lights, vars, flags, etc. via MQTT, and "External" devices such as ESP8266 based products running
-<!--
 <a href="https://tasmota.github.io/docs/">Tasmota</a>
--->
-[Tasmota](https://tasmota.github.io/docs/)
 software.
 This Help doesn't go into all the details of the MQTT plug-in. See
-[MQTT Help](/MQTT/MQTT_Client_Plug-in)
-<!--
-<a href="index.html">MQTT Help</a>
--->
+<a href="MQTT_Help.html">MQTT Help</a>
 for that.
+<!-- <h3 id="how-the-mqtt-plug-in-handles-internal-objects">How the MQTT plug-in Handles Internal Objects</h3> -->
 ### How the MQTT plug-in Handles Internal Objects
-<!--
-<h3>How the MQTT plug-in Handles Internal Objects</h3>
--->
+
 The MQTT plug-in exposes internal objects to the MQTT system by <i>publishing</i> STATE topics to report an object's state and by <i>subscribing</i> to COMMAND topics that can control the internal object. Only internal objects included in the MQTT plug-in's <b>Int Objects</b> configuration screen are exposed.
 
 When an exposed internal object changes state, it produces one or two MQTT messages, depending on options chosen in "Settings". For example:
@@ -70,10 +62,8 @@ An internal object can be controlled by sending an MQTT message like this:
     cmnd/topic/POWER ON 50
 </pre>
 
+<!-- <h3 id="how-the-mqtt-plug-in-handles-external-devices">How the MQTT plug-in Handles External Devices</h3> -->
 ### How the MQTT plug-in Handles External Devices
-<!--
-<h3>How the MQTT plug-in Handles External Devices</h3>
--->
 The MQTT plug-in can track the state of and control external devices by <i>subscribing</i> to STATE topics and <i>publishing</i> command messages. Only external devices included in the MQTT plug-in's "Ext Devices" configuration screen are monitored.
 
 When an external device changes state, it typically produces one or two MQTT messages, depending on device settings:
@@ -98,18 +88,14 @@ An external device can be controlled by sending an MQTT message like this:
 </pre>
 
 It's important to keep in mind that the above are examples, and there is significant variation in how all this is done, which can be taken advantage of when interfacing with Home Assistant. For Home Assistant, this means that "virtual" external devices can be created and used to cause actions in HomeVision.
+<!-- <h4 id="virtual-external-devices">Virtual External Devices</h4> -->
 #### Virtual External Devices
-<!--
-<h4>Virtual External Devices</h4>
--->
 A "virtual" external device is a external device configuration entry in the MQTT Plug-in's <b>Ext Devices</b> tab that has <i>no corresponding physical device</i>.
 But, since it will have a topic, it can be accessed by any MQTT entity, and in turn it can run the Flag, Variable or Commands set up in that "virtual" external device's configuration entry.
 
 In the <i>Tips</i> section to follow, there are several examples where this capability is used.
+<!-- <h2 id="mqtt-auto-discovery">MQTT Auto Discovery</h2> -->
 ## MQTT Auto Discovery
-<!--
-<h2>MQTT Auto Discovery</h2>
--->
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
 <br>
 <br>
@@ -118,28 +104,25 @@ Other plug-ins that support objects that can be discovered can add object types.
 <br>
 <br>
 You can find out more about how to run Discovery here:
-[How to Use the MQTT Plug-in's Home Assistant Auto Discovery.](HomeVision_Discovery_How-to)
-<!--
-<a href="HomeVision Discovery How-to.html">How to Use the MQTT Plug-in's Home Assistant Auto Discovery.</a>
--->
-## Tips
-<!--
-<h2 id="tips">Tips</h2>
--->
-### Variable Options
-<!--
-<h3 id="variable-options">Variable Options</h3>
--->
-Straightforward, bi-directional control of variables from the Home Assistant UI is not supported via MQTT Discovery.
+<a href="HomeVision Discovery How-to.md">How to Use the MQTT Plug-in's Home Assistant Auto Discovery.</a>
 
-Due to the complexities of proper handling of variables, they are included in discovery as read-only sensors.
+<!-- <h2 id="tips">Tips</h2> -->
+## Tips
+<!-- <h3 id="variable-options">Variable Options</h3> -->
+### Variable Options
+Variables are supported as either sensor or number entities, or both.
+
+Straightforward, bi-directional control of variables from the Home Assistant UI is supported via the MQTT Discovery number entity.
+
+They can be included in discovery as read-only sensors.
 (The MQTT Plug-in itself allows both reading and writing of variables.)
 
-For applications other than sensors, it is possible to include HomeVision variables as part of automations, so application-specific configurations could be done.
+<!-- <h4 id="variable-example">Variable Example</h4> -->
 #### Variable Example
-<!--
-<h4 id="variable-options">Variable Example</h4>
--->
+<b>Note: variables as number entities, which appear in the Home Assistant UI as sliders, is a recent addition to discovery. The following example, devised before number entities were available to MQTT discovery, is a technique to essentially provide the same functionality with a variable sensor. As such, it is kept here for reference as some of the techniques included may be useful.</b>
+
+For applications other than sensors, it is possible to include HomeVision variables as part of automations, so application-specific configurations could be done.
+
 For a simple application of a variable, 
 create a slider that takes its value from a State message from HomeVisionXL and transmits back a new value if the slider is manually changed.
 This can be done by creating an "input number" entity (to create the slider) along with two automations. 
@@ -210,10 +193,8 @@ automation myvars:
 ```
 {% endraw %}
 
+<!-- <h3 id="running-macros-setting-flags-and-variables-and-executing-other-actions">Running Macros, Setting Flags and Variables and Executing Other Actions</h3> -->
 ### Running Macros, Setting Flags and Variables and Executing Other Actions
-<!--
-<h3>Running Macros, Setting Flags and Variables and Executing Other Actions</h3>
--->
 There are at least three "categories" into which interactions with HomeVision and Home Assistant can be grouped.
 <ul>
 <li>Direct control of a Discovered object via its HomeAssistant entity.
@@ -222,10 +203,8 @@ There are at least three "categories" into which interactions with HomeVision an
 </li></ul>
 Most of the following Tips can be used with almost all of the Internal Objects, not just the ones shown in the examples.
 
+<!-- <h4 id="simple-control-of-discovered-objects">Simple Control of Discovered Objects</h4> -->
 #### Simple Control of Discovered Objects
-<!--
-<h4>Simple Control of Discovered Objects</h4>
--->
 Discovered Objects like X-10 lights, flags, outputs, macros, IR, etc. appear in Home Assistant as appropriate entities, which in most instances can be integrated directly into your Home Assistant GUI and used without very much additional work.
 Here's a screenshot of a simple "entities card" with a selection of discovered light and switch entities, with some tweaks to the icons used.
 
@@ -233,10 +212,8 @@ Here's a screenshot of a simple "entities card" with a selection of discovered l
 <img alt="MasterBath" src="MasterBath.gif">
 </p>
 
+<!-- <h4 id="using-a-toggle-macro-and-a-tracking-flag">Using a Toggle Macro and a Tracking Flag</h4> -->
 #### Using a Toggle Macro and a Tracking Flag
-<!--
-<h4>Using a Toggle Macro and a Tracking Flag</h4>
--->
 
 Home Assistant automatically configures macros as switch entities (as in the previous section).
 This is the easiest way to run a macro.
@@ -258,7 +235,9 @@ Run MQTT discovery for at least the "Door1" input binary sensor, but it won't hu
 </li></ul>
 <b>Method 1:</b>
 <br>
- * Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
+<ul>
+<li>Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
+</li></ul>
 {% raw %}
 ``` yaml
 type: button
@@ -284,7 +263,8 @@ See <b>Device Class Note</b> at the end of [How to Use Home Assistant Auto Disco
 <br><br>
 <b>Method 2:</b>
 <br>
- * Manually add the following to your configuration.yaml:
+<ul><li>Manually add the following to your configuration.yaml:
+</li></ul>
 {% raw %}
 ``` yaml
 - switch:
@@ -301,7 +281,8 @@ See <b>Device Class Note</b> at the end of [How to Use Home Assistant Auto Disco
 ```
 {% endraw %}
 
-* Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
+<ul><li>Create a button in the HA GUI. Use the GUI editor, but here is the corresponding yaml:
+</li></ul>
 {% raw %}
 ``` yaml
     type: button
@@ -318,10 +299,8 @@ so both command payloads are set to "ON" since that's what the macro expects.
 
 Same comment as in Method 1 applies for "dynamic" icons.
 
+<!-- <h4 id="using-different-macros-for-on-and-off-via-a-virtual-external-device">Using Different Macros for ON and OFF via a Virtual External Device</h4> -->
 #### Using Different Macros for ON and OFF via a Virtual External Device
-<!--
-<h4>Using Different Macros for ON and OFF via a Virtual External Device</h4>
--->
 
 While macros can be run directly by configuring them in the <b>Int Objects</b> screen and running MQTT Discovery,
 there may be situations where more flexibility is needed.
@@ -336,10 +315,7 @@ First, in the MQTT Configuration <i>Ext Devices</i> Tab, set up a virtual extern
 <br>
 <br>
 <p align="center">
-<img alt="HA_Outside_Deco_Config" src="https://github.com/rebel7580/img/blob/master/HA_Outside_Deco_Config.png?raw=true"/>
-<!-- 
 <img alt="HA_Outside_Deco_Config" src="HA_Outside_Deco_Config.png">
--->  
 </p>
 <br>
 <br>
@@ -362,10 +338,8 @@ Next set up a switch in Home Assistant's <i>configuration.yaml</i> (Since this i
 Note that <i>command_topic</i> and the <i>state_topic</i> are the same. Since HomeVisionXL responds to state messages to execute actions, Home Assistant must send a "stat" message to the MQTT plug-in. Home Assistant also will listen to the <i>state_topic</i>, so will hear its own message an assure that the switch is in the correct state.
 
 Lastly, add in a switch to your UI.
+<!-- <h4 id="using-different-macros-for-on-and-off-and-a-tracking-flag-via-a-virtual-external-device">Using Different Macros for ON and OFF and a Tracking Flag via a Virtual External Device</h4> -->
 #### Using Different Macros for ON and OFF and a Tracking Flag via a Virtual External Device
-<!--
-<h4>Using Different Macros for ON and OFF and a Tracking Flag via a Virtual External Device</h4>
--->
 
 There are potentially two shortcomings of the previous solution:  It requires a "virtual" external device, and, more importantly,  there is no way keep the "state" of the switch in sync with what is happening.
 If, for instance, the switch is used to run a macro to turn something(s) on, but the "off" macro is executed from some other place, the switch won't change and hence will not display the actual "state". 
@@ -391,10 +365,8 @@ Use the same "virtual" external devices before, but include the binary sensor in
 ```
 {% endraw %}
 
+<!-- <h4 id="using-different-macros-for-on-and-off-and-a-tracking-flag-without-a-virtual-external-device">Using Different Macros for ON and OFF and a Tracking Flag without a Virtual External Device</h4> -->
 #### Using Different Macros for ON and OFF and a Tracking Flag without a Virtual External Device
-<!--
-<h4>Using Different Macros for ON and OFF and a Tracking Flag without a Virtual External Device</h4>
--->
 
 To simplify further, the "virtual" external device can be eliminated by using a <i>Template Switch</i>.
 This method uses the binary sensor to set the switch state and provides for having different topics for the "on" and "off" actions.
@@ -420,33 +392,23 @@ This method uses the binary sensor to set the switch state and provides for havi
 ```
 {% endraw %}
 
+<!-- <h4 id="using-triggers-for-different-onoff-complex-actions-with-a-virtual-external-device">Using Triggers for Different On/Off Complex Actions with a Virtual External Device/h4> -->
 #### Using Triggers for Different On/Off Complex Actions with a Virtual External Device
-<!--
-<h4>Using Triggers for Different On/Off Complex Actions with a Virtual External Device/h4>
--->
 
 This one shows how to use standard ON/OFF triggers to execute actions more complex than just one macro each for ON and OFF. It uses a serial command to the <i>action plug-in</i> to run the macros, then a serial command to <i>custom plug-in</i> to control a candles object.
 <br>
 <br>
 <p align="center">
-  <img alt="HA_Indoor_Deco_Config" src="https://github.com/rebel7580/img/blob/master/HA_Indoor_Deco_Config.png?raw=true"/>
-<!-- 
   <img alt="HA_Indoor_Deco_Config" src="HA_Indoor_Deco_Config.png">
--->
 </p>
+<!-- <h4  id="using-a-single-trigger-for-complex-actions-with-a-virtual-external-device">Using a Single Trigger for Complex Actions with a Virtual External Device/h4> -->
 #### Using a Single Trigger for Complex Actions with a Virtual External Device
-<!--
-<h4>Using a Single Trigger for Complex Actions with a Virtual External Device/h4>
--->
 
 This one shows using a single trigger (independent of ON/OFF) to send a series of IR commands. 
 <br>
 <br>
 <p align="center">
-<img alt="HA_NBC_Config" src="https://github.com/rebel7580/img/blob/master/HA_NBC_Config.png?raw=true"/>
-<!-- 
 <img alt="HA_NBC_Config" src="HA_NBC_Config.png">
--->
 </p>
 <br>
 <br>
@@ -472,11 +434,10 @@ switch:
     qos: 1
 ```
 {% endraw %}
+Next, create a button using the state_topic and payload_on in MQTT Publish service.
 
+<!-- <h3 id="running-scheduled-and-periodic-events">Running Scheduled and Periodic Events</h3> -->
 ### Running Scheduled and Periodic Events
-<!--
-<h3>Running Scheduled and Periodic Events</h3>
--->
 The MQTT plug-in provides for direct execution of Scheduled and Periodic Events, similar to Macros, by defining them in <b>Int Objects</b> configuration.
 <br>
 <br>
@@ -492,19 +453,15 @@ To do this, in a virtual external device's "Configure Device" screen, select "Tr
 </pre>
 
 which will run Scheduled Event #3.
+<!-- <h3 id="running-other-objects">Running Other Objects</h3> -->
 ### Running Other Objects
-<!--
-<h3>Running Other Objects</h3>
--->
 The previous Tip was called out specifically because it can be used to add in macro capability for those who have run out of macro space.
 However the idea can be extended to virtually all items in HomeVisionXL. Since the trigger simply sends whatever is there to HomeVisionXL's serial command processor, you can set triggers for anything the Action plug-in can do (or any other plug-in with its own defined serial commands), and, along with the trigger's capability to make run-time substitutions in a trigger string, Home Assistant may be able to trigger different things based on the payload sent.
 In an extreme case, the trigger could be just "%M", in which case Home Assistant would put in the payload the complete trigger string to execute. See
-[Triggers](/MQTT/MQTT_Client_Plug-in#triggers) in [MQTT Help](/MQTT/MQTT_Client_Plug-in)
+<a href="MQTT_Client_Plug-in#triggers">Triggers</a>
 for more details.
+<!-- <h3 id="timers">Timers</h3> -->
 ### Timers
-<!--
-<h3>Timers</h3>
--->
 HomeVision timers can be controlled via MQTT.
 There is no simple "MQTT Discovery" defined in Home Assistant that is appropriate for Timers,
 so the MQTT Plug-in's Discovery sets up two "sensor" entities,
@@ -551,10 +508,7 @@ There are probably many different ways to do this, but here is one.
 <br>
 <br>
 <p align="center">
-  <img alt="HA Timer GUI.gif" src="https://github.com/rebel7580/img/blob/master/HA Timer GUI.gif?raw=true"/>
-<!--
-  <img alt="HA_Outside_Deco_Config" src="HA Timer GUI.gif">
--->
+<img alt="HA_Outside_Deco_Config" src="HA Timer GUI.gif">
 </p>
 <br>
 <br>
@@ -616,10 +570,23 @@ square: false
 <b>Note:</b> The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
 "stat" updates occur whenever a timer command (load, start,stop,clear or query - i.e., "?") is sent to the timer.
 
+<!-- <h3 id="generic-homevision-actions">Generic HomeVision Actions</h3> -->
+### Generic HomeVision Actions
+This feature allows you to send a set of commands just like those allowed in an external device <i>trigger</i>.
+Since this method is not supported in MQTT discovery, It would need to be used in configuration.yaml or in a GUI-based construction, like a button.
+
+Instead of the method used in 
+<a href="#using-triggers-for-different-onoff-complex-actions-with-a-virtual-external-device">Using Triggers for Different On/Off Complex Actions with a Virtual External Device</a>,
+Create a button and use
+<pre>
+    Topic:  cmnd/homevision/action
+    Payload:     action: ir transmit 28 1,ir transmit 114 1,
+                 wait for 500,ir transmit 116 1,wait for 500,
+                 ir transmit 110 1;
+<pre>
+No "virtual" external device needed.
+<!-- <h3 id="refreshing-homevision-objects">Refreshing HomeVision Objects</h3>-->
 ### Refreshing HomeVision Objects
-<!--
-<h3>Refreshing HomeVision Objects</h3>
--->
 There may be instances (like restarting Home Assistant) where the current status of HomeVision objects is not reflected by Home Assistant. The MQTT plug-in provides a special topic to force all listed objects to report their status: 
 <pre>
         Full Topic                        Payload
@@ -629,10 +596,8 @@ or
 </pre>
 
 If you have this issue, you may want to consider adding a button to send this message, or create an automation to issue the command at an appropriate time.
+<!-- <h3 id="retain-option-for-objects">Retain Option for Objects</h3> -->
 ### Retain Option for Objects
-<!--
-<h3>Retain Option for Objects</h3>
--->
 You may also want to consider, as a possible alternative to the previous, whether to enable "retain" for objects that are tracked by Home Assistant.
 This should allow Home Assistant to automatically pick up status via the MQTT broker's retained messages feature.
 "Retain" is an option in the MQTT plug-in's <i>Configure Object</i> screen.
