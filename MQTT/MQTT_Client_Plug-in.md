@@ -40,10 +40,10 @@
         * <b>mqttReady</b>
       * MQTT Discovery for Home Assistant
 {:toc}
-<br>
+<br><br>
 <!-- <h2 id="overview">Overview</h2> -->
 ## Overview
-<br>
+<br><br>
 The MQTT Client Plug-in provides a client interface to MQTT for HomeVision.
 Its main purposes are to control MQTT enabled devices via the HomeVision Schedule or NetIO and
 to control HomeVision objects by MQTT sources.
@@ -72,13 +72,13 @@ There is a lot of flexibility in the plug-in allowing support for many different
 <br>
 <br>
 <b>Note: To perform actions on internal objects, this plug-in uses the Actions Plug-in. The Actions Plug-in must be enabled to control internal objects.</b>
-<br>
+<br><br>
 <!-- <h2 id="supported-mqtt-topics">Supported MQTT Topics</h2> -->
 ## Supported MQTT Topics
-<br>
+<br><br>
 <!-- <h3 id="standard-and-custom-topics">UStandard and Custom Topics</h3> -->
 ### Standard and Custom Topics
-<br>
+<br><br>
 Topics can be assigned to devices either as abbreviated topics (called "Standard" topics in this help) or full topics.
 Standard topics follow the Tasmota structure, so only the unique sub-topic portion need be entered. Default standard topics are indicated by enclosing the sub-topic with "<" and ">".
 If a topic starts with a "<", the appropriate prefix is automatically added.
