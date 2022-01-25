@@ -230,7 +230,7 @@ When a message is received in the form:
     cmnd/homevision/action                trigger string
 </pre>
 the MQTT Plug-in will execute the trigger string.
-See <a href="#homevision-action-topic>Homevision Action Topic</a> for details.
+See <a href="#homevision-action-topic">Homevision Action Topic</a> for details.
 
 <!-- <h3 id="special-counting-Topic">Special Counting Topic</h3> -->
 ### Special Counting Payload
@@ -421,10 +421,10 @@ change it to the MQTT broker's domain or explicit IP address.
 
 or like this if "Dimming" is checked:
 
-    <pre>
+<pre>
         Full Topic                     Payload
     stat/<i>topic</i>/RESULT        {"POWER<i>x</i>":"OFF"/"ON","Dimmer":<i>level</i>}
-    </pre>
+</pre>
 
 <ul><li>Note: If set to "Response uses 0-100" (see next item), the POWER value will still be "OFF" if 0 and "ON" if otherwise.
 <br>
@@ -488,17 +488,17 @@ which will then set the object to the requested state.
 If the command topic causes an object state change, the plug-in completes the sequence by publishing a state topic showing the new state.
 Here's a sequence chart example that might make it more clear:
 <pre>
-  HomeVision              Plug-in                     MQTT Broker
+  HomeVision            Plug-in                     MQTT Broker
 
-                   Right-click X-10 object "Den"
-                       and click "Toggle":
+                 Right-click X-10 object "Den"
+                     and click "Toggle":
 
-                      cmnd/den/POWER TOGGLE   ---&gt;
-                                              &lt;--- cmnd/den/POWER TOGGLE
-                 &lt;--- HV cmd to toggle Den
+                    cmnd/den/POWER TOGGLE   --&gt;
+                                            &lt;-- cmnd/den/POWER TOGGLE
+               &lt;-- HV cmd to toggle Den
   sends X-10 cmd
    to toggle Den
-                 ---&gt; stat/den/POWER {value}  ---&gt;
+               --&gt; stat/den/POWER {value}  --&gt;
 </pre>
 
 <!-- <h3 id="serial-control">Serial Control</h3> -->
@@ -858,7 +858,8 @@ On Trigger:
 Off Trigger:
     {empty}
 </pre>
-Note: <i>roku</i> is a custom plug-in. See it [Here](/Roku/Roku_index).
+Note: <i>roku</i> is a custom plug-in. See it
+<a href="https://rebel7580.github.io/Roku/Roku_index.md>Here</a>.
 <!-- <h4 id="homevision-action-topic">Homevision Action Topic</h4> -->
 #### Homevision Action Topic
 This feature allows you to send a set of commands just like those allowed in an external device <i>trigger</i>.
@@ -975,7 +976,6 @@ Examples:
         publishes cmnd/room 2/state on
 </pre>
 
-<br>
 <!-- <h4 id="callbacks-with-the-sub-form-of-mqttcomm">Callbacks with the "sub" form of mqttComm</h4> -->
 #### Callbacks with the "sub" form of mqttComm
 
