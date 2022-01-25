@@ -864,7 +864,7 @@ Off Trigger:
     {empty}
 </pre>
 Note: <i>roku</i> is a custom plug-in. See it
-<a href="https://rebel7580.github.io/Roku/Roku_index.md">Here</a>.
+<a href="https://rebel7580.github.io/Roku/Roku_index">Here</a>.
 <!-- <h4 id="homevision-action-topic">Homevision Action Topic</h4> -->
 #### Homevision Action Topic
 This feature allows you to send a set of commands just like those allowed in an external device <i>trigger</i>.
