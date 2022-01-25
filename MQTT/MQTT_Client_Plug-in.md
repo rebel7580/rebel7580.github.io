@@ -1,6 +1,5 @@
 <!-- $Revision: 1.29 $ -->
 <!-- $Date: 2021/07/22 21:55:08 $ -->
-
 <!-- <h1 id="mqtt-plug-in-help">MQTT Plug-in Help</h1> -->
 # MQTT Plug-in Help
 {:.no_toc}

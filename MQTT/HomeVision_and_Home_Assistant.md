@@ -1,9 +1,8 @@
+<!-- $Revision: 1.9 $ -->
+<!-- $Date: 2021/12/23 01:21:51 $ -->
 <!-- <h1 id="tips-for-interfacing-homevision-with-home-assistant">Tips for Interfacing HomeVision with Home Assistant</h1> -->
 # Tips for Interfacing HomeVision with Home Assistant
 {:.no_toc}
-
-<!-- $Revision: 1.9 $ -->
-<!-- $Date: 2021/12/23 01:21:51 $ -->
 
 [Back to Projects Index](/index)
 
@@ -393,7 +392,7 @@ This method uses the binary sensor to set the switch state and provides for havi
 ```
 {% endraw %}
 
-<!-- <h4 id="using-triggers-for-different-onoff-complex-actions-with-a-virtual-external-device">Using Triggers for Different On/Off Complex Actions with a Virtual External Device/h4> -->
+<!-- <h4 id="using-triggers-for-different-onoff-complex-actions-with-a-virtual-external-device">Using Triggers for Different On/Off Complex Actions with a Virtual External Device</h4> -->
 #### Using Triggers for Different On/Off Complex Actions with a Virtual External Device
 
 This one shows how to use standard ON/OFF triggers to execute actions more complex than just one macro each for ON and OFF. It uses a serial command to the <i>action plug-in</i> to run the macros, then a serial command to <i>custom plug-in</i> to control a candles object.
@@ -402,7 +401,7 @@ This one shows how to use standard ON/OFF triggers to execute actions more compl
 <p align="center">
   <img alt="HA_Indoor_Deco_Config" src="HA_Indoor_Deco_Config.png">
 </p>
-<!-- <h4  id="using-a-single-trigger-for-complex-actions-with-a-virtual-external-device">Using a Single Trigger for Complex Actions with a Virtual External Device/h4> -->
+<!-- <h4  id="using-a-single-trigger-for-complex-actions-with-a-virtual-external-device">Using a Single Trigger for Complex Actions with a Virtual External Device</h4> -->
 #### Using a Single Trigger for Complex Actions with a Virtual External Device
 
 This one shows using a single trigger (independent of ON/OFF) to send a series of IR commands. 
