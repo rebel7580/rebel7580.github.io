@@ -105,7 +105,7 @@ Other plug-ins that support objects that can be discovered can add object types.
 <br>
 <br>
 You can find out more about how to run Discovery here:
-<a href="HomeVision Discovery How-to.md">How to Use the MQTT Plug-in's Home Assistant Auto Discovery.</a>
+<a href="HomeVision Discovery How-to">How to Use the MQTT Plug-in's Home Assistant Auto Discovery.</a>
 
 <!-- <h2 id="tips">Tips</h2> -->
 ## Tips
