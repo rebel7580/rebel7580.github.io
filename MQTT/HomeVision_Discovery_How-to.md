@@ -141,7 +141,7 @@ Examples:
 
 <ul><li>Entities are created using the object's "Object Name", not its "topic".
 </li><li>If neither "NO ID in Name?" (or <i>-noid</i>) nor "Underscore to space in Name?" (or <i>-nous</i>) are checked, the entity "name" is constructed from the object's "ID" and "Object Name".
-</li></ul><br>
+</li></ul>
 Example: 
 <pre>
     B-12 Garage_Back_Door
@@ -150,7 +150,7 @@ The entity id will be:
 <pre>
     light.b-12_garage_back_door
 </pre>
-</li><li>If "NO ID in Name?" is checked, the entity "name" and id are constructed from the object's "Object Name" only.
+<ul><li>If "NO ID in Name?" is checked, the entity "name" and id are constructed from the object's "Object Name" only.
 </li><li>If "Underscore to space in Name?" is checked, underscores are replaced by spaces in the entity "name".
 Entity ids always replace spaces in the name with underscores, regardless of this setting.
 <br>
@@ -163,7 +163,7 @@ The entity id will be:
 <pre>
     light.garage_back_door
 </pre>
-</li><li>If "Exclude from Device?" is NOT checked (or -nodevice is not present), for each object type, MQTT Discovery creates a separate "device" that groups all entities created for that type.
+<ul><li>If "Exclude from Device?" is NOT checked (or -nodevice is not present), for each object type, MQTT Discovery creates a separate "device" that groups all entities created for that type.
 Device names will be "HomeVision {Object_type}". 
 If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
 </li><li>Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
@@ -171,8 +171,7 @@ The plug-in must create two procedures: a "getDiscovDevices" procedure that retu
 and a "haObjectDiscovery" procedure which is called when "Run Discovery" is clicked and creates the discovery message to Home Assistant for each object to be discovered.
 The "haObjectDiscovery" procedure typically will call another procedure to process each individual object.
 </li></ul>
-<br>
-<br>
+
 If a plug-in needs to use configuration values from the MQTT plug-in, use the "getDiscovConfig" procedure.
 "getDiscovConfig" returns a dict with the following:
 <pre>
@@ -456,7 +455,7 @@ A variable can be defined as a number entity (use "var_n" as the object type). T
 "device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
 {% raw %}
 <pre>
-homeassistant/sensor/HVXLb1d0d912ed315aad_VA-145n/config
+homeassistant/number/HVXLb1d0d912ed315aad_VA-145n/config
 {
         "unique_id": "HVXLb1d0d912ed315aad_VA-145",
         "name": "VA-145 Battery Level",
@@ -480,7 +479,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_VA-145n/config
 Alternatively, a variable can be defined as a "sensor" entity. Just use "var".
 "device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
 See <i>"Variable Options"</i> in the <i>"Tips"</i> section of
-<a href="HomeVision and Home Assistant">Tips for interfacing HomeVision with Home Assistant</a> for other uses of variables.
+<a href="HomeVision and Home Assistant.md">Tips for interfacing HomeVision with Home Assistant</a> for other uses of variables.
 {% raw %}
 <pre>
 homeassistant/sensor/HVXLb1d0d912ed315aad_VA-145/config

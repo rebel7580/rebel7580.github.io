@@ -570,20 +570,20 @@ square: false
 <b>Note:</b> The timer's current time in the GUI does <i>not</i> update automatically, but only when receiving a "stat" update.
 "stat" updates occur whenever a timer command (load, start,stop,clear or query - i.e., "?") is sent to the timer.
 
-<!-- <h3 id="generic-homevision-actions">Generic HomeVision Actions</h3> -->
-### Generic HomeVision Actions
+<!-- <h3 id="generic-homevision-actions">Generic Homevision Actions</h3> -->
+### Generic Homevision Actions
 This feature allows you to send a set of commands just like those allowed in an external device <i>trigger</i>.
 Since this method is not supported in MQTT discovery, It would need to be used in configuration.yaml or in a GUI-based construction, like a button.
 
 Instead of the method used in 
-<a href="#using-triggers-for-different-onoff-complex-actions-with-a-virtual-external-device">Using Triggers for Different On/Off Complex Actions with a Virtual External Device</a>,
+<a href="#using-a-single-trigger-for-complex-actions-with-a-virtual-external-device">Using a Single Trigger for Complex Actions with a Virtual External Device</a>,
 Create a button and use
 <pre>
     Topic:  cmnd/homevision/action
     Payload:     action: ir transmit 28 1,ir transmit 114 1,
                  wait for 500,ir transmit 116 1,wait for 500,
                  ir transmit 110 1;
-<pre>
+</pre>
 No "virtual" external device needed.
 <!-- <h3 id="refreshing-homevision-objects">Refreshing HomeVision Objects</h3>-->
 ### Refreshing HomeVision Objects

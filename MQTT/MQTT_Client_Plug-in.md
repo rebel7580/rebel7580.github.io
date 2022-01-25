@@ -31,7 +31,9 @@
       * Custom Processing of Received Messages
         * Custom Commands
         * Triggers
-      * <b>mqttComm</b> - Sending/Receiving MQTT Messages from/to Another Plug-in
+        * Homevision Action Topic
+      * mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
+        * Callbacks with the "sub" form of mqttComm
       * Other Public Procedures Supplied/Called by the MQTT Plug-in
         * <b>topicTemplate</b>
         * <b>mqttLog</b>
@@ -228,7 +230,7 @@ When a message is received in the form:
     cmnd/homevision/action                trigger string
 </pre>
 the MQTT Plug-in will execute the trigger string.
-See <a href="#homevision-action-topic>Homevision Action Topic<a> for details.
+See <a href="#homevision-action-topic>Homevision Action Topic</a> for details.
 
 <!-- <h3 id="special-counting-Topic">Special Counting Topic</h3> -->
 ### Special Counting Payload
@@ -404,7 +406,7 @@ change it to the MQTT broker's domain or explicit IP address.
 <i>Valid only for internal objects!</i>
 <br>
 "Power" enables a standard response like this:
-
+</li></ul>
 <pre>
         Full Topic                     Payload
     stat/<i>topic</i>/POWER<i>x</i>           OFF/ON/ON <i>level</i>/<i>level</i>
@@ -419,12 +421,12 @@ change it to the MQTT broker's domain or explicit IP address.
 
 or like this if "Dimming" is checked:
 
-<pre>
+    <pre>
         Full Topic                     Payload
     stat/<i>topic</i>/RESULT        {"POWER<i>x</i>":"OFF"/"ON","Dimmer":<i>level</i>}
-</pre>
+    </pre>
 
-</li><li>Note: If set to "Response uses 0-100" (see next item), the POWER value will still be "OFF" if 0 and "ON" if otherwise.
+<ul><li>Note: If set to "Response uses 0-100" (see next item), the POWER value will still be "OFF" if 0 and "ON" if otherwise.
 <br>
 One or both of "Power" or "RESULT" <i>must</i> be selected.
 If both are <i>unchecked</i>, "Power" will be re-selected automatically.
@@ -451,9 +453,7 @@ However, responses to this command are determined by the affected objects' setti
 </li></ul>
 <!-- <h2 id="responding-to-external-device-state-changes">Responding to External Device State Changes</h2> -->
 ## Responding to External Device State Changes
-Refer to <a href="MQTT_Actions_ext.html">External Device Actions</a>
-
-for responses to received messages.
+Refer to <a href="MQTT_Actions_ext.html">External Device Actions</a> for responses to received messages.
 <br>
 <br>
 Note that an assigned Flag or Variable is always updated before the macro is run so the macro can take advantage of the new value.
@@ -488,17 +488,17 @@ which will then set the object to the requested state.
 If the command topic causes an object state change, the plug-in completes the sequence by publishing a state topic showing the new state.
 Here's a sequence chart example that might make it more clear:
 <pre>
-    HomeVision              Plug-in                     MQTT Broker
+  HomeVision              Plug-in                     MQTT Broker
 
-                     Right-click X-10 object "Den"
-                         and click "Toggle":
+                   Right-click X-10 object "Den"
+                       and click "Toggle":
 
-                        cmnd/den/POWER TOGGLE   ---&gt;
-                                                &lt;--- cmnd/den/POWER TOGGLE
-                   &lt;--- HV cmd to toggle Den
-    sends X-10 cmd
-     to toggle Den
-                   ---&gt; stat/den/POWER {value}  ---&gt;
+                      cmnd/den/POWER TOGGLE   ---&gt;
+                                              &lt;--- cmnd/den/POWER TOGGLE
+                 &lt;--- HV cmd to toggle Den
+  sends X-10 cmd
+   to toggle Den
+                 ---&gt; stat/den/POWER {value}  ---&gt;
 </pre>
 
 <!-- <h3 id="serial-control">Serial Control</h3> -->
@@ -861,7 +861,6 @@ Off Trigger:
 Note: <i>roku</i> is a custom plug-in. See it [Here](/Roku/Roku_index).
 <!-- <h4 id="homevision-action-topic">Homevision Action Topic</h4> -->
 #### Homevision Action Topic
-<h4 id="homevision-action-topic">Homevision Action Topic</h4>
 This feature allows you to send a set of commands just like those allowed in an external device <i>trigger</i>.
 Since this method is not supported in MQTT discovery, it would need to be used in configuration.yaml or in a GUI-based construction, like a button.
 
@@ -977,9 +976,9 @@ Examples:
 </pre>
 
 <br>
-<i>Callbacks with the "sub" form of <b>mqttComm</b></i>
-<br>
-<br>
+<!-- <h4 id="callbacks-with-the-sub-form-of-mqttcomm">Callbacks with the "sub" form of mqttComm</h4> -->
+#### Callbacks with the "sub" form of mqttComm
+
 When something subscribes to a topic, the assumption is that some action should be taken when a message with that topic arrives.
 So how is that handled when a plug-in uses <b>mqttComm</b> to subscribe to a topic?
 This is where callbacks come in.
@@ -1143,7 +1142,7 @@ A sample plug-in using <b>mqttComm</b> and <b>mqttReady</b> that does its own su
 
 <a href="HomeVision_and_Home_Assistant">Tips for Interfacing HomeVision with Home Assistant</a>
 <br>
-<a href="HomeVision_Discovery_How-to">How to Use the MQTT Plug-in�s Home-Assistant Auto Discovery</a>
+<a href="HomeVision_Discovery_How-to">How to Use the MQTT Plug-in's Home-Assistant Auto Discovery</a>
 
 
 
