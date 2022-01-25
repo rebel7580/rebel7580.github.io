@@ -36,8 +36,7 @@ First let's go over the basics. The MQTT plug-in provides support for monitoring
 <a href="https://tasmota.github.io/docs/">Tasmota</a>
 software.
 This Help doesn't go into all the details of the MQTT plug-in. See
-<!-- <a href="index.html">MQTT Help</a> -->
-<a href="/MQTT/MQTT_Client_Plug-in">MQTT Help</a>
+<a href="MQTT_Client_Plug-in">MQTT Help</a>
 for that.
 <!-- <h3 id="how-the-mqtt-plug-in-handles-internal-objects">How the MQTT plug-in Handles Internal Objects</h3> -->
 ### How the MQTT plug-in Handles Internal Objects
@@ -104,7 +103,7 @@ Other plug-ins that support objects that can be discovered can add object types.
 <br>
 <br>
 You can find out more about how to run Discovery here:
-<a href="HomeVision Discovery How-to">How to Use the MQTT Plug-in's Home Assistant Auto Discovery.</a>
+<a href="HomeVision_Discovery_How-to">How to Use the MQTT Plug-in's Home Assistant Auto Discovery</a>
 
 <!-- <h2 id="tips">Tips</h2> -->
 ## Tips
@@ -458,7 +457,8 @@ which will run Scheduled Event #3.
 The previous Tip was called out specifically because it can be used to add in macro capability for those who have run out of macro space.
 However the idea can be extended to virtually all items in HomeVisionXL. Since the trigger simply sends whatever is there to HomeVisionXL's serial command processor, you can set triggers for anything the Action plug-in can do (or any other plug-in with its own defined serial commands), and, along with the trigger's capability to make run-time substitutions in a trigger string, Home Assistant may be able to trigger different things based on the payload sent.
 In an extreme case, the trigger could be just "%M", in which case Home Assistant would put in the payload the complete trigger string to execute. See
-<a href="MQTT_Client_Plug-in#triggers">Triggers</a>
+<i>Triggers</i> in
+<a href="MQTT_Client_Plug-in">MQTT Help</a>
 for more details.
 <!-- <h3 id="timers">Timers</h3> -->
 ### Timers
