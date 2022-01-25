@@ -37,7 +37,8 @@ First let's go over the basics. The MQTT plug-in provides support for monitoring
 <a href="https://tasmota.github.io/docs/">Tasmota</a>
 software.
 This Help doesn't go into all the details of the MQTT plug-in. See
-<a href="MQTT_Help.html">MQTT Help</a>
+<!-- <a href="index.html">MQTT Help</a> -->
+<a href="/MQTT/MQTT_Client_Plug-in.md">MQTT Help</a>
 for that.
 <!-- <h3 id="how-the-mqtt-plug-in-handles-internal-objects">How the MQTT plug-in Handles Internal Objects</h3> -->
 ### How the MQTT plug-in Handles Internal Objects

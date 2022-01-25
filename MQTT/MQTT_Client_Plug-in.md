@@ -493,12 +493,12 @@ Here's a sequence chart example that might make it more clear:
                  Right-click X-10 object "Den"
                      and click "Toggle":
 
-                    cmnd/den/POWER TOGGLE   --&gt;
-                                            &lt;-- cmnd/den/POWER TOGGLE
+                    cmnd/den/POWER TOGGLE --&gt;
+                                          &lt;-- cmnd/den/POWER TOGGLE
                &lt;-- HV cmd to toggle Den
   sends X-10 cmd
    to toggle Den
-               --&gt; stat/den/POWER {value}  --&gt;
+               --&gt; stat/den/POWER {value} --&gt;
 </pre>
 
 <!-- <h3 id="serial-control">Serial Control</h3> -->
