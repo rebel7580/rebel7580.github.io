@@ -1,3 +1,4 @@
+<!-- <h1 id="how-to-use-home-assistant-auto-discovery">How to Use Home Assistant Auto Discovery</h1> -->
 # How to Use Home Assistant Auto Discovery
 {:.no_toc}
 
@@ -26,6 +27,7 @@
       * Device Class Note
 {:toc}
 
+<!-- <h1 id="overview">Overview</h1> -->
 # Overview
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
 <br>
@@ -36,25 +38,27 @@ Auto Discovery assumes that in MQTT Configuration "Settings", the "State Respons
 <br>
 <br>
 Auto Discovery does use the "Command Prefix", "State Prefix" and "Power Postfix" settings, and works with Object topics in any of the six standard topic templates: &lt;T&gt;, &gt;T&lt;, &lt;&gt;T, T&lt;&gt;, &gt;&lt;T, T&gt;&lt;.
+<!-- <h2 id="built-in-method">Built-in Method</h2> -->
 ## Built-in Method
 The MQTT plug-in supports a User Interface for Discovery.
 Because this is a feature that most users won't need, and for those who do use it, it is likely a one-time or seldom used feature, it is accessed by a normally "hidden" tab.
 To activate the Discovery feature, open the MQTT configuration screen, hover your mouse anywhere on the screen, then press F4. You should see a new "Discovery" tab appear. Alternately pressing F4 will cause the Discovery tab to appear/disappear.
+<!-- <h3 id="using-the-built-in-method">Using the Built-in Method</h3> -->
 ### Using the Built-in Method
-* Select "Object Type". Select "All" to discover all objects (those that are in the "Int Objects" list, NOT all of your HomeVisionXL defined objects!)
+<ul><li>Select "Object Type". Select "All" to discover all objects (those that are in the "Int Objects" list, NOT all of your HomeVisionXL defined objects!)
 The "Choose Object(s)" list is NOT populated if you select "All" here.
 Note: If "All" is selected, only "flag" and "var" are included; "flag_b" and "var_n" are not.
-* If you selected an object type and want to further limit discovery to a subset of those objects, click on each one you want (ctrl-click for selecting more than one.) Otherwise, select "All". If you click on "All" AND also select other objects, only the selected objects will be discovered, not "All".
-* Select the discovery type: "Test", "Discover", UnDiscover".
-* Check "NO ID in Name?" to not include the object ID in the entity name. Same as the "-noid" option in the manual method.
-* Check "Underscore to space in Name?" to replace underscores with spaces in the entity name. Same as the "-nous" option in the manual method.
-* Check "Retain Flag for HA published msgs?" to have Home Assistant set the retain flag for "command_topic" messages it sends. Same as the "-retain" option in the manual method.
-* Check "Exclude from Device?" to NOT include the object's entity in Home Assistant in an object type device.
+</li><li>If you selected an object type and want to further limit discovery to a subset of those objects, click on each one you want (ctrl-click for selecting more than one.) Otherwise, select "All". If you click on "All" AND also select other objects, only the selected objects will be discovered, not "All".
+</li><li>Select the discovery type: "Test", "Discover", UnDiscover".
+</li><li>Check "NO ID in Name?" to not include the object ID in the entity name. Same as the "-noid" option in the manual method.
+</li><li>Check "Underscore to space in Name?" to replace underscores with spaces in the entity name. Same as the "-nous" option in the manual method.
+</li><li>Check "Retain Flag for HA published msgs?" to have Home Assistant set the retain flag for "command_topic" messages it sends. Same as the "-retain" option in the manual method.
+</li><li>Check "Exclude from Device?" to NOT include the object's entity in Home Assistant in an object type device.
 Same as the "-nodevice" option in the manual method.
-* Click "Run" when all selections are complete. If you have the debug plug-in running, you will see messages for each object selected. This is particularly useful when "Test" is selected.
-
+</li><li>Click "Run" when all selections are complete. If you have the debug plug-in running, you will see messages for each object selected. This is particularly useful when "Test" is selected.
+</li></ul>
 Discovery tab visibility as well as the selection of settings on the Discovery screen are <b>volatile</b>; they are not saved when the plug-in is shut down, unlike other plug-in settings.
-
+<!-- <h2 id="manual-method">Manual Method</h2> -->
 ## Manual Method
 
 The MQTT Plug-in contains a public procedure to do discovery from within other plug-ins. To use, the plug-in must have the following line:
@@ -66,11 +70,11 @@ Syntax of discovery command:
     hvObjectDiscovery {-noid} {-nous} {-nodevice} {-retain} <i>add</i> {<i>object_type</i> {<i>id1 id2 ...</i>}}
 </pre>
 
-* <i>-noid</i> is optional. If present, don't include the object ID (i.e.: A-10) at the beginning of the entity name. Default: include the id. The object ID is still used in <i>unique_id</i> and other identifiers to ensure unique entries there.
-* <i>-nous</i> is optional. If present, replace underscores with spaces in the entity name. Default: include any underscores as-is.
-* <i>-nodevice</i> is optional. If present, the object's entity in Home Assistant will NOT be included in an object type device. Default: Entity is included.
-* <i>-retain</i> is optional. If present, Home Assistant will publish command_topic messages with the retain flag set. Default: retain flag is not set.
-* <i>add</i> is required:
+<ul><li><i>-noid</i> is optional. If present, don't include the object ID (i.e.: A-10) at the beginning of the entity name. Default: include the id. The object ID is still used in <i>unique_id</i> and other identifiers to ensure unique entries there.
+</li><li><i>-nous</i> is optional. If present, replace underscores with spaces in the entity name. Default: include any underscores as-is.
+</li><li><i>-nodevice</i> is optional. If present, the object's entity in Home Assistant will NOT be included in an object type device. Default: Entity is included.
+</li><li><i>-retain</i> is optional. If present, Home Assistant will publish command_topic messages with the retain flag set. Default: retain flag is not set.
+</li><li><i>add</i> is required:
  <br>
  1 - for discovery,
  <br>
@@ -78,12 +82,12 @@ Syntax of discovery command:
  <br>
  Any other number results in creating the message(s) and just displaying them in the debug plug-in, but NOT publishing.
  Good for testing that the procedure generates what you expect without actually sending anything.
-* If <i>object_type</i> is not present, then it will discover (or remove) all objects (those that are in the "Int Objects" list, NOT all of your defined objects!).
+</li><li>If <i>object_type</i> is not present, then it will discover (or remove) all objects (those that are in the "Int Objects" list, NOT all of your defined objects!).
 Note: If "All" is selected, only "flag" is included; "flag_b" is not.
 If you want to limit discovery or removal to one object type, put that type here. Valid built-in object_types are x10, light, var (var_n), var_n, flag, flag_b, input, output, analog, temp, ir, hvac, macro, se and pe.
 Also works for other plug-ins that have discoverable devices and provide the proper interface to the Discovery procedures. (Caseta is one such plug-in.)
-* If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
-
+</li><li>If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
+</li></ul>
 
 "flag_b" generates a flag as a <i>binary_sensor</i>. "flag" does a <i>switch</i>.
 As a binary_sensor, the flag is "read-only". As a switch, it can be read and written.
@@ -132,11 +136,12 @@ Examples:
       hvObjectDiscovery -noid -nous 1 flag 10
       hvObjectDiscovery -noid -nous 1 x10 1 21 46
 </pre>
+<!-- <h2 id="discovery-notes">Discovery Notes</h2> -->
 ## Discovery Notes
 
-* Entities are created using the object's "Object Name", not its "topic".
-* If neither "NO ID in Name?" (or <i>-noid</i>) nor "Underscore to space in Name?" (or <i>-nous</i>) are checked, the entity "name" is constructed from the object's "ID" and "Object Name".
-<br>
+<ul><li>Entities are created using the object's "Object Name", not its "topic".
+</li><li>If neither "NO ID in Name?" (or <i>-noid</i>) nor "Underscore to space in Name?" (or <i>-nous</i>) are checked, the entity "name" is constructed from the object's "ID" and "Object Name".
+</li></ul><br>
 Example: 
 <pre>
     B-12 Garage_Back_Door
@@ -145,11 +150,12 @@ The entity id will be:
 <pre>
     light.b-12_garage_back_door
 </pre>
-* If "NO ID in Name?" is checked, the entity "name" and id are constructed from the object's "Object Name" only.
-* If "Underscore to space in Name?" is checked, underscores are replaced by spaces in the entity "name".
+</li><li>If "NO ID in Name?" is checked, the entity "name" and id are constructed from the object's "Object Name" only.
+</li><li>If "Underscore to space in Name?" is checked, underscores are replaced by spaces in the entity "name".
 Entity ids always replace spaces in the name with underscores, regardless of this setting.
 <br>
 Example ("NO ID in Name?"and "Underscore to space in Name?" both selected): 
+</li></ul>
 <pre>
     Garage Back Door
 </pre>
@@ -157,13 +163,14 @@ The entity id will be:
 <pre>
     light.garage_back_door
 </pre>
-* If "Exclude from Device?" is NOT checked (or -nodevice is not present), for each object type, MQTT Discovery creates a separate "device" that groups all entities created for that type.
+</li><li>If "Exclude from Device?" is NOT checked (or -nodevice is not present), for each object type, MQTT Discovery creates a separate "device" that groups all entities created for that type.
 Device names will be "HomeVision {Object_type}". 
 If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
-* Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
+</li><li>Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
 The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
 and a "haObjectDiscovery" procedure which is called when "Run Discovery" is clicked and creates the discovery message to Home Assistant for each object to be discovered.
 The "haObjectDiscovery" procedure typically will call another procedure to process each individual object.
+</li></ul>
 <br>
 <br>
 If a plug-in needs to use configuration values from the MQTT plug-in, use the "getDiscovConfig" procedure.
@@ -213,7 +220,7 @@ Example (as provided by the Caseta Plug-in):
         ...
     }
 </pre>
-
+<!-- <h2 id="homevision-object-discovery-details">HomeVision Object Discovery Details</h2> -->
 ## HomeVision Object Discovery Details
 
 An MQTT discovery message is sent in the form:
@@ -325,12 +332,14 @@ The following entity types and devices are created according to the Object type:
  </tr>
  </table>
 
+<!-- <h3 id="discovery-messages">Discovery Messages</h3> -->
 ### Discovery Messages
 Here are examples of what is sent to Home Assistant during discovery.
 <br>
 The JSON formatted payloads are expanded for readability.
 <br>
 Note: Actual discovery payloads may use abbreviated configuration variable names.
+<!-- <h4 id="x-10-light-objects">X-10, Light Objects</h4> -->
 ####  X-10, Light Objects
 Defined as "light" entities.
 {% raw %}
@@ -387,6 +396,7 @@ homeassistant/switch/HVXLb1d0d912ed315aad_C-11/config
 }
 </pre>
 {% endraw %}
+<!-- <h4 id="flags">Flags</h4> -->
 ####  Flags
 Defined as "switch" entities. In this case, the STATE RESULT payload uses "STATE" instead if "POWER". 
 {% raw %}
@@ -440,6 +450,7 @@ homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
 }
 </pre>
 {% endraw %}
+<!-- <h4 id="variables">Variables</h4> -->
 #### Variables
 A variable can be defined as a number entity (use "var_n" as the object type). The var will be implemented as a slider.
 "device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
@@ -491,6 +502,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_VA-145/config
  }
 </pre>
 {% endraw %}
+<!-- <h4 id="inputs">Inputs</h4> -->
 #### Inputs
 Defined as "binary Sensor" entities. "payload_on" and "payload_off" are defined as the text in HomeVisionXL's <i>Input Port Summary's</i> "Low State Label" and "High State Label", respectively.  "device_class" is set if found in the input's "Description" field. Must be a valid binary_sensor device class. See Note.
 Binary sensors do not have a "retain" option.
@@ -517,6 +529,7 @@ homeassistant/binary_sensor/HVXLb1d0d912ed315aad_IB-5/config
 }
 </pre>
 {% endraw %}
+<!-- <h4 id="outputs">Outputs</h4> -->
 #### Outputs
 Defined as "switch" entities. "state_on" and "state_off" are defined as the text in HomeVisionXL's <i>Output Port Summary's</i> "High State Label" and "Low State Label", respectively. Note: this is opposite of inputs!
 {% raw %}
@@ -545,6 +558,7 @@ homeassistant/switch/HVXLb1d0d912ed315aad_OA-3/config
 }
 </pre>
 {% endraw %}
+<!-- <h4 id="ir">IR</h4> -->
 #### IR
 Defined as "switch" entities. Number of repeats is set to 1. 
 Because IR objects have no real "on/off" state, IR switches will show as Off, and when clicked to On, will shortly return back to the Off position, since the state message payload will not match.
@@ -590,6 +604,7 @@ IR entities can also be used as Buttons, which makes a little more sense UI-wise
           action: none
 </pre>
 {% endraw %}
+<!-- <h4 id="macros-scheduled-events-periodic-events">Macros, Scheduled Events, Periodic Events</h4> -->
 #### Macros, Scheduled Events, Periodic Events
 Defined as "switch" entities. 
 Because these objects have no real "on/off" state, switches will show as Off, and when clicked to On, will shortly return back to the Off position, since the state message payload will not match.
@@ -620,6 +635,7 @@ homeassistant/switch/HVXLb1d0d912ed315aad_MA-10/config
 </pre>
 {% endraw %}
 Like IR entities, Macros, Scheduled Events and Periodic Events can also be used as Buttons. See IR above for details.
+<!-- <h4 id="digital-temperature-sensors">Digital Temperature Sensors</h4> -->
 #### Digital Temperature Sensors
 Defined as "sensor" entities. "device_class" is set if found in the input's "Description" field. If no device class is found in the Description, then "device_class" is set to "temperature". Must be a valid sensor device class. See Note. If the "device_class" word is followed by a "-F" or "-C", "unit_of_measurement" is set to "F" or "C" accordingly. Otherwise it is set to the value specified in HomeVisionXL's Settings->Temperature Scale.
 Sensors do not have a "retain" option.
@@ -645,6 +661,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TE-0/config
 }
 </pre>
 {% endraw %}
+<!-- <h4 id="analog-inputs">Analog Inputs</h4> -->
 #### Analog Inputs
 Defined as "sensor" entities. 
 "device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
@@ -669,6 +686,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_AN-0/config
  }
 </pre>
 {% endraw %}
+<!-- <h4 id="timers">Timers</h4> -->
 #### Timers
 Defined as <i>two</i> "sensor" entities,
 one for the timer's state (Running, Stopped, Ringing)
@@ -720,6 +738,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TI_8t/config
 }
 </pre>
 {% endraw %}
+<!-- <h4 id="hvac">HVAC</h4> -->
 #### HVAC
 Defined as "climate" entities. This is for HVAC native support for RCS TX-15 type thermostats. Assumes F.
 While the HVAC returns modes in Title case, the climate entity requires them in lower case. The mode_, hold_, and fan_ state_templates convert them to lower case. When Home Assistant sends commands to the HVAC, it sends in lower case, but the MQTT plug-in is case-insensitive on receive.
@@ -777,7 +796,7 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 }
 </pre>
 {% endraw %}
-
+<!-- <h4 id="device-class-note">Device Class Note</h4> -->
 #### Device Class Note
 For all objects defined as sensors or binary sensors, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
 <pre>
@@ -789,6 +808,7 @@ There are no spaces around the ":".
 Other text is allowed in the Description as well.
 If there is, there should be at least one space separating any other text from 
 "dc:<i>device_class</i>".
+<!-- <h2 id="re-discovery-when-home-assistant-forgets-discovered-devices">Re-discovery When Home Assistant Forgets Discovered Devices</h2> -->
 ## Re-discovery When Home Assistant Forgets Discovered Devices 
 Discovery messages are sent from the MQTT Plug-in with "retain" on.
 This means that when you restart Home Assistant, it should automatically get updated with retained discovery messages.
@@ -834,5 +854,3 @@ Flags 6, 7, and 8 as binary sensors,
 and Flags 12, 13, 14, 18, 19, 20, 24, and 25 as sensors.
 
 Make sure that, as you add new objects (or remove them from Home Assistant), you update this file.
-
-

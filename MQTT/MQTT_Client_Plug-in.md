@@ -1,3 +1,4 @@
+<!-- <h1 id="mqtt-plug-in-help">MQTT Plug-in Help</h1> -->
 # MQTT Plug-in Help
 <!-- $Revision: 1.29 $ -->
 <!-- $Date: 2021/07/22 21:55:08 $ -->
@@ -36,7 +37,7 @@
         * <b>mqttReady</b>
       * MQTT Discovery for Home Assistant
 {:toc}
-
+<!-- <h2 id="overview">Overview</h2> -->
 ## Overview
 The MQTT Client Plug-in provides a client interface to MQTT for HomeVision.
 Its main purposes are to control MQTT enabled devices via the HomeVision Schedule or NetIO and
@@ -66,8 +67,10 @@ There is a lot of flexibility in the plug-in allowing support for many different
 <br>
 <br>
 <b>Note: To perform actions on internal objects, this plug-in uses the Actions Plug-in. The Actions Plug-in must be enabled to control internal objects.</b>
-##  Supported MQTT Topics
+<!-- <h2 id="supported-mqtt-topics">Supported MQTT Topics</h2> -->
+## Supported MQTT Topics
 
+<!-- <h3 id="standard-and-custom-topics">UStandard and Custom Topics</h3> -->
 ### Standard and Custom Topics
 Topics can be assigned to devices either as abbreviated topics (called "Standard" topics in this help) or full topics.
 Standard topics follow the Tasmota structure, so only the unique sub-topic portion need be entered. Default standard topics are indicated by enclosing the sub-topic with "<" and ">".
@@ -122,6 +125,7 @@ However, the plug-in does not have built-in processing when receiving MQTT topic
 <br>
 Most of the examples in the rest of this Help follow the Tasmota standard.
 
+<!-- <h3 id="standard-command-topics">Standard Command Topics</h3> -->
 ### Standard Command Topic
 The following command topic is supported (using default prefixes and postfixes) with various payloads:
 <pre>
@@ -151,10 +155,8 @@ A command with an empty payload requests the device to publish its state without
 HomeVision objects <i>subscribe</i> to command topics so that external entities can control them.
 For a full list of Actions based on the received topic and payload, see 
 <a href="MQTT_Actions_int.html">Object Actions.</a>
-<!-- 
-[[Help: Object Actions|Help:-Object-Actions]]
--->
 
+<!-- <h3 id="standard-state-topics">Standard State Topics</h3> -->
 ### Standard State Topic
 For each external device, the plug-in <i>subscribes</i> to the following topic (assuming &lt;<i>topic</i>&gt; in the "Topic" field):
 <pre>
@@ -164,11 +166,10 @@ For each external device, the plug-in <i>subscribes</i> to the following topic (
 When a POWER topic is received, the plug-in looks for a message of "on" or "off" and takes action according to the device's settings in the <b>Ext Devices Tab</b>.
 For a full list of Actions based on the received topic and payload, see
 <a href="MQTT_Actions_ext.html">External Device Actions.</a> 
-<!-- [[Help: External Device Actions|Help:-External-Device-Actions]]
--->
 <br>
 <br>
 When an internal object changes state, the plug-in will <i>publish</i> a state message to indicate the object's new state.
+<!-- <h3 id="result-state-topic">RESULT State Topic</h3> -->
 ### RESULT State Topic
 Certain devices, i.e., those running Tasmota software, usually produce both at POWER state message and a RESULT state message with the POWER info in a JSON formatted payload.
 In fact, RESULT state messages can be sent from the device when many other actions occur.
@@ -179,6 +180,7 @@ To receive such messages, they must explicitly be entered as a device in the <b>
           Topic                         Payload
     stat/<i>topic</i>/RESULT               a JSON string
 </pre>
+<!-- <h3 id="last-will-and-testament-topic">Last Will and Testament Topic</h3> -->
 ### Last Will and Testament Topic
 For each external device with a <i>standard topic</i>
 that has "Subscribe to Last Will and Testament" checked,
@@ -196,6 +198,7 @@ the "Subscribe to Last Will and Testament" checkbox has no effect.
 <br>
 <br>
 LWT is not supported for internal objects.
+<!-- <h3 id="special-homevision-Topic">Special "homevision" Topic</h3> -->
 ### Special "homevision" Topic
 The MQTT Plug-in automatically subscribes to:
 <pre>
@@ -223,8 +226,10 @@ When a message is received in the form:
         Full Topic                           Payload
     cmnd/homevision/action                trigger string
 </pre>
-the MQTT Plug-in will execute the trigger string. See [Homevision Action Topic](homevision-action-topic) for details.
+the MQTT Plug-in will execute the trigger string.
+See <a href="#homevision-action-topic>Homevision Action Topic<a> for details.
 
+<!-- <h3 id="special-counting-Topic">Special Counting Topic</h3> -->
 ### Special Counting Payload
 The MQTT Plug-in has special handling to provide a "counting" feature.
 Certain MQTT messages will <i>increment</i> selected variable(s) each time the message is received. To activate this feature,
@@ -244,7 +249,10 @@ Var-100 and Var-101 are incremented.
 <br>
 Note: Other messages that would set variables assigned to this topic will continue to do so.
 This can be used to advantage; sending a "cmnd" "POWER" message with a payload of "0" would "reset" the variables so subsequent "Count" messages would start from zero.
+<!-- <h2 id="configuring-devices">Configuring Devices</h2> -->
 ## Configuring Devices
+
+<!-- <h3 id="ext-devices-tab">Ext Devices Tab</h3> -->
 ### Ext Devices Tab
 This tab contains a list of supported external devices.
 <i>Device Name</i> is the name of the device for use by serial and NetIO commands.
@@ -320,6 +328,7 @@ When a device is deleted, the plug-in unsubscribes to any topics related to that
 Devices with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
 </li></ul>
+<!-- <h3 id="int-objects-tab">Int Objects Tab</h3> -->
 ### Int Objects Tab
 This tab contains a list of supported internal objects.
 These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, Macros, Scheduled Event, Periodic Events, Timers or HVAC.
@@ -375,6 +384,7 @@ The retain flag will cause most brokers to "remember" the status and send it to 
 </li><li>When "Done" is clicked, objects with standard topics are subscribed to their <b>command</b> full topics. Objects with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
 </li></ul>
+<!-- <h3 id="settings-tab">Settings Tab</h3> -->
 ### Settings Tab
 
 <ul><li>Prefixes and Postfixes can be set for "standard" topics.
@@ -438,14 +448,17 @@ However, responses to this command are determined by the affected objects' setti
 </li></ul>
 </li><li>"Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
 </li></ul>
+<!-- <h2 id="responding-to-external-device-state-changes">Responding to External Device State Changes</h2> -->
 ## Responding to External Device State Changes
-Refer to <a href="MQTT_Actions_ext.html">External Device Actions</a>  <!-- [[Help: External Device Actions|Help:-External-Device-Actions]]-->
+Refer to <a href="MQTT_Actions_ext.html">External Device Actions</a>
+
 for responses to received messages.
 <br>
 <br>
 Note that an assigned Flag or Variable is always updated before the macro is run so the macro can take advantage of the new value.
+<!-- <h2 id="controlling-devices">Controlling Devices</h2> -->
 ## Controlling Devices
-
+<!-- <h3 id="deviceobject-display-area">Device/Object Display Area</h3> -->
 ### Device/Object Display Area
 Right-clicking on a line in the Device/Object Display Area
 will bring up a menu from which "On", "Off", "Toggle", "State", and "Set to" can be selected.
@@ -487,6 +500,7 @@ Here's a sequence chart example that might make it more clear:
                    ---&gt; stat/den/POWER {value}  ---&gt;
 </pre>
 
+<!-- <h3 id="serial-control">Serial Control</h3> -->
 ### Serial Control
 MQTT devices can be controlled within a schedule via serial commands which take the form:
 <pre>
@@ -511,6 +525,7 @@ The <i>command</i> portion is sent as-is, case-wise.
 Note: Device <i>names</i> are limited to alphas, numbers and the underscore.
 <br>Note: While serial commands in the schedule can change the state of internal objects as well as external devices, it may make more sense to just set the internal object directly in the schedule.
 In either case, the plug-in will publish a state change topic if the state actually changed.
+<!-- <h3 id="netio">NetIO</h3> -->
 ### NetIO
 MQTT devices can be controlled via NetIO using a "netioaction" command in the NetIO application.
 For example, to have a button set up to toggle a device <i>named</i> "sonoff1",
@@ -554,6 +569,7 @@ or
 except that no NetIO Custom Returns processing is done.
 So the direct object gets are probably better to use then the MQTT versions.
 
+<!-- <h3 id="sending-generic-mqtt-messages">Sending Generic MQTT Messages</h3> -->
 ### Sending Generic MQTT Messages
 
 In addition to the external and internal device/object specific MQTT messages,
@@ -603,6 +619,7 @@ Examples:
 Note: For NetIO, a topic with spaces must be enclosed by braces {}.
 Double-quotes are not allowed due to the way NetIO handles arguments of the netioaction command.
 
+<!-- <h3 id="custom-processing-of-received-messages">Custom Processing of Received Messages</h3> -->
 ### Custom Processing of Received Messages
 Sometimes a topic may not fit the standard forms supported by the plug-in, or the actions taken (setting flags, variables and running macros)
 may not be powerful enough.
@@ -612,6 +629,7 @@ There are three methods that provide more advanced processing. The first two are
 </li><li>Homevision Topic - Receive an MQTT command with a payload that contains a trigger string.
 </li></ul>
 
+<!-- <h4 id="custom-commands">Custom Commands</h4> -->
 #### Custom Commands
 To have custom processing of received messages for a topic,
 click "Command" and enter a procedure name in the "Command" field.
@@ -723,6 +741,7 @@ Procedure <b>humid</b> is called whenever a humidity status message is received.
 <br>
 Procedure <b>bathfan</b> is called whenever a state message from the fan switch is received. It tracks the state of the fan so <b>humid</b> only turns the fan on/off if it is not already.
 In reality, <b>bathfan</b> isn't necessary, as turning on the fan while it is already on does no harm. It's here mainly as an example of how to set up a command.
+<!-- <h4 id="triggers">Triggers</h4> -->
 #### Triggers
 For those not comfortable with creating custom procedures, Triggers are a way to get a little more processing power without coding.
 Works well for sequential actions that don't require decision making.
@@ -839,7 +858,9 @@ Off Trigger:
     {empty}
 </pre>
 Note: <i>roku</i> is a custom plug-in. See it [Here](/Roku/Roku_index).
+<!-- <h4 id="homevision-action-topic">Homevision Action Topic</h4> -->
 #### Homevision Action Topic
+<h4 id="homevision-action-topic">Homevision Action Topic</h4>
 This feature allows you to send a set of commands just like those allowed in an external device <i>trigger</i>.
 Since this method is not supported in MQTT discovery, it would need to be used in configuration.yaml or in a GUI-based construction, like a button.
 
@@ -858,6 +879,7 @@ This message may be returned before all the actions in the trigger are completed
 
 % substitutions are NOT performed on trigger strings using this method.
 
+<!-- <h3 id="mqttcomm---sendingreceiving-mqtt-messages-fromto another-plug-in">mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in</h3> -->
 ### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
 
 When total control for MQTT message processing is needed,
@@ -1009,8 +1031,10 @@ If it needs to handle a number of very similar fulltopics, one callback that par
 <br>
 Either approach will work.
 
+<!-- <h3 id="other-public-procedures-suppliedcalled-by-the-mqtt-plug-in">Other Public Procedures Supplied/Called by the MQTT Plug-in</h3> -->
 ### Other Public Procedures Supplied/Called by the MQTT Plug-in
 
+<!-- <h3 id="topictemplate">topicTemplate</h3> -->
 #### topicTemplate
 
 To help with parsing full topics,
@@ -1047,8 +1071,7 @@ The <b>topicTemplate</b> command should be used like this:
 </table>
 
 
-
-
+<!-- <h4 id="mqttlog">mqttLog</h4> -->
 #### mqttLog
 
 Puts an entry into the current MQTT log file.
@@ -1069,6 +1092,7 @@ will also send the string to the debug plug-in in <i>color</i>, Default: red.
 </li>
 </ul>
 
+<!-- <h4 id="mqttready">mqttReady</h4> -->
 #### mqttReady
 
 This procedure is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
@@ -1113,10 +1137,12 @@ Typical use:
 
 A sample plug-in using <b>mqttComm</b> and <b>mqttReady</b> that does its own subscribing and needs no entries in the MQTT Plug-in's device lists can be downloaded from <a href="sample.hap">here</a>.
 
+<!-- <h3 id="mqtt-discovery-for-home-assistant">MQTT Discovery for Home Assistant</h3> -->
 ### MQTT Discovery for Home Assistant
 
-[Tips for Interfacing HomeVision with Home Assistant](HomeVision_and_Home_Assistant)
+<a href="HomeVision_and_Home_Assistant">Tips for Interfacing HomeVision with Home Assistant</a>
 <br>
-[How to Use the MQTT Plug-in's Home-Assistant Auto Discovery](HomeVision_Discovery_How-to)
+<a href="HomeVision_Discovery_How-to">How to Use the MQTT Plug-in’s Home-Assistant Auto Discovery</a>
+
 
 
