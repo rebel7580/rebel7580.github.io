@@ -1,7 +1,8 @@
-<!-- <h1 id="mqtt-plug-in-help">MQTT Plug-in Help</h1> -->
-# MQTT Plug-in Help
 <!-- $Revision: 1.29 $ -->
 <!-- $Date: 2021/07/22 21:55:08 $ -->
+
+<!-- <h1 id="mqtt-plug-in-help">MQTT Plug-in Help</h1> -->
+# MQTT Plug-in Help
 {:.no_toc}
 
 [Back to Projects Index](/index)
@@ -1142,7 +1143,7 @@ A sample plug-in using <b>mqttComm</b> and <b>mqttReady</b> that does its own su
 
 <a href="HomeVision_and_Home_Assistant">Tips for Interfacing HomeVision with Home Assistant</a>
 <br>
-<a href="HomeVision_Discovery_How-to">How to Use the MQTT Plug-in’s Home-Assistant Auto Discovery</a>
+<a href="HomeVision_Discovery_How-to">How to Use the MQTT Plug-inï¿½s Home-Assistant Auto Discovery</a>
 
 
 
