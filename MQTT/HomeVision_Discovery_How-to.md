@@ -453,7 +453,7 @@ homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
 {% endraw %}
 <!-- <h4 id="variables">Variables</h4> -->
 #### Variables
-A variable can be defined as a number entity (use "var_n" as the object type). The var will be implemented as a slider.
+A variable can be defined as a number entity (use "var_n" as the object type). The variable will be implemented as a slider.
 "device_class" is set if found in the input's "Description" field. Must be a valid sensor device class.
 "max" and "min" can be set similarly. If not explicitly set, max = 255 and min = 0.
 See Note.
