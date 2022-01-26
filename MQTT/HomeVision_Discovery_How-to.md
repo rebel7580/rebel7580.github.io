@@ -26,7 +26,7 @@
       * Analog Inputs
       * Timers
       * HVAC
-      * Device Class Note
+      * Device Class, Max and Min Note
 {:toc}
 
 <!-- <h1 id="overview">Overview</h1> -->
@@ -454,7 +454,9 @@ homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
 <!-- <h4 id="variables">Variables</h4> -->
 #### Variables
 A variable can be defined as a number entity (use "var_n" as the object type). The var will be implemented as a slider.
-"device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
+"device_class" is set if found in the input's "Description" field. Must be a valid sensor device class.
+"max" and "min" can be set similarly. If not explicitly set, max = 255 and min = 0.
+See Note.
 {% raw %}
 <pre>
 homeassistant/number/HVXLb1d0d912ed315aad_VA-145n/config
@@ -798,8 +800,8 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 }
 </pre>
 {% endraw %}
-<!-- <h4 id="device-class-note">Device Class Note</h4> -->
-#### Device Class Note
+<!-- <h4 id="device-class-max-and-min-note">Device Class, Max and Min Note</h4> -->
+#### Device Class, Max and Min Note
 For all objects defined as sensors or binary sensors, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
 <pre>
    dc:<i>device_class</i>
