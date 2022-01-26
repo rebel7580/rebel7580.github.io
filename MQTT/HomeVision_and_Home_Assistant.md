@@ -377,6 +377,7 @@ This method uses the binary sensor to set the switch state and provides for havi
   - platform: template
     switches:
       outsidedeco:
+        unique_id: "outsidedecotmplsw"
         value_template: "{{ is_state('binary_sensor.OutsideDecoState', 'on') }}"
         turn_on:
           service: mqtt.publish
@@ -390,6 +391,8 @@ This method uses the binary sensor to set the switch state and provides for havi
             payload: 'Run'
 ```
 {% endraw %}
+
+You can add additional switches as needed under "switches".
 
 <!-- <h4 id="using-triggers-for-different-onoff-complex-actions-with-a-virtual-external-device">Using Triggers for Different On/Off Complex Actions with a Virtual External Device</h4> -->
 #### Using Triggers for Different On/Off Complex Actions with a Virtual External Device
