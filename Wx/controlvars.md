@@ -666,16 +666,29 @@ Then the separate variables (Weather, Icon, Id or FcLc<i>m</i>, FcImg<i>m</i>, F
 For Control, WeatherCond and FcWeatherCond<i>m</i> are presented as lists of lists of weather information. Example:
 
 <pre>
- {id 601 main Snow description snow icon 13d}
- {id 741 main Fog description fog icon 50d}
+{id 601 main Snow description snow icon 13d}
+{id 741 main Fog description fog icon 50d}
 </pre>
 
 For Web and MQTT, WeatherCond and FcWeatherCond<i>m</i> are presented as arrays of JSON-formated weather information. Example:
 
 <pre>
- "weathercond":
- [{"id":601,"main":"Snow","description":"snow","icon":"13d"},
-  {"id":741,"main":"Fog","description":"fog","icon":"50d"}]
+{
+   "weathercond":[
+      {
+         "id":601,
+         "main":"Snow",
+         "description":"snow",
+         "icon":"13d"
+      },
+      {
+         "id":741,
+         "main":"Fog",
+         "description":"fog",
+         "icon":"50d"
+      }
+   ]
+}
 </pre>
 
 WeatherCond is useful for MQTT where a client receiving the weather MQTT message can parse out the JSON format.
