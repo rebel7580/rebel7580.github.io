@@ -664,15 +664,20 @@ If multiple conditions are present, they are ordered according to a "loose" defi
 Then the separate variables (Weather, Icon, Id or FcLc<i>m</i>, FcImg<i>m</i>, FcSc<i>m</i>) are taken from the first condition in the list.
 <br><br>
 For Control, WeatherCond/FcWeatherCond<i>m</i> is presented as a list of lists of weather information. Example:
+
 <pre>
  {id 601 main Snow description snow icon 13d}
  {id 741 main Fog description fog icon 50d}
 </pre>
+
 For Web and MQTT, WeatherCond/FcWeatherCond<i>m</i> is presented as an array of JSON-formated weather information. Example:
+
 <pre>
- "weathercond":[{"id":601,"main":"Snow","description":"snow","icon":"13d"},
+ "weathercond":
+ [{"id":601,"main":"Snow","description":"snow","icon":"13d"},
   {"id":741,"main":"Fog","description":"fog","icon":"50d"}]
 </pre>
+
 WeatherCond is useful for MQTT where a client receiving the weather MQTT massage can parse out the JSON format.
 <br><br>
 WeatherCond is probably not at all useful as a Control Variable, and unlikely useful for the Web, although you can select it for either.
