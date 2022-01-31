@@ -678,7 +678,7 @@ For Web and MQTT, WeatherCond and FcWeatherCond<i>m</i> are presented as arrays 
   {"id":741,"main":"Fog","description":"fog","icon":"50d"}]
 </pre>
 
-WeatherCond is useful for MQTT where a client receiving the weather MQTT massage can parse out the JSON format.
+WeatherCond is useful for MQTT where a client receiving the weather MQTT message can parse out the JSON format.
 <br><br>
 WeatherCond is probably not at all useful as a Control Variable, and unlikely useful for the Web, although you can select it for either.
 <br><br>
