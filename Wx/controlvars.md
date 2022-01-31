@@ -76,10 +76,19 @@ Control plug-in, the web and MQTT the <i>current weather</i> info in <b>Table 2<
     </tr>
     <tr>
       <td>Weather</td>
-      <td>Current conditions</td>
+      <td>Current conditions<sup>9</sup></td>
       <td>Light Rain</td>
     </tr>
     <tr>
+      <td>WeatherCond</td>
+      <td>Current conditions details</td>
+      <td>See Note 9</td>
+    </tr>
+    <tr>
+      <td>WeatherId</td>
+      <td>Weather ID<sup>9</sup></td>
+      <td>500</td>
+    </tr>
       <td>Temp</td>
       <td>Temperature string in F &amp; C</td>
       <td>77 F (25 C)</td>
@@ -261,7 +270,7 @@ Control plug-in, the web and MQTT the <i>current weather</i> info in <b>Table 2<
     </tr>
     <tr>
       <td>WeatherIcon</td>
-      <td>File name of current weather icon</td>
+      <td>File name of current weather icon<sup>9</sup></td>
       <td>ra.png (NWS), 01d.png (OpenWeather)</td>
     </tr>
     <tr>
@@ -326,7 +335,8 @@ Since zip codes may not even be available, it might be easier to just use FcLoc.
 <br>
 <sup>8</sup> Winds are expressed according to the <i>Wind Speed</i> setting in the
 <i>General Settings</i> tab.
-
+<br>
+<sup>9</sup> See <i>Notes on WeatherCon Variables</i>.
 <br><br>
 The Weather plug-in can pass on to the
 Control plug-in, the web and MQTT the <i>forecast weather</i> info in <b>Table 3</b>, if available in the retrieved weather data.
@@ -384,13 +394,18 @@ Table 3 - Forecast Control Variables
     </tr>
     <tr>
       <td>FcSc<i>m</i>, FcScn<i>m</i><sup>5</sup></td>
-      <td>Short forecast for day, night <i>m</i></td>
-      <td>Mostly Cloudy (NWS), 803 (OpenWeather)</td>
+      <td>Short forecast for day, night <i>m</i><sup>10</sup></td>
+      <td>Mostly Cloudy (NWS), 803 (Weather ID for OpenWeather)</td>
     </tr>
     <tr>
       <td>FcLc<i>m</i>, FcLcn<i>m</i><sup>5</sup></td>
-      <td>Long forecast for day, night <i>m</i></td>
+      <td>Long forecast for day, night <i>m</i><sup>10</sup></td>
       <td>Mostly cloudy</td>
+    </tr>
+    <tr>
+      <td>FcWeatherCond<i>m</i></td>
+      <td>Weather conditions for day <i>m</i></td>
+      <td>See Note 11</td>
     </tr>
     <tr>
       <td>FcHi<i>m</i><sup>6</sup></td>
@@ -640,6 +655,27 @@ Does not necessarily correspond to the same time period as FcHi, FcLo
 <br>
 <sup>10</sup> Winds are expressed according to the <i>Wind Speed</i> setting in the
 <i>General Settings</i> tab.
+<br>
+<sup>11</sup> See <i>Notes on WeatherCon Variables</i>.
+<br><br>
+<b>Notes on WeatherCon Variables</b>
+OpenWeather often provides more than one weather condition.
+If multiple conditions are present, they are ordered according to a "loose" definition of severity/interest. The weather condition(s) are stored as a list in WeatherCond/FcWeatherCond<i>m</i>.
+Then the separate variables (Weather, Icon, Id or FcLc<i>m</i>, FcImg<i>m</i>, FcSc<i>m</i>) are taken from the first condition in the list.
+<br><br>
+For Control, WeatherCond/FcWeatherCond<i>m</i> is presented as a list of lists of weather information. Example:
+<pre>
+ {id 601 main Snow description snow icon 13d}
+ {id 741 main Fog description fog icon 50d}
+</pre>
+For Web and MQTT, WeatherCond/FcWeatherCond<i>m</i> is presented as an array of JSON-formated weather information. Example:
+<pre>
+ "weathercond":[{"id":601,"main":"Snow","description":"snow","icon":"13d"},
+  {"id":741,"main":"Fog","description":"fog","icon":"50d"}]
+</pre>
+WeatherCond is useful for MQTT where a client receiving the weather MQTT massage can parse out the JSON format.
+<br><br>
+WeatherCond is probably not at all useful as a Control Variable, and unlikely useful for the Web, although you can select it for either.
 <br><br>
 <b>Configuring Variables</b>
 <br><br>
