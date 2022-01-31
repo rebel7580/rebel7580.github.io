@@ -672,7 +672,7 @@ For Control, WeatherCond and FcWeatherCond<i>m</i> are presented as lists of lis
 
 For Web and MQTT, WeatherCond and FcWeatherCond<i>m</i> are presented as arrays of JSON-formated weather information. Example (formatted for readability):
 
-``` json
+```
 {
    "weathercond":[
       {
