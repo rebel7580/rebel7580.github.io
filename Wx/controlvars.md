@@ -670,7 +670,7 @@ For Control, WeatherCond and FcWeatherCond<i>m</i> are presented as lists of lis
 {id 741 main Fog description fog icon 50d}
 </pre>
 
-For Web and MQTT, WeatherCond and FcWeatherCond<i>m</i> are presented as arrays of JSON-formated weather information. Example:
+For Web and MQTT, WeatherCond and FcWeatherCond<i>m</i> are presented as arrays of JSON-formated weather information. Example (formatted for readability):
 
 <pre>
 {
