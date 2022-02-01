@@ -12,9 +12,7 @@
 <font color="#0000ff" size="12"><b>Triggering Weather Fetches</b></font>
 <br><br>
 The plug-in can triggered by the following methods:
-<dl>
-<dt><b>Timed</b></dt>
-<dd>
+<h2>Timed</h2>
 Select the <a href="webwx"><i>Data Source</i></a> tab and make sure <i>Enable Fetch</i> is checked
 and the <i>Read Interval</i> is set to the desire fetch interval (in minutes).
 <i>Read Interval</i> determines how often the weather
@@ -22,10 +20,7 @@ plug-in will fetch the weather data.
 <i>Read Interval</i> set to 0 disables timed fetches.
 <br><br>
 <b>This is the most common method to trigger weather fetches.</b>
-<br><br>
-</dd>
-<dt><b>Via Serial Commands</b></dt>
-<dd>
+<h2>Via Serial Commands</h2>
 Weather related serial commands allow your HomeVision Controller schedule
 to control how the Weather plug-in fetches and speaks the weather
 and whether or not it loads the controller's weather variables.
@@ -51,102 +46,79 @@ Serial port 1 (Main serial port):
             Transmit string 'weather: speak now'
 </pre>
 This serial command has no effect on the <i>Read Interval</i> timer.
-</dd>
 <br>
-<dt><b> Complete List of Weather Related Serial Commands</b></dt>
-<br><br>
-<dd>
-<dl>
-<dt><pre>weather: fetch enable|disable</pre></dt>
-<dd>
-Enable/disable fetching of weather info.
+<h2>Complete List of Weather Related Serial Commands</h2>
+
+<h3>Enable/disable fetching of weather info</h3>
 (Sets/clears the <i>Fetch Enable</i> checkbox in the Configuration <a href="webwx"><i>Data Source</i></a> tab.)
 No weather can be fetched by any means when disabled
-</dd>
-<br><br>
-<dt><pre>weather: fetch bkgnd</pre></dt>
-<dd>
-Fetches new weather info in the background.
-<br>Note: To speak the new weather with a serial command (see below) directly after this command,
+<pre>weather: fetch enable|disable</pre>
+<h3>Fetches new weather info in the background</h3>
+<pre>weather: fetch bkgnd</pre>
+<p>Note: To speak the new weather with a serial command (see below) directly after this command,
 a wait of a few seconds is necessary to bridge the time needed to fetch the weather information in the background.
 Due to the amount of time it typically takes to retrieve data from the web,
 an immediate fetch is not reliable as it may cause the serial command to time out.
 Restarts the Read Interval timer.
 <i>Fetch Enable</i> must be set.
-</dd>
-<br><br>
-<dt><pre>weather: speak never|always|serialonly</pre></dt>
-<dd>
-Controls  speaking of the weather.
-(Sets the <i>Never</i>, <i>Always</i>, or <i>Serial Cmd Only</i> radio button in the Configuration <a href="speechwx"><i>Speech</i></a> tab.)
-</dd>
-<br><br>
-<dt><pre>weather: speak now</pre></dt>
-<dd>
-Speak the current weather.
+</p>
+<h3>Controls speaking of the weather</h3>
+Sets the <i>Never</i>, <i>Always</i>, or <i>Serial Cmd Only</i> radio button in the Configuration <a href="speechwx"><i>Speech</i></a> tab.
+<pre>weather: speak never|always|serialonly</pre>
+<h3>Speak the current weather now</h3>
 <i>Always</i> or <i>Serial Cmd Only</i> must be set.
-</dd>
-<br><br>
-<dt><pre>weather: hvwxvars enable|disable</pre></dt>
-<dd>
+<pre>weather: speak now</pre>
+<h3>Enable/disable loading of the HomeVision Controller weather variables</h3>
 Enable/disable loading of the HomeVision Controller weather variables when the weather is fetched.
 (Sets/clears the <i>Enable Update</i> checkbox
 in the Configuration <a href="hvwxvars"><i>HV Vars</i></a> tab.)
-</dd>
-<br><br>
-<dt><pre>weather: station "<i>stationid</i>"</pre></dt>
-<dd>
-Set the Station ID for current weather. <i>stationid</i> <b>must</b> be contained within quotes.
-</dd>
-<br><br>
-<dt><pre>
-weather: current|forecast|both station "<i>stationid</i>"
-weather: current|forecast|both zipcode "<i>zipcode</i>"
-weather: current|forecast|both latlong "<i>lat,long</i>"
-weather: current|forecast|both hvlatlong
-</pre></dt>
-<dd>
+<pre>weather: hvwxvars enable|disable</pre>
+<h3>Set the Station ID for current weather</h3>
+<i>stationid</i> <b>must</b> be contained within quotes.
+<pre>weather: station "<i>stationid</i>"</pre>
+<h3>Set current, forecast or both</h3>
 Set the current, forecast or both values for the given location type.
 The location value <b>must</b> be contained within quotes.
 Note for the latlong value, the latitude and longitude are separated with a "," but no spaces.
 The location type is also selected as the current source.
-</dd>
+<pre>
+weather: current|forecast|both station "<i>stationid</i>"
+weather: current|forecast|both zipcode "<i>zipcode</i>"
+weather: current|forecast|both latlong "<i>lat,long</i>"
+weather: current|forecast|both hvlatlong
+</pre>
 <br><br>
-<dt><pre>
+<h3>Set the current, forecast or both data sources</h3>
+The data source types are not case sensitive.
+METAR is only valid for current weather.
+<pre>
 weather: current|forecast|both none
 weather: current|forecast|both NWS
 weather: current|forecast|both METAR
 weather: current|forecast|both OpenWeather
-</pre></dt>
-<dd>
-Set the current, forecast or both data sources.
-The data source types are not case sensitive.
-METAR is only valid for current weather.
-</dd>
-</dl>
-<br>
-<dt><b>Via Other Plug-ins</b></dt>
-<dd>
+</pre>
+<h2>Via Other Plug-ins</h2>
+
 A weather fetch can be triggered from other plug-ins
 using the following code in the other plug-in:
-<p>
-<b>WeatherSetVar</b>
-</p>
+
+<h3>WeatherSetVar</h3>
+
 <pre>
 WeatherSetVar <i>?0</i> | <i>1</i> ?<i>wx</i> | <i>fc</i> | <i>wxfc</i> | <i>fcwx</i>??
 </pre>
+<p>
 Runs a weather fetch.
 If a first argument exists and is not a zero, then the weather data is fetched immediately before returning.
 if there is a second argument, it determines whether the current (wx), forecast (fc), or both (wxfc/fcwx) is fetched.
 If there are no arguments, the fetch is run in the background for both current and forecast weather.
-<br><br>
-The plug-in must import the command via:
+<p>
+The plug-in must import the command via:</p>
 <pre>
 hvImport WeatherSetVar
 </pre>
 
-<br><br>
-<b>WeatherSet</b>
+<h3>WeatherSet</h3>
 <pre>
 WeatherSet ?<i>current</i> | <i>forecast</i> | <i>both</i>? \
     <i>Station</i> stationID ?stationname? | \
@@ -173,10 +145,10 @@ hvImport WeatherSet
 <br><br>
 The Timed method can also be used simultaneously.
 However, a plug-in triggered fetch will restart the <i>Read Interval</i> timer.
-</dd>
-<br><br>
-<dt><b>Via The Web</b></dt>
-<dd>
+
+
+<h3>Via The Web</h3>
+
 Two additional commands are provided mainly to access weather information using &lt;HV&gt; tags in HTML pages.
 However, they can also be used by other plug-ins, similar to the method in the previous section.
 <br><br>
@@ -256,10 +228,10 @@ new data may not arrive in time to be captured by a following Run tag.
 <br><br>
 See the Web plug-in Help pages for more info on the Run and Image tags.
 Web plug-on 4.0 or later is required for this functionality.
-</dd>
+
 <br><br>
-<dt><b>Via The NetIO Server Plug-in</b></dt>
-<dd>
+<h2>Via The NetIO Server Plug-in</h3>
+
 A weather fetch is triggered by the NetIO Server plug-in
 by the <i>events</i> or <i>netioaction</i> commands:
 <pre>
@@ -270,24 +242,23 @@ or
 events wx|fc|wxfc|fcwx
 </pre>
 For more details, see <a href="netio">Weather Info for NetIO</a>.
-</dd>
+
 <br><br>
-<dt><b>Via The Control Plug-in</b></dt>
-<dd>
+<h2>Via The Control Plug-in</h2>
+
 A weather fetch is triggered by the Control plug-in
 automatically when the Control plug-in starts up.
 This ensures that weather data variables in control screens are updated
 as soon as the Control plug-in starts.
 No user configuration is needed in either plug-in.
-</dd>
-<br><br>
-<dt><b>Via MQTT</b></dt>
-<dd>
+
+
+<h2>Via MQTT</h2>
+
 Most setting can be set and weather fetches triggered via MQTT.
 See <a href="wxmqtt">Weather with MQTT</a><br>
 for complete details of the Weather with MQTT.
-</dd>
-</dl>
+
 <br>
 <br><font color="#0000FF"><b>Next:</b></font><br>
 <a href="wxws">Weather Websockets</a><br>
