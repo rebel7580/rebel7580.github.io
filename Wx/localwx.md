@@ -70,7 +70,6 @@ Table 6 - Current Weather Tags
   </tbody>
 </table>
 </div>
-<p>
 
 Notes: 
 <br>
@@ -82,7 +81,8 @@ The other related items will be generated from them accordingly.
 <sup>3</sup> VisibilityKm is in meters, max 10000. When converted to miles, max is 10.
 <br>
 <sup>4</sup> WeatherIcon is set to "{current:weather:icon}.png".
-<p>
+<br>
+<br>
 <i>NWS XML Format</i>
 <p>
 NWS current weather tags should be enclosed with the following tags:</p>
@@ -95,7 +95,7 @@ NWS current weather tags should be enclosed with the following tags:</p>
 <pre>
    &lt;tag&gt;data&lt;/tag&gt;
 </pre>
-Example:
+<p>Example:</p>
 <pre>
    &lt;current_observation&gt;
        &lt;temp_f&gt;46&lt;/temp_f&gt;
@@ -118,19 +118,8 @@ Examples can be found at the appropriate web site.
 <p>
 OpenWeather weather data follows the JSON format and should be in the "current" section or the "daily" section, 
 as noted above.
-    dict set elems temp F TempF
-    dict set elems feels_like F FeelsLike
-    dict set elems pressure F PressureMb
-    dict set elems humidity F Humidity
-    dict set elems dew_point F DewpointF
-    dict set elems uvi F Uvi
-    dict set elems clouds F Clouds
-    dict set elems visibility F VisibilityMi
-    dict set elems wind_speed F WindMPH
-    dict set elems wind_deg F WindDegrees
-    dict set elems wind_gust F WindGustMPH
 
-Example:
+Example:</p>
 <pre>
 {
     "lat": 40.36,
