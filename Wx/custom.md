@@ -51,6 +51,7 @@ Calling the procedure will actually run the procedure in each plug-in that publi
 <p>
 Here is a simple example, as used in the Weather plug-in:
 </p>
+{% raw %}
 
  <pre>
     hvPublic get_update
@@ -58,6 +59,7 @@ Here is a simple example, as used in the Weather plug-in:
         if {$type in "wx fc"} {WeatherSetVar}
     }
 </pre>
+{% endraw %}
 
 
 In this case, <b>get_update</b> calls <b>WeatherSetVar</b>, another procedure within the Weather plug-in,
@@ -111,7 +113,7 @@ For demonstration purposes,
 the values of these two keys are incremented each time the <i>get_update</i> procedure is called.
 Once started, it will simulate periodic (5 minute) state changes.
 </p>
-
+{% raw %}
 <pre>
 # Sample custom object generator plug-in
 
@@ -138,7 +140,7 @@ proc dm {{type dm}} {
 }
 
 </pre>
-
+{% endraw %}
 
 <p>
 The dm object info can be added to the example from <a href="wxws">Weather Websockets</a>,
