@@ -25,11 +25,11 @@ for details.
 <br><br>
 Weather information can be sent via MQTT whenever a weather fetch is done.
 To send weather information via MQTT, the Weather plug-in uses the defined <i>State Topic</i>.
-<br><br>
+<p><br><br>
 Current and/or forecast weather is sent in separate MQTT messages with the same topic.
 The payload is in JSON format.
 <br><br>
-Current weather example (formatted for readability):
+Current weather example (formatted for readability):</p>
 <pre>
 {
     "wx": {
