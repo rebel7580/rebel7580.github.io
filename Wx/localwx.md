@@ -91,7 +91,7 @@ NWS current weather tags should be enclosed with the following tags:</p>
        current weather tags
    &lt;/current_observation&gt;
 </pre>
-<p>Each current weather tag should be in the form:
+<p>Each current weather tag should be in the form:</p>
 <pre>
    &lt;tag&gt;data&lt;/tag&gt;
 </pre>
