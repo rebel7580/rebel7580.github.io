@@ -24,11 +24,12 @@ plug-in will fetch the weather data.
 Weather related serial commands allow your HomeVision Controller schedule
 to control how the Weather plug-in fetches and speaks the weather
 and whether or not it loads the controller's weather variables.
-<br><br>
+<p>
 To use a serial command to trigger a weather fetch,
 send a serial command from the HomeVision Controller
 with the text "weather: fetch bkgnd".
 An example line in the schedule would be like this:
+</p>
 <pre>
 Serial port 1 (Main serial port):
             Transmit string 'weather: fetch bkgnd'
@@ -50,8 +51,9 @@ This serial command has no effect on the <i>Read Interval</i> timer.
 <h2>Complete List of Weather Related Serial Commands</h2>
 
 <h3>Enable/disable fetching of weather info</h3>
-(Sets/clears the <i>Fetch Enable</i> checkbox in the Configuration <a href="webwx"><i>Data Source</i></a> tab.)
-No weather can be fetched by any means when disabled
+<p>
+No weather can be fetched by any means when disabled. (Sets/clears the <i>Fetch Enable</i> checkbox in the Configuration <a href="webwx"><i>Data Source</i></a> tab.)
+</p>
 <pre>weather: fetch enable|disable</pre>
 <h3>Fetches new weather info in the background</h3>
 <pre>weather: fetch bkgnd</pre>
@@ -63,10 +65,14 @@ Restarts the Read Interval timer.
 <i>Fetch Enable</i> must be set.
 </p>
 <h3>Controls speaking of the weather</h3>
+<p>
 Sets the <i>Never</i>, <i>Always</i>, or <i>Serial Cmd Only</i> radio button in the Configuration <a href="speechwx"><i>Speech</i></a> tab.
+</p>
 <pre>weather: speak never|always|serialonly</pre>
 <h3>Speak the current weather now</h3>
+<p>
 <i>Always</i> or <i>Serial Cmd Only</i> must be set.
+</p>
 <pre>weather: speak now</pre>
 <h3>Enable/disable loading of the HomeVision Controller weather variables</h3>
 Enable/disable loading of the HomeVision Controller weather variables when the weather is fetched.
@@ -77,10 +83,12 @@ in the Configuration <a href="hvwxvars"><i>HV Vars</i></a> tab.)
 <i>stationid</i> <b>must</b> be contained within quotes.
 <pre>weather: station "<i>stationid</i>"</pre>
 <h3>Set current, forecast or both</h3>
+<p>
 Set the current, forecast or both values for the given location type.
 The location value <b>must</b> be contained within quotes.
 Note for the latlong value, the latitude and longitude are separated with a "," but no spaces.
 The location type is also selected as the current source.
+</p>
 <pre>
 weather: current|forecast|both station "<i>stationid</i>"
 weather: current|forecast|both zipcode "<i>zipcode</i>"
@@ -89,8 +97,10 @@ weather: current|forecast|both hvlatlong
 </pre>
 <br><br>
 <h3>Set the current, forecast or both data sources</h3>
+<p>
 The data source types are not case sensitive.
 METAR is only valid for current weather.
+</p>
 <pre>
 weather: current|forecast|both none
 weather: current|forecast|both NWS
@@ -98,10 +108,10 @@ weather: current|forecast|both METAR
 weather: current|forecast|both OpenWeather
 </pre>
 <h2>Via Other Plug-ins</h2>
-
+<p>
 A weather fetch can be triggered from other plug-ins
 using the following code in the other plug-in:
-
+</p>
 <h3>WeatherSetVar</h3>
 
 <pre>
@@ -135,7 +145,9 @@ If <i>current</i>, <i>forecast</i> or <i>both</i> is not present as the first ar
 then the setting is applied for both current and forecast weather.
 <i>WeatherSet Go</i> is identical to <i>WeatherSetVar 1 wxfc</i>.
 <br><br>
+<p>
 The plug-in must import the command via:
+</p>
 <pre>
 hvImport WeatherSet
 </pre>
@@ -146,17 +158,17 @@ hvImport WeatherSet
 The Timed method can also be used simultaneously.
 However, a plug-in triggered fetch will restart the <i>Read Interval</i> timer.
 
-
-<h3>Via The Web</h3>
-
+<h2>Via The Web</h2>
 Two additional commands are provided mainly to access weather information using &lt;HV&gt; tags in HTML pages.
 However, they can also be used by other plug-ins, similar to the method in the previous section.
 <br><br>
-<b>WeatherGet</b>
+<h3>WeatherGet</h3>
+<p>
+Returns weather information.
+</p>
 <pre>
 &lt;HV:Run WeatherGet ?Table? <i>weather_item</i> <i>?weather_item ...?</i>&gt;
 </pre>
-Returns weather information.
 <br><br>
 If "Table" is present, a table will be returned, with a table header and one row per weather item.
 The table uses the same style as the built-in tables provided by the Web plug-in.
@@ -172,7 +184,7 @@ Weather items <i>WeatherIcon</i> and <i>FcImgn</i>,
 will return HTML &lt;img&gt; tags.
 If used in another plug-in (as opposed to within a web page), <i>WeatherGetIcon</i> should be used instead.
 <br><br>
-<b>WeatherGetIcon</b>
+<h3>WeatherGetIcon</h3>
 <pre>
 &lt;HV:Image png WeatherGetIcon <i>?icon?</i>&gt;
 </pre>
@@ -230,7 +242,7 @@ See the Web plug-in Help pages for more info on the Run and Image tags.
 Web plug-on 4.0 or later is required for this functionality.
 
 <br><br>
-<h2>Via The NetIO Server Plug-in</h3>
+<h2>Via The NetIO Server Plug-in</h2>
 
 A weather fetch is triggered by the NetIO Server plug-in
 by the <i>events</i> or <i>netioaction</i> commands:
