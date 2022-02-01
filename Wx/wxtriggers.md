@@ -41,11 +41,11 @@ Serial port 1 (Main serial port):
 The Timed method can also be used simultaneously.
 However,
 a serial command triggered fetch will restart the <i>Read Interval</i> timer.
-<br><br>
+<p>
 A serial command from the HomeVision Controller with the text "weather: speak now"
 will speak the <i>previously</i> fetched weather
 (it does <i>not</i> fetch new data).
-An example line in the schedule would be like this:
+An example line in the schedule would be like this:</p>
 <pre>
 Serial port 1 (Main serial port):
             Transmit string 'weather: speak now'
@@ -124,14 +124,14 @@ The data source types are not case sensitive.
 METAR is only valid for current weather.
 </dd>
 </dl>
-</dd>
 <br>
 <dt><b>Via Other Plug-ins</b></dt>
 <dd>
 A weather fetch can be triggered from other plug-ins
 using the following code in the other plug-in:
-<br><br>
+<p>
 <b>WeatherSetVar</b>
+</p>
 <pre>
 WeatherSetVar <i>?0</i> | <i>1</i> ?<i>wx</i> | <i>fc</i> | <i>wxfc</i> | <i>fcwx</i>??
 </pre>

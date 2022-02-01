@@ -662,15 +662,15 @@ Does not necessarily correspond to the same time period as FcHi, FcLo
 OpenWeather often provides more than one weather condition.
 If multiple conditions are present, they are ordered according to a "loose" definition of severity/interest. The weather condition(s) are stored as a list in WeatherCond and FcWeatherCond<i>m</i>.
 Then the separate variables (Weather, Icon, Id or FcLc<i>m</i>, FcImg<i>m</i>, FcSc<i>m</i>) are taken from the first condition in the list.
-<br><br>
-For Control, WeatherCond and FcWeatherCond<i>m</i> are presented as lists of lists of weather information. Example:
+<p>
+For Control, WeatherCond and FcWeatherCond<i>m</i> are presented as lists of lists of weather information. Example:</p>
 
 <pre>
 {id 601 main Snow description snow icon 13d}
 {id 741 main Fog description fog icon 50d}
 </pre>
 
-For Web and MQTT, WeatherCond and FcWeatherCond<i>m</i> are presented as arrays of JSON-formated weather information. Example (formatted for readability):
+<p>For Web and MQTT, WeatherCond and FcWeatherCond<i>m</i> are presented as arrays of JSON-formated weather information. Example (formatted for readability):</p>
 
 <pre>
 {
