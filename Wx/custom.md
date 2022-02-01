@@ -18,12 +18,15 @@ You can also provide your own custom objects via another "custom" plug-in.
 
 Here's what is needed to do so:
 <h3>get_update Procedure</h3>
+<p>
 The "custom" plug-in should provide a public (via hvPublic) <b>get_update</b> procedure
 that creates the object's state information.
 If the plug-in sees an <i>events</i> command with the object name in it,
 if will call <i>get_update</i>.
 Additionally, when the  plug-in starts initially, it calls <b>get_update</b>
 to quickly get the object's initial status.
+</p>
+
 <pre>
     <b>get_update</b> <i>{object_type}</i>
 </pre>
@@ -48,14 +51,14 @@ Calling the procedure will actually run the procedure in each plug-in that publi
 <p>
 Here is a simple example, as used in the Weather plug-in:
 </p>
-{% raw %}
+
  <pre>
     hvPublic get_update
     proc get_update {{type wx}} {
         if {$type in "wx fc"} {WeatherSetVar}
     }
 </pre>
-{% endraw %}
+
 
 In this case, <b>get_update</b> calls <b>WeatherSetVar</b>, another procedure within the Weather plug-in,
 if the object type is "wx", "fc", or null.
@@ -108,7 +111,7 @@ For demonstration purposes,
 the values of these two keys are incremented each time the <i>get_update</i> procedure is called.
 Once started, it will simulate periodic (5 minute) state changes.
 </p>
-{% raw %}
+
 <pre>
 # Sample custom object generator plug-in
 
@@ -135,7 +138,7 @@ proc dm {{type dm}} {
 }
 
 </pre>
-{% endraw %}
+
 
 <p>
 The dm object info can be added to the example from <a href="wxws">Weather Websockets</a>,
