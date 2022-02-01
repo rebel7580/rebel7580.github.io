@@ -90,20 +90,20 @@ Actions taken for each possible selection are show in <b>Table 1</b>.
 Table 1 - Data Source/Station Selection
 </b></center>
 <div align="center">
- <table border="3" cellpadding="2" cellspacing="0">
+ <table border="3">
   <tbody>
 
     <tr>
       <th></th>
-      <th colspan="2">NWS/METAR<sup>1</sup></th>
-      <th colspan="2">OpenWeather</th>
+      <th colspan="2" align="center">NWS/METAR<sup>1</sup></th>
+      <th colspan="2" align="center">OpenWeather</th>
    </tr>
     <tr>
-      <th>Station Setting</th>
-      <th>Current</th>
-      <th>Forecast</th>
-      <th>Current</th>
-      <th>Forecast</th>
+      <th align="center">Station Setting</th>
+      <th align="center">Current</th>
+      <th align="center">Forecast</th>
+      <th align="center">Current</th>
+      <th align="center">Forecast</th>
    </tr>
 
     <tr>
