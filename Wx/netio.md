@@ -12,7 +12,6 @@
 <font color="#0000ff" size="12"><b>Weather Info for NetIO</b></font>
 <br><br>
 The Weather plug-in supplies built-in "custom" procedures (netio, netioaction and get_update) to support NetIO. 
-<br><br>
 <h3>Triggering a Weather Fetch via NetIO</h3>
 <p>
 A weather fetch can be triggered in the NetIO application by the <i>netioaction</i> command:
