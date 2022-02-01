@@ -43,8 +43,9 @@ A Script tag that sources the weather websocket functions (<i>wxwebsocket.js</i>
 </li><li>
 A JavaScript array that describes how to handle each tag.
 </li></ul>
-<p></p>
+<p>
 Example:
+</p>
 <pre>
     &lt;center&gt;
     &lt;h3&gt;Weather&lt;/h3&gt;
