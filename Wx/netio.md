@@ -13,9 +13,10 @@
 <br><br>
 The Weather plug-in supplies built-in "custom" procedures (netio, netioaction and get_update) to support NetIO. 
 <br><br>
-<b>Triggering a Weather Fetch via NetIO</b>
-<br><br>
+<h3>Triggering a Weather Fetch via NetIO</h3>
+<p>
 A weather fetch can be triggered in the NetIO application by the <i>netioaction</i> command:
+</p>
 <pre>
     <b>netioaction wx</b>|<b>fc</b>|<b>wxfc</b>|<b>fcwx</b> <b>update</b>
 </pre>
@@ -27,20 +28,18 @@ The requested weather data is fetched immediately.
 <br>Note 2: The command does not reset the current Read Interval.
 <br><br>
 This is the preferred way to explicitly update weather data.
-<br><br>
+<p>
 Example:
-<dl>
-<dt>Fetch the latest current and forecast data.
-</dt>
-<dd>
+<p>
+Fetch the latest current and forecast data.
+</p>
 <pre>
 sends: netioaction wxfc update
 </pre>
-</dd>
-</dl>
-<br><br>
+<p>
 The Weather plug-in can also fetch weather data 
 by providing a weather specifier as one of the "objects" in the <i>events</i> command:
+</p>
 <pre>
     <b>events wx</b>|<b>fc</b>|<b>wxfc</b>|<b>fcwx</b>
 </pre>
@@ -50,7 +49,7 @@ the NetIO Server plug-in calls the <i>get_update</i> procedure which the Weather
 Otherwise, this command works identically to the <i>netioaction</i> command above.
 <br>
 <br>
-<b>Getting Weather Items via NetIO</b>
+<h3>Getting Weather Items via NetIO</h3>
 <br><br>
 The Weather plug-in provides a <i>netio</i> procedure to return weather information in response to NetIO <i>get</i> commands.
 <br><br>
