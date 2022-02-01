@@ -47,15 +47,13 @@ Other object types (standard or custom) can be combined with weather objects.
 When this command is executed,
 the NetIO Server plug-in calls the <i>get_update</i> procedure which the Weather plug-in recognizes.
 Otherwise, this command works identically to the <i>netioaction</i> command above.
-<br>
-<br>
+
 <h3>Getting Weather Items via NetIO</h3>
-<br><br>
 The Weather plug-in provides a <i>netio</i> procedure to return weather information in response to NetIO <i>get</i> commands.
 <br><br>
 Possible weather items for NetIO use are the same as those for the Control and Web plug-ins. 
 However, there is no need to configure which items are available - all are.
-<br><br>
+
 <dl>
 <dt>The <i>get</i> command for weather has the following format:
 </dt>
