@@ -148,7 +148,6 @@ to set the station information to be used for current and forecast fetches.
 If <i>current</i>, <i>forecast</i> or <i>both</i> is not present as the first argument,
 then the setting is applied for both current and forecast weather.
 <i>WeatherSet Go</i> is identical to <i>WeatherSetVar 1 wxfc</i>.
-<br><br>
 <p>
 The plug-in must import the command via:
 </p>
