@@ -90,7 +90,7 @@ Actions taken for each possible selection are show in <b>Table 1</b>.
 Table 1 - Data Source/Station Selection
 </b></center>
 <div>
- <table>
+ <table border="3">
   <tbody>
 
     <tr>
