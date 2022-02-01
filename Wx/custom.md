@@ -17,20 +17,8 @@ In addition to the "wx" and "fc" weather objects, the weather plug-in (via <i>wx
 You can also provide your own custom objects via another "custom" plug-in.
 
 Here's what is needed to do so:
-<br>
-<br>
-
-The "custom" plug-in should provide the following:
-
-<br>
-<br>
-<dl>
-<dt>
-<b>get_update Procedure</b>
-</dt>
-<br>
-<dd>
-The providing plug-in should have a public (via hvPublic) <b>get_update</b> procedure
+<h3>get_update Procedure</h3>
+The "custom" plug-in should provide a public (via hvPublic) <b>get_update</b> procedure
 that creates the object's state information.
 If the plug-in sees an <i>events</i> command with the object name in it,
 if will call <i>get_update</i>.
@@ -57,9 +45,9 @@ See below for details of <b>wsupdate</b>.
 <br>
 Note 3: There can be more than one plug-in with a public <b>get_update</b> procedure.
 Calling the procedure will actually run the procedure in each plug-in that published it (via hvPublic).
-<br>
-<br>
+<p>
 Here is a simple example, as used in the Weather plug-in:
+</p>
 {% raw %}
  <pre>
     hvPublic get_update
@@ -76,14 +64,8 @@ and eventually call <b>wsupdate</b> for "wx" and/or "fc", accordingly.
 Note that unless the object type is present and does NOT match "wx" or "fc", state data for both "wx" and "fc" will be generated if they are both enabled in the Weather plug-in, regardless of
 which is requested. This is OK since the only harm is that the plug-in may track unneeded object information.
 </dd></dl>
-The "custom" plug-in should call the following:
-<br>
-<br>
-<dl>
-<dt>
-<b>wsupdate Procedure</b>
-</dt>
-<dd>
+<h3>wsupdate Procedure</h3>
+The "custom" plug-in should call <b>wsupdate</b>.
 This public procedure is made available in the <i>wxjsondata.hap</i> plug-in.
 (It may also be available in other plug-ins that want object state data.)
 The "custom" plug-in generating object state information should import (via hvImport) the <b>wsupdate</b> procedure.
@@ -91,9 +73,9 @@ The "custom" generating plug-in may call this procedure either because it was tr
 or because a object's state has changed and needs to be reported.
 The <b>wsupdate</b> procedure takes the generated object state information
 and stores it for later use.
-<br>
-<br>
+<p>
 Its format should be:
+</p>
 <pre>
     <b>wsupdate</b> <i>object_type state_value_list</i>
 </pre>
@@ -115,17 +97,17 @@ Entries may be as simple as a numerical state value, e.g., "0" or "1" to indicat
 or may be more complex structures like a list of key-value pairs, e.g., {"tempf": 29, "dewpointf": 27}
 </dd>
 </dl>
-</dd>
-<dt>
-<b>Full Example of a Custom Object Plug-in</b>
-</dt>
-<dd>
+
+<h3>Full Example of a Custom Object Plug-in</h3>
+
+<p>
 Here's an example of a plug-in that uses all of the above procedures. It creates an object "dm"
 which has only one ID ("0").
 State information consists of two key-value pairs.
 For demonstration purposes,
 the values of these two keys are incremented each time the <i>get_update</i> procedure is called.
 Once started, it will simulate periodic (5 minute) state changes.
+</p>
 {% raw %}
 <pre>
 # Sample custom object generator plug-in
@@ -155,8 +137,10 @@ proc dm {{type dm}} {
 </pre>
 {% endraw %}
 
+<p>
 The dm object info can be added to the example from <a href="wxws">Weather Websockets</a>,
 showing how weather and "custom" objects can be integrated into one web page (as can standard HomeVision objects):
+</p>
 <pre>
     &lt;center&gt;
     &lt;h3&gt;Weather&lt;/h3&gt;
