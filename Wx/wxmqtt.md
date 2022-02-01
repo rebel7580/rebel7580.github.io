@@ -25,7 +25,7 @@ for details.
 <br><br>
 Weather information can be sent via MQTT whenever a weather fetch is done.
 To send weather information via MQTT, the Weather plug-in uses the defined <i>State Topic</i>.
-<p><br><br>
+<p>
 Current and/or forecast weather is sent in separate MQTT messages with the same topic.
 The payload is in JSON format.
 <br><br>
@@ -47,8 +47,9 @@ Current weather example (formatted for readability):</p>
     }
 }
 </pre>
-<br><br>
+<p>
 Forecast weather example (formatted for readability):
+</p>
 <pre>
 {
     "fc": {
@@ -78,7 +79,7 @@ Forecast weather example (formatted for readability):
     }
 }
 </pre>
-Note that in the forecast payload, there may be some general items, like "loc", and then forecast-day specific items. These are grouped under "day1", "day2", etc.. Only days that have Active variables will show up. For example, if you only made Active items for "Day2" and "Day4", there will be no "Day1", "Day3", "Day5", "Day6" or "Day7" in the JSON payload.
+<p>Note that in the forecast payload, there may be some general items, like "loc", and then forecast-day specific items. These are grouped under "day1", "day2", etc.. Only days that have Active variables will show up. For example, if you only made Active items for "Day2" and "Day4", there will be no "Day1", "Day3", "Day5", "Day6" or "Day7" in the JSON payload.
 <br><br>
 <b>Controlling Weather Settings</b>
 <br><br>
@@ -90,32 +91,33 @@ The payload to use is identical to the syntax of the "WeatherSetVar" and "Weathe
 Examples, assuming the <i>Command Topic</i> is set to "cmnd/weather/set":
 <br><br>
 Set <i>Location Selection</i> to "HVLatLong":
+</p>
 <pre>
     Topic: cmnd/weather/set
     Payload: "WeatherSet HVLatLong"
 </pre>
-Set <i>Location Selection</i> to "Lat/Long", with new values:
+<p>Set <i>Location Selection</i> to "Lat/Long", with new values:</p>
 <pre>
     Topic: cmnd/weather/set
     Payload: "WeatherSet LatLong 40 -74"
 </pre>
-Set <i>Data Source</i> to "NWS" for both current and forecasts:
+<p>Set <i>Data Source</i> to "NWS" for both current and forecasts:</p>
 <pre>
     Topic: cmnd/weather/set
     Payload: "WeatherSet NWS"
 </pre>
-Set <i>Data Source</i> to "OpenWeather" for forecasts:
+<p>Set <i>Data Source</i> to "OpenWeather" for forecasts:</p>
 <pre>
     Topic: cmnd/weather/set
     Payload: "WeatherSet forecast OpenWeather"
 </pre>
-Trigger a Weather fetch in the background:
+<p>Trigger a Weather fetch in the background:</p>
 <pre>
     Topic: cmnd/weather/set
     Payload: "WeatherSetVar"
 </pre>
-See <a href="wxtriggers">Triggering Weather Fetches</a> for complete details of the WeatherSet and WeatherSetVar syntax.
-
+<p>See <a href="wxtriggers">Triggering Weather Fetches</a> for complete details of the WeatherSet and WeatherSetVar syntax.
+</p>
 <br>
 <br>
 <font color="#0000FF"><b>See Also:</b></font><br>
