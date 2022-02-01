@@ -75,12 +75,16 @@ Sets the <i>Never</i>, <i>Always</i>, or <i>Serial Cmd Only</i> radio button in 
 </p>
 <pre>weather: speak now</pre>
 <h3>Enable/disable loading of the HomeVision Controller weather variables</h3>
+<p>
 Enable/disable loading of the HomeVision Controller weather variables when the weather is fetched.
 (Sets/clears the <i>Enable Update</i> checkbox
 in the Configuration <a href="hvwxvars"><i>HV Vars</i></a> tab.)
+</p>
 <pre>weather: hvwxvars enable|disable</pre>
 <h3>Set the Station ID for current weather</h3>
+<p>
 <i>stationid</i> <b>must</b> be contained within quotes.
+</p>
 <pre>weather: station "<i>stationid</i>"</pre>
 <h3>Set current, forecast or both</h3>
 <p>
@@ -95,7 +99,7 @@ weather: current|forecast|both zipcode "<i>zipcode</i>"
 weather: current|forecast|both latlong "<i>lat,long</i>"
 weather: current|forecast|both hvlatlong
 </pre>
-<br><br>
+
 <h3>Set the current, forecast or both data sources</h3>
 <p>
 The data source types are not case sensitive.
@@ -151,7 +155,7 @@ The plug-in must import the command via:
 <pre>
 hvImport WeatherSet
 </pre>
-<br><br>
+
 "WeatherSet Station" is the same as "WeatherSetStation".
 "WeatherSetStation" remains available for backwards compatibility.
 <br><br>
@@ -161,7 +165,6 @@ However, a plug-in triggered fetch will restart the <i>Read Interval</i> timer.
 <h2>Via The Web</h2>
 Two additional commands are provided mainly to access weather information using &lt;HV&gt; tags in HTML pages.
 However, they can also be used by other plug-ins, similar to the method in the previous section.
-<br><br>
 <h3>WeatherGet</h3>
 <p>
 Returns weather information.
@@ -169,7 +172,6 @@ Returns weather information.
 <pre>
 &lt;HV:Run WeatherGet ?Table? <i>weather_item</i> <i>?weather_item ...?</i>&gt;
 </pre>
-<br><br>
 If "Table" is present, a table will be returned, with a table header and one row per weather item.
 The table uses the same style as the built-in tables provided by the Web plug-in.
 However, the style can be overridden by use of additional style definitions.
@@ -183,7 +185,7 @@ column of <a href="controlvars"><b>Table 2</b></a> and <a href="controlvars"><b>
 Weather items <i>WeatherIcon</i> and <i>FcImgn</i>,
 will return HTML &lt;img&gt; tags.
 If used in another plug-in (as opposed to within a web page), <i>WeatherGetIcon</i> should be used instead.
-<br><br>
+
 <h3>WeatherGetIcon</h3>
 <pre>
 &lt;HV:Image png WeatherGetIcon <i>?icon?</i>&gt;
@@ -198,8 +200,9 @@ If <i>icon</i> is not specified,
 the weather icon for the current weather is provided.
 <br><br>
 <i>Icon</i> should be one of the icon names in the Icon column of <a href="hvwxvars"><b>Table 5</b></a> or one of the forecast icons.
-<br><br>
+<p>
 This method is slightly different from
+</p>
 <pre>
 &lt;HV:Run WeatherGet WeatherIcon&gt;
 </pre>
@@ -212,8 +215,7 @@ Tags using WeatherGet or WeatherGetIcon typically display data for the <u>curren
 (i.e., the last weather info fetched).
 They do not fetch new weather data on their own.
 However, WeatherSetVar and WeatherSet can be used in a Run tag to get new data for specific stations.
-<br><br>
-Examples:
+<p>Examples:</p>
 <pre>
 &lt;HV:Run WeatherSet Station KNYC CentralPark&gt;
 &lt;HV:Run WeatherSetVar 1&gt;
@@ -237,25 +239,24 @@ Normally, data is fetched from the Internet in the background. However, in the w
 new data may not arrive in time to be captured by a following Run tag.
 </li></ul>
 
-<br><br>
 See the Web plug-in Help pages for more info on the Run and Image tags.
 Web plug-on 4.0 or later is required for this functionality.
 
-<br><br>
 <h2>Via The NetIO Server Plug-in</h2>
-
+<p>
 A weather fetch is triggered by the NetIO Server plug-in
 by the <i>events</i> or <i>netioaction</i> commands:
+</p>
 <pre>
 netioaction wx|fc|wxfc|fcwx update
 </pre>
+<p>
 or
+</p>
 <pre>
 events wx|fc|wxfc|fcwx
 </pre>
 For more details, see <a href="netio">Weather Info for NetIO</a>.
-
-<br><br>
 <h2>Via The Control Plug-in</h2>
 
 A weather fetch is triggered by the Control plug-in
@@ -263,7 +264,6 @@ automatically when the Control plug-in starts up.
 This ensures that weather data variables in control screens are updated
 as soon as the Control plug-in starts.
 No user configuration is needed in either plug-in.
-
 
 <h2>Via MQTT</h2>
 
