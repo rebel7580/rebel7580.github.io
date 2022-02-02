@@ -287,5 +287,5 @@ it will respond to the "stat" message and execute any actions that may be define
 <br>
 <br>
 <h2>MQTT Discovery for Home Assistant</h2>
-The Caseta plug-in supports switch and dimmer discovery for Home Assistant. For details, see the MQTT help at: [How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to)
+The Caseta plug-in supports switch and dimmer discovery for Home Assistant. For details, see the MQTT help at: [How to Use Home Assistant Auto Discovery](../MQTT/HomeVision_Discovery_How-to)
 
