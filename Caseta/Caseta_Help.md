@@ -78,10 +78,11 @@ The file name is "CasetaLogYYMMDD", with a ".txt" extension if HomeVisionXL is r
 If you want the Caseta switches to use MQTT, check "Enable MQTT".
 You must have the MQTT plug-in enabled.
 Switches will be subscribed using the MQTT plug-in's standard command/power topic using the switch's name as the sub-topic. E.g., 
+</li>
 <pre>
     cmnd/Dimmer 1/POWER
 </pre>
-</li>
+<ul>
 <li>
 "Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
 </li>
@@ -181,7 +182,8 @@ Note: The Lutron Smart Bridge Pro returns levels to two decimal places.
 The plug-in will accept levels with decimals; however, they will be truncated to a whole (integer) number when sent to the switch.
 <br><br>
 <h3>MQTT Control</h3>
-When MQTT is enabled, switches can be controlled by issuing the appropriate MQTT topic. E.g.,
+<p>When MQTT is enabled, switches can be controlled by issuing the appropriate MQTT topic. E.g.,
+</p>
 <pre>
     cmnd/Dimmer 1/POWER on       Turns Dimmer 1 on to 100%
     cmnd/Dimmer 1/POWER 50       Turns Dimmer 1 on to 50%
@@ -189,8 +191,9 @@ When MQTT is enabled, switches can be controlled by issuing the appropriate MQTT
     cmnd/Dimmer 1/POWER 0        Turns Dimmer 1 off
 </pre>
 The payload is case-insensitive.
-<br><br>
+<p>
 Switch state can be retrieved with a payload of "?" or empty. E.g.,
+</p>
 <pre>
     cmnd/Dimmer 1/POWER          Returns Dimmer 1 state
     cmnd/Dimmer 1/POWER ?        Returns Dimmer 1 state
@@ -201,7 +204,9 @@ When a switch changes state, it will automatically report its state. E.g.,
     stat/Dimmer 1/POWER OFF      Dimmer 1 is off
 </pre>
 <h3>Serial Control</h3>
+<p>
 Caseta switches can be controlled within a schedule via serial commands which take the form:
+</p>
 <pre>
     caseta: {device name} {command};
 </pre>
@@ -210,10 +215,10 @@ Caseta switches can be controlled within a schedule via serial commands which ta
 <i>device name</i> can contain spaces and is <i>case-sensitive</i> when matching a <i>name</i> in the Caseta Configuration file.
 <i>command</i> can be "off", "on", "on 0-100" or 0-100 and is <i>case-insensitive</i>.
 A value of 0 is equivalent to "off"; 100 is equivalent to "on".
-<br>
-<br>
+<p>
 For example, to turn on a switch "Dimmer 1",
 the serial command would be:
+
 <pre>
     caseta: Dimmer 1 on;
 </pre>
@@ -221,8 +226,11 @@ or equivalently,
 <pre>
     caseta: Dimmer 1 100;
 </pre>
+</p>
 <h3>NetIO</h3>
+<p>
 Caseta switches can be controlled via NetIO using a "netioaction" command in the NetIO application and take the form:
+</p>
 <pre>
     netioaction caseta [device name] [command]
 </pre>
@@ -231,14 +239,16 @@ Caseta switches can be controlled via NetIO using a "netioaction" command in the
 <i>device name</i> can contain spaces and is <i>case-sensitive</i> when matching a <i>name</i> in the Caseta Configuration file.
 <i>command</i> can be "off", "on", or 0-100 and is <i>case-insensitive.</i> 
 A value of 0 is equivalent to "off"; 100 is equivalent to "on".
-<br>
-<br>
+<p>
 For example, to turn on a switch named "Dimmer 1",
 the button's <i>sends</i> attribute would be set to:
+</p>
 <pre>
     sends:  netioaction caseta Dimmer 1 on
 </pre>
+<p>
 The state of the device can be retrieved by:
+</p>
 <pre>
     reads:  get caseta {status_type} [device name]
 </pre>
