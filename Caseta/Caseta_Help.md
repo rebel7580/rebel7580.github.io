@@ -198,7 +198,9 @@ Switch state can be retrieved with a payload of "?" or empty. E.g.,
     cmnd/Dimmer 1/POWER          Returns Dimmer 1 state
     cmnd/Dimmer 1/POWER ?        Returns Dimmer 1 state
 </pre>
+<p>
 When a switch changes state, it will automatically report its state. E.g.,
+</p>
 <pre>
     stat/Dimmer 1/POWER ON 50    Dimmer 1 is on at 50%
     stat/Dimmer 1/POWER OFF      Dimmer 1 is off
@@ -218,15 +220,16 @@ A value of 0 is equivalent to "off"; 100 is equivalent to "on".
 <p>
 For example, to turn on a switch "Dimmer 1",
 the serial command would be:
-
+<p>
 <pre>
     caseta: Dimmer 1 on;
 </pre>
+<p>
 or equivalently,
+</p>
 <pre>
     caseta: Dimmer 1 100;
 </pre>
-</p>
 <h3>NetIO</h3>
 <p>
 Caseta switches can be controlled via NetIO using a "netioaction" command in the NetIO application and take the form:
@@ -297,5 +300,7 @@ it will respond to the "stat" message and execute any actions that may be define
 <br>
 <br>
 <h2>MQTT Discovery for Home Assistant</h2>
-The Caseta plug-in supports switch and dimmer discovery for Home Assistant. For details, see the MQTT help at: [How to Use Home Assistant Auto Discovery](../MQTT/HomeVision_Discovery_How-to)
+The Caseta plug-in supports switch and dimmer discovery for Home Assistant. For details, see the MQTT help at: [How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to)
+[How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to)
+
 
