@@ -79,6 +79,7 @@ If you want the Caseta switches to use MQTT, check "Enable MQTT".
 You must have the MQTT plug-in enabled.
 Switches will be subscribed using the MQTT plug-in's standard command/power topic using the switch's name as the sub-topic. E.g., 
 </li>
+</ul>
 <pre>
     cmnd/Dimmer 1/POWER
 </pre>
@@ -220,7 +221,7 @@ A value of 0 is equivalent to "off"; 100 is equivalent to "on".
 <p>
 For example, to turn on a switch "Dimmer 1",
 the serial command would be:
-<p>
+</p>
 <pre>
     caseta: Dimmer 1 on;
 </pre>
