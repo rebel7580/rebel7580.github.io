@@ -70,12 +70,12 @@ PUBLISHES a <i>status</i> topic when it changes state.
 </li><li>Generic MQTT topics can be sent from the HomeVision schedule via serial commands, from NetIO, or from custom plug-ins, independent of any configured devices.
 </li></ul>
 
-The way the MQTT plug-in handles internal objects and external devices can be confusing. In fact, from am MQTT perspective, both internal objects and external devices are handled the same. They are controlled by cmnd topics and report status via stat topics.
+The way the MQTT plug-in handles internal objects and external devices can be confusing. In fact, from am MQTT perspective, both internal objects and external devices are handled the same. They are both controlled by command (cmnd) topics and report status via status (stat) topics.
 
 Internal devices are "embedded" in HomeVision. So, from the MQTT perspective, you control them (via MQTT) with an incoming cmnd message, and they will report their status via an outgoing stat message.
 But that's exactly the same as an external device: control them (via MQTT) with a cmnd message, and they will report their status via a stat message.
 
-<b>A cmnd message is used to control an internal object or external device; a stat message is used to track an internal object's or external device's state.</b>
+<i>A cmnd message is used to control an internal object or external device; a stat message is used to track an internal object's or external device's state.</i>
 
 A confusing part is that the <i>FLOW</i> of cmnd/stat messages with respect to the MQTT plug-in is reversed for the two types, simply because of where they reside in the architecture of the system.
 
