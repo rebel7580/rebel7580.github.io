@@ -46,6 +46,11 @@
 The MQTT Client Plug-in provides a client interface to MQTT for HomeVision.
 Its main purposes are to control MQTT enabled devices via the HomeVision Schedule or NetIO and
 to control HomeVision objects by MQTT sources.
+
+While the client plug-in is designed to work easily with Tasmota based devices, using a similar topic and LWT structure,
+other devices that follow different topic structures likely can be accommodated as well.
+There is a lot of flexibility in the plug-in allowing support for many different situations.
+
 The MQTT interface has three distinct functions:
 <ul>
 <li>For "external" MQTT-enabled devices (e.g., Sonoff switches with Tasmota SW),
@@ -65,9 +70,18 @@ PUBLISHES a <i>status</i> topic when it changes state.
 </li><li>Generic MQTT topics can be sent from the HomeVision schedule via serial commands, from NetIO, or from custom plug-ins, independent of any configured devices.
 </li></ul>
 
-While the client plug-in is designed to work easily with Tasmota based devices, using a similar topic and LWT structure,
-other devices that follow different topic structures likely can be accommodated as well.
-There is a lot of flexibility in the plug-in allowing support for many different situations.
+The way the MQTT plug-in handles internal objects and external devices can be confusing. In fact, from am MQTT perspective, both internal objects and external devices are handled the same. They are controlled by cmnd topics and report status via stat topics.
+
+Internal devices are "embedded" in HomeVision. So, from the MQTT perspective, you control them (via MQTT) with an incoming cmnd message, and they will report their status via an outgoing stat message.
+But that's exactly the same as an external device: control them (via MQTT) with a cmnd message, and they will report their status via a stat message.
+
+<b>A cmnd message is used to control an internal object or external device; a stat message is used to track an internal object's or external device's state.</b>
+
+A confusing part is that the <i>FLOW</i> of cmnd/stat messages with respect to the MQTT plug-in is reversed for the two types, simply because of where they reside in the architecture of the system.
+
+Another confusing part is that for external devices, you want Homevision to potentially do something when it reports its status. Hence the plug-in responds to stat status topics. This looks a lot like it is doing a cmnd type of work, but in fact it is no different from any other home automation system. It is just "responding" to the external device's change in status. 
+
+For example, suppose you have an external light switch (like a Tasmotized Sonoff wall switch), and you use both HomeVision and Home Assistant. When that switch is turned on, it reports that fact with a stat message, and both systems may respond: HomeVision may take an action, like running a macro, and Home Assistant may show the light is on in the GUI, or even run an automation.
 <br>
 <br>
 <b>Note: To perform actions on internal objects, this plug-in uses the Actions Plug-in. The Actions Plug-in must be enabled to control internal objects.</b>
