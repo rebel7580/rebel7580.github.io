@@ -83,8 +83,9 @@ Another confusing part is that for external devices, you want Homevision to pote
 
 For example, suppose you have an external light switch (like a Tasmotized Sonoff wall switch), and you use both HomeVision and Home Assistant. When that switch is turned on, it reports that fact with a stat message, and both systems may respond: HomeVision may take an action, like running a macro, and Home Assistant may show the light is on in the GUI, or even run an automation.
 
+<p align="center">
 <img alt="HV-MQTT" src="HV-MQTT.gif">
-
+</p>
 <br>
 <br>
 <b>Note: To perform actions on internal objects, this plug-in uses the Actions Plug-in. The Actions Plug-in must be enabled to control internal objects.</b>
