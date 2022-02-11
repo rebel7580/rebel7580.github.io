@@ -47,7 +47,7 @@ The MQTT Client Plug-in provides a client interface to MQTT for HomeVision.
 Its main purposes are to control MQTT enabled devices via the HomeVision Schedule or NetIO and
 to control HomeVision objects by MQTT sources.
 
-While the client plug-in is designed to work easily with Tasmota based devices, using a similar topic and LWT structure,
+While the client plug-in is designed to work easily with Tasmota based devices, using a similar topic structure,
 other devices that follow different topic structures likely can be accommodated as well.
 There is a lot of flexibility in the plug-in allowing support for many different situations.
 
