@@ -15,10 +15,10 @@
 The Weather plug-in can send via MQTT selected <i>current</i> and <i>forecast</i> weather items, if available in the retrieved weather data.
 <br><br>
 
-<b>MQTT Setup</b>
+<h2>MQTT Setup</h2>
 <br><br>
 Setup is done in the <i>Ctrl/Web/MQTT Vars</i> tab.
-See the <i>MQTT Setup</i> section of <a href="hvwxvars">HV Controller Weather Variables</a><br>
+See the <i>MQTT Setup</i> section of <a href="hvwxvars">HV Controller Weather Variables</a>
 for details.
 <br><br>
 <b>Sending Weather Information</b>
