@@ -17,15 +17,13 @@ The Weather plug-in can send via MQTT selected <i>current</i> and <i>forecast</i
 Setup is done in the <i>Ctrl/Web/MQTT Vars</i> tab.
 See the <i>MQTT Setup</i> section of <a href="hvwxvars">HV Controller Weather Variables</a>
 for details.
-<br><br>
-<b>Sending Weather Information</b>
-<br><br>
+<h2>Sending Weather Information</h2>
 Weather information can be sent via MQTT whenever a weather fetch is done.
 To send weather information via MQTT, the Weather plug-in uses the defined <i>State Topic</i>.
 <p>
 Current and/or forecast weather is sent in separate MQTT messages with the same topic.
 The payload is in JSON format.
-<br><br>
+</p><p>
 Current weather example (formatted for readability):</p>
 <pre>
 {
@@ -77,18 +75,21 @@ Forecast weather example (formatted for readability):
 }
 </pre>
 <p>Note that in the forecast payload, there may be some general items, like "loc", and then forecast-day specific items. These are grouped under "day1", "day2", etc.. Only days that have Active variables will show up. For example, if you only made Active items for "Day2" and "Day4", there will be no "Day1", "Day3", "Day5", "Day6" or "Day7" in the JSON payload.
-<br><br>
-<b>Controlling Weather Settings</b>
-<br><br>
+</p>
+<h2>Controlling Weather Settings</h2>
 To control weather settings via MQTT,
 the Weather plug-in uses the defined <i>Command Topic</i>.
-<br><br>
+<br>
+<br>
 The payload to use is identical to the syntax of the "WeatherSetVar" and "WeatherSet" commands.
-<br><br>
+<br>
+<br>
 Examples, assuming the <i>Command Topic</i> is set to "cmnd/weather/set":
-<br><br>
+<br>
+<br>
 Set <i>Location Selection</i> to "HVLatLong":
-</p>
+<br>
+<br>
 <pre>
     Topic: cmnd/weather/set
     Payload: "WeatherSet HVLatLong"
