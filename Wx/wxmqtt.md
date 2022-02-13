@@ -85,11 +85,8 @@ The payload to use is identical to the syntax of the "WeatherSetVar" and "Weathe
 <br>
 <br>
 Examples, assuming the <i>Command Topic</i> is set to "cmnd/weather/set":
-<br>
-<br>
-Set <i>Location Selection</i> to "HVLatLong":
-<br>
-<br>
+<p>Set <i>Location Selection</i> to "HVLatLong":</p>
+
 <pre>
     Topic: cmnd/weather/set
     Payload: "WeatherSet HVLatLong"
@@ -116,8 +113,6 @@ Set <i>Location Selection</i> to "HVLatLong":
 </pre>
 <p>See <a href="wxtriggers">Triggering Weather Fetches</a> for complete details of the WeatherSet and WeatherSetVar syntax.
 </p>
-<br>
-<br>
 <font color="#0000FF"><b>See Also:</b></font><br>
 <a href="index">Introduction to the Weather Plug-in</a><br>
 <a href="webwx">Web-Based Weather Data</a><br>
