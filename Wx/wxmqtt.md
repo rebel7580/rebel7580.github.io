@@ -11,19 +11,21 @@
 
 <font color="#0000ff" size="12"><b>Weather with MQTT</b></font>
 
-<br><br>
+<p>
 The Weather plug-in can send via MQTT selected <i>current</i> and <i>forecast</i> weather items, if available in the retrieved weather data.
 <h2>MQTT Setup</h2>
 Setup is done in the <i>Ctrl/Web/MQTT Vars</i> tab.
 See the <i>MQTT Setup</i> section of <a href="hvwxvars">HV Controller Weather Variables</a>
 for details.
+</p>
 <h2>Sending Weather Information</h2>
 Weather information can be sent via MQTT whenever a weather fetch is done.
 To send weather information via MQTT, the Weather plug-in uses the defined <i>State Topic</i>.
 <p>
 Current and/or forecast weather is sent in separate MQTT messages with the same topic.
 The payload is in JSON format.
-</p><p>
+</p>
+<p>
 Current weather example (formatted for readability):</p>
 <pre>
 {
@@ -74,19 +76,21 @@ Forecast weather example (formatted for readability):
     }
 }
 </pre>
-<p>Note that in the forecast payload, there may be some general items, like "loc", and then forecast-day specific items. These are grouped under "day1", "day2", etc.. Only days that have Active variables will show up. For example, if you only made Active items for "Day2" and "Day4", there will be no "Day1", "Day3", "Day5", "Day6" or "Day7" in the JSON payload.
+<p>
+Note that in the forecast payload, there may be some general items, like "loc", and then forecast-day specific items. These are grouped under "day1", "day2", etc.. Only days that have Active variables will show up. For example, if you only made Active items for "Day2" and "Day4", there will be no "Day1", "Day3", "Day5", "Day6" or "Day7" in the JSON payload.
 </p>
 <h2>Controlling Weather Settings</h2>
+<p>
 To control weather settings via MQTT,
 the Weather plug-in uses the defined <i>Command Topic</i>.
-<br>
-<br>
+</p>
+<p>
 The payload to use is identical to the syntax of the "WeatherSetVar" and "WeatherSet" commands.
-<br>
-<br>
+</p>
+<p>
 Examples, assuming the <i>Command Topic</i> is set to "cmnd/weather/set":
+</p>
 <p>Set <i>Location Selection</i> to "HVLatLong":</p>
-
 <pre>
     Topic: cmnd/weather/set
     Payload: "WeatherSet HVLatLong"
