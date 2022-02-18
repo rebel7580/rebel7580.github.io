@@ -600,7 +600,6 @@ IR entities can also be used as Buttons, which makes a little more sense UI-wise
           action: toggle
         entity: switch.ir_119_comcast_nav_up
         show_name: false
-        name: UP
         show_icon: true
         icon: 'mdi:arrow-up-box'
         icon_height: 50px
@@ -853,7 +852,7 @@ Example:
     haObjectDiscovery -noid -nous 1 x10
 
 </pre>
-This example discovers all defined outputs, inputs, havc, ir, and x10 objects,
+This example discovers all defined outputs, inputs, hvac, ir, and x10 objects,
 Flags 6, 7, and 8 as binary sensors,
 and Flags 12, 13, 14, 18, 19, 20, 24, and 25 as sensors.
 
