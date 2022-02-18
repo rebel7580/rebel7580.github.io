@@ -485,6 +485,7 @@ A Demonstration on how to implement a Timer GUI is as follows.
 (Configuration->Helpers->Add Helper->Select).
 This is used to specify what timer command to send.
 Use the following values:
+</li></ul>
 <pre>
     Options:
         Load
@@ -492,19 +493,18 @@ Use the following values:
         Stop
         Clear
 </pre>
-
-</li>
+<ul>
 <li>Create the input_text helper for the timer's set time. (Configuration->Helpers->Add Helper->Text).
 This is used to specify what timer value to send.
 Use the following values:
+</li>
+</ul>
 <pre>
     Max: 12
     Min: 10
     Regex pattern: ^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d\\.)?([0-9][0-9]$
 </pre>
 
-</li>
-</ul>
 Once these are available, 
 create a GUI using them.
 There are probably many different ways to do this, but here is one.
