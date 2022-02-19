@@ -582,12 +582,28 @@ Instead of the method used in
 <a href="#using-a-single-trigger-for-complex-actions-with-a-virtual-external-device">Using a Single Trigger for Complex Actions with a Virtual External Device</a>,
 Create a button and use
 <pre>
-    Topic:  cmnd/homevision/action
+    Topic:       cmnd/homevision/action
     Payload:     action: ir transmit 28 1,ir transmit 114 1,
                  wait for 500,ir transmit 116 1,wait for 500,
                  ir transmit 110 1;
 </pre>
 No "virtual" external device needed.
+
+<!-- <h4 id="generic-homevision-actions-versus-virtual-devices">Generic HomeVision Actions Versus Virtual Devices</h4>-->
+#### Generic HomeVision Actions Versus Virtual Devices
+Which one is better? 
+It depends on how you want to access the functionality that either method provides.
+<ul>
+<li>
+If you want to execute complex actions (like in the above example) from more than one place ( e.g., Home Assistant, Node-Red), then it may make more sense to use a virtual device. Otherwise, the generic method would require the same sequence of actions to be duplicated at every source of the command. This could complicate managing any changes that might be needed as you would have to remember to update all occurrences of the action sequence.
+</li>
+Virtual devices also keep the action sequence information "closer" to the place where it is actually used (in HomeVision), potentially easier to manage.
+<li>
+If you are only concerned about access from one place (i.e., Home Assistant),
+using the generic HomeVision action method may simplify implementation in Home Assistant. The command most likely could be implemented directly in the Home Assistant UI, with little to no manual changes in the configuration.yaml file.
+A virtual device would usually require a switch entity in the configuration.yaml file.
+</li>
+</ul>
 <!-- <h3 id="refreshing-homevision-objects">Refreshing HomeVision Objects</h3>-->
 ### Refreshing HomeVision Objects
 There may be instances (like restarting Home Assistant) where the current status of HomeVision objects is not reflected by Home Assistant. The MQTT plug-in provides a special topic to force all listed objects to report their status: 
