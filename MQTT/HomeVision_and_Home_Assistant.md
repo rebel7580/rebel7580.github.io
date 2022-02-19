@@ -602,7 +602,7 @@ Virtual devices also keep the action sequence information "closer" to the place 
 </li>
 <li>
 If you are only concerned about access from one place (i.e., Home Assistant),
-using the generic HomeVision action method may simplify implementation in both HomeVision and Home Assistant. No "extra" external device required in the MQTT plug-in. The command most likely could be implemented directly in the Home Assistant UI, with little to no manual changes in the configuration.yaml file.
+using the generic HomeVision action method may simplify implementation in both HomeVision and Home Assistant. No "extra" external device would be required in the MQTT plug-in. The command most likely could be implemented directly in the Home Assistant UI, with little to no manual changes in the configuration.yaml file.
 A virtual device would usually require a switch entity in the configuration.yaml file.
 </li>
 </ul>
