@@ -597,10 +597,12 @@ It depends on how you want to access the functionality that either method provid
 <li>
 If you want to execute complex actions (like in the above example) from more than one place ( e.g., Home Assistant, Node-Red), then it may make more sense to use a virtual device. Otherwise, the generic method would require the same sequence of actions to be duplicated at every source of the command. This could complicate managing any changes that might be needed as you would have to remember to update all occurrences of the action sequence.
 </li>
+<li>
 Virtual devices also keep the action sequence information "closer" to the place where it is actually used (in HomeVision), potentially easier to manage.
+</li>
 <li>
 If you are only concerned about access from one place (i.e., Home Assistant),
-using the generic HomeVision action method may simplify implementation in Home Assistant. The command most likely could be implemented directly in the Home Assistant UI, with little to no manual changes in the configuration.yaml file.
+using the generic HomeVision action method may simplify implementation in both HomeVision and Home Assistant. No "extra" external device required in the MQTT plug-in. The command most likely could be implemented directly in the Home Assistant UI, with little to no manual changes in the configuration.yaml file.
 A virtual device would usually require a switch entity in the configuration.yaml file.
 </li>
 </ul>
