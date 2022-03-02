@@ -617,6 +617,32 @@ or
 </pre>
 
 If you have this issue, you may want to consider adding a button to send this message, or create an automation to issue the command at an appropriate time.
+<br>
+<br>
+Here's one possible implementation of an automation that is triggered 1 minute after Home Assistant starts, to make sure that the state of all HomeVision objects gets updated in Home Assistant.
+
+The automation is probably most easily created using the Home Assistant Automation visual editor, but here is the resulting yaml:
+
+<pre>
+alias: Refresh HA for HVXL Objects at Restart
+description: 1 Minute after HA startup, trigger reports from all HVXL MQTT Objects.
+trigger:
+  - platform: homeassistant
+    event: start
+condition: []
+action:
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - service: mqtt.publish
+    data:
+      topic: cmnd/homevision/POWER
+      payload: '?'
+mode: single
+</pre>
+
 <!-- <h3 id="retain-option-for-objects">Retain Option for Objects</h3> -->
 ### Retain Option for Objects
 You may also want to consider, as a possible alternative to the previous, whether to enable "retain" for objects that are tracked by Home Assistant.
