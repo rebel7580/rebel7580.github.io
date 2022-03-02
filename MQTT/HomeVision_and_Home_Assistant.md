@@ -623,7 +623,8 @@ Here's one possible implementation of an automation that is triggered 1 minute a
 
 The automation is probably most easily created using the Home Assistant Automation visual editor, but here is the resulting yaml:
 
-<pre>
+{% raw %}
+``` yaml
 alias: Refresh HA for HVXL Objects at Restart
 description: 1 Min after HA start, trigger status from HVXL.
 trigger:
@@ -641,7 +642,8 @@ action:
       topic: cmnd/homevision/POWER
       payload: '?'
 mode: single
-</pre>
+```
+{% endraw %}
 
 <!-- <h3 id="retain-option-for-objects">Retain Option for Objects</h3> -->
 ### Retain Option for Objects
