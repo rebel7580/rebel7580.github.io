@@ -625,7 +625,7 @@ The automation is probably most easily created using the Home Assistant Automati
 
 <pre>
 alias: Refresh HA for HVXL Objects at Restart
-description: 1 Minute after HA startup, trigger reports from all HVXL MQTT Objects.
+description: 1 Min after HA start, trigger status from HVXL.
 trigger:
   - platform: homeassistant
     event: start
