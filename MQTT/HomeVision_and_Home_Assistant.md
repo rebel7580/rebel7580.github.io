@@ -486,24 +486,28 @@ A Demonstration on how to implement a Timer GUI is as follows.
 This is used to specify what timer command to send.
 Use the following values:
 </li></ul>
-<pre>
+{% raw %}
+``` yaml
     Options:
         Load
         Start
         Stop
         Clear
-</pre>
+```
+{% endraw %}
 <ul>
 <li>Create the input_text helper for the timer's set time. (Configuration->Helpers->Add Helper->Text).
 This is used to specify what timer value to send.
 Use the following values:
 </li>
 </ul>
-<pre>
+{% raw %}
+``` yaml
     Max: 12
     Min: 10
     Regex pattern: ^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d\\.)?([0-9][0-9]$
-</pre>
+```
+{% endraw %}
 
 Once these are available, 
 create a GUI using them.
