@@ -76,10 +76,11 @@ Notes:
   <td align="center">Yes</td>
  </tr>
  <tr>
-  <td align="center">Hardware Requirements</td>
+  <td align="center">Hardware Requirements*</td>
   <td align="center">Basic HomeVisionXL HW</td>
   <td align="center">Raspberry Pi or Docker on Linux computer. Several possibilities with varying complexity.</td>
   <td align="center">HW to support MQTT broker, which could be run on same HW as HomeVisionXL.</td>
  </tr>
 
 </table>
+* Other than display hw: phone, tablet, etc..
