@@ -812,9 +812,9 @@ Other text is allowed in the Description as well.
 If there is, there should be at least one space separating any other text from 
 "dc:<i>device_class</i>".
 <!-- <h2 id="re-discovery-when-home-assistant-forgets-discovered-devices">Re-discovery When Home Assistant Forgets Discovered Devices</h2> -->
-## Re-discovery When Home Assistant Forgets Discovered Devices 
+## Re-discovery: When Home Assistant Forgets Discovered Devices 
 Discovery messages are sent from the MQTT Plug-in with "retain" on.
-This means that when you restart Home Assistant, it should automatically get updated with retained discovery messages.
+This means that when you restart Home Assistant, it should automatically get updated by your MQTT broker with retained discovery messages.
 
 However, this is not foolproof. If you restart both Home Assistant and the MQTT broker (for example, they are both on the same computer and it gets rebooted) and the broker is not saving retained messages persistently,
 you may find that your discovered entities are "orphaned" in Home Assistant.
@@ -832,7 +832,7 @@ When this happens, you'll want a quick way to get those devices "re-discovered"!
 line with the indexes for each object. (and whatever options you want.)
 </li></ul>
 <pre>
-    haObjectDiscovery
+    haObjectDiscovery ...
 </pre>
 <ul><li>When you need to re-discover, simply <i>enable</i> the plug-in in the Plugin Manager window.
 </li><li>Once it runs, <i>disable</i> it.
