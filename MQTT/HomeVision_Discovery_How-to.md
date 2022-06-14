@@ -85,7 +85,7 @@ Syntax of discovery command:
  Any other number results in creating the message(s) and just displaying them in the debug plug-in, but NOT publishing.
  Good for testing that the procedure generates what you expect without actually sending anything.
 </li><li>If <i>object_type</i> is not present, then it will discover (or remove) all objects (those that are in the "Int Objects" list, NOT all of your defined objects!).
-Note: If "All" is selected, only "flag" is included; "flag_b" is not.
+Note: In this case, only "flag" and "var" are included; "flag_b" and "var_n" are not.
 If you want to limit discovery or removal to one object type, put that type here. Valid built-in object_types are x10, light, var (var_n), var_n, flag, flag_b, input, output, analog, temp, ir, hvac, macro, se and pe.
 Also works for other plug-ins that have discoverable devices and provide the proper interface to the Discovery procedures. (Caseta is one such plug-in.)
 </li><li>If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
