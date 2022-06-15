@@ -801,7 +801,7 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 {% endraw %}
 <!-- <h4 id="device-class-max-and-min-note">Device Class, Max and Min Note</h4> -->
 #### Device Class, Max and Min Note
-For all objects defined as sensors or binary sensors, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
+For all objects defined as sensors or binary sensors, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL. "max" and "min" are valid for <i>var_n</i> only.
 <pre>
    dc:<i>device_class</i>
    max:<i>max_value</i>
@@ -815,6 +815,7 @@ There are no spaces around the ":".
 Other text is allowed in the Description as well.
 If there is, there should be at least one space separating any other text from 
 "dc:<i>device_class</i>".
+<br>
 <br>
 Example Object Description:
 <pre>
