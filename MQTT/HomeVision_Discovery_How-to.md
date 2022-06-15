@@ -815,6 +815,11 @@ There are no spaces around the ":".
 Other text is allowed in the Description as well.
 If there is, there should be at least one space separating any other text from 
 "dc:<i>device_class</i>".
+<br>
+Example Object Description:
+<pre>
+   Outside Humidity  dc:humidity max:100 min:0
+</pre>
 <!-- <h2 id="re-discovery-when-home-assistant-forgets-discovered-devices">Re-discovery When Home Assistant Forgets Discovered Devices</h2> -->
 ## Re-discovery: When Home Assistant Forgets Discovered Devices 
 Discovery messages are sent from the MQTT Plug-in with "retain" on.
