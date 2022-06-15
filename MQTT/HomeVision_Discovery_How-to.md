@@ -804,9 +804,13 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 For all objects defined as sensors or binary sensors, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
 <pre>
    dc:<i>device_class</i>
+   max:<i>max_value</i>
+   min:<i>min_value</i>
 </pre>
-where <i>device_class</i> is a valid device class name for the sensor or binary sensor.
-No checking is done to make sure the string is a valid device class. 
+<i>device_class</i> is a valid device class name for the sensor or binary sensor.
+<i>max_value</i> and <i>min_value</i> should be 0-255.
+No checking is done to make sure <i>device_class</i> is a valid device class,
+nor are the max and min values checked. 
 There are no spaces around the ":".
 Other text is allowed in the Description as well.
 If there is, there should be at least one space separating any other text from 
