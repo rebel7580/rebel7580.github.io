@@ -86,7 +86,7 @@ Syntax of discovery command:
  Good for testing that the procedure generates what you expect without actually sending anything.
 </li><li>If <i>object_type</i> is not present, then it will discover (or remove) all objects (those that are in the "Int Objects" list, NOT all of your defined objects!).
 Note: In this case, only "flag" and "var" are included; "flag_b" and "var_n" are not.
-If you want to limit discovery or removal to one object type, put that type here. Valid built-in object_types are x10, light, var (var_n), var_n, flag, flag_b, input, output, analog, temp, ir, hvac, macro, se and pe.
+If you want to limit discovery or removal to one object type, put that type here. Valid built-in object_types are x10, light, var, var_n, flag, flag_b, input, output, analog, temp, ir, hvac, macro, timer, se and pe.
 Also works for other plug-ins that have discoverable devices and provide the proper interface to the Discovery procedures. (Caseta is one such plug-in.)
 </li><li>If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
 </li></ul>
@@ -801,7 +801,7 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 {% endraw %}
 <!-- <h4 id="device-class-max-and-min-note">Device Class, Max and Min Note</h4> -->
 #### Device Class, Max and Min Note
-For all objects defined as sensors or binary sensors, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL. "max" and "min" are valid for <i>var_n</i> only.
+For all objects defined as number, sensor or binary sensor entities, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL. "max" and "min" are valid for number entities (<i>var_n</i>) only.
 <pre>
    dc:<i>device_class</i>
    max:<i>max_value</i>
