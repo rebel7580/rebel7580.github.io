@@ -50,9 +50,28 @@ Note:
 
 ## Home Assistant Configuration Setup for Log Messages
 
-Create four sensors in configuration.yaml like this:
+Create four sensors in configuration.yaml like this
+(HA Core 2022.6 and later):
 
 {% raw %}
+``` yaml
+mqtt:
+  sensor:
+    - name: "HV Log1"
+      unique_id: hv_log1
+      state_topic: "stat/HVLog/part1"
+    - name: "HV Log2"
+      unique_id: hv_log2
+      state_topic: "stat/HVLog/part2"
+    - name: "HV Log3"
+      unique_id: hv_log3
+      state_topic: "stat/HVLog/part3"
+    - name: "HV Log4"
+      unique_id: hv_log4
+      state_topic: "stat/HVLog/part4"
+```
+{% endraw %}
+Version deprecated in HA Core 2022.6 (usable until removed in 2022.9):
 ``` yaml
 sensor:
   - platform: mqtt
@@ -72,7 +91,6 @@ sensor:
     name: "HV Log4"
     state_topic: "stat/HVLog/part4"
 ```
-{% endraw %}
 
 These sensor entities can be used in automations, dashboard GUIs, etc.
 
