@@ -262,8 +262,25 @@ See <b>Device Class Note</b> at the end of [How to Use Home Assistant Auto Disco
 <br><br>
 <b>Method 2:</b>
 <br>
-<ul><li>Manually add the following to your configuration.yaml:
+<ul><li>Manually add the following to your configuration.yaml
+(HA Core 2022.6 and later):
 </li></ul>
+{% raw %}
+``` yaml
+mqtt:
+  switch:
+    - name: "MA_GarageDoor1"
+      unique_id: "MA_GarageDoor1"
+      state_topic: "stat/Door1/POWER"
+      command_topic: "cmnd/ToggleGarageDoor1/POWER"
+      payload_on: "ON"
+      payload_off: "ON"
+      state_on: "Open"
+      state_off: "Closed"
+      qos: 1
+```
+{% endraw %}
+Version deprecated in HA Core 2022.6 (usable until removed in 2022.9):
 {% raw %}
 ``` yaml
 - switch:
@@ -318,7 +335,24 @@ First, in the MQTT Configuration <i>Ext Devices</i> Tab, set up a virtual extern
 </p>
 <br>
 <br>
-Next set up a switch in Home Assistant's <i>configuration.yaml</i> (Since this is an external device, you can't use MQTT discovery):
+Next set up a switch in Home Assistant's <i>configuration.yaml</i> Since this is an external device, you can't use MQTT discovery.
+(HA Core 2022.6 and later):
+{% raw %}
+``` yaml
+mqtt:
+  switch:
+    - name: "HA_Outside_Deco"
+      unique_id: "HA_Outside_Deco"
+      state_topic: "stat/HA_Outside_Deco/POWER"
+      command_topic: "stat/HA_Outside_Deco/POWER"
+      payload_on: "ON 1"
+      payload_off: "OFF"
+      state_on: "ON 1"
+      state_off: "OFF"
+      qos: 1
+```
+{% endraw %}
+Version deprecated in HA Core 2022.6 (usable until removed in 2022.9):
 {% raw %}
 ``` yaml
 - switch:
@@ -348,6 +382,23 @@ Let's assume we have a Flag "OutsideDecoState" which tracks whether the outside 
 
 Use the same "virtual" external devices before, but include the binary sensor in the yaml:
 
+(HA Core 2022.6 and later):
+{% raw %}
+``` yaml
+mqtt:
+  switch:
+    - name: "HA_Outside_Deco"
+      unique_id: "HA_Outside_Deco"
+      state_topic: "stat/OutsideDecoState/POWER"
+      command_topic: "stat/HA_Outside_Deco/POWER"
+      payload_on: "ON 1"
+      payload_off: "OFF"
+      state_on: "Set"
+      state_off: "Clear"
+      qos: 1
+```
+{% endraw %}
+Version deprecated in HA Core 2022.6 (usable until removed in 2022.9):
 {% raw %}
 ``` yaml
 - switch:
@@ -419,8 +470,25 @@ The compete trigger command (obscured in the screen shot) is:
     action: ir transmit 28 1,ir transmit 114 1,wait for 500,
             ir transmit 116 1,wait for 500,ir transmit 110 1;
 </pre>
-In this example, IR is used, but with a virtual external device to allow for more complex command execution. Consequently, a switch should be added manually to your <i>configuration.yaml</i>. Here is what the switch code would look like:
+In this example, IR is used, but with a virtual external device to allow for more complex command execution. Consequently, a switch should be added manually to your <i>configuration.yaml</i>. Here is what the switch code would look like
+(HA Core 2022.6 and later):
 
+{% raw %}
+``` yaml
+mqtt:
+  switch:
+    - name: "IR_HA_NBC"
+      unique_id: IR_HA_NBC
+      state_topic: "stat/HA_NBC/POWER"
+      command_topic: "stat/HA_NBC/POWER"
+      payload_on: "ON 1"
+      payload_off: "Off 1"
+      state_on: "ON"
+      state_off: "Unknown"
+      qos: 1
+```
+{% endraw %}
+Version deprecated in HA Core 2022.6 (usable until removed in 2022.9):
 {% raw %}
 ``` yaml
 switch:
