@@ -1080,7 +1080,7 @@ The <b>topicTemplate</b> command should be used like this:
 </li></ul>
 
 <table>
-<tr><th style="text-align:center">Key</th><th>Value</th></tr>
+<tr><th style="text-align:center">Key(s)</th><th>Value</th></tr>
 <tr><td style="text-align:center">template</td><td>One of \<T\>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.</td></tr>
 <tr><td style="text-align:center">pre pos</td><td>Prefix position 1-3, -1 if no prefix.</td></tr>
 <tr><td style="text-align:center">pre type</td><td>Prefix string, "" if no prefix.</td></tr>
@@ -1093,6 +1093,26 @@ The <b>topicTemplate</b> command should be used like this:
 <tr><td style="text-align:center">post index</td><td>"Relay" number or "[0-9]*" if none, or "" if no postfix.</td></tr>
 <tr><td style="text-align:center">match</td><td>Regexp expression to match the full topic.</td></tr>
 </table>
+The resulting dict returned by <b>topicTemplate</b> can be used like this:
+<pre>
+    set template {*}[topicTemplate <i>topic</i>]
+
+    set subtop [dict get $template topic name]
+    set pre [dict get $template pre type]
+    set post [dict get $template post type]
+    if {$subtop ne "mytopic"} {return}
+    if {$pre eq "cmnd"} {
+        switch $post {
+            "command_type_1" {
+                ...
+            }
+            "command_type_2" {
+                ...
+            }
+            ...
+        }
+    }
+</pre>
 
 
 <!-- <h4 id="mqttlog">mqttLog</h4> -->
