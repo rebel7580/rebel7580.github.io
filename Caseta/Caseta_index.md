@@ -1,6 +1,7 @@
 # Caseta Plug-in
 
-![GitHub last commit](https://img.shields.io/github/last-commit/rebel7580/Lutron-Caseta-Plugin-for-HomeVisionXL)
+Plug-in: ![GitHub last commit](https://img.shields.io/github/last-commit/rebel7580/Lutron-Caseta-Plugin-for-HomeVisionXL?style=plastic)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/rebel7580/Lutron-Caseta-Plug-in-For-HomeVisionXL?style=plastic)
 
 [Back to Projects Index](/index)
 
