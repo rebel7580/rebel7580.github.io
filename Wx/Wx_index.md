@@ -2,6 +2,8 @@
 
 Plug-in: ![GitHub last commit](https://img.shields.io/github/last-commit/rebel7580/Weather-Plug-in-for-HomeVisionXL?style=plastic)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/rebel7580/Weather-Plug-in-For-HomeVisionXL?style=plastic)
+![Latest Release](https://img.shields.io/badge/Latest%20Release-1.61-green?style=plastic)
+![Latest Release Date](https://img.shields.io/badge/Latest%20Release%20Date-30%20Jan%202022-green?style=plastic)
 
 [Back to Projects Index](/index)
 
