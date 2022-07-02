@@ -1,6 +1,7 @@
 # MQTT Plug-in
 
-![GitHub last commit](https://img.shields.io/github/last-commit/rebel7580/MQTT-Plug-in-For-HomeVisionXL)
+![GitHub plug-in last commit](https://img.shields.io/github/last-commit/rebel7580/MQTT-Plug-in-For-HomeVisionXL)
+![GitHub docs last commit](https://img.shields.io/github/last-commit/rebel7580/rebel7580.github.io/MQTT)
 
 [Back to Projects Index](/index)
 
