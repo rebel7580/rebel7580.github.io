@@ -1,5 +1,7 @@
 # Weather Plug-in
 
+![GitHub last commit](https://img.shields.io/github/last-commit/rebel7580/Weather-Plug-in-for-HomeVisionXL)
+
 [Back to Projects Index](/index)
 
 * Weather Plug-in
