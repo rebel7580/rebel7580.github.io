@@ -1,6 +1,6 @@
 # Caseta Plug-in
 
-Plug-in: ![GitHub last commit](https://img.shields.io/github/last-commit/rebel7580/Lutron-Caseta-Plugin-for-HomeVisionXL?style=plastic)
+Plug-in Status: ![GitHub last commit](https://img.shields.io/github/last-commit/rebel7580/Lutron-Caseta-Plugin-for-HomeVisionXL?style=plastic)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/rebel7580/Lutron-Caseta-Plug-in-For-HomeVisionXL?style=plastic)
 ![Latest Release](https://img.shields.io/badge/Latest%20Release-1.36-green?style=plastic)
 ![Latest Release Date](https://img.shields.io/badge/Latest%20Release%20Date-9%20Jun%202021-green?style=plastic)
