@@ -1,6 +1,6 @@
 # NetIO Plug-in
 
-Plug-in Status: ![Latest Release](https://img.shields.io/badge/Latest%20Release-3.2-green?style=plastic)
+Plug-in Status: ![Latest Release](https://img.shields.io/badge/Release-3.2-blue?style=plastic)
 ![Latest Release Date](https://img.shields.io/badge/Latest%20Release%20Date-30%20Apr%202016-green?style=plastic)
 
 [Back to Projects Index](/index)
