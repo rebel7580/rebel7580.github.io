@@ -643,8 +643,8 @@ The following Tables describe the Action and MQTT response for Objects when they
 <br>
 <sup>1</sup> Order of "cmnd", "stat", "topic", "POWER" depend on topic settings. Prefix and Postfix are defaults.
 <br>
-<sup>2</sup> Stat responses for X10, Custom Lights and IR will respond with an OFF/ON/ON {level} or 0-100 format, depending on the setting of the Response Option Settings.
-Stat RESULT response may be in addition to or replace POWER response depending on State Response settings.
+<sup>2</sup> Stat responses for X10, Custom Lights and IR will respond with an OFF/ON/ON {level} or 0-100 format, depending on the "Response uses ..." Settings.
+Stat RESULT response may be in addition to or replace POWER response depending on "State Response" Settings.
 <br>
 <sup>3</sup> One or more of these items can be included in the same payload.
 If conflicting items for the same mode are present, the last one takes effect.
@@ -654,7 +654,7 @@ Items are case insensitive.
 <br>
 <sup>5</sup> Default is 1. If value is outside the range of 1-9, it is set to the the closest allowed value (e.g., 0&rarr;1, 20&rarr;9). 
 <br>
-<sup>6</sup> If "State Response":"RESULT" is checked, Timer status will report like this:
+<sup>6</sup> If "State Response": "RESULT" is checked, Timer status will report like this:
 <pre>
     stat/topic/RESULT {"STATE":"Running","TIME":"0:29:55.00"}
 </pre>
@@ -663,7 +663,7 @@ Payload Notes:
 <ul>
 <li>cmnd payloads are case-insensitive.
 <li>If Payload is a floating point number, it is truncated to an integer first.
-<li>A Payload starting with {Count text} can contain additional trailing words (which are ignored).
+<li>A Payload <i>starting</i> with {Count text} (from the "Count Payload Text" Setting) can contain additional trailing words (which are ignored).
 </ul>
 
 
