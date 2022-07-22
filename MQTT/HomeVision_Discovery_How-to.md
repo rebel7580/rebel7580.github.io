@@ -748,6 +748,10 @@ While the HVAC returns modes in Title case, the climate entity requires them in 
 <br>
 <br>
 When HVAC status is sent from HomeVisionXL, "Fan" reports either "Auto" or "On". The "Auto" here conflicts with the mode ("HVAC") of "Auto". Since the fan keywords used to set the fan mode are "fanauto" and "fanon", these are defined as the <i>Fan_modes</i> items, and the <i>fan_mode_state_template</i> prepends "fan" to what it receives (either "Auto" or "On").
+<br>
+<br>
+(Note: For Home Assistant version 2022.7.5 and later, "hold" mode is deprecated. In MQTT version 1.111 and later, "hold" items are replaced by "preset_mode" items. In at least the Home Assistant <i>custom:simple_thermostat</i> card, this change is transparent (no change to the card is required to support "preset_mode" vs. "hold".)
+Below is the new "preset_mode" configuration. 
 {% raw %}
 <pre>
 homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
@@ -764,24 +768,24 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
                 "fanauto",
                 "fanon"
         ],
-        "hold_modes": [
+        "preset_modes": [
                 "run",
                 "hold"
         ],
         "mode_command_topic": "cmnd/Zone1/POWER",
-        "hold_command_topic": "cmnd/Zone1/POWER",
+        "preset_mode_command_topic": "cmnd/Zone1/POWER",
         "temperature_command_topic": "cmnd/Zone1/POWER",
         "fan_mode_command_topic": "cmnd/Zone1/POWER",
         "current_temperature_topic": "stat/Zone1/RESULT",
         "current_temperature_template": "{{ value_json.Temperature }}",
         "mode_state_topic": "stat/Zone1/RESULT",
         "mode_state_template": "{{ value_json.HVAC|lower }}",
-        "hold_state_topic": "stat/Zone1/RESULT",
-        "hold_state_template": "{{ value_json.Control|lower }}",
+        "preset_mode_state_topic": "stat/Zone1/RESULT",
+        "preset_mode_value_template": "{{ value_json.Control|lower }}",
         "temperature_state_topic": "stat/Zone1/RESULT",
         "temperature_state_template": "{{ value_json.Setpoint }}",
         "fan_mode_state_topic": "stat/Zone1/RESULT",
-        "fan_mode_state_template": "{{ \\\"fan\\\" + value_json.Fan|lower }}",
+        "fan_mode_state_template": "{{ \"fan\" + value_json.Fan|lower }}",
         "temperature_unit": "F",
         "precision": 1.0,
         "max_temp": 99,
