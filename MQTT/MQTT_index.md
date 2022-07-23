@@ -1,9 +1,7 @@
 # MQTT Plug-in
 
 Plug-in Status: 
-![Latest Release](https://img.shields.io/github/v/release/rebel7580/MQTT-Plug-in-For-HomeVisionXL?style=plastic) ![Latest Release Date](https://img.shields.io/badge/Latest%20Release%20Date-26%20Jan%202022-green?style=plastic) ![GitHub plug-in last commit](https://img.shields.io/github/last-commit/rebel7580/MQTT-Plug-in-For-HomeVisionXL?style=plastic) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/rebel7580/MQTT-Plug-in-For-HomeVisionXL?style=plastic)
-![Latest Release Date](https://img.shields.io/github/release-date/rebel7580/MQTT-Plug-in-For-HomeVisionXL?style=plastic)
-[Back to Projects Index](/index)
+![Latest Release](https://img.shields.io/github/v/release/rebel7580/MQTT-Plug-in-For-HomeVisionXL?style=plastic) ![Latest Release Date]https://img.shields.io/github/release-date/rebel7580/MQTT-Plug-in-For-HomeVisionXL?label=Latest%20Release%20Date&style=plastic ![GitHub plug-in last commit](https://img.shields.io/github/last-commit/rebel7580/MQTT-Plug-in-For-HomeVisionXL?style=plastic) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/rebel7580/MQTT-Plug-in-For-HomeVisionXL?style=plastic)
 
 * MQTT Plug-in
   * MQTT Plug-in Download via [GitHub](https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL)
