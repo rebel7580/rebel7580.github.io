@@ -1,6 +1,6 @@
 # Weather Plug-in
 
-Plug-in Status: ![Latest Release](https://img.shields.io/github/v/release/rebel7580/Weather-Plug-in-For-HomeVisionXL?style=plastic)
+Plug-in Status: ![Latest Release](https://img.shields.io/github/v/release/rebel7580/Weather-Plug-in-For-HomeVisionXL?label=Release?style=plastic)
 ![Latest Release Date](https://img.shields.io/github/release-date/rebel7580/Weather-Plug-in-For-HomeVisionXL?label=Latest%20Release%20Date&style=plastic)
 ![GitHub commit activity](https://img.shields.io/github/last-commit/rebel7580/Weather-Plug-in-For-HomeVisionXL?style=plastic)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/rebel7580/Weather-Plug-in-For-HomeVisionXL?style=plastic)
