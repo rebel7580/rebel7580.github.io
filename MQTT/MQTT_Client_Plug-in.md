@@ -220,6 +220,9 @@ a <i>Last Will and Testament</i> topic as follows:
 If received, the plug-in looks for a message of "online" or "offline" and attempt to display this message in the <b>Ext Devices Tab</b>.
 <br>
 <br>
+In fact, for standard topics, the exact LWT subscription will be as defined in the device's "topic" field, where "tele" is the prefix (&lt;) and "LWT" is the postfix (&gt;).
+<br>
+<br>
 If the topic is not in the form of a standard topic,
 the "Subscribe to Last Will and Testament" checkbox has no effect.
 <br>
