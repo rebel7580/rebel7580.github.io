@@ -461,7 +461,7 @@ See Note.
 <pre>
 homeassistant/number/HVXLb1d0d912ed315aad_VA-145n/config
 {
-        "unique_id": "HVXLb1d0d912ed315aad_VA-145",
+        "unique_id": "HVXLb1d0d912ed315aad_VA-145n",
         "name": "VA-145 Battery Level",
         "state_topic": "stat/BatteryLevel/RESULT",
         "command_topic": "cmnd/BatteryLevel/POWER",
@@ -480,7 +480,7 @@ homeassistant/number/HVXLb1d0d912ed315aad_VA-145n/config
  }
 </pre>
 {% endraw %}
-Alternatively, a variable can be defined as a "sensor" entity. Just use "var".
+Alternatively, a variable can be defined as a "sensor" entity; just use "var" as the object type.
 "device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
 See <i>"Variable Options"</i> in the <i>"Tips"</i> section of
 <a href="HomeVision_and_Home_Assistant">Tips for interfacing HomeVision with Home Assistant</a>
@@ -848,7 +848,7 @@ line with the indexes for each object. (and whatever options you want.)
 <pre>
     haObjectDiscovery ...
 </pre>
-<ul><li>When you need to re-discover, simply <i>enable</i> the plug-in in the Plugin Manager window.
+<ul><li>When you need to re-discover, simply <i>enable</i> the plug-in in the Plugin Manager window, which will immediately execute all the "haObjectDiscovery" commands in the plug-in.
 </li><li>Once it runs, <i>disable</i> it.
 </li></ul>
 
