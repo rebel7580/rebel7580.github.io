@@ -51,7 +51,12 @@ To activate the Discovery feature, open the MQTT configuration screen, hover you
 The "Choose Object(s)" list is NOT populated if you select "All" here.
 Note: If "All" is selected, only "flag" and "var" are included; "flag_b" and "var_n" are not.
 </li><li>If you selected an object type and want to further limit discovery to a subset of those objects, click on each one you want (ctrl-click for selecting more than one.) Otherwise, select "All". If you click on "All" AND also select other objects, only the selected objects will be discovered, not "All".
-</li><li>Select the discovery type: "Test", "Discover", "UnDiscover".
+</li><li>Select the discovery type: 
+<ul>
+<li>"Test" - If you have the debug plug-in running, you will see messages for each object selected, but no discovery message is actually snet to Home Assistant.</li>
+<li>"Discover" - Sends discovery messages to Home Assistant.</li>
+<li>"UnDiscover"- Sends messages to Home Assistant asking to remove entities for the entity list.</li>
+</ul>
 </li><li>Check "NO ID in Name?" to not include the object ID in the entity name. Same as the "-noid" option in the manual method.
 </li><li>Check "Underscore to space in Name?" to replace underscores with spaces in the entity name. Same as the "-nous" option in the manual method.
 </li><li>Check "Retain Flag for HA published msgs?" to have Home Assistant set the retain flag for "command_topic" messages it sends. Same as the "-retain" option in the manual method.
@@ -108,7 +113,7 @@ Examples:
 <pre>
        hvObjectDiscovery 1
 </pre>
-   Discover some x-10 (a2, B6, C15):
+   Discover some x-10 (A2, B6, C15):
 <pre>
        hvObjectDiscovery 1 x10 1 21 46
 </pre>
