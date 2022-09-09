@@ -53,9 +53,9 @@ Note: If "All" is selected, only "flag" and "var" are included; "flag_b" and "va
 </li><li>If you selected an object type and want to further limit discovery to a subset of those objects, click on each one you want (ctrl-click for selecting more than one.) Otherwise, select "All". If you click on "All" AND also select other objects, only the selected objects will be discovered, not "All".
 </li><li>Select the discovery type: 
 <ul>
-<li>"Test" - If you have the debug plug-in running, you will see messages for each object selected, but no discovery message is actually snet to Home Assistant.</li>
+<li>"Test" - If you have the debug plug-in running, you will see messages for each object selected, but no discovery message is actually sent to Home Assistant.</li>
 <li>"Discover" - Sends discovery messages to Home Assistant.</li>
-<li>"UnDiscover"- Sends messages to Home Assistant asking to remove entities for the entity list.</li>
+<li>"UnDiscover"- Sends messages to Home Assistant asking to remove entities from the entity list.</li>
 </ul>
 </li><li>Check "NO ID in Name?" to not include the object ID in the entity name. Same as the "-noid" option in the manual method.
 </li><li>Check "Underscore to space in Name?" to replace underscores with spaces in the entity name. Same as the "-nous" option in the manual method.
