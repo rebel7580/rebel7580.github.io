@@ -143,8 +143,9 @@ Examples:
 
 <ul><li>Entities are created using the object's "Object Name", not its "topic".
 </li><li>If neither "NO ID in Name?" (or <i>-noid</i>) nor "Underscore to space in Name?" (or <i>-nous</i>) are checked, the entity "name" is constructed from the object's "ID" and "Object Name".
-</li></ul>
+<br><br>
 Example: 
+<br><br>
 <pre>
     Entity Name: B-12 Garage_Back_Door
 </pre>
@@ -152,11 +153,13 @@ Example:
 <pre>
     Entity ID: light.b-12_garage_back_door
 </pre>
+</li></ul>
 <ul><li>If "NO ID in Name?" is checked, the entity "name" and id are constructed from the object's "Object Name" only.
 </li><li>If "Underscore to space in Name?" is checked, underscores are replaced by spaces in the entity "name".
 Entity ids always replace spaces in the name with underscores, regardless of this setting.
 <br><br>
 Example ("NO ID in Name?"and "Underscore to space in Name?" both selected): 
+<br><br>
 <pre>
     Entity Name: Garage Back Door
 </pre>
