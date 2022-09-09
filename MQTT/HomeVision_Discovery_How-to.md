@@ -155,7 +155,7 @@ Example:
 <ul><li>If "NO ID in Name?" is checked, the entity "name" and id are constructed from the object's "Object Name" only.
 </li><li>If "Underscore to space in Name?" is checked, underscores are replaced by spaces in the entity "name".
 Entity ids always replace spaces in the name with underscores, regardless of this setting.
-</li></ul>
+<br><br>
 Example ("NO ID in Name?"and "Underscore to space in Name?" both selected): 
 <pre>
     Entity Name: Garage Back Door
@@ -164,6 +164,7 @@ Example ("NO ID in Name?"and "Underscore to space in Name?" both selected):
 <pre>
     Entity ID: light.garage_back_door
 </pre>
+</li></ul>
 <ul><li>If "Exclude from Device?" is NOT checked (or -nodevice is not present), for each object type, MQTT Discovery creates a separate "device" that groups all entities created for that type.
 Device names will be "HomeVision {Object_type}". 
 If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
