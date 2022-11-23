@@ -1084,7 +1084,7 @@ The <b>topicTemplate</b> command should be used like this:
 
 <table>
 <tr><th style="text-align:center">Key(s)</th><th>Value</th></tr>
-<tr><td style="text-align:center">template</td><td>One of <T>, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.</td></tr>
+<tr><td style="text-align:center">template</td><td>One of &lt;T&gt;, >T<, <>T, T<>, ><T, T><, <T, >T, T>, T<, T.</td></tr>
 <tr><td style="text-align:center">pre pos</td><td>Prefix position 1-3, -1 if no prefix.</td></tr>
 <tr><td style="text-align:center">pre type</td><td>Prefix string, "" if no prefix.</td></tr>
 <tr><td style="text-align:center">topic pos</td><td>Sub-topic position 1-3</td></tr>
