@@ -669,6 +669,9 @@ the "Flag/Var", "On Macro" and "Off Macro" fields are ignored.
 However, the action command can be used in the procedure to manipulate flags, vars, macros, etc..
 <br>
 <br>
+Log settings are also ignored. Any logging should be done in the command procedure using the <b>mqttLog</b> command (See below).
+<br>
+<br>
 <b>CAUTION: There is little validation of the name of the custom procedure. Care should be taken to avoid any standard TCL procedure names as inadvertently using an existing procedure name may result in abnormal behavior!</b>
 <br>
 <br>
