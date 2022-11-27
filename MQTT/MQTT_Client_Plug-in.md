@@ -682,8 +682,13 @@ A plug-in can contain several different procedures that are called by different 
 <br>
 The procedure will be called like this:
 <pre>
-    procedure_name <i>topic</i> <i>payload</i> <i>retain</i>
+    procedure_name <i>topic</i> <i>payload</i> <i>retain</i> <i>{other args}</i>
 </pre>
+For most procedures, <i>retain</i> can be ignored. <i>{other args}</i> may be present in future versions of the MQTT client
+and likely be important for typical procedures. For those interested, detains of <i>retain</i> and any future <i>other args</i> can be found at:
+<a href="https://chiselapp.com/user/schelte/repository/mqtt/wiki?name=Tcl+MQTT+client">here</a>
+<br>
+<br>
 Example:
 <br>
 <br>
@@ -738,7 +743,7 @@ Create a plug-in containing the following:
     hvImport mqttComm
     
     hvPublic humid
-    proc humid {topic payload {retain 0}} {
+    proc humid {topic payload args} {
         global fanStatus
         if {$payload eq ""} return
         if {[catch {::json::json2dict $payload} status]} return
@@ -753,7 +758,7 @@ Create a plug-in containing the following:
     }
     
     hvPublic bathfan
-    proc bathfan {topic payload {retain 0}} {
+    proc bathfan {topic payload args} {
         global fanStatus
         if {[lindex [split $topic "/"] end] eq "POWER"} {
             if {$payload eq "ON"} {
@@ -768,6 +773,7 @@ Create a plug-in containing the following:
 <br>
 <br>
 Procedure <b>humid</b> is called whenever a humidity status message is received. It processes the JSON status message to get the humidity and turns the fan on or off depending on the humidity level.
+Since we only care about the topic and payload, we can lump the rest into <i>args</i> and ignore that.
 <br>
 <br>
 Procedure <b>bathfan</b> is called whenever a state message from the fan switch is received. It tracks the state of the fan so <b>humid</b> only turns the fan on/off if it is not already.
