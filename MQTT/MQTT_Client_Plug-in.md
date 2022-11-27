@@ -685,7 +685,7 @@ The procedure will be called like this:
     procedure_name <i>topic</i> <i>payload</i> <i>retain</i> <i>{other args}</i>
 </pre>
 For most procedures, <i>retain</i> can be ignored. <i>{other args}</i> may be present in future versions of the MQTT client
-and likely not be important for typical procedures. For those interested, detains of <i>retain</i> and any future <i>other args</i> can be found at:
+and likely not be important for typical procedures. For those interested, details of <i>retain</i> and any future <i>other args</i> can be found 
 <a href="https://chiselapp.com/user/schelte/repository/mqtt/wiki?name=Tcl+MQTT+client">here</a>
 <br>
 <br>
