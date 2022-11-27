@@ -735,7 +735,7 @@ Create a plug-in containing the following:
     hvImport mqttComm
     
     hvPublic humid
-    proc humid {topic payload} {
+    proc humid {topic payload {retain 0}} {
         global fanStatus
         if {$payload eq ""} return
         if {[catch {::json::json2dict $payload} status]} return
@@ -750,7 +750,7 @@ Create a plug-in containing the following:
     }
     
     hvPublic bathfan
-    proc bathfan {topic payload} {
+    proc bathfan {topic payload {retain 0}} {
         global fanStatus
         if {[lindex [split $topic "/"] end] eq "POWER"} {
             if {$payload eq "ON"} {
