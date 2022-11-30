@@ -27,7 +27,7 @@ proc subscribe {{type sub}} {
 
 # Callback with only one possible topic. Just need to look at payload.
 hvPublic samplecb
-proc samplecb {topic payload {retain 0}} {
+proc samplecb {topic payload args} {
 
     debug "Sample callback: topic:$topic;" blue
     
@@ -37,7 +37,7 @@ proc samplecb {topic payload {retain 0}} {
 
 # Callback with multiple possible topics. Need to look at topic and payload.
 hvPublic displaycb
-proc displaycb {topic payload {retain 0}} {
+proc displaycb {topic payload args} {
 
     debug "Display callback: topic:$topic;" blue
 
