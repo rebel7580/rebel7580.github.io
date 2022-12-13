@@ -34,6 +34,9 @@
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
 <br>
 <br>
+To use discovery, you should have the MQTT integration enabled in Home Assistant.
+<br>
+<br>
 <b>Caution:</b>
 Auto Discovery assumes that in MQTT Configuration "Settings", the "State Response" settings are all checked, and "Response uses OFF/ON" are all checked.
 <i>Changing these settings will likely result in Discovered entities not working as expected.</i>
@@ -407,7 +410,7 @@ homeassistant/switch/HVXLb1d0d912ed315aad_C-11/config
 {% endraw %}
 <!-- <h4 id="flags">Flags</h4> -->
 ####  Flags
-Defined as "switch" entities. In this case, the STATE RESULT payload uses "STATE" instead if "POWER". 
+Defined as "switch" entities. In this case, the STATE RESULT payload uses "STATE" instead of "POWER". 
 {% raw %}
 <pre>
 homeassistant/switch/HVXLb1d0d912ed315aad_FL-18/config
