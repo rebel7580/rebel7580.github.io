@@ -74,7 +74,7 @@ PUBLISHES a <i>status</i> topic when it changes state.
 </li><li>Generic MQTT topics can be sent from the HomeVision schedule via serial commands, from NetIO, or from custom plug-ins, independent of any configured devices.
 </li></ul>
 
-The way the MQTT plug-in handles internal objects and external devices can be confusing. In fact, from am MQTT perspective, both internal objects and external devices are handled the same. They are both controlled by command (cmnd) topics and report status via status (stat) topics.
+The way the MQTT plug-in handles internal objects and external devices can be confusing. In fact, from an MQTT perspective, both internal objects and external devices are handled the same. They are both controlled by command (cmnd) topics and report status via status (stat) topics.
 
 Internal devices are "embedded" in HomeVision. So, from the MQTT perspective, you control them (via MQTT) with an incoming cmnd message, and they will report their status via an outgoing stat message.
 But that's exactly the same as an external device: control them (via MQTT) with a cmnd message, and they will report their status via a stat message.
@@ -295,7 +295,7 @@ If none is assigned, a "-" will show.
 </li><li>The <i>Macro</i> column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
 If no macro is assigned, a "-" will show. 
 </li><li>The <i>State</i> column will usually show "On" or "Off", depending on the reported state of the device.
-If the payload was an number, its value, potentially masked and/or truncated, will be displayed.
+If the payload was a number, its value, potentially masked and/or truncated, will be displayed.
 When the state has not (yet) been reported, a "-" will show.
 </li><li>For each device, its row will be displayed in RED text if the device is reported as "off line" by an LWT message.
 However, if an "on Line" LWT or a POWER state message is received,
@@ -1176,7 +1176,7 @@ Using this procedure is only necessary to make sure the plug-in's subscriptions 
 Reasons "1", "2", and "4" are fatal and need to be corrected before a connection can be made.
 <br>
 <br>
-To use, define an <b>mqttReady</b> procedure to respond to the connected and/or disconnected states.
+To use, define a <b>mqttReady</b> procedure to respond to the connected and/or disconnected states.
 Typical use:
 <pre>
     hvPublic mqttReady
