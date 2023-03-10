@@ -882,3 +882,49 @@ Flags 6, 7, and 8 as binary sensors,
 and Flags 12, 13, 14, 18, 19, 20, 24, and 25 as sensors.
 
 Make sure that, as you add new objects (or remove them from Home Assistant), you update this file.
+
+If you want to be able to run this FROM Home Assistant, the plug-in is slightly more complex:
+
+<pre>
+hvImport debug
+hvImport mqttComm
+hvImport haObjectDiscovery
+
+hvPublic myhadisccb
+proc myhadisccb {fulltopic msg {retain 0}} {
+
+    debug "myhadisccb:$fulltopic,$msg" red
+    myHADiscovery
+}
+
+proc init {t} {
+    if {[mqttComm sub cmnd/MyHADiscovery/POWER myhadisccb] != 1} {
+        debug "Retry Discovery: $t" red
+        set t [expr {$t - 1}]
+        if {$t > 0} {
+            after 2000 [list init $t]
+        }
+        return
+    }
+    myHADiscovery
+}
+
+proc myHADiscovery {} {
+    haObjectDiscovery -noid -nous 1 output
+    haObjectDiscovery -noid -nous 1 input
+    haObjectDiscovery -noid -nous 1 hvac
+    haObjectDiscovery -noid -nous 1 ir
+    haObjectDiscovery -noid -nous 1 flag_b 6 7 26
+    haObjectDiscovery -noid -nous 1 flag 12 13 14 18 19 20 24 25
+    haObjectDiscovery -noid -nous 1 x10
+}
+
+hvEventHook ready [list init 10]
+hvEventHook exit  [mqttComm unsub cmnd/MyHADiscovery/POWER]
+</pre>
+Sending an MQTT message to
+<pre>
+    message: cmnd/MyHADiscovery/POWER
+    Payload: {anything}
+</pre>
+will trigger the myHADiscovery procedure and re-discover your devices.
