@@ -21,6 +21,7 @@
       * Ext Devices Tab
       * Int Objects Tab
       * Settings Tab
+      * Pub/Sub Tab
     * Responding to External Device State Changes
     * Controlling Devices
       * Device/Object Display Area
@@ -478,6 +479,35 @@ However, responses to this command are determined by the affected objects' setti
 </li></ul>
 </li><li>"Netio string", "Serial string prefix string", and "Serial string terminator character(s)" are set to reasonable defaults and probably don't need to be changed, except in the rare case that they conflict with other plug-ins.
 </li></ul>
+
+<!-- <h3 id="Pub-Sub Tab">Pub/Sub Tab</h3> -->
+### Pub/Sub Tab
+This tab allows you to enter up to two topic/payload pairs and publish them
+and to subscribe to two topics.
+
+This can be useful for testing or accessing/monitoring other devices.
+
+Full topics are required here (no "standard" topic forms).
+Subscription topics can make use of MQTT wildcards "#" and "+".
+No validation is done on topics.
+If a topic is not formed correctly, it simply won't work.
+
+A payload is not required.
+
+When receiving a message that matches one of the subscribed topics,
+the topic and payload will appear in the debug plug-in in blue text.
+
+The "Unsubscribe" button will manually unsubscribe its associated topic.
+
+To avoid multiple "orphan" subscriptions, at most two subscriptions are allowed:
+<ul>
+<li>
+Changing and Subscribing a topic entry after the previous entry was Subscribed
+will result in the previous entry being unsubscribed before the new one is subscribed.
+<li>
+When the "MQTT Configuration" Screen is closed, all subscribed topics are unsubscribed automatically.
+If reentering the Pub/Sub Tab, each subscribed topic must be explicitly "Subscribed" again.
+</ul>
 <!-- <h2 id="responding-to-external-device-state-changes">Responding to External Device State Changes</h2> -->
 ## Responding to External Device State Changes
 Refer to <a href="MQTT_Actions_ext.html">External Device Actions</a> for responses to received messages.
