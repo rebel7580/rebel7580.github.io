@@ -504,10 +504,11 @@ To avoid multiple "orphan" subscriptions, at most two subscriptions are allowed:
 <li>
 Changing and Subscribing a topic entry after the previous entry was Subscribed
 will result in the previous entry being unsubscribed before the new one is subscribed.
-<li>
+</li><li>
 When the "MQTT Configuration" Screen is closed, all subscribed topics are unsubscribed automatically.
 If reentering the Pub/Sub Tab, each subscribed topic must be explicitly "Subscribed" again.
-</ul>
+</li></ul>
+
 <!-- <h2 id="responding-to-external-device-state-changes">Responding to External Device State Changes</h2> -->
 ## Responding to External Device State Changes
 Refer to <a href="MQTT_Actions_ext.html">External Device Actions</a> for responses to received messages.
