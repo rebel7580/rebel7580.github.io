@@ -566,18 +566,20 @@ MQTT devices can be controlled within a schedule via serial commands which take 
 
 
     mqtt: {-log|-nolog -retain|-noretain} <i>device_name/object_name</i> <i>command</i>; 
-	     - <i>command</i> is one of: [0|off|1|on|2|toggle|on {level}|state]. "state" requests status from device/object.
-	     - Logs and retains according to option(s) if present (overrides configuration settings);
-		 - Default: log and retain according to named device/object's config settings.
-		 
+     - <i>command</i> is one of: [0|off|1|on|2|toggle|on {level}|state]. 
+         "state" requests status from device/object.
+     - Logs and retains according to option(s) if present (overrides configuration settings);
+     - Default: log and retain according to named device/object's config settings.
+
     mqtt: {-log|-nolog -retain|-noretain} pub <i>topic</i> {<i>payload</i> {retain}};
-	     - logs and retains according to option(s) if present;
-		 - "-retain|-noretain" removes "retain as last word" restriction. I.e., payload can actually include "retain" as last word;
-	     - default: always logs and retains if last word is "retain".
-		 
+     - logs and retains according to option(s) if present;
+     -   "-retain|-noretain" removes "retain as last word" restriction.
+         I.e., payload can actually include "retain" as last word;
+     - default: always logs and retains if last word is "retain".
+
     mqtt: {-log} [sub|unsub] topic <<i>topic</i>>|<i>topic</i> <i>callback</i>;
-	     - logs if option is present, never retains;
-	     - default: never logs, never retains.
+     - logs if option is present, never retains;
+     - default: never logs, never retains.
 
     "mqtt:" is whatever the "Serial string prefix" is defined as.
     ";' is whatever the "Serial string terminator character(s)" is defined as.
@@ -629,11 +631,7 @@ Examples:
 	
 </pre>
 
-For sub and unsub commands, if <i>callback</i> is given,
-then a public callback procedure must exist somewhere.
-<br>
-<br>
-If <i>callback</i> is not present, then the serial command essentially does nothing.
+For sub and unsub commands, <i>callback</i> is a public callback procedure that must exist in a plug-in.
 <br>
 <br>
 Examples:
@@ -641,6 +639,8 @@ Examples:
     mqtt: sub tele/somedevice/state mycb;
     mqtt: unsub tele/somedevice/state mycb;
 </pre>
+<br>
+<br>
 Note: If a topic has spaces, the entire topic should be enclosed in double-quotes or braces {}.
 <br>
 Note: Double-quotes or braces are NOT necessary for any spaces in the payload portion.
@@ -690,8 +690,6 @@ or
 </pre>
 except that no NetIO Custom Returns processing is done.
 So the direct object gets are probably better to use then the MQTT versions.
-
-
 <br>
 <br>
 Generic MQTT messages can be sent via NetIO using a "netioaction" command in the NetIO application in a similar way as serial commands.
