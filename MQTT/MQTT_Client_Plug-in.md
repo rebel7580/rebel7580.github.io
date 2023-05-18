@@ -641,7 +641,7 @@ Examples:
     mqtt: sub tele/somedevice/state mycb;
     mqtt: unsub tele/somedevice/state mycb;
 </pre>
-<br>
+
 <br>
 Note: If a topic has spaces, the entire topic should be enclosed in double-quotes or braces {}.
 <br>
