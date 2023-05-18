@@ -561,18 +561,36 @@ Here's a sequence chart example that might make it more clear:
 
 <!-- <h3 id="serial-control">Serial Control</h3> -->
 ### Serial Control
-MQTT devices can be controlled within a schedule via serial commands which take the form:
+MQTT devices can be controlled within a schedule via serial commands which take one of these forms:
 <pre>
-    mqtt: <i>device_name/object_name</i> <i>command</i>;
+
+
+    mqtt: {-log|-nolog -retain|-noretain} <i>device_name/object_name</i> <i>command</i>; 
+	     - <i>command</i> is one of: [0|off|1|on|2|toggle|on {level}|state]. "state" requests status from device/object.
+	     - Logs and retains according to option(s) if present (overrides configuration settings);
+		 - Default: log and retain according to named device/object's config settings.
+		 
+    mqtt: {-log|-nolog -retain|-noretain} pub <i>topic</i> {<i>payload</i> {retain}};
+	     - logs and retains according to option(s) if present;
+		 - "-retain|-noretain" removes "retain as last word" restriction. I.e., payload can actually include "retain" as last word;
+	     - default: always logs and retains if last word is "retain".
+		 
+    mqtt: {-log} [sub|unsub] topic <<i>topic</i>>|<i>topic</i> <i>callback</i>;
+	     - logs if option is present, never retains;
+	     - default: never logs, never retains.
+
+    "mqtt:" is whatever the "Serial string prefix" is defined as.
+    ";' is whatever the "Serial string terminator character(s)" is defined as.
 </pre>
-For example, to toggle a device <i>named</i> "sonoff1",
-the serial command would be:
+
+<!-- <h3 id="device-object">Device/Object Form</h3> -->
+#### Device/Object Form
+This is the simplest form and can be used for any device or object alredy configured in the <b>Ext Devices</b> or <b>Int Objects</b> tabs.
+
+For example, to toggle a device <i>named</i> "sonoff1", the serial command would be:
 <pre>
     mqtt: sonoff1 toggle;
 </pre>
-"mqtt:" is whatever the "Serial string prefix" is defined as.
-";' is whatever the "Serial string terminator character(s)" is defined as.
-"toggle" or "2", "on" or "1", "off" or "0", and "state" are allowed.
 X-10 and Custom Lights can be set to a level by using "on <i>level</i>". E.g.,
 <pre>
     mqtt: den on 50;
@@ -584,16 +602,61 @@ The <i>command</i> portion is sent as-is, case-wise.
 Note: Device <i>names</i> are limited to alphas, numbers and the underscore.
 <br>Note: While serial commands in the schedule can change the state of internal objects as well as external devices, it may make more sense to just set the internal object directly in the schedule.
 In either case, the plug-in will publish a state change topic if the state actually changed.
+
+<!-- <h3 id="generic-form">Generic Form</h3> -->
+#### Generic Form
+
+In addition to the external and internal device/object specific MQTT messages,
+the plug-in allows generic MQTT messages that may or may not be related to any configured device.
+This gives freedom to send anything necessary without tying messages to specific configured devices.
+<br>
+<br>
+For "pub" commands, if the last word in the payload is "retain",
+the command is sent with the MQTT retain flag set.
+However, if either <i>-retain</i> or <i>-noretain</i> is present, it removes the "retain as last word" restriction.
+I.e., payload can actually include and send "retain" as the last word.
+Examples:
+<pre>
+    mqtt: pub "cmnd/living room/POWER" some payload info;
+	      logs; sends "some payload info" to "cmnd/living room/POWER"; no retain.
+    mqtt: -nolog pub "cmnd/living room/POWER" some payload info;
+	      no log; sends "some payload info" to "cmnd/living room/POWER"; no retain.
+
+    mqtt: pub "cmnd/living room/POWER" some payload info retain;
+	      logs; sends "some payload info" to "cmnd/living room/POWER"; retains.
+    mqtt: -nolog -noretain pub "cmnd/living room/POWER" some payload info retain;
+	      no log; sends "some payload info retain" to "cmnd/living room/POWER"; no retain.
+	
+</pre>
+
+For sub and unsub commands, if <i>callback</i> is given,
+then a public callback procedure must exist somewhere.
+<br>
+<br>
+If <i>callback</i> is not present, then the serial command essentially does nothing.
+<br>
+<br>
+Examples:
+<pre>
+    mqtt: sub tele/somedevice/state mycb;
+    mqtt: unsub tele/somedevice/state mycb;
+</pre>
+Note: If a topic has spaces, the entire topic should be enclosed in double-quotes or braces {}.
+<br>
+Note: Double-quotes or braces are NOT necessary for any spaces in the payload portion.
 <!-- <h3 id="netio">NetIO</h3> -->
 ### NetIO
 MQTT devices can be controlled via NetIO using a "netioaction" command in the NetIO application.
+All forms of the serial commands are available for NetIO as well.
+<br>
+<br>
 For example, to have a button set up to toggle a device <i>named</i> "sonoff1",
 the button's <i>sends</i> attribute would be set to:
 <pre>
-    sends:  netioaction mqtt sonoff1 toggle
+    sends: netioaction mqtt sonoff1 toggle
 </pre>
 "mqtt" is whatever the "Netio string" is defined as.
-"toggle" or "2", "on" or "1", "off" or "0", and "state" are allowed.
+"toggle" or "2", "on" or "1", "off" or "0", "on {level}" and "state" are allowed.
 <br>
 <br>
 The device <i>name</i> is case-insensitive when matching a device <i>name</i> in the Device list.
@@ -602,7 +665,7 @@ The <i>command</i> portion is sent as-is, case-wise.
 <br>
 The state of the device can get retrieved by:
 <pre>
-    reads:  get mqtt sonoff1
+    reads: get mqtt sonoff1
 </pre>
 The <i>get</i> command will return the object's state string, depending on the state of the device.
 <br>
@@ -628,41 +691,7 @@ or
 except that no NetIO Custom Returns processing is done.
 So the direct object gets are probably better to use then the MQTT versions.
 
-<!-- <h3 id="sending-generic-mqtt-messages">Sending Generic MQTT Messages</h3> -->
-### Sending Generic MQTT Messages
 
-In addition to the external and internal device/object specific MQTT messages,
-the plug-in allows generic MQTT messages that may or may not be related to any configured device.
-This gives freedom to send anything necessary without tying messages to specific configured devices.
-Generic messages can be sent by either NetIO or serial commands.
-<br>
-<br>
-Generic MQTT messages can be sent within a schedule via serial commands and take the form:
-<pre>
-    mqtt: pub <i>topic</i> {<i>payload</i>};
-    mqtt: sub|unsub <i>topic</i> {<i>callback</i>};
-</pre>
-For "pub" commands, if the last word in the payload is "retain",
-the command is sent with the MQTT retain flag set.
-<br>
-<br>
-For sub and unsub, if <i>callback</i> is given,
-then a public callback procedure must exist somewhere.
-<br>
-<br>
-If <i>callback</i> is not present, then the serial command essentially does nothing.
-<br>
-<br>
-Examples:
-<pre>
-    mqtt: sub tele/somedevice/state mycb;
-    mqtt: unsub tele/somedevice/state mycb;
-    mqtt: pub "cmnd/living room/POWER" some payload info;
-    mqtt: pub "cmnd/living room/POWER" some payload info retain;
-</pre>
-Note: If a topic has spaces, the entire topic should be enclosed in double-quotes or braces {}.
-<br>
-Note: Double-quotes or braces are NOT necessary for any spaces in the payload portion.
 <br>
 <br>
 Generic MQTT messages can be sent via NetIO using a "netioaction" command in the NetIO application in a similar way as serial commands.
