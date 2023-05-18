@@ -617,6 +617,8 @@ For "pub" commands, if the last word in the payload is "retain",
 the command is sent with the MQTT retain flag set.
 However, if either <i>-retain</i> or <i>-noretain</i> is present, it removes the "retain as last word" restriction.
 I.e., payload can actually include and send "retain" as the last word.
+<br>
+<br>
 Examples:
 <pre>
     mqtt: pub "cmnd/living room/POWER" some payload info;
