@@ -494,6 +494,11 @@ If a topic is not formed correctly, it simply won't work.
 
 A payload is not required.
 
+The unlabled checkbox before the "Publish" button set the retain flag to 1 for the message.
+It should rarely be needed. 
+The most useful reason for setting retain to 1 (checking the box) would be to clear a retained message in the broker.
+Publishing a topic with a empty payload and retain set to 1 should clear any retained messages for that topic in the broker.
+
 When receiving a message that matches one of the subscribed topics,
 the topic and payload will appear in the debug plug-in in blue text.
 
