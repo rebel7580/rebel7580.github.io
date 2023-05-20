@@ -494,7 +494,7 @@ If a topic is not formed correctly, it simply won't work.
 
 A payload is not required.
 
-The unlabled checkbox before the "Publish" button set the retain flag to 1 for the message.
+The unlabled checkbox before the "Publish" button sets the retain flag to 1 for the message.
 It should rarely be needed. 
 The most useful reason for setting retain to 1 (checking the box) would be to clear a retained message in the broker.
 Publishing a topic with a empty payload and retain set to 1 should clear any retained messages for that topic in the broker.
@@ -590,7 +590,7 @@ MQTT devices can be controlled within a schedule via serial commands which take 
     ";' is whatever the "Serial string terminator character(s)" is defined as.
 </pre>
 
-<!-- <h3 id="device-object">Device/Object Form</h3> -->
+<!-- <h4 id="device-object">Device/Object Form</h4> -->
 #### Device/Object Form
 This is the simplest form and can be used for any device or object alredy configured in the <b>Ext Devices</b> or <b>Int Objects</b> tabs.
 
@@ -610,9 +610,8 @@ Note: Device <i>names</i> are limited to alphas, numbers and the underscore.
 <br>Note: While serial commands in the schedule can change the state of internal objects as well as external devices, it may make more sense to just set the internal object directly in the schedule.
 In either case, the plug-in will publish a state change topic if the state actually changed.
 
-<!-- <h3 id="generic-form">Generic Form</h3> -->
+<!-- <h4 id="generic-form">Generic Form</h4> -->
 #### Generic Form
-
 In addition to the external and internal device/object specific MQTT messages,
 the plug-in allows generic MQTT messages that may or may not be related to any configured device.
 This gives freedom to send anything necessary without tying messages to specific configured devices.
@@ -647,10 +646,19 @@ Examples:
     mqtt: unsub tele/somedevice/state mycb;
 </pre>
 
-<br>
-Note: If a topic has spaces, the entire topic should be enclosed in double-quotes or braces {}.
-<br>
-Note: Double-quotes or braces are NOT necessary for any spaces in the payload portion.
+<!-- <h4 id="formatting-rules">Formatting Rules</h4> -->
+#### Formatting Rules
+<ul>
+<li>
+If a topic has spaces, the entire topic should be enclosed in double-quotes or braces {}.
+</li>
+<li>
+Double-quotes or braces are NOT necessary for any spaces in the payload portion.
+</li>
+<li>
+Backslashes in the payload portion should be "escaped" by another backslash (e.g., "\\").
+</li>
+</ul>
 <!-- <h3 id="netio">NetIO</h3> -->
 ### NetIO
 MQTT devices can be controlled via NetIO using a "netioaction" command in the NetIO application.
