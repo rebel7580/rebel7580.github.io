@@ -1,6 +1,3 @@
-<link rel="shortcut icon" type="image/x-icon" 
-      href="{{ "/img/favicon.ico"  | absolute_url }}">
-      
 # Ron's Projects for HomeVisionXL
 
 Documentation: ![GitHub last commit](https://img.shields.io/github/last-commit/rebel7580/rebel7580.github.io?style=plastic)
