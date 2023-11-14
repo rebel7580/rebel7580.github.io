@@ -950,10 +950,10 @@ First, "undiscover" all the HomeVision objects you want to change, using the MQT
 Copy-paste the following template into the HA Template Editor (Development Tools->Template):
 <pre><code class="lang-yaml">&#123;% for id in integration_entities('mqtt')
   | map('device_id') | unique | reject ('eq', None) | sort %&#125;
-&#123;% set name = device_attr(id, "name_by_user") or device_attr(id, "name") -%&#125;
-# {{ name }}
+&#123;% set name = device_attr(id, "name_by_user") or device_attr(id, "name") %&#125;
+# &#123;&#123; name &#125;&#125;
 &#123;%- for e in device_entities(id) | sort %&#125;
-{{ e }}:
+&#123;&#123; e &#125;&#125;:
   friendly_name: {{ state_attr(e, 'friendly_name') | replace(name, '') | trim }}
 &#123;%- endfor -%&#125;
 &#123;%- endfor -%&#125;
