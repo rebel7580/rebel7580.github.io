@@ -941,7 +941,7 @@ If you use Devices in your HomeVision discovery, Home Assistant will create Frie
     {device name} {entity name}
 </pre>
 
-If you don’t want the device name prepended to entity’s friendly_name, you’ll need to do what "manually" rename its friendly_name.
+If you don’t want the device name prepended to entity’s friendly_name, you’ll need "manually" rename its friendly_name.
 
 If you have a lot of these, you can use this (somewhat) manual bulk technique
 (Curtesy of 123Taras on the HA forum. See https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396:
@@ -950,9 +950,9 @@ If you have a lot of these, you can use this (somewhat) manual bulk technique
 <li>
 First, "undiscover" all the HomeVision objects you want to change, using the MQTT Plug-in's Discover tab (or your customized discovery plug-in).
 </li>
-<br><br>
+<br>
 <li>Copy-paste the following template into the HA Template Editor (Development Tools->Template):
-<br><br>
+<br>
 <pre>
 &#123;% for id in integration_entities('mqtt')
   | map('device_id') | unique | reject ('eq', None) | sort %&#125;
@@ -964,13 +964,13 @@ First, "undiscover" all the HomeVision objects you want to change, using the MQT
 &#123;%- endfor -%&#125;
 &#123;%- endfor -%&#125;
 </pre>
-<br><br>
+<br>
 The Template Editor’s results window should now contain a neatly formatted YAML listing of your MQTT-based entities, grouped by device, showing each one’s entity_id and its friendly_name stripped of its device name.
 
 Here's an example of what the template might generate.
 This is a very much condensed extraction from my list (which has around 160 entries).
 Each entity’s desired friendly_name has been stripped of its device name.
-<br><br>
+<br>
 <pre>
  HomeVisionXL Output
 switch.homevisionxl_output_sprinkler_enable:
@@ -994,7 +994,7 @@ Copy-paste the generated listing into the customize section of your configuratio
 
 Make any required corrections or deletions, then save the file and restart Home Assistant.
 </li>
-<br><br>
+<br>
 <li>
 Re-discover your HomeVision objects.
 </li>
