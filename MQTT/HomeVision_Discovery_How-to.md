@@ -953,8 +953,8 @@ This is probably the easiest if you only have a few objects exported into Home A
 <li>
 If you have a lot of objects, you can use this (somewhat manual) bulk technique
 (Curtesy of 123Taras on the Home Assistant forum. See
-<a href="https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396:">why does mqtt discovery add device name to entity name</a>
- https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396:)
+<a href="https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396/2">why does mqtt discovery add device name to entity name</a>
+ https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396/2
 
 <ol>
 <li>
