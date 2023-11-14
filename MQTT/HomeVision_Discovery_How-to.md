@@ -958,26 +958,26 @@ Copy-paste the following template into the HA Template Editor (Development Tools
   friendly_name: {{ state_attr(e, 'friendly_name') | replace(name, '') | trim }}
 {%- endfor -%}
 {%- endfor -%}
-<pre>
+</pre>
 
 The Template Editor’s results window should now contain a neatly formatted YAML listing of your MQTT-based entities, grouped by device, showing each one’s entity_id and its friendly_name stripped of its device name.
 
 Example of what the template might generate.
 Each entity’s desired friendly_name has been stripped of its device name.
 <pre>
-# HomeVisionXL Output
+ HomeVisionXL Output
 switch.homevisionxl_output_sprinkler_enable:
   friendly_name: Sprinkler Enable
 
-# HomeVisionXL Flag_b
+ HomeVisionXL Flag_b
 binary_sensor.homevisionxl_flag_b_evening_lights_on:
   friendly_name: Evening Lights On
 
-# HomeVisionXL Hvac
+ HomeVisionXL Hvac
 climate.homevisionxl_hvac_zone1:
   friendly_name: Zone1
 
-# HomeVisionXL Macro
+ HomeVisionXL Macro
 switch.homevisionxl_macro_outside_decorations_off:
   friendly_name: Outside Decorations Off
 </pre>
