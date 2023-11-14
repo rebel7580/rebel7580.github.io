@@ -951,8 +951,8 @@ If you have a lot of these, you can use this (somewhat) manual bulk technique
 First, "undiscover" all the HomeVision objects you want to change, using the MQTT Plug-in's Discover tab (or your customized discovery plug-in).
 </li>
 <li>Copy-paste the following template into the HA Template Editor (Development Tools->Template):
-
-<pre><code class="lang-yaml">
+<br>
+<pre>
 &#123;% for id in integration_entities('mqtt')
   | map('device_id') | unique | reject ('eq', None) | sort %&#125;
 &#123;% set name = device_attr(id, "name_by_user") or device_attr(id, "name") %&#125;
@@ -962,14 +962,14 @@ First, "undiscover" all the HomeVision objects you want to change, using the MQT
   friendly_name: &#123;&#123; state_attr(e, 'friendly_name') | replace(name, '') | trim &#125;&#125;
 &#123;%- endfor -%&#125;
 &#123;%- endfor -%&#125;
-</code></pre>
-
+</pre>
+<br>
 The Template Editor’s results window should now contain a neatly formatted YAML listing of your MQTT-based entities, grouped by device, showing each one’s entity_id and its friendly_name stripped of its device name.
 
 Here's an example of what the template might generate.
 This is a very much condensed extraction from my list (which has around 160 entries).
 Each entity’s desired friendly_name has been stripped of its device name.
-
+<br>
 <pre>
  HomeVisionXL Output
 switch.homevisionxl_output_sprinkler_enable:
