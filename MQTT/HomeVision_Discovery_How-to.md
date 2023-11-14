@@ -933,7 +933,7 @@ will trigger the myHADiscovery procedure and re-discover your devices.
 
 <!-- <h2 id="how-device-name-affects-friendly-name">How Device Name Affects Friendly Name</h2> -->
 ## How Device Name Affects Friendly Name
-Prepending the device name is a Home Assistant architectural decision made a long time ago but wasn’t implemented in the MQTT integration, specifically the MQTT Discovery feature, until version 2023.8.0.
+Prepending the Device Name to the Entity Name to create a Friendly Name is a Home Assistant architectural decision made a long time ago but wasn’t implemented in the MQTT integration, specifically the MQTT Discovery feature, until version 2023.8.0.
 (Similarly, Tasmota Software, around version 12.0 or so, and the Home Assistant Tasmota integration implemented this as well.)
 
 If you use Devices in your HomeVision discovery, Home Assistant will create Friendly Names in this format:
@@ -947,7 +947,7 @@ If you don’t want the device name prepended to entity’s friendly_name, you�
 Re-discover with "Exclude from Device" turned on,
 </li>
 <li>
-Edit manually friendly names as you add/use objects in your Home Assistant dashboard.
+Manually edit friendly names as you add/use objects in your Home Assistant dashboard.
 This is probably the easiest if you only have a few objects exported into Home Assistant.
 </li>
 <li>
