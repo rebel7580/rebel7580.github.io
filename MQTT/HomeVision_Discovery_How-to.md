@@ -955,9 +955,10 @@ Copy-paste the following template into the HA Template Editor (Development Tools
 \{\%- for e in device_entities(id) | sort \%\}
 {{ e }}:
   friendly_name: {{ state_attr(e, 'friendly_name') | replace(name, '') | trim }}
-\{\%- endfor -\%\}
-\{\%- endfor -\%\}
+&#123;\%- endfor -\%&#125;
+&#123;\%- endfor -\%&#125;
 </code></pre>
+(REMOVE the "\"s in the above before copying to the Template Editor. I haven't figured out yet how to show the code without escaping 
 The Template Editor’s results window should now contain a neatly formatted YAML listing of your MQTT-based entities, grouped by device, showing each one’s entity_id and its friendly_name stripped of its device name.
 
 Example of what the template might generate.
