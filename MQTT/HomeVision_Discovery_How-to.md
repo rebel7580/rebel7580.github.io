@@ -232,8 +232,8 @@ Example (as provided by the Caseta Plug-in):
         ...
     }
 </pre>
-<!-- <h2 id="homevision-object-discovery-details">HomeVision Object Discovery Details</h2> -->
-## HomeVision Object Discovery Details
+<!-- <h1 id="homevision-object-discovery-details">HomeVision Object Discovery Details</h1> -->
+# HomeVision Object Discovery Details
 
 An MQTT discovery message is sent in the form:
 <pre>
@@ -344,15 +344,15 @@ The following entity types and devices are created according to the Object type:
  </tr>
  </table>
 
-<!-- <h3 id="discovery-messages">Discovery Messages</h3> -->
-### Discovery Messages
+<!-- <h2 id="discovery-messages">Discovery Messages</h2> -->
+## Discovery Messages
 Here are examples of what is sent to Home Assistant during discovery.
 <br>
 The JSON formatted payloads are expanded for readability.
 <br>
 Note: Actual discovery payloads may use abbreviated configuration variable names.
-<!-- <h4 id="x-10-light-objects">X-10, Light Objects</h4> -->
-####  X-10, Light Objects
+<!-- <h3 id="x-10-light-objects">X-10, Light Objects</h3> -->
+###  X-10, Light Objects
 Defined as "light" entities.
 {% raw %}
 <pre>
@@ -408,8 +408,8 @@ homeassistant/switch/HVXLb1d0d912ed315aad_C-11/config
 }
 </pre>
 {% endraw %}
-<!-- <h4 id="flags">Flags</h4> -->
-####  Flags
+<!-- <h3 id="flags">Flags</h3> -->
+###  Flags
 Defined as "switch" entities. In this case, the STATE RESULT payload uses "STATE" instead of "POWER". 
 {% raw %}
 <pre>
@@ -462,8 +462,8 @@ homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
 }
 </pre>
 {% endraw %}
-<!-- <h4 id="variables">Variables</h4> -->
-#### Variables
+<!-- <h3 id="variables">Variables</h3> -->
+### Variables
 A variable can be defined as a number entity (use "var_n" as the object type). The variable will be implemented as a slider.
 "device_class" is set if found in the input's "Description" field. Must be a valid sensor device class.
 "max" and "min" can be set similarly. If not explicitly set, max = 255 and min = 0.
@@ -517,8 +517,8 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_VA-145/config
  }
 </pre>
 {% endraw %}
-<!-- <h4 id="inputs">Inputs</h4> -->
-#### Inputs
+<!-- <h3 id="inputs">Inputs</h3> -->
+### Inputs
 Defined as "binary Sensor" entities. "payload_on" and "payload_off" are defined as the text in HomeVisionXL's <i>Input Port Summary's</i> "Low State Label" and "High State Label", respectively.  "device_class" is set if found in the input's "Description" field. Must be a valid binary_sensor device class. See Note.
 Binary sensors do not have a "retain" option.
 {% raw %}
@@ -544,8 +544,8 @@ homeassistant/binary_sensor/HVXLb1d0d912ed315aad_IB-5/config
 }
 </pre>
 {% endraw %}
-<!-- <h4 id="outputs">Outputs</h4> -->
-#### Outputs
+<!-- <h3 id="outputs">Outputs</h3> -->
+### Outputs
 Defined as "switch" entities. "state_on" and "state_off" are defined as the text in HomeVisionXL's <i>Output Port Summary's</i> "High State Label" and "Low State Label", respectively. Note: this is opposite of inputs!
 {% raw %}
 <pre>
@@ -573,8 +573,8 @@ homeassistant/switch/HVXLb1d0d912ed315aad_OA-3/config
 }
 </pre>
 {% endraw %}
-<!-- <h4 id="ir">IR</h4> -->
-#### IR
+<!-- <h3 id="ir">IR</h3> -->
+### IR
 Defined as "switch" entities. Number of repeats is set to 1. 
 Because IR objects have no real "on/off" state, IR switches will show as Off, and when clicked to On, will shortly return back to the Off position, since the state message payload will not match.
 {% raw %}
@@ -618,8 +618,8 @@ IR entities can also be used as Buttons, which makes a little more sense UI-wise
           action: none
 </pre>
 {% endraw %}
-<!-- <h4 id="macros-scheduled-events-periodic-events">Macros, Scheduled Events, Periodic Events</h4> -->
-#### Macros, Scheduled Events, Periodic Events
+<!-- <h3 id="macros-scheduled-events-periodic-events">Macros, Scheduled Events, Periodic Events</h3> -->
+### Macros, Scheduled Events, Periodic Events
 Defined as "switch" entities. 
 Because these objects have no real "on/off" state, switches will show as Off, and when clicked to On, will shortly return back to the Off position, since the state message payload will not match.
 {% raw %}
@@ -649,8 +649,8 @@ homeassistant/switch/HVXLb1d0d912ed315aad_MA-10/config
 </pre>
 {% endraw %}
 Like IR entities, Macros, Scheduled Events and Periodic Events can also be used as Buttons. See IR above for details.
-<!-- <h4 id="digital-temperature-sensors">Digital Temperature Sensors</h4> -->
-#### Digital Temperature Sensors
+<!-- <h3 id="digital-temperature-sensors">Digital Temperature Sensors</h3> -->
+### Digital Temperature Sensors
 Defined as "sensor" entities. "device_class" is set if found in the input's "Description" field. If no device class is found in the Description, then "device_class" is set to "temperature". Must be a valid sensor device class. See Note. If the "device_class" word is followed by a "-F" or "-C", "unit_of_measurement" is set to "F" or "C" accordingly. Otherwise it is set to the value specified in HomeVisionXL's Settings->Temperature Scale.
 Sensors do not have a "retain" option.
 {% raw %}
@@ -675,8 +675,8 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TE-0/config
 }
 </pre>
 {% endraw %}
-<!-- <h4 id="analog-inputs">Analog Inputs</h4> -->
-#### Analog Inputs
+<!-- <h3 id="analog-inputs">Analog Inputs</h3> -->
+### Analog Inputs
 Defined as "sensor" entities. 
 "device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
 {% raw %}
@@ -700,8 +700,8 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_AN-0/config
  }
 </pre>
 {% endraw %}
-<!-- <h4 id="timers">Timers</h4> -->
-#### Timers
+<!-- <h3 id="timers">Timers</h3> -->
+### Timers
 Defined as <i>two</i> "sensor" entities,
 one for the timer's state (Running, Stopped, Ringing)
 and one for the current time.
@@ -752,8 +752,8 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TI_8t/config
 }
 </pre>
 {% endraw %}
-<!-- <h4 id="hvac">HVAC</h4> -->
-#### HVAC
+<!-- <h3 id="hvac">HVAC</h3> -->
+### HVAC
 Defined as "climate" entities. This is for HVAC native support for RCS TX-15 type thermostats. Assumes F.
 While the HVAC returns modes in Title case, the climate entity requires them in lower case. The mode_, hold_, and fan_ state_templates convert them to lower case. When Home Assistant sends commands to the HVAC, it sends in lower case, but the MQTT plug-in is case-insensitive on receive.
 <br>
@@ -814,8 +814,8 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 }
 </pre>
 {% endraw %}
-<!-- <h4 id="device-class-max-and-min-note">Device Class, Max and Min Note</h4> -->
-#### Device Class, Max and Min Note
+<!-- <h3 id="device-class-max-and-min-note">Device Class, Max and Min Note</h3> -->
+### Device Class, Max and Min Note
 For all objects defined as number, sensor or binary sensor entities, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL. "max" and "min" are valid for number entities (<i>var_n</i>) only.
 <pre>
    dc:<i>device_class</i>
