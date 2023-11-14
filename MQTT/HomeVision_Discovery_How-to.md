@@ -943,11 +943,14 @@ If you use Devices in your HomeVision discovery, Home Assistant will create Frie
 
 If you don’t want the device name prepended to entity’s friendly_name, you’ll need to do what "manually" rename its friendly_name.
 
-If you have a lot of these, you can use this (somewhat) manual bulk technique:
+If you have a lot of these, you can use this (somewhat) manual bulk technique
+(Curtesy of 123Taras on the HA forum. See https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396:
 
+<ol>
+<li>
 First, "undiscover" all the HomeVision objects you want to change, using the MQTT Plug-in's Discover tab (or your customized discovery plug-in).
-
-Copy-paste the following template into the HA Template Editor (Development Tools->Template):
+</li>
+<li>Copy-paste the following template into the HA Template Editor (Development Tools->Template):
 <pre><code class="lang-yaml">
 &#123;% for id in integration_entities('mqtt')
   | map('device_id') | unique | reject ('eq', None) | sort %&#125;
@@ -959,7 +962,7 @@ Copy-paste the following template into the HA Template Editor (Development Tools
 &#123;%- endfor -%&#125;
 &#123;%- endfor -%&#125;
 </code></pre>
-(REMOVE the "\"s in the above before copying to the Template Editor. I haven't figured out yet how to show the code without escaping 
+
 The Template Editor’s results window should now contain a neatly formatted YAML listing of your MQTT-based entities, grouped by device, showing each one’s entity_id and its friendly_name stripped of its device name.
 
 Example of what the template might generate.
@@ -981,12 +984,17 @@ climate.homevisionxl_hvac_zone1:
 switch.homevisionxl_macro_outside_decorations_off:
   friendly_name: Outside Decorations Off
 </pre>
+</li>
+<li>
 Copy-paste the generated listing into the customize section of your configuration.yaml file. In my case, I have that section in a separate customize.yaml file.
 
 Make any required corrections or deletions, then save the file and restart Home Assistant.
+</li>
+<li>
 
 Re-discover your HomeVision objects.
-
+</li>
+</ol>
 If you have Tamota devices with the same issue, paste another copy of the above template into the editor with "mqtt" replaced with "tasmota".
 Each Tasmota has it's own device name, plus entities for switches/relays and several sensors.
 You may want to include only those entities that refer to relays/buttons/switches, and not the sensors, since you won't be able to tell sensors from different Tasmotas apart easily.
