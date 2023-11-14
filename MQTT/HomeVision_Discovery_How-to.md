@@ -941,17 +941,25 @@ If you use Devices in your HomeVision discovery, Home Assistant will create Frie
     {device name} {entity name}
 </pre>
 
-If you don’t want the device name prepended to entity’s friendly_name, you’ll need "manually" rename its friendly_name.
-
-If you have a lot of these, you can use this (somewhat) manual bulk technique
-(Curtesy of 123Taras on the HA forum. See https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396:
+If you don’t want the device name prepended to entity’s friendly_name, you’ll need do one of the following:
+<ul>
+<li>
+Re-discover with "Exclude from Device" turned on,
+</li>
+<li>
+Edit manually friendly names as you add/use objects in your Home Assistant dashboard.
+This is probably the easiest if you only have a few objects exported into Home Assistant.
+</li>
+<li>
+If you have a lot of objects, you can use this (somewhat manual) bulk technique
+(Curtesy of 123Taras on the Home Assistant forum. See https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396:
 
 <ol>
 <li>
 First, "undiscover" all the HomeVision objects you want to change, using the MQTT Plug-in's Discover tab (or your customized discovery plug-in).
 </li>
 <br>
-<li>Copy-paste the following template into the HA Template Editor (Development Tools->Template):
+<li>Copy-paste the following template into the Home Assistant Template Editor (Development Tools->Template):
 <br>
 <pre>
 &#123;% for id in integration_entities('mqtt')
@@ -964,13 +972,12 @@ First, "undiscover" all the HomeVision objects you want to change, using the MQT
 &#123;%- endfor -%&#125;
 &#123;%- endfor -%&#125;
 </pre>
-<br>
 The Template Editor’s results window should now contain a neatly formatted YAML listing of your MQTT-based entities, grouped by device, showing each one’s entity_id and its friendly_name stripped of its device name.
 
 Here's an example of what the template might generate.
 This is a very much condensed extraction from my list (which has around 160 entries).
 Each entity’s desired friendly_name has been stripped of its device name.
-<br>
+<br><br>
 <pre>
  HomeVisionXL Output
 switch.homevisionxl_output_sprinkler_enable:
@@ -999,6 +1006,8 @@ Make any required corrections or deletions, then save the file and restart Home 
 Re-discover your HomeVision objects.
 </li>
 </ol>
+If/when you add new objects to Home Assistant, you will need to add the appropriate lines to your customize section/file.
+
 If you have Tamota devices with the same issue, paste another copy of the above template into the editor with "mqtt" replaced with "tasmota".
 Each Tasmota has it's own device name, plus entities for switches/relays and several sensors.
 You may want to include only those entities that refer to relays/buttons/switches, and not the sensors, since you won't be able to tell sensors from different Tasmotas apart easily.
