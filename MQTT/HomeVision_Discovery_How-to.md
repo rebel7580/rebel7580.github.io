@@ -952,7 +952,7 @@ Copy-paste the following template into the HA Template Editor (Development Tools
 {% for id in integration_entities('mqtt')
   | map('device_id') | unique | reject ('eq', None) | sort %}
 {% set name = device_attr(id, "name_by_user") or device_attr(id, "name") %}
-# {{ name }}
+
 {%- for e in device_entities(id) | sort %}
 {{ e }}:
   friendly_name: {{ state_attr(e, 'friendly_name') | replace(name, '') | trim }}
