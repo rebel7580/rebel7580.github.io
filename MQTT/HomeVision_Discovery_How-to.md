@@ -244,8 +244,8 @@ An MQTT discovery message is sent in the form:
 {id} is a unique id constructed from the MQTT plug-in's client ID and the object's ID. This assures a unique ID even if for some (probably very unlikely) reason another HomeVisionXL MQTT is running in your system.
 <br>
 {payload} is the required Home Assistant definition of elements for the entity.
-<br>
-<br>
+<!-- <h2 id="home-assistant-devices">Home Assistant Devices</h2> -->
+## Home Assistant Devices
 For each object type, MQTT Discovery can create a separate "device" that groups all entities created for that type.
  Device names will be "HomeVision {Object_type}"
 <br>
