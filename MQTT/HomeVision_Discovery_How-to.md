@@ -952,7 +952,9 @@ This is probably the easiest if you only have a few objects exported into Home A
 </li>
 <li>
 If you have a lot of objects, you can use this (somewhat manual) bulk technique
-(Curtesy of 123Taras on the Home Assistant forum. See https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396:
+(Curtesy of 123Taras on the Home Assistant forum. See
+<a href="https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396:">why does mqtt discovery add device name to entity name</a>
+ https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396:)
 
 <ol>
 <li>
@@ -1006,8 +1008,9 @@ Make any required corrections or deletions, then save the file and restart Home 
 Re-discover your HomeVision objects.
 </li>
 </ol>
+<br><br>
 If/when you add new objects to Home Assistant, you will need to add the appropriate lines to your customize section/file.
-
+<br><br>
 If you have Tamota devices with the same issue, paste another copy of the above template into the editor with "mqtt" replaced with "tasmota".
 Each Tasmota has it's own device name, plus entities for switches/relays and several sensors.
 You may want to include only those entities that refer to relays/buttons/switches, and not the sensors, since you won't be able to tell sensors from different Tasmotas apart easily.
