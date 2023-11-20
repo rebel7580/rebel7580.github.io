@@ -975,7 +975,7 @@ If you have a lot of objects, you can use this (somewhat manual) bulk technique
 <a href="https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396">why does mqtt discovery add device name to entity name</a>.
 This method also leaves the device name as part of the entity name.
 
-<br><br><br>
+<br><br>
 <ol>
 <li>
 First, "undiscover" all the HomeVision objects you want to change, using the MQTT Plug-in's <i>Discovery</i> tab (or your customized discovery plug-in).
