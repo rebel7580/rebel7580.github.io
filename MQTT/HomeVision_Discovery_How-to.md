@@ -1001,6 +1001,10 @@ This is a very much condensed extraction from my list (which has around 160 entr
 Each entity’s desired friendly_name has been stripped of its device name.
 <br><br>
 <pre>
+# HomeVisionXL Macro
+switch.homevisionxl_macro_outside_decorations_off:
+  friendly_name: Outside Decorations Off
+
 # HomeVisionXL Output
 switch.homevisionxl_output_sprinkler_enable:
   friendly_name: Sprinkler Enable
@@ -1012,10 +1016,6 @@ binary_sensor.homevisionxl_flag_b_evening_lights_on:
 # HomeVisionXL Hvac
 climate.homevisionxl_hvac_zone1:
   friendly_name: Zone1
-
-# HomeVisionXL Macro
-switch.homevisionxl_macro_outside_decorations_off:
-  friendly_name: Outside Decorations Off
 </pre>
 </li>
 <li>
