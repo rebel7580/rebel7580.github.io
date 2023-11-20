@@ -1034,6 +1034,7 @@ If you have Tamota devices with the same issue, paste another copy of the above 
 Each Tasmota has it's own device name, plus entities for switches/relays and several sensors.
 You may want to include only those entities that refer to relays/buttons/switches, and not the sensors, since you won't be able to tell sensors from different Tasmotas apart easily.
 (E.g., friendly names for all tasmota devices' RSSI entity would be renamed "RSSI".)
+</li>
 </ul>
 <br><br>
 <b>Note:</b>
