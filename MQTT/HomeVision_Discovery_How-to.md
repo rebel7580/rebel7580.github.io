@@ -931,8 +931,8 @@ Sending an MQTT message to
 </pre>
 will trigger the myHADiscovery procedure and re-discover your devices.
 
-<!-- <h2 id="how-device-name-affects-friendly-name">How Device Name Affects Friendly Name</h2> -->
-## How Device Name Affects Friendly Name
+<!-- <h2 id="how-device-name-affects-friendly-name">How Device Name Affects Entity and Friendly Names</h2> -->
+## How Device Name Affects Entity and Friendly Names
 Prepending the device name to the object name to create a friendly name and an entity name is a Home Assistant architectural decision made a long time ago but wasn’t implemented in the Home Assistant MQTT integration, specifically, the MQTT Integration's discovery feature, until version 2023.8.0.
 (Similarly, Tasmota Software, around version 12.0 or so, and the Home Assistant Tasmota integration implemented this as well.)
 
