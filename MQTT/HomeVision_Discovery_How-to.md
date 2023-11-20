@@ -936,24 +936,44 @@ will trigger the myHADiscovery procedure and re-discover your devices.
 Prepending the Device Name to the Entity Name to create a Friendly Name is a Home Assistant architectural decision made a long time ago but wasn’t implemented in the MQTT integration, specifically the MQTT Discovery feature, until version 2023.8.0.
 (Similarly, Tasmota Software, around version 12.0 or so, and the Home Assistant Tasmota integration implemented this as well.)
 
-If you use Devices in your HomeVision discovery, Home Assistant will create Friendly Names in this format:
+If you use Devices in your HomeVision discovery, Home Assistant will create
+Entities in this format:
+
 <pre>
-    {device name} {entity name}
+    {device name}_{object name}
+</pre>
+and Friendly Names in this format:
+
+<pre>
+    {device name} {object name}
+</pre>
+
+Example:
+<pre>
+    entity name:   switch.homevisionxl_macro_outside_lights_off
+
+    friendly name: HomeVisionXL Macro Outside Lights Off
 </pre>
 
 If you don’t want the device name prepended to entity’s friendly_name, you’ll need do one of the following:
 <ul>
 <li>
-Re-discover with "Exclude from Device" turned on,
+Re-discover with "Exclude from Device" turned on in the MQTT Plug-in.
+
+This method removes the device name from both the entity name and friendly name.
 </li>
 <li>
 Manually edit friendly names as you add/use objects in your Home Assistant dashboard.
 This is probably the easiest if you only have a few objects exported into Home Assistant.
+
+This method leaves the device name as part of the entity name.
 </li>
 <li>
 If you have a lot of objects, you can use this (somewhat manual) bulk technique
 (Curtesy of 123Taras on the Home Assistant forum. See
 <a href="https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396">why does mqtt discovery add device name to entity name</a>
+
+This method also leaves the device name as part of the entity name.
 <ol>
 <li>
 First, "undiscover" all the HomeVision objects you want to change, using the MQTT Plug-in's Discover tab (or your customized discovery plug-in).
@@ -1009,6 +1029,11 @@ Re-discover your HomeVision objects.
 <br><br>
 If/when you add new objects to Home Assistant, you will need to add the appropriate lines to your customize section/file.
 <br><br>
+<b>Note:</b>
+In some cases, you may wind up with entity names changing from what you may have had before.
+Carefully check and manually update any instances of affected entities to the new names.
+It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).
+
 If you have Tamota devices with the same issue, paste another copy of the above template into the editor with "mqtt" replaced with "tasmota".
 Each Tasmota has it's own device name, plus entities for switches/relays and several sensors.
 You may want to include only those entities that refer to relays/buttons/switches, and not the sensors, since you won't be able to tell sensors from different Tasmotas apart easily.
