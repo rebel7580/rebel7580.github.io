@@ -975,14 +975,14 @@ If you have a lot of objects, you can use this (somewhat manual) bulk technique
 <a href="https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396">why does mqtt discovery add device name to entity name</a>
 
 This method also leaves the device name as part of the entity name.
-<br>
+<br><br>
 <ol>
 <li>
-First, "undiscover" all the HomeVision objects you want to change, using the MQTT Plug-in's Discover tab (or your customized discovery plug-in).
+First, "undiscover" all the HomeVision objects you want to change, using the MQTT Plug-in's <i>Discovery</i> tab (or your customized discovery plug-in).
 </li>
 <br>
 <li>Copy-paste the following template into the Home Assistant Template Editor (Development Tools->Template):
-<br>
+<br><br>
 <pre>
 &#123;% for id in integration_entities('mqtt')
   | map('device_id') | unique | reject ('eq', None) | sort %&#125;
@@ -1009,11 +1009,11 @@ switch.homevisionxl_output_sprinkler_enable:
 binary_sensor.homevisionxl_flag_b_evening_lights_on:
   friendly_name: Evening Lights On
 
- HomeVisionXL Hvac
+# HomeVisionXL Hvac
 climate.homevisionxl_hvac_zone1:
   friendly_name: Zone1
 
- HomeVisionXL Macro
+# HomeVisionXL Macro
 switch.homevisionxl_macro_outside_decorations_off:
   friendly_name: Outside Decorations Off
 </pre>
@@ -1028,15 +1028,16 @@ Make any required corrections or deletions, then save the file and restart Home 
 Re-discover your HomeVision objects.
 </li>
 </ol>
-<br><br>
+<br>
 If/when you add new objects to Home Assistant, you will need to add the appropriate lines to your customize section/file.
-<br><br>
-<b>Note:</b>
-In some cases, you may wind up with entity names changing from what you may have had before.
-Carefully check and manually update any instances of affected entities to the new names.
-It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).
 <br><br>
 If you have Tamota devices with the same issue, paste another copy of the above template into the editor with "mqtt" replaced with "tasmota".
 Each Tasmota has it's own device name, plus entities for switches/relays and several sensors.
 You may want to include only those entities that refer to relays/buttons/switches, and not the sensors, since you won't be able to tell sensors from different Tasmotas apart easily.
 (E.g., friendly names for all tasmota devices' RSSI entity would be renamed "RSSI".)
+</ul>
+<br><br>
+<b>Note:</b>
+In some cases, you may wind up with entity names changing from what you may have had before.
+Carefully check and manually update any instances of affected entities to the new names.
+It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).
