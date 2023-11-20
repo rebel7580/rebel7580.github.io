@@ -1036,7 +1036,6 @@ You may want to include only those entities that refer to relays/buttons/switche
 (E.g., friendly names for all tasmota devices' RSSI entity would be renamed "RSSI".)
 </li>
 </ul>
-<br><br>
 <b>Note:</b>
 In some cases, you may wind up with entity names changing from what you may have had before.
 Carefully check and manually update any instances of affected entities to the new names.
