@@ -1027,6 +1027,7 @@ Make any required corrections or deletions, then save the file and restart Home 
 Re-discover your HomeVision objects.
 </li>
 </ol>
+<br><br>
 If/when you add new objects to Home Assistant, you will need to add the appropriate lines to your customize section/file.
 <br><br>
 If you have Tamota devices with the same issue, paste another copy of the above template into the editor with "mqtt" replaced with "tasmota".
