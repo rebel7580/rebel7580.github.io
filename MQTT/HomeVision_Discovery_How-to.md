@@ -972,10 +972,10 @@ This method leaves the device name as part of the entity name.
 <li>
 If you have a lot of objects, you can use this (somewhat manual) bulk technique
 (Curtesy of 123Taras on the Home Assistant forum. See
-<a href="https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396">why does mqtt discovery add device name to entity name</a>
-
+<a href="https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396">why does mqtt discovery add device name to entity name</a>.
 This method also leaves the device name as part of the entity name.
-<br><br>
+
+<br><br><br>
 <ol>
 <li>
 First, "undiscover" all the HomeVision objects you want to change, using the MQTT Plug-in's <i>Discovery</i> tab (or your customized discovery plug-in).
@@ -1020,7 +1020,6 @@ switch.homevisionxl_macro_outside_decorations_off:
 </li>
 <li>
 Copy-paste the generated listing into the customize section of your configuration.yaml file. In my case, I have that section in a separate customize.yaml file.
-
 Make any required corrections or deletions, then save the file and restart Home Assistant.
 </li>
 <br>
@@ -1028,7 +1027,6 @@ Make any required corrections or deletions, then save the file and restart Home 
 Re-discover your HomeVision objects.
 </li>
 </ol>
-<br>
 If/when you add new objects to Home Assistant, you will need to add the appropriate lines to your customize section/file.
 <br><br>
 If you have Tamota devices with the same issue, paste another copy of the above template into the editor with "mqtt" replaced with "tasmota".
