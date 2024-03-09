@@ -7,9 +7,9 @@ Plug-in Status:
 
 * MQTT Plug-in
   * MQTT Plug-in Download via [GitHub](https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL)
-  * MQTT Plug-in [Help](/MQTT/MQTT_Client_Plug-in)
   * MQTT Helper Plug-ins for [HomeVision Event Log](/MQTT/MQTT_Event_Log)
-
+  * MQTT Plug-in [Help](/MQTT/MQTT_Client_Plug-in)
+  
 * [Change Log](https://github.com/rebel7580/MQTT-Plug-in-For-HomeVisionXL/wiki/Change-Log)
 
 * MQTT Plug-in & Home Assistant
