@@ -518,26 +518,22 @@ Each text entry field has a drop-down feature to access recent entries:
 <ul>
 <li>
 The drop-down list shows the most recent entries, in reverse order (newest first).
-</li>
-<li>
+</li><li>
 In the Publish section, Topic and Payload entries are saved into their recent lists once the corresponding "Publish" button is clicked.
 
 In the Subscribe section, Topic entries are saved into their recent lists once the corresponding "Subscribe" or "Unsubscribe" buttons are clicked.
-</li>
-<li>
+</li><li>
 Selecting an entry from the list moves it up to the first position.
-</li>
-<li>
+</li><li>
 Manually typing an entry that is identical to one already in the list behaves the same as selecting that entry (i.e., moves it up to the first position).
-<li>
+</li><li>
 Only the most recent 8 entries are available.
 </li>
 <li>
 The recent entry lists are saved when the <i>MQTT Configuration</i> window is closed (clicking "Done"), so they can be accessed again if the <i>MQTT Configuration</i> window is subsequently reopened.
 <br><br>
 However, if the MQTT plug-in is <i>disabled</i> then later re-enabled it, only the newest entry for each field is available, not the whole list.
-</li>
-</ul>
+</li></ul>
 <!-- <h4 id="pubsub-log-area">Pub/Sub Log Area</h4> -->
 #### Pub/Sub Log Area
 <b> Coming Soon!</b>
@@ -546,30 +542,25 @@ The Log sub-window of the Pub/Sub Tab will show results based on publishing and 
 <ul>
 <li>Each of the four Pub/Sub actions are presented in different colors.
 Publish lines also have a gray background.
-</li>
-<li>
+</li><li>
 When a <i>Publish</i> button is pressed, that action is shown in the Log window with either "p1: " or "p2: " prepended to the topic and payload published.
 <br><br>
 When a <i>Subscribe</i> or <i>Unsubscribe</i> button is pressed, that action is shown in the Log window with either "s1: " or "s2: " prepended to the topic subscribed to.
 <br><br>
 When subsequent matching subscribed messaged are received, they are shown as they arrive.
-</li>
-<li>
+</li><li>
 The log stores the most recent 250 lines. Use the scroll bar to view.
 However, when a new line comes in, the section of the log being displayed may shift so that the most recent entry is visible.
 <br><br>
 If there are new entries coming in fast, it may not be possible to select and copy text before the selection scrolls out of the visible window.
 See next item.
-</li>
-<li>
+</li><li>
 Right clicking within the Log window will bring up a menu to "Select All", "Copy" selected lines, "Clear" the entire log or "Freeze" or "Unfreeze" the view.
 "Freeze view" will stop the view from jumping to the new line so selection and copy can be done more easily.
-</li>
-<li>
+</li><li>
 The log will continue to collect new entries while the <i>MQTT Configuration</i> window is open, even if you move to a different tab.
 Log information is <i>deleted</i> when the <i>MQTT Configuration</i> is closed (by clicking "Done").
-</li>
-</ul>
+</li></ul>
 <!-- <h2 id="responding-to-external-device-state-changes">Responding to External Device State Changes</h2> -->
 ## Responding to External Device State Changes
 Refer to <a href="MQTT_Actions_ext.html">External Device Actions</a> for responses to received messages.
