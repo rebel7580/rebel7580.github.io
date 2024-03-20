@@ -538,10 +538,10 @@ However, if the MQTT plug-in is <i>disabled</i> then later re-enabled it, only t
 #### Pub/Sub Log Area
 <b> Coming Soon!</b>
 <br><br>
-The Log sub-window of the Pub/Sub Tab shows results based on publishing and subscribing activity.
+The Log window of the Pub/Sub Tab shows results based on publishing and subscribing activity.
 <ul>
-<li>Each of the four Pub/Sub actions are presented in different colors.
-Publish lines also have a gray background.
+<li>Each of the four Pub/Sub actions are presented in different colors in both the Topic entry fields and the Log window.
+Publish lines in the Log window also have a gray background.
 </li><li>
 When a <i>Publish</i> button is pressed, that action is shown in the Log window with either "p1: " or "p2: " prepended to the topic and payload published.
 <br>
