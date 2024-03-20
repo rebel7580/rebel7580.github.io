@@ -1280,7 +1280,9 @@ will also send the string to the debug plug-in in <i>color</i>, Default: red.
 
 <!-- <h4 id="mqttready">mqttReady</h4> -->
 #### mqttReady
-This procedure is defined by the using plug-in and is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
+This procedure is defined by the <u>using</u> plug-in and is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
+It is used to detect <i>transitions</i> in MQTT status.
+<br><br>
 The using plug-in should make the command public via:
 <pre>
     hvPublic mqttReady
@@ -1325,7 +1327,36 @@ A sample plug-in using <b>mqttComm</b> and <b>mqttReady</b> that does its own su
 #### mqttStatus
 <b> Coming Soon!</b>
 
-This procedure is <i>provided</i> by the MQTT Plug-in and returns current MQTT status.
+This procedure is <i>provided</i> by the MQTT Plug-in and returns <i>current</i> MQTT status. (Compare to <b>mqttReady</b>.)
+
+<pre>
+    mqttStatus <i>blank|state|session|reason|all</i>
+</pre>
+
+<b>mqttStatus</b> takes as an argument: "state", "session", "reason", "all" or no arg - which defaults to "state", the most likely arg to use.
+
+If called with "All" as an argument, it returns a dict with the following keys:
+<dl>
+<dt>state</dt>
+<dd>The new connection state. Possible values are: "connected", or "disconnected". This item is always present in the returned dict.
+</dd>
+<dt>session</dt>
+<dd>Whether the broker has a session present for the client. The value will always be '0' for this version of MQTT.
+</dd>
+<dt>reason</dt>
+<dd>The reason for a disconnection or failed connection.
+Possible values for <i>reason</i> are:
+<pre>
+    0 Normal disconnect
+    1 Unacceptable protocol version
+    2 Identifier rejected
+    3 Server unavailable
+    4 Bad user name or password
+</pre>
+</dd>
+</dl>
+If called with "state", "session", "reason", or no argument (default "state"),
+the procedure returns values as described above for that argument type.
 <!-- <h3 id="mqtt-discovery-for-home-assistant">MQTT Discovery for Home Assistant</h3> -->
 ### MQTT Discovery for Home Assistant
 
