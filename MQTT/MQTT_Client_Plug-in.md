@@ -531,27 +531,27 @@ Only the most recent 8 entries are available.
 </li>
 <li>
 The recent entry lists are saved when the <i>MQTT Configuration</i> window is closed (clicking "Done"), so they can be accessed again if the <i>MQTT Configuration</i> window is subsequently reopened.
-<br><br>
+<br>
 However, if the MQTT plug-in is <i>disabled</i> then later re-enabled it, only the newest entry for each field is available, not the whole list.
 </li></ul>
 <!-- <h4 id="pubsub-log-area">Pub/Sub Log Area</h4> -->
 #### Pub/Sub Log Area
 <b> Coming Soon!</b>
 <br><br>
-The Log sub-window of the Pub/Sub Tab will show results based on publishing and subscribing activity.
+The Log sub-window of the Pub/Sub Tab shows results based on publishing and subscribing activity.
 <ul>
 <li>Each of the four Pub/Sub actions are presented in different colors.
 Publish lines also have a gray background.
 </li><li>
 When a <i>Publish</i> button is pressed, that action is shown in the Log window with either "p1: " or "p2: " prepended to the topic and payload published.
-<br><br>
+<br>
 When a <i>Subscribe</i> or <i>Unsubscribe</i> button is pressed, that action is shown in the Log window with either "s1: " or "s2: " prepended to the topic subscribed to.
-<br><br>
+<br>
 When subsequent matching subscribed messaged are received, they are shown as they arrive.
 </li><li>
 The log stores the most recent 250 lines. Use the scroll bar to view.
 However, when a new line comes in, the section of the log being displayed may shift so that the most recent entry is visible.
-<br><br>
+<br>
 If there are new entries coming in fast, it may not be possible to select and copy text before the selection scrolls out of the visible window.
 See next item.
 </li><li>
