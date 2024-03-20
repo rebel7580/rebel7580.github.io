@@ -77,16 +77,16 @@ PUBLISHES a <i>status</i> topic when it changes state.
 
 The way the MQTT plug-in handles internal objects and external devices can be confusing. In fact, from an MQTT perspective, both internal objects and external devices are handled the same. They are both controlled by command (cmnd) topics and report status via status (stat) topics.
 
-Internal devices are "embedded" in HomeVision. So, from the MQTT perspective, you control them (via MQTT) with an incoming cmnd message, and they will report their status via an outgoing stat message.
+Internal devices are "embedded" in HomeVision. So, from the MQTT perspective, they are controlled (via MQTT) with an incoming cmnd message, and they will report their status via an outgoing stat message.
 But that's exactly the same as an external device: control them (via MQTT) with a cmnd message, and they will report their status via a stat message.
 
 <i>A cmnd message is used to control an internal object or external device; a stat message is used to track an internal object's or external device's state.</i>
 
 A confusing part is that the <i>FLOW</i> of cmnd/stat messages with respect to the MQTT plug-in is reversed for the two types, simply because of where they reside in the architecture of the system.
 
-Another confusing part is that for external devices, you want Homevision to potentially do something when it reports its status. Hence the plug-in responds to stat status topics. This looks a lot like it is doing a cmnd type of work, but in fact it is no different from any other home automation system. It is just "responding" to the external device's change in status. 
+Another confusing part is that for external devices, it may be desirable for Homevision to do something when it reports its status. Hence the plug-in responds to stat status topics. This looks a lot like it is doing a cmnd type of work, but in fact it is no different from any other home automation system. It is just "responding" to the external device's change in status. 
 
-For example, suppose you have an external light switch (like a Tasmotized Sonoff wall switch), and you use both HomeVision and Home Assistant. When that switch is turned on, it reports that fact with a stat message, and both systems may respond: HomeVision may take an action, like running a macro, and Home Assistant may show the light is on in the GUI, or even run an automation.
+For example, suppose there is an external light switch (like a Tasmotized Sonoff wall switch), and  both HomeVision and Home Assistant. When that switch is turned on, it reports that fact with a stat message, and both systems may respond: HomeVision may take an action, like running a macro, and Home Assistant may show the light is on in the GUI, or even run an automation.
 
 <p align="center">
 <img alt="HV-MQTT" src="HV-MQTT.gif">
@@ -383,7 +383,7 @@ Variables always show a "-" for the state.
 X-10 and Light objects show their level in percent, while Variables show their value.
 </li><li>Rows can be sorted in ascending or descending order by <i>ID</i>, <i>Object Name</i> or <i>Topic</i> by clicking on the column header.
 When sorting by ID, object types are always grouped together and sorted within those groups by ID.
-</li><li>At the bottom of the screen, check the Object Type(s) you want to enter. Checking object types here simply limits the Object drop-down list on the Configure New screen to make it easier to find the object you're looking to configure. It doesn't affect any objects already configured.
+</li><li>At the bottom of the window, check the Object Type(s) desired. Checking object types here simply limits the Object drop-down list on the Configure New window to make it easier to find the object to configure. It doesn't affect any objects already configured.
 </li></ul>
 <i>New/Edit/Delete Internal Objects</i>
 
@@ -482,8 +482,8 @@ However, responses to this command are determined by the affected objects' setti
 
 <!-- <h3 id="Pub-Sub Tab">Pub/Sub Tab</h3> -->
 ### Pub/Sub Tab
-This tab allows you to enter up to two topic/payload pairs and publish them
-and to subscribe to two topics.
+This tab allows entry and publication of two topic/payload pairs and 
+entry and subscription to two topics.
 
 This can be useful for testing or accessing/monitoring other devices.
 
@@ -500,7 +500,7 @@ The most useful reason for setting retain to 1 (checking the box) would be to cl
 Publishing a topic with a empty payload and retain set to 1 should clear any retained messages for that topic in the broker.
 
 When receiving a message that matches one of the subscribed topics,
-the topic and payload will appear in the debug plug-in in blue text.
+the topic and payload will appear in the Log sub-window (See below) and in the debug plug-in in blue text if the debug plug-in is enabled.
 
 The "Unsubscribe" button will manually unsubscribe its associated topic.
 
@@ -510,10 +510,58 @@ To avoid multiple "orphan" subscriptions, at most two subscriptions are allowed:
 Changing and Subscribing a topic entry after the previous entry was Subscribed
 will result in the previous entry being unsubscribed before the new one is subscribed.
 </li><li>
-When the "MQTT Configuration" Screen is closed, all subscribed topics are unsubscribed automatically.
+When the <i>MQTT Configuration</i> window is closed, all subscribed topics are unsubscribed automatically.
 If reentering the Pub/Sub Tab, each subscribed topic must be explicitly "Subscribed" again.
 </li></ul>
 
+Each text entry field has a drop-down feature to access recent entries:
+<ul>
+<li>
+The drop-down list shows the most recent entries, in reverse order (newest first).
+</li>
+<li>
+In the Publish section, Topic and Payload entries are saved into their recent lists once the corresponding "Publish" button is clicked.
+
+In the Subscribe section, Topic entries are saved into their recent lists once the corresponding "Subscribe" or "Unsubscribe" buttons are clicked.
+<li>
+Selecting an entry from the list moves it up to the first position.
+</li>
+<li>
+Manually typing an entry that is identical to one already in the list behaves the same as selecting that entry (i.e., moves it up to the first position).
+<li>
+Only the most recent 8 entries are available.
+</li>
+<li>
+The recent entry lists are saved when the <i>MQTT Configuration</i> window is closed (clicking "Done"), so they can be accessed again if the <i>MQTT Configuration</i> window is subsequently reopened.
+
+However, if the MQTT plug-in is <i>disabled</i> then later re-enabled it, only the newest entry for each field is available, not the whole list.
+</li>
+</ul>
+<!-- <h4 id="pubsub-log-area">Pub/Sub Log Area</h4> -->
+#### Pub/Sub Log Area
+<b> Coming Soon!</b>
+<br><br>
+The Log sub-window of the Pub/Sub Tab will show results based on publishing and subscribing activity.
+<ul>
+Each of the four Pub/Sub actions are presented in different colors.
+Publish lines also have a gray background.
+<li>
+When a <i>Publish</i> button is pressed, that action is shown in the Log window with either "p1: " or "p2: " prepended to the topic and payload published.
+</li>
+When a <i>Subscribe</i> or <i>Unsubscribe</i> button is pressed, that action is shown in the Log window with either "s1: " or "s2: " prepended to the topic and payload published.
+<br><br>
+When subsequent matching subscribed messaged are received, they are shown as they arrive.
+<li>
+The log stores the most recent 250 lines. Use the scroll bar to view.
+However, when a new line comes in, the section of the log being displayed may shift so that the most recent entry is visible.
+If there are new entries coming in fast, it may not be possible to select and copy text before the selection scrolls out of the visible window.
+</li>
+<li>
+Right clicking within the Log window will bring up a menu to "Select All", "Copy" selected lines, or "Clear" the entire log.
+</li>
+<li>
+The log will continue to collect new entries while the <i>MQTT Configuration</i> window is open, evne if you move to a different tab.
+Log information is <i>deleted</i> when the <i>MQTT Configuration</i> is closed (by clicking "Done").</ul>
 <!-- <h2 id="responding-to-external-device-state-changes">Responding to External Device State Changes</h2> -->
 ## Responding to External Device State Changes
 Refer to <a href="MQTT_Actions_ext.html">External Device Actions</a> for responses to received messages.
@@ -661,6 +709,12 @@ Backslashes in the payload portion should be "escaped" by another backslash (e.g
 </ul>
 <!-- <h3 id="netio">NetIO</h3> -->
 ### NetIO
+
+<b><i>
+NOTE: While the NetIO application is no longer supported by its developers,
+it still works and the NetIO plug-in may still be useful to those still using the app.
+</i></b>
+<br><br>
 MQTT devices can be controlled via NetIO using a "netioaction" command in the NetIO application.
 All forms of the serial commands are available for NetIO as well.
 <br>
@@ -971,19 +1025,20 @@ Note: <i>roku</i> is a custom plug-in. See it
 <a href="https://rebel7580.github.io/Roku/Roku_index">Here</a>.
 <!-- <h4 id="homevision-action-topic">Homevision Action Topic</h4> -->
 #### Homevision Action Topic
-This feature allows you to send a set of commands just like those allowed in an external device <i>trigger</i>.
+This Topic can be used to send a set of commands just like those allowed in an external device <i>trigger</i>.
 Since this method is not supported in MQTT discovery, it would need to be used in configuration.yaml or in a GUI-based construction, like a button.
 
-<i>However, it is powerful enough that, in some cases, using this method could eliminate the need for "virtual" external devices and the corresponding manual configuration.yaml changes!</i>
+<i>However, it is powerful enough that, in some cases, using this method could eliminate the need for "virtual" external devices and the corresponding manual configuration.yaml changes if using Home Assistant!</i>
 
-It's strength is that you can do complex actions without needing to add a "virtual" external device.
-For example, you can do the previous external device trigger like this:
+For example, the previous external device trigger can be done like this:
 <pre>
-    cmnd/homevision/action  "action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;"
+    Topic:    cmnd/homevision/action
+    Payload:  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
 </pre>
 In response to an action command, the actions will be returned in a status message:
 <pre>
-    stat/homevision/action  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
+    Topic:    stat/homevision/action
+    Payload:  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
 </pre>
 This message may be returned before all the actions in the trigger are completed, especially if the trigger contains "waits".
 
@@ -1223,8 +1278,7 @@ will also send the string to the debug plug-in in <i>color</i>, Default: red.
 
 <!-- <h4 id="mqttready">mqttReady</h4> -->
 #### mqttReady
-
-This procedure is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
+This procedure is defined by the using plug-in and is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
 The using plug-in should make the command public via:
 <pre>
     hvPublic mqttReady
@@ -1265,7 +1319,11 @@ Typical use:
 </pre>
 
 A sample plug-in using <b>mqttComm</b> and <b>mqttReady</b> that does its own subscribing and needs no entries in the MQTT Plug-in's device lists can be downloaded from <a href="https://github.com/rebel7580/rebel7580.github.io/blob/main/MQTT/sample.hap">here</a>.
+<!-- <h4 id="mqttstatus">mqttStatus</h4> -->
+#### mqttStatus
+<b> Coming Soon!</b>
 
+This procedure is <i>provided</i> by the MQTT Plug-in and returns current MQTT status.
 <!-- <h3 id="mqtt-discovery-for-home-assistant">MQTT Discovery for Home Assistant</h3> -->
 ### MQTT Discovery for Home Assistant
 
