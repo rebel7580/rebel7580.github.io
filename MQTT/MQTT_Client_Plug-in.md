@@ -547,7 +547,7 @@ When a <i>Publish</i> button is pressed, that action is shown in the Log window 
 <br>
 When a <i>Subscribe</i> or <i>Unsubscribe</i> button is pressed, that action is shown in the Log window with either "s1: " or "s2: " prepended to the topic subscribed to.
 <br>
-When subsequent matching subscribed messaged are received, they are shown as they arrive.
+When subsequent matching subscribed messages are received, they are shown as they arrive.
 </li><li>
 The log stores the most recent 250 lines. Use the scroll bar to view.
 However, when a new line comes in, the section of the log being displayed may shift so that the most recent entry is visible.
@@ -555,8 +555,11 @@ However, when a new line comes in, the section of the log being displayed may sh
 If there are new entries coming in fast, it may not be possible to select and copy text before the selection scrolls out of the visible window.
 See next item.
 </li><li>
-Right clicking within the Log window will bring up a menu to "Select All", "Copy" selected lines, "Clear" the entire log or "Freeze" or "Unfreeze" the view.
-"Freeze view" will stop the view from jumping to the new line so selection and copy can be done more easily.
+Right clicking within the Log window will bring up a menu to "Select All", "Copy" selected lines to clipboard, "Clear" the entire log or "Freeze" or "Unfreeze" the view.
+"Freeze view" will stop the view from jumping to the new line so selection and copy or just viewing older entries can be done more easily.
+</li><li>
+A subset of lines can be selected by dragging the cursor through the desired text.
+Right clicking then "Copy" will put the selection on the clipboard.
 </li><li>
 The log will continue to collect new entries while the <i>MQTT Configuration</i> window is open, even if you move to a different tab.
 Log information is <i>deleted</i> when the <i>MQTT Configuration</i> is closed (by clicking "Done").
