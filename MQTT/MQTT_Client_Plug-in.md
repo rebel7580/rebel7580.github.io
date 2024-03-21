@@ -1366,7 +1366,7 @@ Typical use:
         # cancel any after command if got here via mqttReady
         after cancel subscribe
         
-        mqttComm $type &gt;sample_topic&lt; samplecb
+        mqttComm $type &lt;sample_topic&gt; samplecb
         ...
     }
     
