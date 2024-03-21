@@ -7,12 +7,19 @@ hvImport debug
 hvImport action
 
 hvImport mqttComm
-
+hvImport mqttStatus
+    
 # Subscribe to all topics that this plug-in is interested in.
 proc subscribe {{type sub}} {
 
     debug "subscribe: $type" blue
     if {$type ni {sub unsub}} {return}
+    debug [mqttStatus] red
+    if {[mqttStatus] ne "connected"} {
+        debug "MQTT not connected" red
+        after 5000 subscribe
+        return
+    }
 
     # Single "standard" topic subscription:
     mqttComm $type <sample_topic> samplecb
@@ -61,12 +68,7 @@ proc mqttReady {status} {
 
 # Init process
 proc init {} {
-
-    # Init some stuff
-
-    # Subscribe
     subscribe
-
 
     # For test demonstration!
     # Normally, this wouldn't be here.

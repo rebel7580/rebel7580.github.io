@@ -1308,21 +1308,7 @@ Reasons "1", "2", and "4" are fatal and need to be corrected before a connection
 <br>
 <br>
 To use, define a <b>mqttReady</b> procedure to respond to the connected and/or disconnected states.
-Typical use:
-<pre>
-    hvPublic mqttReady
-    proc mqttReady {status} {
-    
-        if {[dict get $status state] eq "connected"} {
-            # Code to run when MQTT is ready.
-            # Typically a "subscribe" or "init" procedure.
-        } else {
-            # Code to run when MQTT is not ready.
-        }
-    }
-</pre>
 
-A sample plug-in using <b>mqttComm</b> and <b>mqttReady</b> that does its own subscribing and needs no entries in the MQTT Plug-in's device lists can be downloaded from <a href="https://github.com/rebel7580/rebel7580.github.io/blob/main/MQTT/sample.hap">here</a>.
 <!-- <h4 id="mqttstatus">mqttStatus</h4> -->
 #### mqttStatus
 <b> Coming Soon!</b>
@@ -1357,6 +1343,44 @@ Possible values for <i>reason</i> are:
 </dl>
 If called with "state", "session", "reason", or no argument (default "state"),
 the procedure returns values as described above for that argument type.
+<!-- <h4 id="mqttstatus_and_mqttReady_usage">mqttStatus and mqttReady Usage</h4> -->
+#### mqttStatus and mqttReady Usage
+
+Typical use:
+<pre>
+    hvImport debug
+    
+    hvImport mqttStatus
+    proc subscribe {{type sub}} {
+
+        if {$type ni {sub unsub}} {return}
+        if {[mqttStatus] ne "connected"} {
+           debug "MQTT not connected" red
+           after 5000 subscribe
+           return
+        }
+        mqttComm $type <sample_topic> samplecb
+        ...
+    }
+    
+    hvPublic mqttReady
+    proc mqttReady {status} {
+        if {[dict get $status state] eq "connected"} {
+            # Code to run when MQTT is ready.
+            # Typically a "subscribe" or "init" procedure.
+            subscribe
+        } else {
+            # Code to run when MQTT is not ready.
+        }
+    }
+
+    hvEventHook ready [list subscribe sub]
+    hvEventHook exit [list subscribe unsub]
+</pre>
+
+A sample plug-in using <b>mqttComm</b> <b>mqttReady</b> and <b>mqttReady</b> that does its own subscribing and needs no entries in the MQTT Plug-in's device lists can be downloaded from <a href="https://github.com/rebel7580/rebel7580.github.io/blob/main/MQTT/mqttsample.hap">here</a>.
+
+
 <!-- <h3 id="mqtt-discovery-for-home-assistant">MQTT Discovery for Home Assistant</h3> -->
 ### MQTT Discovery for Home Assistant
 
