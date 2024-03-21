@@ -1283,6 +1283,8 @@ will also send the string to the debug plug-in in <i>color</i>, Default: red.
 This procedure is defined by the <u>using</u> plug-in and is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
 It is used to detect <i>transitions</i> in MQTT status.
 <br><br>
+Using this procedure is only necessary to make sure the plug-in's subscriptions are re-done automatically in the case the connection to the broker going down and then recovers (with a {state connected} return).
+<br><br>
 The using plug-in should make the command public via:
 <pre>
     hvPublic mqttReady
@@ -1301,7 +1303,6 @@ Possible values for <i>reason</i> are:
     4 Bad user name or password
 </pre>
 
-Using this procedure is only necessary to make sure the plug-in's subscriptions are re-done automatically in the case the connection to the broker going down and then recovers (with a {state connected} return).
 <br>
 <br>
 Reasons "1", "2", and "4" are fatal and need to be corrected before a connection can be made.
@@ -1314,6 +1315,9 @@ To use, define a <b>mqttReady</b> procedure to respond to the connected and/or d
 <b> Coming Soon!</b>
 
 This procedure is <i>provided</i> by the MQTT Plug-in and returns <i>current</i> MQTT status. (Compare to <b>mqttReady</b>.)
+<br>
+<br>
+Its use is to make sure MQTT is ready before subscribing to topics.
 
 <pre>
     mqttStatus <i>blank|state|session|reason|all</i>
