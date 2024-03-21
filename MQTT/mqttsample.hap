@@ -20,7 +20,9 @@ proc subscribe {{type sub}} {
         after 5000 subscribe
         return
     }
-
+    # cancel any after command if got here via mqttReady
+    after cancel subscribe
+    
     # Single "standard" topic subscription:
     mqttComm $type <sample_topic> samplecb
 
