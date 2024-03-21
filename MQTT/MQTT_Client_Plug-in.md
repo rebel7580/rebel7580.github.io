@@ -1359,7 +1359,7 @@ Typical use:
            after 5000 subscribe
            return
         }
-        mqttComm $type <sample_topic> samplecb
+        mqttComm $type &gt;sample_topic&lt; samplecb
         ...
     }
     
