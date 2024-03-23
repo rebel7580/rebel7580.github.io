@@ -504,15 +504,12 @@ the topic and payload will appear in the Log sub-window (See below) and in the d
 
 The "Unsubscribe" button will manually unsubscribe its associated topic.
 
-To avoid multiple "orphan" subscriptions, at most two subscriptions are allowed:
-<ul>
-<li>
 Changing and Subscribing a topic entry after the previous entry was Subscribed
-will result in the previous entry being unsubscribed before the new one is subscribed.
-</li><li>
-When the <i>MQTT Configuration</i> window is closed, all subscribed topics are unsubscribed automatically.
-If reentering the Pub/Sub Tab, each subscribed topic must be explicitly "Subscribed" again.
-</li></ul>
+will result in the previous entry being automatically unsubscribed before the new one is subscribed.
+
+When the <i>MQTT Configuration</i> window is closed, subscribed topics remain subscribed.
+While obviously not showing up in the Log window, incoming subscribed messages will continue to show in the debug window, if enabled.
+
 
 Each text entry field has a drop-down feature to access recent entries:
 <ul>
