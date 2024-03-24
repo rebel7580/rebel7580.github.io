@@ -96,7 +96,7 @@ For example, suppose there is an external light switch (like a Tasmotized Sonoff
 <!-- <h2 id="supported-mqtt-topics">Supported MQTT Topics</h2> -->
 ## Supported MQTT Topics
 
-<!-- <h3 id="standard-and-custom-topics">UStandard and Custom Topics</h3> -->
+<!-- <h3 id="standard-and-custom-topics">Standard and Custom Topics</h3> -->
 ### Standard and Custom Topics
 
 Topics can be assigned to devices either as abbreviated topics (called "Standard" topics in this help) or full topics.
@@ -482,50 +482,45 @@ However, responses to this command are determined by the affected objects' setti
 
 <!-- <h3 id="Pub-Sub Tab">Pub/Sub Tab</h3> -->
 ### Pub/Sub Tab
-This tab allows entry and publication of two topic/payload pairs and 
+The Pub/Sub Tab allows entry and publication of two topic/payload pairs and 
 entry and subscription to two topics.
-
-This can be useful for testing or accessing/monitoring other devices.
-
+It can be useful for testing or accessing/monitoring other devices.
+<br><br>
 Standard or custom topics are allowed.
 (See <a href="#standard-and-custom-topics">Standard and Custom Topics</a> for details.)
 Subscription topics can make use of MQTT wildcards "#" and "+".
 No validation is done on topics.
 If a topic is not formed correctly, it simply won't work.
-
+<br><br>
 A payload is not required.
-
+<br><br>
 The unlabled checkbox before the "Publish" button sets the retain flag to 1 for the message.
 It should rarely be needed. 
 The most useful reason for setting retain to 1 (checking the box) would be to clear a retained message in the broker.
 Publishing a topic with a empty payload and retain set to 1 should clear any retained messages for that topic in the broker.
-
+<br><br>
 When receiving a message that matches one of the subscribed topics,
 the topic and payload will appear in the Log sub-window (See below) and in the debug plug-in in blue text if the debug plug-in is enabled.
-
+<br><br>
 The "Unsubscribe" button will manually unsubscribe its associated topic.
-
+<br><br>
 Changing and Subscribing a topic entry after the previous entry was Subscribed
 will result in the previous entry being automatically unsubscribed before the new one is subscribed.
-
+<br><br>
 When the <i>MQTT Configuration</i> window is closed, subscribed topics remain subscribed.
 While obviously not showing up in the Log window, incoming subscribed messages will continue to show in the debug window, if enabled.
-
-
+<br><br>
 Each text entry field has a drop-down feature to access recent entries:
 <ul>
 <li>
-The drop-down list shows the most recent entries, in reverse order (newest first).
+The drop-down list shows (up to) the 8 most recent entries, in reverse order (newest first).
 </li><li>
 In the Publish section, Topic and Payload entries are saved into their recent lists once the corresponding "Publish" button is clicked.
-
 In the Subscribe section, Topic entries are saved into their recent lists once the corresponding "Subscribe" or "Unsubscribe" buttons are clicked.
 </li><li>
 Selecting an entry from the list moves it up to the first position.
 </li><li>
 Manually typing an entry that is identical to one already in the list behaves the same as selecting that entry (i.e., moves it up to the first position).
-</li><li>
-Only the most recent 8 entries are available.
 </li>
 <li>
 The recent entry lists are saved when the <i>MQTT Configuration</i> window is closed (clicking "Done"), so they can be accessed again if the <i>MQTT Configuration</i> window is subsequently reopened.
