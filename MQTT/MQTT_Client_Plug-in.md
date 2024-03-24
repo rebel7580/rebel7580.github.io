@@ -488,6 +488,7 @@ entry and subscription to two topics.
 This can be useful for testing or accessing/monitoring other devices.
 
 Standard or custom topics are allowed.
+(See <a href="#standard-and-custom-topics">Standard and Custom Topics</a> for details.)
 Subscription topics can make use of MQTT wildcards "#" and "+".
 No validation is done on topics.
 If a topic is not formed correctly, it simply won't work.
