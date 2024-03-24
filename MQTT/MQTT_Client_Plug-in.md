@@ -485,31 +485,39 @@ However, responses to this command are determined by the affected objects' setti
 The Pub/Sub Tab allows entry and publication of two topic/payload pairs and 
 entry and subscription to two topics.
 It can be useful for testing or accessing/monitoring other devices.
-<br><br>
+<br>
+<br>
 Standard or custom topics are allowed.
 (See <a href="#standard-and-custom-topics">Standard and Custom Topics</a> for details.)
 Subscription topics can make use of MQTT wildcards "#" and "+".
 No validation is done on topics.
 If a topic is not formed correctly, it simply won't work.
-<br><br>
+<br>
+<br>
 A payload is not required.
-<br><br>
+<br>
+<br>
 The unlabled checkbox before the "Publish" button sets the retain flag to 1 for the message.
 It should rarely be needed. 
 The most useful reason for setting retain to 1 (checking the box) would be to clear a retained message in the broker.
 Publishing a topic with a empty payload and retain set to 1 should clear any retained messages for that topic in the broker.
-<br><br>
+<br>
+<br>
 When receiving a message that matches one of the subscribed topics,
 the topic and payload will appear in the Log sub-window (See below) and in the debug plug-in in blue text if the debug plug-in is enabled.
-<br><br>
+<br>
+<br>
 The "Unsubscribe" button will manually unsubscribe its associated topic.
-<br><br>
+<br>
+<br>
 Changing and Subscribing a topic entry after the previous entry was Subscribed
 will result in the previous entry being automatically unsubscribed before the new one is subscribed.
-<br><br>
+<br>
+<br>
 When the <i>MQTT Configuration</i> window is closed, subscribed topics remain subscribed.
 While obviously not showing up in the Log window, incoming subscribed messages will continue to show in the debug window, if enabled.
-<br><br>
+<br>
+<br>
 Each text entry field has a drop-down feature to access recent entries:
 <ul>
 <li>
@@ -529,8 +537,6 @@ However, if the MQTT plug-in is <i>disabled</i> then later re-enabled it, only t
 </li></ul>
 <!-- <h4 id="pubsub-log-area">Pub/Sub Log Area</h4> -->
 #### Pub/Sub Log Area
-<b> Coming Soon!</b>
-<br><br>
 The Log window of the Pub/Sub Tab shows results based on publishing and subscribing activity.
 <ul>
 <li>Each of the four Pub/Sub actions are presented in different colors in both the Topic entry fields and the Log window.
@@ -710,7 +716,8 @@ Backslashes in the payload portion should be "escaped" by another backslash (e.g
 NOTE: While the NetIO application is no longer supported by its developers,
 it still works and the NetIO plug-in may still be useful to those still using the app.
 </i></b>
-<br><br>
+<br>
+<br>
 MQTT devices can be controlled via NetIO using a "netioaction" command in the NetIO application.
 All forms of the serial commands are available for NetIO as well.
 <br>
@@ -1276,9 +1283,11 @@ will also send the string to the debug plug-in in <i>color</i>, Default: red.
 #### mqttReady
 This procedure is defined by the <u>using</u> plug-in and is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
 It is used to detect <i>transitions</i> in MQTT status.
-<br><br>
+<br>
+<br>
 Using this procedure is only necessary to make sure the plug-in's subscriptions are re-done automatically in the case the connection to the broker going down and then recovers (with a {state connected} return).
-<br><br>
+<br>
+<br>
 The using plug-in should make the command public via:
 <pre>
     hvPublic mqttReady
@@ -1306,8 +1315,6 @@ To use, define a <b>mqttReady</b> procedure to respond to the connected and/or d
 
 <!-- <h4 id="mqttstatus">mqttStatus</h4> -->
 #### mqttStatus
-<b> Coming Soon!</b>
-
 This procedure is <i>provided</i> by the MQTT Plug-in and returns <i>current</i> MQTT status. (Compare to <b>mqttReady</b>.)
 <br>
 <br>
