@@ -487,7 +487,7 @@ entry and subscription to two topics.
 
 This can be useful for testing or accessing/monitoring other devices.
 
-Full topics are required here (no "standard" topic forms).
+Standard or custom topics are allowed.
 Subscription topics can make use of MQTT wildcards "#" and "+".
 No validation is done on topics.
 If a topic is not formed correctly, it simply won't work.
@@ -554,6 +554,7 @@ See next item.
 </li><li>
 Right clicking within the Log window will bring up a menu to "Select All", "Copy" selected lines to clipboard, "Clear" the entire log or "Freeze" or "Unfreeze" the view.
 "Freeze view" will stop the view from jumping to the new line so selection and copy or just viewing older entries can be done more easily.
+The log will continue to collect any new entries.
 </li><li>
 A subset of lines can be selected by dragging the cursor through the desired text.
 Right clicking then "Copy" will put the selection on the clipboard.
