@@ -546,7 +546,10 @@ When a <i>Publish</i> button is pressed, that action is shown in the Log window 
 <br>
 When a <i>Subscribe</i> or <i>Unsubscribe</i> button is pressed, that action is shown in the Log window with either "s1: " or "s2: " prepended to the topic subscribed to.
 <br>
-When subsequent matching subscribed messages are received, they are shown as they arrive.
+When subsequent matching subscribed messages are received, they are shown as they arrive with the appropriate "s1: " or "s2: ".
+</li><li>
+If "Timestamp?" is checked, a timestamp is prepended according to the "Format".
+The default is "%d-%T", which translates to "dd-hh:mm:ss". Other formats are possible using the TCL "clock" formats here: <a href="https://www.tcl.tk/man/tcl8.6/TclCmd/clock.htm#M26">https://www.tcl.tk/man/tcl8.6/TclCmd/clock.htm#M26</a>
 </li><li>
 The log stores the most recent 250 lines. Use the scroll bar to view.
 However, when a new line comes in, the section of the log being displayed may shift so that the most recent entry is visible.
