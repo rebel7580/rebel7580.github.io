@@ -786,7 +786,7 @@ Sometimes a topic may not fit the standard forms supported by the plug-in, or th
 may not be powerful enough.
 There are four methods that provide more advanced processing. The first is a received topic/payload; the next two are functions of how an external device is configured in the MQTT Plug-in; the fourth moves ALL activity into a plug-in (especially subscribing to topics) so no external device need be configured in the MQTT plug-in:
 <ul>
-<li>Homevision Topic - Receive an MQTT command with a payload that contains a trigger string.
+<li>Homevision Action Topic - Receive an MQTT command with a payload that contains a trigger string.
 </li><li>Triggers - Send trigger strings to HomeVisionXL or plug-ins.
 </li><li>Custom commands - Create a plug-in and define a command to run when a topic is received;
 </li><li>Independant Plug-in - Relies on subscriptions in the plug-in instead of the "Custom Commands" method, where the MQTT Plug-in does the subscribing. See "mqttComm" section for details.
@@ -794,7 +794,7 @@ There are four methods that provide more advanced processing. The first is a rec
 <!-- <h4 id="homevision-action-topic">Homevision Action Topic</h4> -->
 #### Homevision Action Topic
 This Topic can be used to send a set of commands just like those allowed in an external device <i>trigger</i>.
-Since this method is not supported in MQTT discovery, it would need to be used in configuration.yaml or in a GUI-based construction, like a button.
+Since this method is not supported in Home Assistant's MQTT discovery, it would need to be used in configuration.yaml or in a GUI-based construction, like a button.
 
 <i>However, it is powerful enough that, in some cases, using this method could eliminate the need for "virtual" external devices and the corresponding manual configuration.yaml changes if using Home Assistant!</i>
 
@@ -810,7 +810,7 @@ In response to an action command, the actions will be returned in a status messa
 </pre>
 This message may be returned before all the actions in the trigger are completed, especially if the trigger contains "waits".
 
-% substitutions are NOT performed on trigger strings using this method.
+Trigger % substitutions are NOT performed on the payload using this method.
 
 <!-- <h4 id="triggers">Triggers</h4> -->
 #### Triggers
