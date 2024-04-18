@@ -791,6 +791,26 @@ There are four methods that provide more advanced processing. The first is a rec
 </li><li>Custom commands - Create a plug-in and define a command to run when a topic is received;
 </li><li>Independant Plug-in - Relies on subscriptions in the plug-in instead of the "Custom Commands" method, where the MQTT Plug-in does the subscribing. See "mqttComm" section for details.
 </li></ul>
+<!-- <h4 id="homevision-action-topic">Homevision Action Topic</h4> -->
+#### Homevision Action Topic
+This Topic can be used to send a set of commands just like those allowed in an external device <i>trigger</i>.
+Since this method is not supported in MQTT discovery, it would need to be used in configuration.yaml or in a GUI-based construction, like a button.
+
+<i>However, it is powerful enough that, in some cases, using this method could eliminate the need for "virtual" external devices and the corresponding manual configuration.yaml changes if using Home Assistant!</i>
+
+For example, the previous external device trigger can be done like this:
+<pre>
+    Topic:    cmnd/homevision/action
+    Payload:  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
+</pre>
+In response to an action command, the actions will be returned in a status message:
+<pre>
+    Topic:    stat/homevision/action
+    Payload:  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
+</pre>
+This message may be returned before all the actions in the trigger are completed, especially if the trigger contains "waits".
+
+% substitutions are NOT performed on trigger strings using this method.
 
 <!-- <h4 id="triggers">Triggers</h4> -->
 #### Triggers
@@ -910,26 +930,6 @@ Off Trigger:
 </pre>
 Note: <i>roku</i> is a custom plug-in. See it
 <a href="https://rebel7580.github.io/Roku/Roku_index">Here</a>.
-<!-- <h4 id="homevision-action-topic">Homevision Action Topic</h4> -->
-#### Homevision Action Topic
-This Topic can be used to send a set of commands just like those allowed in an external device <i>trigger</i>.
-Since this method is not supported in MQTT discovery, it would need to be used in configuration.yaml or in a GUI-based construction, like a button.
-
-<i>However, it is powerful enough that, in some cases, using this method could eliminate the need for "virtual" external devices and the corresponding manual configuration.yaml changes if using Home Assistant!</i>
-
-For example, the previous external device trigger can be done like this:
-<pre>
-    Topic:    cmnd/homevision/action
-    Payload:  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
-</pre>
-In response to an action command, the actions will be returned in a status message:
-<pre>
-    Topic:    stat/homevision/action
-    Payload:  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
-</pre>
-This message may be returned before all the actions in the trigger are completed, especially if the trigger contains "waits".
-
-% substitutions are NOT performed on trigger strings using this method.
 <!-- <h4 id="custom-commands">Custom Commands</h4> -->
 #### Custom Commands
 To have custom processing of received messages for a topic,
