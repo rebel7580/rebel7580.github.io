@@ -319,7 +319,7 @@ To help with this, a new device will have "<>" already inserted in the topic fie
 </li><li>A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
 Use of wildcards should adhere to the MQTT standards.
 However, care should be taken when using them. It's probably a bad idea to have "#" as a topic, as it will subscribe to EVERYTHING!
-Device <i>Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
+</li><li>Device <i>Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
 If the topic is simple and descriptive, it can be copied to the <i>Name</i> field.
 If the topic is multi-level, <i>Name</i> must be simpler.
 <i>Name</i> cannot contain "<", ">", "/" or spaces.
