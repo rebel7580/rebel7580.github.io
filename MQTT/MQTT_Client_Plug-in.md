@@ -784,133 +784,14 @@ Double-quotes are not allowed due to the way NetIO handles arguments of the neti
 ### Custom Processing of Received Messages
 Sometimes a topic may not fit the standard forms supported by the plug-in, or the actions taken (setting flags, variables and running macros)
 may not be powerful enough.
-There are three methods that provide more advanced processing. The first two are functions of how an external device is configured in the MQTT Plug-in; the third is a received topic/payload:
-<ul><li>Custom commands - Create a plug-in and define a command to run when a topic is received;
+There are four methods that provide more advanced processing. The first is a received topic/payload; the next two are functions of how an external device is configured in the MQTT Plug-in; the fourth moves ALL activity into a plug-in (especially subscribing to topics) so no external device need be configured in the MQTT plug-in:
+<ul>
+<li>Homevision Topic - Receive an MQTT command with a payload that contains a trigger string.
 </li><li>Triggers - Send trigger strings to HomeVisionXL or plug-ins.
-</li><li>Homevision Topic - Receive an MQTT command with a payload that contains a trigger string.
+</li><li>Custom commands - Create a plug-in and define a command to run when a topic is received;
+</li><li>Independant Plug-in - Relies on subscriptions in the plug-in instead of the "Custom Commands" method, where the MQTT Plug-in does the subscribing. See "mqttComm" section for details.
 </li></ul>
 
-<!-- <h4 id="custom-commands">Custom Commands</h4> -->
-#### Custom Commands
-To have custom processing of received messages for a topic,
-click "Command" and enter a procedure name in the "Command" field.
-The procedure becomes the callback procedure for this topic.
-<br>
-<br>
-Note: If "Command" is selected,
-the "Flag/Var", "On Macro" and "Off Macro" fields are ignored.
-However, the action command can be used in the procedure to manipulate flags, vars, macros, etc..
-<br>
-<br>
-Log settings are also ignored. Any logging should be done in the command procedure using the <b>mqttLog</b> command (See below).
-<br>
-<br>
-<b>CAUTION: There is little validation of the name of the custom procedure. Care should be taken to avoid any standard TCL procedure names as inadvertently using an existing procedure name may result in abnormal behavior!</b>
-<br>
-<br>
-The procedure must be defined in another enabled plug-in, 
-and must be made public via the <code>hvPublic</code> command.
-A plug-in can contain several different procedures that are called by different messages.
-<br>
-<br>
-The procedure will be called like this:
-<pre>
-    procedure_name <i>topic</i> <i>payload</i> <i>retain</i> <i>{other args}</i>
-</pre>
-For most procedures, <i>retain</i> can be ignored. <i>{other args}</i> may be present in future versions of the MQTT client
-and likely not be important for typical procedures. For those interested, details of <i>retain</i> and any future <i>other args</i> can be found 
-<a href="https://chiselapp.com/user/schelte/repository/mqtt/wiki?name=Tcl+MQTT+client">here</a>
-<br>
-<br>
-Example:
-<br>
-<br>
-Suppose we have a device (named BathHumidity) running Tasmota software with a AM2301 temperature/humidity sensor attached , and we want to turn on a ventilator fan (named BathFan) when the humidity gets high (>70) and turn it off when it is low (<55).
-We would get periodic MQTT tele reports like this:
-<pre>
-    tele/BathHumidity/SENSOR {
-        "Time":"2020-05-20T15:13:25",
-        "Switch2":"OFF",
-        "AM2301": {
-              "Temperature": 75.0,
-              "Humidity": 82.0
-        },
-        "TempUnit": "F"
-    }
-</pre>
-
-(The JSON payload is expanded here for readability.)
-<br>
-<br>
-In the <b>Ext Devices Tab</b>, add an external device for the humidity sensor with a full topic of
-<pre>
-    tele/BathHumidity/SENSOR
-</pre>
-
-The MQTT Plug-in will explicitly subscribe to this topic instead of the normal standard state topics.
-Click "Command" and set the <i>Command</i> entry field to "humid".
-Click "OK" to save this entry.
-<br>
-<br>
-Add another external device for the fan with a standard topic
-<pre>
-    &lt;BathFan&gt;
-</pre>
-so that it will report status
-in the standard way, like this:
-<pre>
-    stat/BathFan/POWER ON
-</pre>
-Click "Command" and set the <i>Command</i> entry field to "bathfan".
-Click "OK" to save this entry.
-<br>
-<br>
-Click "Done" for changes to be effective!
-<br>
-<br>
-Create a plug-in containing the following:
-<pre>
-    tcl::tm::path add [file dirname [info script]]
-    package require json 1.0
-
-    hvImport mqttComm
-    
-    hvPublic humid
-    proc humid {topic payload args} {
-        global fanStatus
-        if {$payload eq ""} return
-        if {[catch {::json::json2dict $payload} status]} return
-
-        set humidity [dict get $status AM2301 Humidity]
-        if {$humidity > 70 && !$fanStatus} {
-            mqttComm pub "cmnd/BathFan/POWER" on
-        }
-        if {$humidity < 55 && $fanStatus} {
-            mqttComm pub "cmnd/BathFan/POWER" off
-        }
-    }
-    
-    hvPublic bathfan
-    proc bathfan {topic payload args} {
-        global fanStatus
-        if {[lindex [split $topic "/"] end] eq "POWER"} {
-            if {$payload eq "ON"} {
-                set fanStatus 1
-            } elseif {$payload eq "OFF"} {
-                set fanStatus 0
-            }
-        }
-    }
-</pre>
-(See next Section for a description of <b>mqttComm</b>.)
-<br>
-<br>
-Procedure <b>humid</b> is called whenever a humidity status message is received. It processes the JSON status message to get the humidity and turns the fan on or off depending on the humidity level.
-Since we only care about the topic and payload, we can lump the rest into <i>args</i> and ignore that.
-<br>
-<br>
-Procedure <b>bathfan</b> is called whenever a state message from the fan switch is received. It tracks the state of the fan so <b>humid</b> only turns the fan on/off if it is not already.
-In reality, <b>bathfan</b> isn't necessary, as turning on the fan while it is already on does no harm. It's here mainly as an example of how to set up a command.
 <!-- <h4 id="triggers">Triggers</h4> -->
 #### Triggers
 For those not comfortable with creating custom procedures, Triggers are a way to get a little more processing power without coding.
@@ -1049,6 +930,127 @@ In response to an action command, the actions will be returned in a status messa
 This message may be returned before all the actions in the trigger are completed, especially if the trigger contains "waits".
 
 % substitutions are NOT performed on trigger strings using this method.
+<!-- <h4 id="custom-commands">Custom Commands</h4> -->
+#### Custom Commands
+To have custom processing of received messages for a topic,
+click "Command" and enter a procedure name in the "Command" field.
+The procedure becomes the callback procedure for this topic.
+<br>
+<br>
+Note: If "Command" is selected,
+the "Flag/Var", "On Macro" and "Off Macro" fields are ignored.
+However, the action command can be used in the procedure to manipulate flags, vars, macros, etc..
+<br>
+<br>
+Log settings are also ignored. Any logging should be done in the command procedure using the <b>mqttLog</b> command (See below).
+<br>
+<br>
+<b>CAUTION: There is little validation of the name of the custom procedure. Care should be taken to avoid any standard TCL procedure names as inadvertently using an existing procedure name may result in abnormal behavior!</b>
+<br>
+<br>
+The procedure must be defined in another enabled plug-in, 
+and must be made public via the <code>hvPublic</code> command.
+A plug-in can contain several different procedures that are called by different messages.
+<br>
+<br>
+The procedure will be called like this:
+<pre>
+    procedure_name <i>topic</i> <i>payload</i> <i>retain</i> <i>{other args}</i>
+</pre>
+For most procedures, <i>retain</i> can be ignored. <i>{other args}</i> may be present in future versions of the MQTT client
+and likely not be important for typical procedures. For those interested, details of <i>retain</i> and any future <i>other args</i> can be found 
+<a href="https://chiselapp.com/user/schelte/repository/mqtt/wiki?name=Tcl+MQTT+client">here</a>
+<br>
+<br>
+Example:
+<br>
+<br>
+Suppose we have a device (named BathHumidity) running Tasmota software with a AM2301 temperature/humidity sensor attached , and we want to turn on a ventilator fan (named BathFan) when the humidity gets high (>70) and turn it off when it is low (<55).
+We would get periodic MQTT tele reports like this:
+<pre>
+    tele/BathHumidity/SENSOR {
+        "Time":"2020-05-20T15:13:25",
+        "Switch2":"OFF",
+        "AM2301": {
+              "Temperature": 75.0,
+              "Humidity": 82.0
+        },
+        "TempUnit": "F"
+    }
+</pre>
+
+(The JSON payload is expanded here for readability.)
+<br>
+<br>
+In the <b>Ext Devices Tab</b>, add an external device for the humidity sensor with a full topic of
+<pre>
+    tele/BathHumidity/SENSOR
+</pre>
+
+The MQTT Plug-in will explicitly subscribe to this topic instead of the normal standard state topics.
+Click "Command" and set the <i>Command</i> entry field to "humid".
+Click "OK" to save this entry.
+<br>
+<br>
+Add another external device for the fan with a standard topic
+<pre>
+    &lt;BathFan&gt;
+</pre>
+so that it will report status
+in the standard way, like this:
+<pre>
+    stat/BathFan/POWER ON
+</pre>
+Click "Command" and set the <i>Command</i> entry field to "bathfan".
+Click "OK" to save this entry.
+<br>
+<br>
+Click "Done" for changes to be effective!
+<br>
+<br>
+Create a plug-in containing the following:
+<pre>
+    tcl::tm::path add [file dirname [info script]]
+    package require json 1.0
+
+    hvImport mqttComm
+    
+    hvPublic humid
+    proc humid {topic payload args} {
+        global fanStatus
+        if {$payload eq ""} return
+        if {[catch {::json::json2dict $payload} status]} return
+
+        set humidity [dict get $status AM2301 Humidity]
+        if {$humidity > 70 && !$fanStatus} {
+            mqttComm pub "cmnd/BathFan/POWER" on
+        }
+        if {$humidity < 55 && $fanStatus} {
+            mqttComm pub "cmnd/BathFan/POWER" off
+        }
+    }
+    
+    hvPublic bathfan
+    proc bathfan {topic payload args} {
+        global fanStatus
+        if {[lindex [split $topic "/"] end] eq "POWER"} {
+            if {$payload eq "ON"} {
+                set fanStatus 1
+            } elseif {$payload eq "OFF"} {
+                set fanStatus 0
+            }
+        }
+    }
+</pre>
+(See next Section for a description of <b>mqttComm</b>.)
+<br>
+<br>
+Procedure <b>humid</b> is called whenever a humidity status message is received. It processes the JSON status message to get the humidity and turns the fan on or off depending on the humidity level.
+Since we only care about the topic and payload, we can lump the rest into <i>args</i> and ignore that.
+<br>
+<br>
+Procedure <b>bathfan</b> is called whenever a state message from the fan switch is received. It tracks the state of the fan so <b>humid</b> only turns the fan on/off if it is not already.
+In reality, <b>bathfan</b> isn't necessary, as turning on the fan while it is already on does no harm. It's here mainly as an example of how to set up a command.
 
 <!-- <h3 id="mqttcomm---sendingreceiving-mqtt-messages-fromto another-plug-in">mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in</h3> -->
 ### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
@@ -1399,5 +1401,9 @@ A sample plug-in using <b>mqttComm</b>, <b>mqttReady</b> and <b>mqttStatus</b> t
 <br>
 <a href="HomeVision_Discovery_How-to">How to Use the MQTT Plug-in's Home-Assistant Auto Discovery</a>
 
-
-
+<!-- <h2 id="acknowledgements">Acknowledgements</h2> -->
+## Acknowledgements
+<ul>
+<li> The MQTT client, which provides the interface between the MQTT Plug-in and the MQTT network, was designed and provided by Schelte Bron.
+</li>
+</ul>
