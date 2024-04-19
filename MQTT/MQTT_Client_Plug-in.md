@@ -786,8 +786,8 @@ Sometimes a topic may not fit the standard forms supported by the plug-in, or th
 may not be powerful enough.
 There are four methods that provide more advanced processing, listed here in increasing independance from the MQTT Plug-in's configuration:
 <ul>
-<li>Triggers - Send trigger strings, defined in an external device, to HomeVisionXL and other plug-ins.
-</li><li>Custom Commands - Create a plug-in and define a command, referenced in an external device, to run when a topic is received;
+<li>Triggers - Send trigger strings, defined in an external device's configuration, to HomeVisionXL and other plug-ins.
+</li><li>Custom Commands - Create a plug-in and define a command, referenced in an external device's configuration, to run when a topic is received;
 </li><li>Homevision Action Topics - Receive an MQTT command with a payload that contains a trigger string. No external device is needed.
 </li><li>Independant Plug-ins - Relies on subscriptions in the plug-in instead of the "Custom Commands" method, where the MQTT Plug-in does the subscribing. Moves ALL activity into a plug-in so no external device is needed.
 See "mqttComm" section for details.
