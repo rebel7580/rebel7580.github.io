@@ -784,17 +784,21 @@ Double-quotes are not allowed due to the way NetIO handles arguments of the neti
 ### Custom Processing of Received Messages
 Sometimes a topic may not fit the standard forms supported by the plug-in, or the actions taken (setting flags, variables and running macros)
 may not be powerful enough.
-There are four methods that provide more advanced processing, listed here in increasing independance from the MQTT Plug-in's configuration. The first is a received topic/payload; the next two are functions of how an external device is configured in the MQTT Plug-in; the fourth moves ALL activity into a plug-in (especially subscribing to topics) so no external device need be configured in the MQTT plug-in:
+There are four methods that provide more advanced processing, listed here in increasing independance from the MQTT Plug-in's configuration:
 <ul>
-<li>Triggers - Send trigger strings to HomeVisionXL or plug-ins.
-</li><li>Custom Commands - Create a plug-in and define a command in an external Device to run when a topic is received;
-</li><li>Homevision Action Topic - Receive an MQTT command with a payload that contains a trigger string.
-</li><li>Independant Plug-in - Relies on subscriptions in the plug-in instead of the "Custom Commands" method, where the MQTT Plug-in does the subscribing. See "mqttComm" section for details.
+<li>Triggers - Send trigger strings, defined in an external device, to HomeVisionXL and other plug-ins.
+</li><li>Custom Commands - Create a plug-in and define a command, referenced in an external device, to run when a topic is received;
+</li><li>Homevision Action Topics - Receive an MQTT command with a payload that contains a trigger string. No external device is needed.
+</li><li>Independant Plug-ins - Relies on subscriptions in the plug-in instead of the "Custom Commands" method, where the MQTT Plug-in does the subscribing. Moves ALL activity into a plug-in so no external device is needed.
+See "mqttComm" section for details.
 </li></ul>
-
+<br>
+<br>
+Triggers and Homevision Action Topics are relatively simple to construct.
+Custom Commands and Independant Plug-ins require some knowladge of the TCL programming language.
 <!-- <h4 id="triggers">Triggers</h4> -->
 #### Triggers
-For those not comfortable with creating custom procedures, Triggers are a way to get a little more processing power without coding.
+Triggers are a way to get a little more processing power without coding.
 Works well for sequential actions that don't require decision making.
 <br>
 <br>
