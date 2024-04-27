@@ -408,6 +408,11 @@ Table 3 - Forecast Control Variables
       <td>See Note 11</td>
     </tr>
     <tr>
+      <td>FcWeatherSum<i>m</i></td>
+      <td>Conversational conditions for day <i>m</i></td>
+      <td>Expect a day of partly cloudy with rain</td>
+    </tr>
+    <tr>
       <td>FcHi<i>m</i><sup>6</sup></td>
       <td>High temperature for day <i>m</i></td>
       <td>75</td>
