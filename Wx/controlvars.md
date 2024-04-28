@@ -80,7 +80,7 @@ Control plug-in, the web and MQTT the <i>current weather</i> info in <b>Table 2<
       <td>Light Rain</td>
     </tr>
     <tr>
-      <td>WeatherCond</td>
+      <td>WeatherCond<sup>4</sup></td>
       <td>Current conditions details</td>
       <td>See Note 9</td>
     </tr>
@@ -403,12 +403,12 @@ Table 3 - Forecast Control Variables
       <td>Mostly cloudy</td>
     </tr>
     <tr>
-      <td>FcWeatherCond<i>m</i></td>
+      <td>FcWeatherCond<i>m</i><sup>7</sup></td>
       <td>Weather conditions for day <i>m</i></td>
       <td>See Note 11</td>
     </tr>
     <tr>
-      <td>FcWeatherSum<i>m</i></td>
+      <td>FcWeatherSum<i>m</i><sup>7</sup></td>
       <td>Conversational conditions for day <i>m</i></td>
       <td>Expect a day of partly cloudy with rain</td>
     </tr>
