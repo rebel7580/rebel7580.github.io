@@ -743,6 +743,7 @@ See <a href="wxws">Weather Websockets</a> for set up details.
 <br><br>
 If weather info is being sent via MQTT, further setup is necessary. See <i>MQTT Setup</i> below.
 <br><br>
+NOTE: The Variable Lists contain ALL potential variables, independant of data source. Some variables may not be valid for certain configurations.
 <b>
 Control Screen Weather Variable Setup
 </b>

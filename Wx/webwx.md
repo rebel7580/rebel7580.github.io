@@ -49,8 +49,8 @@ Select <i>Web</i> as the <i>Source</i>.
 </li><li>
 If OpenWeather is selected in either <I>Current Weather</I> or <I>Forecast Weather</I>,
 an OpenWeather API Key must be entered. You can get free keys at
-<a href="http://openweathermap.org/full-price#current">OpenWeather.org</a>.
-You must select a package (most likely you would want select: Free > Get API Key), and follow instructions to get your key.
+<a href="https://openweathermap.org/api">OpenWeathermap.org</a>.
+You must select a package and follow instructions to get your key.
 Copy the API Key and into the Weather plug-in Configuration Data Source screen.
 </li><li>
 OpenWeather icon size selection allows for three different size icons: 
