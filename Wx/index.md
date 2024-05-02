@@ -41,9 +41,9 @@ Weather data can be retrieved from a local file instead of the web,
 as long as that file uses a similar format as the on-line data.
 </p><p>
 Control plug-in version
-4.4 or later and HomeVision 2.1 or later are
+4.4 or later and HomeVision 2.4.5 or later are
 required.
-Web plug-in version 4.0 or later is required for web access of weather data.
+Web plug-in version 7.6 or later is required for web access of weather data.
 NetIO Server plug-in verion 3.2 is required for NetIO access to weather data.
 </p>
 
