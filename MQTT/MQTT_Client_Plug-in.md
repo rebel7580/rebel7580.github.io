@@ -1111,6 +1111,15 @@ with "cascallback" as the callback procedure.
 Make sure when subscribing to a topic that the topic is unique, especially compared to <i>external devices</i> and <i>internal objects</i>.
 The MQTT client allows multiple, different callback procs to be assigned to the same topic (via different subscriptions) resulting in all of the procs being called when the common topic arrives.
 This could be useful, but normally it will cause unexpected behavior.
+
+For the MQTT client to successfully execute the callback procedure,
+an "hvPublic" command should be added to the plug-in. For example,
+<pre>
+    hvPublic cascallback
+    proc cascallback {topic payload retain} {
+        ...
+    }
+</pre>
 <br>
 <br>
 The <b>mqttComm</b> procedure returns an empty string if MQTT is not ready.
@@ -1365,6 +1374,10 @@ Typical use:
 <pre>
     hvImport debug
     
+    hvPublic samplecb
+    proc samplecb {topic payload retain} {
+        # do something 
+    }
     hvImport mqttStatus
     proc subscribe {{type sub}} {
 
