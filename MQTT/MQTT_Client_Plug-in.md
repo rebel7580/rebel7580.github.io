@@ -1386,12 +1386,13 @@ Typical use:
         if {$type ni {sub unsub}} {return}
         if {[mqttStatus] ne "connected"} {
            debug "MQTT not connected" red
+           # Try again after 5 seconds
            after 5000 subscribe
            return
         }
         # cancel any after command if got here via mqttReady
         after cancel subscribe
-        
+        # subscribe 
         mqttComm $type &lt;sample_topic&gt; samplecb
         ...
     }
