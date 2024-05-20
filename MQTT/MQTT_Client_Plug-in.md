@@ -1381,7 +1381,7 @@ Typical use:
     
     hvImport mqttComm
     hvImport mqttStatus
-    proc subscribe \{{type sub}\} {
+    proc subscribe { {type sub} } {
 
         if {$type ni {sub unsub}} {return}
         if {[mqttStatus] ne "connected"} {
