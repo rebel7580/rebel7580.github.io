@@ -1198,7 +1198,7 @@ When the MQTT Plug-in received the appropriate message, it calls the callback pr
 <pre>
     cascb cmnd/uroom/POWER "?" 0
 </pre>
-A procedure "cascb" must be defined in the calling plug-in to handle the message.
+A procedure "cascb" must be defined and made public (via <pre>hvPublic cascb</pre>) in the calling plug-in to handle the message.
 In this case, it should eventually use another <b>mqttComm</b> command to send back status, maybe like this:
 
 <pre>
