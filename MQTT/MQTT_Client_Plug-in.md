@@ -1378,6 +1378,8 @@ Typical use:
     proc samplecb {topic payload retain} {
         # do something 
     }
+    
+    hvImport mqttComm
     hvImport mqttStatus
     proc subscribe {{type sub}} {
 
