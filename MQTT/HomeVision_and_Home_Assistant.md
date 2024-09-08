@@ -98,7 +98,7 @@ In the <i>Tips</i> section to follow, there are several examples where this capa
 For systems where you want to expose a significant number of internal objects to Home Assistant, the MQTT plug-in provides an Auto Discovery feature that pushes discovery messages to Home Assistant, negating the need to enter each object's code into your <i>configuration.yaml</i>.
 <br>
 <br>
-Valid object types are x10, light, var, flag, flag_b, input, output, analog, temp, ir, macro, se, pe, timer and hvac.
+Valid object types are x10, light, var, var_n, flag, flag_b, input, output, analog, temp, ir, macro, se, pe, timer and hvac.
 Other plug-ins that support objects that can be discovered can add object types.
 <br>
 <br>
@@ -109,11 +109,11 @@ You can find out more about how to run Discovery here:
 ## Tips
 <!-- <h3 id="variable-options">Variable Options</h3> -->
 ### Variable Options
-Variables are supported as either sensor or number entities, or both.
+Variables are supported as either sensor (var) or number (var_n) entities, or both.
 
-Straightforward, bi-directional control of variables from the Home Assistant UI is supported via the MQTT Discovery number entity.
+Straightforward, bi-directional control of variables from the Home Assistant UI is supported via the MQTT Discovery number entity (use var_n).
 
-They can be included in discovery as read-only sensors.
+They can be included in discovery as read-only sensors (use var).
 (The MQTT Plug-in itself allows both reading and writing of variables.)
 
 <!-- <h4 id="variable-example">Variable Example</h4> -->
