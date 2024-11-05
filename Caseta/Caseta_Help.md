@@ -163,9 +163,9 @@ In normal use, the "pressed" and "released" signals occur in pairs, so only the 
 (I.e., the "released" signal is ignored.)
 Because of this, only an "ON" macro makes sense.
 All the rest are disabled.
-<br>
+<br><br>
 Note 2: Names for Buttons on PICO remotes are in the form "{n} {b}", where {n} is the PICO remote name and {b} is the button name.
-<br>
+<br><br>
 Note 3: If MQTT is enabled, an MQTT "stat/{name}/POWER ON" message is sent when the button is pressed.
 <br><br>
 <h2>Controlling Devices</h2>
@@ -177,7 +177,8 @@ When clicked, the appropriate command is sent to the selected switch.
 Note 4: For the same reason as in Note 1,
 the right-click menu for Devices only has "On" enabled.
 If clicked, this will simulate a button press,
-which may result in the action of Note 3.<br><br>
+which may result in the action of Note 3.
+<br><br>
 Note 5: The Lutron Smart Bridge Pro returns levels to two decimal places.
 The plug-in will accept levels with decimals; however, they will be truncated to a whole (integer) number when sent to the switch.
 <br><br>
@@ -302,6 +303,4 @@ it will respond to the "stat" message and execute any actions that may be define
 <h2>MQTT Discovery for Home Assistant</h2>
 The Caseta plug-in supports switch and dimmer discovery for Home Assistant. For details,
 see the MQTT help at: <a href="../MQTT/HomeVision_Discovery_How-to">How to Use the MQTT Plug-in's Home-Assistant Auto Discovery</a>
-
-[How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to)
 
