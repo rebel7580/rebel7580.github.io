@@ -158,7 +158,7 @@ When "Done" is clicked, if there were changes, the client connection to the Lutr
 </li>
 </ul>
 Note 1: For PICO remotes, each remote has a further dropdown that shows the available buttons.
-PICO remotes send out a "pressed" signal when the button is depressed, and a "released" signal when the botton is released.
+PICO remotes send out a "pressed" signal when the button is depressed, and a "released" signal when the button is released.
 In normal use, the "pressed" and "released" signals occur in pairs, so only the "pressed" signal will trigger an action in the plug-in.
 (I.e., the "released" signal is ignored.)
 Because of this, only an "ON" macro makes sense.
@@ -167,19 +167,18 @@ All the rest are disabled.
 Note 2: Names for Buttons on PICO remotes are in the form "{n} {b}", where {n} is the PICO remote name and {b} is the button name.
 <br>
 Note 3: If MQTT is enabled, an MQTT "stat/{name}/POWER ON" message is sent when the button is pressed.
-<br>
-Note 4: For the same reason as in Note 1,
-the right-click menu for Devices only has "On" enabled.
-If clicked, this will simulate a button press,
-which may result in the action of Note 3.
 <br><br>
 <h2>Controlling Devices</h2>
-<h3>Device Display Area</h3>
-Right-clicking on a device line in the Device tab
+<h3>Devices Area</h3>
+Right-clicking on a "Zones" or "Devices" device line in the "Devices" tab
 will bring up a menu from which you can select "Off", "On", or "Set to".
 When clicked, the appropriate command is sent to the selected switch.
 <br><br>
-Note: The Lutron Smart Bridge Pro returns levels to two decimal places.
+Note 4: For the same reason as in Note 1,
+the right-click menu for Devices only has "On" enabled.
+If clicked, this will simulate a button press,
+which may result in the action of Note 3.<br><br>
+Note 5: The Lutron Smart Bridge Pro returns levels to two decimal places.
 The plug-in will accept levels with decimals; however, they will be truncated to a whole (integer) number when sent to the switch.
 <br><br>
 <h3>MQTT Control</h3>
@@ -301,6 +300,8 @@ it will respond to the "stat" message and execute any actions that may be define
 <br>
 <br>
 <h2>MQTT Discovery for Home Assistant</h2>
-The Caseta plug-in supports switch and dimmer discovery for Home Assistant. For details, see the MQTT help at: <a href="HomeVision_Discovery_How-to">How to Use the MQTT Plug-in's Home-Assistant Auto Discovery</a>
+The Caseta plug-in supports switch and dimmer discovery for Home Assistant. For details,
+see the MQTT help at: <a href="../MQTT/HomeVision_Discovery_How-to">How to Use the MQTT Plug-in's Home-Assistant Auto Discovery</a>
 
+[How to Use Home Assistant Auto Discovery](/MQTT/HomeVision_Discovery_How-to)
 
