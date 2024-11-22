@@ -1371,7 +1371,7 @@ the procedure returns values as described above for that argument type.
 #### mqttStatus and mqttReady Usage
 
 Typical use:
-```tcl
+<pre>
     hvImport debug
     
     hvPublic samplecb
@@ -1410,7 +1410,7 @@ Typical use:
 
     hvEventHook ready [list subscribe sub]
     hvEventHook exit [list subscribe unsub]
-```
+</pre>
 
 A sample plug-in using <b>mqttComm</b>, <b>mqttReady</b> and <b>mqttStatus</b> that does its own subscribing and needs no entries in the MQTT Plug-in's device lists can be downloaded from <a href="https://github.com/rebel7580/rebel7580.github.io/blob/main/MQTT/mqttsample.hap">here</a>.
 
