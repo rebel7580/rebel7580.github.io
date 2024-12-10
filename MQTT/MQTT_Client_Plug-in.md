@@ -764,7 +764,7 @@ or
     reads:  get x10 state <i>id#</i>
 </pre>
 except that no NetIO Custom Returns processing is done.
-So the direct object gets are probably better to use then the MQTT versions.
+So the direct object gets are probably better to use than the MQTT versions.
 <br>
 <br>
 Generic MQTT messages can be sent via NetIO using a "netioaction" command in the NetIO application in a similar way as serial commands.
