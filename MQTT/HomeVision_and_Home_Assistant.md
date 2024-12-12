@@ -368,7 +368,7 @@ Version deprecated in HA Core 2022.6 (usable until removed in 2022.9):
     qos: 1
 ```
 {% endraw %}
-Note that <i>command_topic</i> and the <i>state_topic</i> are the same. Since HomeVisionXL responds to state messages to execute actions, Home Assistant must send a "stat" message to the MQTT plug-in. Home Assistant also will listen to the <i>state_topic</i>, so will hear its own message an assure that the switch is in the correct state.
+Note that <i>command_topic</i> and the <i>state_topic</i> are the same. Since HomeVisionXL responds to state messages to execute actions, Home Assistant must send a "stat" message to the MQTT plug-in. Home Assistant also will listen to the <i>state_topic</i>, so will hear its own message and ensure that the switch is in the correct state.
 
 Lastly, add in a switch to your UI.
 <!-- <h4 id="using-different-macros-for-on-and-off-and-a-tracking-flag-via-a-virtual-external-device">Using Different Macros for ON and OFF and a Tracking Flag via a Virtual External Device</h4> -->
