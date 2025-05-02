@@ -382,8 +382,16 @@ Variables always show a "-" for the state.
 </li><li><i>Level</i> shows the reported object level or value as appropriate.
 X-10 and Light objects show their level in percent, while Variables show their value.
 </li><li>Rows can be sorted in ascending or descending order by <i>ID</i>, <i>Object Name</i> or <i>Topic</i> by clicking on the column header.
-When sorting by ID, object types are always grouped together and sorted within those groups by ID.
-</li><li>At the bottom of the window, check the Object Type(s) desired. Checking object types here simply limits the Object drop-down list on the Configure New window to make it easier to find the object to configure. It doesn't affect any objects already configured.
+When sorting by ID, object types are always grouped together and then sorted within those groups by ID.
+Sorting by <i>Object Name</i> or <i>Topic</i> will sort independant of object type. This is a good way to see potentially related objects; e.g., a switch and a flag that tracks the switch's state (and having similar Names).
+</li><li>The "Object Type List Enable" section serves two purposes.
+<ul>
+<li>Checking object types here limits the Object drop-down list in the Configure New window to make it easier to find the object to configure.
+</li><li>
+If "Display Only Checked Objects" is selected, the main object list is also limited to checked objects.
+<br>
+Checking "Display All" displays all objects independant of the checked object types.
+</li></ul>
 </li></ul>
 <i>New/Edit/Delete Internal Objects</i>
 
@@ -531,9 +539,7 @@ Selecting an entry from the list moves it up to the first position.
 Manually typing an entry that is identical to one already in the list behaves the same as selecting that entry (i.e., moves it up to the first position).
 </li>
 <li>
-The recent entry lists are saved when the <i>MQTT Configuration</i> window is closed (clicking "Done"), so they can be accessed again if the <i>MQTT Configuration</i> window is subsequently reopened.
-<br>
-However, if the MQTT plug-in is <i>disabled</i> then later re-enabled it, only the newest entry for each field is available, not the whole list.
+The recent entry lists are saved when the <i>MQTT Configuration</i> window is closed (clicking "Done"). They can be accessed again if the <i>MQTT Configuration</i> window is subsequently reopened, or the plug-in is disabled then re-enabled.
 </li></ul>
 <!-- <h4 id="pubsub-log-area">Pub/Sub Log Area</h4> -->
 #### Pub/Sub Log Area
