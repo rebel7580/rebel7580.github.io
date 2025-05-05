@@ -714,6 +714,12 @@ If a topic has spaces, the entire topic should be enclosed in double-quotes or b
 <li>
 Double-quotes or braces are NOT necessary for any spaces in the payload portion.
 However, if the payload has quotes and/or braces, it should be enclosed in braces.
+<br>
+<br>
+Example:
+<pre>
+    mqtt: pub "cmnd/topic with spaces/result" {{"JSON":"test"}};</pre>
+</pre>
 </li>
 <li>
 Backslashes in the payload portion should be "escaped" by another backslash (e.g., "\\").
