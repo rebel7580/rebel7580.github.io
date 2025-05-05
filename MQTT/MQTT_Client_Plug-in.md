@@ -719,7 +719,7 @@ However, if the payload has quotes and/or braces, it should be enclosed in brace
 Example:
 <pre>
 {% raw %}
-    mqtt: pub "cmnd/topic with spaces/result" {% raw %}{{"JSON":"test"}};
+    mqtt: pub "cmnd/topic with spaces/result" {{"JSON":"test"}};
 {% endraw %}
 </pre>
 </li>
