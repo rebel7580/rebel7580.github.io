@@ -685,14 +685,14 @@ I.e., payload can actually include and send "retain" as the last word.
 Examples:
 <pre>
     mqtt: pub "cmnd/living room/POWER" some payload info;
-	      logs; sends "some payload info" to "cmnd/living room/POWER"; no retain.
+          logs; sends "some payload info" to "cmnd/living room/POWER"; no retain.
     mqtt: -nolog pub "cmnd/living room/POWER" some payload info;
-	      no log; sends "some payload info" to "cmnd/living room/POWER"; no retain.
+          no log; sends "some payload info" to "cmnd/living room/POWER"; no retain.
 
     mqtt: pub "cmnd/living room/POWER" some payload info retain;
-	      logs; sends "some payload info" to "cmnd/living room/POWER"; retains.
+          logs; sends "some payload info" to "cmnd/living room/POWER"; retains.
     mqtt: -nolog -noretain pub "cmnd/living room/POWER" some payload info retain;
-	      no log; sends "some payload info retain" to "cmnd/living room/POWER"; no retain.
+          no log; sends "some payload info retain" to "cmnd/living room/POWER"; no retain.
 
 </pre>
 
@@ -808,8 +808,6 @@ There are four methods that provide more advanced processing, listed here in inc
 </li><li>Independant Plug-ins - Relies on subscriptions in the plug-in instead of the "Custom Commands" method, where the MQTT Plug-in does the subscribing. Moves ALL activity into a plug-in so no external device is needed.
 See "mqttComm" section for details.
 </li></ul>
-<br>
-<br>
 Triggers and Homevision Action Topics are relatively simple to construct.
 Custom Commands and Independant Plug-ins require some knowladge of the TCL programming language.
 <!-- <h4 id="triggers">Triggers</h4> -->
