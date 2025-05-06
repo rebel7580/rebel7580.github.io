@@ -1247,7 +1247,7 @@ The calling plug-in should import the command via:
 </pre>
 The <b>topicTemplate</b> command should be used like this:
 <pre>
-    set template {*}[topicTemplate <i>topic</i>]
+    set template [topicTemplate <i>topic</i>]
 </pre>
 
 <ul>
@@ -1271,7 +1271,7 @@ The <b>topicTemplate</b> command should be used like this:
 </table>
 The resulting dict returned by <b>topicTemplate</b> can be used like this:
 <pre>
-    set template {*}[topicTemplate <i>topic</i>]
+    set template [topicTemplate <i>topic</i>]
 
     set subtop [dict get $template topic name]
     set pre [dict get $template pre type]
