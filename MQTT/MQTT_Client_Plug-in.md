@@ -693,7 +693,7 @@ Examples:
 	      logs; sends "some payload info" to "cmnd/living room/POWER"; retains.
     mqtt: -nolog -noretain pub "cmnd/living room/POWER" some payload info retain;
 	      no log; sends "some payload info retain" to "cmnd/living room/POWER"; no retain.
-	
+
 </pre>
 
 For sub and unsub commands, <i>callback</i> is a public callback procedure that must exist in a plug-in.
