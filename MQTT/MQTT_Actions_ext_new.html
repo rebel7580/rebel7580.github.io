@@ -182,10 +182,26 @@ The following Table describes the Action when External Devices send the followin
   <td align="center">{Count text}</td>
   <td>No Action</td>
  </tr>
- <tr>
+ <tr style="color:#FF0000;">
+  <td style="text-decoration: line-through; text-align: center;">Variable</td>
+  <td style="text-decoration: line-through; text-align: center;">No</td>
+  <td style="text-decoration: line-through; text-align: center;">x</td>
+  <td style="text-decoration: line-through; text-align: center;">Macro A / Macro B</td>
+  <td style="text-decoration: line-through; text-align: center;">on</td>
+  <td>Replaced by explicit "Use 2 Vars" settings. (Was: No Action.)</td>
+ </tr>
+ <tr style="color:#FF0000;">
+  <td style="text-decoration: line-through; text-align: center;">Variable</td>
+  <td style="text-decoration: line-through; text-align: center;">No</td>
+  <td style="text-decoration: line-through; text-align: center;">x</td>
+  <td style="text-decoration: line-through; text-align: center;">Macro A / Macro B</td>
+  <td style="text-decoration: line-through; text-align: center;">off</td>
+  <td>Replaced by explicit "Use 2 Vars" settings. (Was: No Action.)</td>
+ </tr>
+<tr>
   <td align="center">Variable</td>
   <td align="center">No</td>
-  <td align="center">x</td>
+  <td align="center">No</td>
   <td align="center">Macro A / Macro B</td>
   <td align="center">on</td>
   <td style="color:#FF0000;">Set Var to 100, then Run Macro A, if any. (Was: No Action.)</td>
@@ -193,7 +209,7 @@ The following Table describes the Action when External Devices send the followin
  <tr>
   <td align="center">Variable</td>
   <td align="center">No</td>
-  <td align="center">x</td>
+  <td align="center">No</td>
   <td align="center">Macro A / Macro B</td>
   <td align="center">off</td>
   <td style="color:#FF0000;">Set Var to 0, then Run Macro B, if any. (Was: No Action.)</td>
@@ -224,6 +240,22 @@ The following Table describes the Action when External Devices send the followin
   <td align="center">off value</td>
   <td>Set Var to 0, then Run Macro B, if any. (New. Ignore value. Was: No Action.)</td>
  </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">Yes</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">on</td>
+  <td style="color:#FF0000;">Set Var to 100, Set Var+1 to 0, then Run Macro A, if any. (Was: No Action.)</td>
+ </tr>
+ <tr>
+  <td align="center">Variable</td>
+  <td align="center">No</td>
+  <td align="center">Yes</td>
+  <td align="center">Macro A / Macro B</td>
+  <td align="center">off</td>
+  <td style="color:#FF0000;">Set Var to 0, Set Var+1 to 0, then Run Macro B, if any. (Was: No Action.)</td>
+ </tr>
 <tr>
   <td align="center">Variable</td>
   <td align="center">No</td>
@@ -245,7 +277,7 @@ The following Table describes the Action when External Devices send the followin
  <tr style="color:#FF0000;">
   <td align="center">Variable</td>
   <td align="center">No</td>
-  <td align="center">No</td>
+  <td align="center">Yes</td>
   <td align="center">Macro A / Macro B</td>
   <td align="center">off value</td>
   <td>Set Var, Var+1 to 0, then Run Macro B, if any. (New. Ignore value. Was: No Action.)</td>
