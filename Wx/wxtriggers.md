@@ -13,7 +13,7 @@
 <br><br>
 The plug-in can triggered by the following methods:
 <h2>Timed</h2>
-Select the <a href="webwx"><i>Data Source</i></a> tab and make sure <i>Enable Fetch</i> is checked
+Select the <a href="webwx"><i>General Settings</i></a> tab and make sure <i>Enable Fetch</i> is checked
 and the <i>Read Interval</i> is set to the desire fetch interval (in minutes).
 <i>Read Interval</i> determines how often the weather
 plug-in will fetch the weather data.
