@@ -440,7 +440,9 @@ homeassistant/switch/HVXLb1d0d912ed315aad_FL-18/config
 </pre>
 {% endraw %}
 Alternatively, a flag can be defined as a <i>binary_sensor</i> (use "flag_b" as the object type). The flag would be read-only from the perspective of Home Assistant.
-Attribute "device_class" is set if found in the flag's "Description" field. Must be a valid sensor device class. See Note.
+Attribute "device_class" is set if found in the flag's "Description" field. Must be a valid sensor device class.
+See 
+<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
 {% raw %}
 <pre>
 homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
@@ -469,7 +471,8 @@ homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
 A variable can be defined as a number entity (use "var_n" as the object type). The variable will be implemented as a slider.
 Attributes "device_class", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes. See Note.
 If not explicitly set, max = 255 and min = 0.
-See Note.
+See 
+<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
 {% raw %}
 <pre>
 homeassistant/number/HVXLb1d0d912ed315aad_VA-145n/config
@@ -494,7 +497,11 @@ homeassistant/number/HVXLb1d0d912ed315aad_VA-145n/config
 </pre>
 {% endraw %}
 Alternatively, a variable can be defined as a "sensor" entity; just use "var" as the object type.
-Attributes "device_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes. See Note.
+Attributes "device_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes.
+See 
+<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
+<br>
+<br>
 See <i>"Variable Options"</i> in the <i>"Tips"</i> section of
 <a href="HomeVision_and_Home_Assistant">Tips for interfacing HomeVision with Home Assistant</a>
 for other uses of variables.
@@ -521,7 +528,9 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_VA-145/config
 {% endraw %}
 <!-- <h3 id="inputs">Inputs</h3> -->
 ### Inputs
-Defined as "binary Sensor" entities. "payload_on" and "payload_off" are defined as the text in HomeVisionXL's <i>Input Port Summary's</i> "Low State Label" and "High State Label", respectively.  Attribute "device_class" is set if found in the input's "Description" field. Must be a valid binary_sensor device class. See Note.
+Defined as "binary Sensor" entities. "payload_on" and "payload_off" are defined as the text in HomeVisionXL's <i>Input Port Summary's</i> "Low State Label" and "High State Label", respectively.  Attribute "device_class" is set if found in the input's "Description" field. Must be a valid binary_sensor device class.
+See 
+<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
 Binary sensors do not have a "retain" option.
 {% raw %}
 <pre>
@@ -657,7 +666,8 @@ Defined as "sensor" entities. Attributes "device_class", "unit_of_measurement", 
 Must be a valid sensor device class. See Note. 
 If no device class is found in the Description field, then "device_class" is set to "temperature".
 "unit_of_measurement" if present is set accordingly. Otherwise it is set to the value specified in HomeVisionXL's Settings->Temperature Scale.
-See Note.
+See 
+<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
 
 Sensors do not have a "retain" option.
 {% raw %}
@@ -668,7 +678,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TE-0/config
         "name": "TE-0 Digital_temp_sensor_0",
         "state_topic": "stat/Digitaltempsensor0/RESULT",
         "value_template": "{{ value_json.STATE }}",
-        "unit_of_measurement": "F",
+        "unit_of_measurement": "°F",
         "device_class": "temperature",
         "qos": 1,
         "device": {
@@ -685,7 +695,10 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TE-0/config
 <!-- <h3 id="analog-inputs">Analog Inputs</h3> -->
 ### Analog Inputs
 Defined as "sensor" entities. 
-Attributes "device_class", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes. See Note.
+Attributes "device_class", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes.
+See 
+<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
+
 {% raw %}
 <pre>
 homeassistant/sensor/HVXLb1d0d912ed315aad_AN-0/config
@@ -717,7 +730,8 @@ The text "state" is appended to the name of the timer for the state entity,
 and "time" is appended to the name of the timer for the time entity.
 Attribute "device_class" is set if found in the timer's "Description" field.
 Must be a valid sensor device class,
-although "device_class" may not make sense for timers. See 
+although "device_class" may not make sense for timers.
+See 
 <a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
 {% raw %}
 <pre>
@@ -762,11 +776,16 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TI_8t/config
 {% endraw %}
 <!-- <h3 id="hvac">HVAC</h3> -->
 ### HVAC
-Defined as "climate" entities. This is for HVAC native support for RCS TX-15 type thermostats. Assumes F.
-While the HVAC returns modes in Title case, the climate entity requires them in lower case. The mode_, hold_, and fan_ state_templates convert them to lower case. When Home Assistant sends commands to the HVAC, it sends in lower case, but the MQTT plug-in is case-insensitive on receive.
+Defined as "climate" entities. This is for HVAC native support for RCS TX-15 type thermostats.
+<br>
+<br>
+While the HVAC object returns modes in Title case, the climate entity requires them in lower case. The mode_, hold_, and fan_ state_templates convert them to lower case. When Home Assistant sends commands to the HVAC, it sends in lower case, but the MQTT plug-in is case-insensitive on receive.
 <br>
 <br>
 When HVAC status is sent from HomeVisionXL, "Fan" reports either "Auto" or "On". The "Auto" here conflicts with the mode ("HVAC") of "Auto". Since the fan keywords used to set the fan mode are "fanauto" and "fanon", these are defined as the <i>Fan_modes</i> items, and the <i>fan_mode_state_template</i> prepends "fan" to what it receives (either "Auto" or "On").
+<br>
+<br>
+"temperature_unit" is set to the value specified in HomeVisionXL's Settings->Temperature Scale.
 <br>
 <br>
 (Note: For Home Assistant version 2022.7.5 and later, "hold" mode is deprecated. In MQTT version 1.111 and later, "hold" items are replaced by "preset_mode" items. In at least the Home Assistant <i>custom:simple_thermostat</i> card, this change is transparent (no change to the card is required to support "preset_mode" vs. "hold".)
@@ -835,8 +854,10 @@ For all objects defined as number, sensor or binary sensor entities, "device_cla
 <i>device_class</i> is a valid device class name for the sensor or binary sensor.
 <i>unit_of_measurement</i> is a valid unit of measurement name for the sensor or binary sensor.
 <i>max_value</i> and <i>min_value</i> should be 0-255.
-No checking is done to make sure that any attributes in the Description field are  valid atributes,
+No checking is done to make sure that any attributes in the Description field are  valid attributes,
 nor are the max and min values checked. 
+<br>
+<br>
 There are no spaces around the ":".
 Other text is allowed in the Description as well.
 If there is, there should be at least one space separating any other text from 
@@ -847,7 +868,6 @@ Example Object Description:
 <pre>
    Outside Humidity dc:humidity uom:% max:100 min:0
 </pre>
-<br><br>
 Allowed attributes:
 <pre>
 Object       type       dc    uom   min   maY
