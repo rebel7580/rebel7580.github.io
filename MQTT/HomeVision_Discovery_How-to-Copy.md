@@ -718,6 +718,7 @@ and "time" is appended to the name of the timer for the time entity.
 Attribute "device_class" is set if found in the timer's "Description" field.
 Must be a valid sensor device class,
 although "device_class" may not make sense for timers. See Note.
+<a href="HomeVision_and_Home_Assistant">Device Class, Unit of Measurement, Max and Min Notes</a>
 {% raw %}
 <pre>
 homeassistant/sensor/HVXLb1d0d912ed315aad_TI_8/config
@@ -821,8 +822,9 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 }
 </pre>
 {% endraw %}
-<!-- <h3 id="device-class-max-and-min-note">Device Class, Max and Min Note</h3> -->
-### Device Class, Max and Min Note
+<a href="HomeVision_and_Home_Assistant">Device Class, Unit of Measurement, Max and Min Notes</a>
+<!-- <h3 id="device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</h3> -->
+### Device Class, Unit of Measurement, Max and Min Notes
 For all objects defined as number, sensor or binary sensor entities, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
 <pre>
    dc:<i>device_class</i>
@@ -867,10 +869,18 @@ macro    switch          -     -     -     -
 se       switch          -     -     -     -
 pe       switch          -     -     -     -
 hvac     climate         -     -     -     -
-
-- Description Attributes with a "y" for are currently supported for that object.
-- Description Attributes with an "x" will be processed and <b>will</b> appear in the discovery message, but may not make sense for that object and may cause issues with Home Assistant.
-- Description Attributes for objects with four "-" will not be processed and <b>will not</b> appear in the discovery message.</pre>
+</pre>
+<ul>
+<li>
+Description Attributes with a "y" for are currently supported for that object.
+</li>
+<li>
+Description Attributes with an "x" will be processed and <b>will</b> appear in the discovery message, but may not make sense for that object and may cause issues with Home Assistant.
+</li>
+<li>
+Description Attributes for objects with four "-" will not be processed and <b>will not</b> appear in the discovery message.
+</li>
+</ul>
 
 <!-- <h2 id="re-discovery-when-home-assistant-forgets-discovered-devices">Re-discovery When Home Assistant Forgets Discovered Devices</h2> -->
 ## Re-discovery: When Home Assistant Forgets Discovered Devices 
