@@ -717,8 +717,8 @@ The text "state" is appended to the name of the timer for the state entity,
 and "time" is appended to the name of the timer for the time entity.
 Attribute "device_class" is set if found in the timer's "Description" field.
 Must be a valid sensor device class,
-although "device_class" may not make sense for timers. See Note.
-<a href="HomeVision_and_Home_Assistant">Device Class, Unit of Measurement, Max and Min Notes</a>
+although "device_class" may not make sense for timers. See 
+<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
 {% raw %}
 <pre>
 homeassistant/sensor/HVXLb1d0d912ed315aad_TI_8/config
@@ -822,7 +822,7 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 }
 </pre>
 {% endraw %}
-<a href="HomeVision_and_Home_Assistant">Device Class, Unit of Measurement, Max and Min Notes</a>
+
 <!-- <h3 id="device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</h3> -->
 ### Device Class, Unit of Measurement, Max and Min Notes
 For all objects defined as number, sensor or binary sensor entities, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
