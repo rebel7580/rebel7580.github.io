@@ -439,8 +439,8 @@ homeassistant/switch/HVXLb1d0d912ed315aad_FL-18/config
 }
 </pre>
 {% endraw %}
-Alternatively, a flag can be defined as a binary_sensor (use "flag_b" as the object type). The flag would be read-only from the perspective of Home Assistant.
-"device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
+Alternatively, a flag can be defined as a <i>binary_sensor</i> (use "flag_b" as the object type). The flag would be read-only from the perspective of Home Assistant.
+Attribute "device_class" is set if found in the flag's "Description" field. Must be a valid sensor device class. See Note.
 {% raw %}
 <pre>
 homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
@@ -467,8 +467,8 @@ homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
 <!-- <h3 id="variables">Variables</h3> -->
 ### Variables
 A variable can be defined as a number entity (use "var_n" as the object type). The variable will be implemented as a slider.
-"device_class" is set if found in the input's "Description" field. Must be a valid sensor device class.
-"max" and "min" can be set similarly. If not explicitly set, max = 255 and min = 0.
+Attributes "device_class", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes. See Note.
+If not explicitly set, max = 255 and min = 0.
 See Note.
 {% raw %}
 <pre>
@@ -494,7 +494,7 @@ homeassistant/number/HVXLb1d0d912ed315aad_VA-145n/config
 </pre>
 {% endraw %}
 Alternatively, a variable can be defined as a "sensor" entity; just use "var" as the object type.
-"device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
+Attributes "device_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes. See Note.
 See <i>"Variable Options"</i> in the <i>"Tips"</i> section of
 <a href="HomeVision_and_Home_Assistant">Tips for interfacing HomeVision with Home Assistant</a>
 for other uses of variables.
@@ -521,7 +521,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_VA-145/config
 {% endraw %}
 <!-- <h3 id="inputs">Inputs</h3> -->
 ### Inputs
-Defined as "binary Sensor" entities. "payload_on" and "payload_off" are defined as the text in HomeVisionXL's <i>Input Port Summary's</i> "Low State Label" and "High State Label", respectively.  "device_class" is set if found in the input's "Description" field. Must be a valid binary_sensor device class. See Note.
+Defined as "binary Sensor" entities. "payload_on" and "payload_off" are defined as the text in HomeVisionXL's <i>Input Port Summary's</i> "Low State Label" and "High State Label", respectively.  Attribute "device_class" is set if found in the input's "Description" field. Must be a valid binary_sensor device class. See Note.
 Binary sensors do not have a "retain" option.
 {% raw %}
 <pre>
@@ -653,7 +653,12 @@ homeassistant/switch/HVXLb1d0d912ed315aad_MA-10/config
 Like IR entities, Macros, Scheduled Events and Periodic Events can also be used as Buttons. See IR above for details.
 <!-- <h3 id="digital-temperature-sensors">Digital Temperature Sensors</h3> -->
 ### Digital Temperature Sensors
-Defined as "sensor" entities. "device_class" is set if found in the input's "Description" field. If no device class is found in the Description, then "device_class" is set to "temperature". Must be a valid sensor device class. See Note. If the "device_class" word is followed by a "-F" or "-C", "unit_of_measurement" is set to "F" or "C" accordingly. Otherwise it is set to the value specified in HomeVisionXL's Settings->Temperature Scale.
+Defined as "sensor" entities. Attributes "device_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes. 
+Must be a valid sensor device class. See Note. 
+If no device class is found in the Description field, then "device_class" is set to "temperature".
+"unit_of_measurement" if present is set accordingly. Otherwise it is set to the value specified in HomeVisionXL's Settings->Temperature Scale.
+See Note.
+
 Sensors do not have a "retain" option.
 {% raw %}
 <pre>
@@ -680,7 +685,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TE-0/config
 <!-- <h3 id="analog-inputs">Analog Inputs</h3> -->
 ### Analog Inputs
 Defined as "sensor" entities. 
-"device_class" is set if found in the input's "Description" field. Must be a valid sensor device class. See Note.
+Attributes "device_class", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes. See Note.
 {% raw %}
 <pre>
 homeassistant/sensor/HVXLb1d0d912ed315aad_AN-0/config
@@ -710,7 +715,7 @@ and one for the current time.
 Time is reported in "HHH:MM:SS.hh" format.
 The text "state" is appended to the name of the timer for the state entity,
 and "time" is appended to the name of the timer for the time entity.
-"device_class" is set if found in the input's "Description" field.
+Attribute "device_class" is set if found in the timer's "Description" field.
 Must be a valid sensor device class,
 although "device_class" may not make sense for timers. See Note.
 {% raw %}
@@ -818,26 +823,55 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 {% endraw %}
 <!-- <h3 id="device-class-max-and-min-note">Device Class, Max and Min Note</h3> -->
 ### Device Class, Max and Min Note
-For all objects defined as number, sensor or binary sensor entities, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL. "max" and "min" are valid for number entities (<i>var_n</i>) only.
+For all objects defined as number, sensor or binary sensor entities, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
 <pre>
    dc:<i>device_class</i>
+   uom:<i>unit_of_measurement</i>
    max:<i>max_value</i>
    min:<i>min_value</i>
 </pre>
 <i>device_class</i> is a valid device class name for the sensor or binary sensor.
+<i>unit_of_measurement</i> is a valid unit of measurement name for the sensor or binary sensor.
 <i>max_value</i> and <i>min_value</i> should be 0-255.
-No checking is done to make sure <i>device_class</i> is a valid device class,
+No checking is done to make sure that any attributes in the Description field are  valid atributes,
 nor are the max and min values checked. 
 There are no spaces around the ":".
 Other text is allowed in the Description as well.
 If there is, there should be at least one space separating any other text from 
-"dc:<i>device_class</i>".
+any attribute.
 <br>
 <br>
 Example Object Description:
 <pre>
-   Outside Humidity  dc:humidity max:100 min:0
+   Outside Humidity dc:humidity uom:% max:100 min:0
 </pre>
+<br><br>
+Allowed attributes:
+<pre>
+Object       type       dc    uom   min   maY
+flag_b   binary sensor   Y     x     x     x
+var      sensor          Y     Y     Y     Y
+var_n    number          Y     x     Y     Y
+timer    sensor          Y     x     x     x
+timer_t  sensor          Y     x     x     x
+analog   sensor          Y     Y     Y     Y
+temp     sensor          Y     Y     Y     Y
+input    binary_sensor   Y     x     x     x
+X10      light           -     -     -     -
+X10      switch          -     -     -     -
+light    light           -     -     -     -
+flag     switch          -     -     -     -
+output   switch          -     -     -     -
+ir       switch          -     -     -     -
+macro    switch          -     -     -     -
+se       switch          -     -     -     -
+pe       switch          -     -     -     -
+hvac     climate         -     -     -     -
+
+- Description Attributes with a "y" for are currently supported for that object.
+- Description Attributes with an "x" will be processed and <b>will</b> appear in the discovery message, but may not make sense for that object and may cause issues with Home Assistant.
+- Description Attributes for objects with four "-" will not be processed and <b>will not</b> appear in the discovery message.</pre>
+
 <!-- <h2 id="re-discovery-when-home-assistant-forgets-discovered-devices">Re-discovery When Home Assistant Forgets Discovered Devices</h2> -->
 ## Re-discovery: When Home Assistant Forgets Discovered Devices 
 Discovery messages are sent from the MQTT Plug-in with "retain" on.
