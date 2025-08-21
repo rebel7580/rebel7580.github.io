@@ -936,17 +936,17 @@ If you have Home Assistant (HA), and you used the MQTT plug-in's Discovery funct
 to avoid problems the object should be "unwound".
 <ol>
 <li>
-In the MQTT plug-in's "Discovey" tab (press F4 to make it visible if not already),
+In the MQTT plug-in's "Discovery" tab (press F4 to make it visible if not already),
 scroll to and select the object you want to delete.
-<li>
+</li><li>
 Select "Discovery Type:" "unDiscover". The other checkboxes don't matter as they don't affect the "unique ID" that is used to identify the entity.
-<li>
+</li><li>
 Click "Run Discovery". This will remove the entity from HA. If you don't do this, you may wind up with an "orphaned" entity in HA.
-<li>
+</li><li>
 "Delete" the object from the MQTT plug-in's "Int Objects" Tab. Press "Done" to make the change effective.
 <li>
 Finally change your schedule to remove the object, if necessary.
-</ol>
+</li></ol>
 
 These same steps can be followed if you want to rename or otherwise change an object.
 
