@@ -695,7 +695,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TE-0/config
 <!-- <h3 id="analog-inputs">Analog Inputs</h3> -->
 ### Analog Inputs
 Defined as "sensor" entities. 
-Attributes "device_class", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes.
+Attributes "device_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes.
 See 
 <a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
 
@@ -844,7 +844,7 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 
 <!-- <h3 id="device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</h3> -->
 ### Device Class, Unit of Measurement, Max and Min Notes
-For all objects defined as number, sensor or binary sensor entities, "device_class" can be set by placing the following somewhere in the Object's Description field in HomeVisionXL.
+For all objects defined as number, sensor or binary sensor entities, Several Home Assistant attributes can be set by placing the following somewhere in the Object's <i>Description</i> field in HomeVisionXL.
 <pre>
    dc:<i>device_class</i>
    uom:<i>unit_of_measurement</i>
@@ -892,10 +892,11 @@ hvac     climate         -     -     -     -
 </pre>
 <ul>
 <li>
-Description Attributes with a "y" for are currently supported for that object.
+Description Attributes with a "Y" are currently supported for that object.
 </li>
 <li>
 Description Attributes with an "x" will be processed and <b>will</b> appear in the discovery message, but may not make sense for that object and may cause issues with Home Assistant.
+<i>Use with caution!</i>
 </li>
 <li>
 Description Attributes for objects with four "-" will not be processed and <b>will not</b> appear in the discovery message.
