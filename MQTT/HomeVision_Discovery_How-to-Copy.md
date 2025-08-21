@@ -841,7 +841,6 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 }
 </pre>
 {% endraw %}
-
 <!-- <h3 id="device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</h3> -->
 ### Device Class, Unit of Measurement, Max and Min Notes
 For all objects defined as number, sensor or binary sensor entities, Several Home Assistant attributes can be set by placing the following somewhere in the Object's <i>Description</i> field in HomeVisionXL.
