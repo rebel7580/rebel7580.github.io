@@ -505,14 +505,22 @@ If a topic is not formed correctly, it simply won't work.
 A payload is not required.
 <br>
 <br>
-The unlabled checkbox before the "Publish" button sets the retain flag to 1 for the message.
+The "R" checkbox before the "Publish" button sets the retain flag to 1 for the message.
 It should rarely be needed. 
 The most useful reason for setting retain to 1 (checking the box) would be to clear a retained message in the broker.
 Publishing a topic with a empty payload and retain set to 1 should clear any retained messages for that topic in the broker.
 <br>
 <br>
+The "E" checkbox before the "Publish" button UTF-8 encodes the payload. This may be necessary if the payload contains "special" characters. (E.g., "°").
+It should rarely be needed.
+<br>
+<br>
 When receiving a message that matches one of the subscribed topics,
 the topic and payload will appear in the Log sub-window (See below) and in the debug plug-in in blue text if the debug plug-in is enabled.
+<br>
+<br>
+The "U" checkbox before the "Subscribe" button UTF-8 decodes the payload. This may be necessary if the payload contains "special" characters. (E.g., "°").
+It should rarely be needed.
 <br>
 <br>
 The "Unsubscribe" button will manually unsubscribe its associated topic.
@@ -1087,15 +1095,16 @@ The calling plug-in should import the command via:
 The <b>mqttComm</b> command has the following formats:
 <pre>
     mqttComm {-log} sub|unsub <<i>topic</i>>|<i>topic</i> <i>callback</i> 
-    mqttComm {-exactstat -nodim -log -retain} stat|cmnd <<i>topic</i>>|<i>topic</i> {<i>payload</i>}
-    mqttComm {-log -retain} pub <i>topic</i> {<i>payload</i>}
+    mqttComm {-exactstat -nodim -log -retain -encode} stat|cmnd <<i>topic</i>>|<i>topic</i> {<i>payload</i>}
+    mqttComm {-log -retain -encode} pub <i>topic</i> {<i>payload</i>}
 </pre>
 <ul>
 <li>Note: In previous versions (&lt; 1.76), "type", the name of the calling plug-in, was the first argument. This has been deprecated. However, for backward compatibility, new versions of the command will allow (and ignore) a "type" argument.
 </li><li>-log: Log the command. This argument is optional.
+</li><li>-exactstat: Sends only a POWER stat response regardless of power/result settings. This argument is optional.
+</li><li>-nodim: Don't include Dimming in a RESULT response. This argument is optional.
 </li><li>-retain: The sent message is retained by the broker. This argument is optional.
-</li><li>-exactstat: Sends only a POWER stat response regardless of power/result settings.
-</li><li>-nodim: Don't include Dimming in a RESULT response.
+</li><li>-encode: The payload is UTF-8 encoded. This may be necessary if the payload contains "special" characters. (E.g., "°"). This argument is optional.
 </li><li><i>topic</i>: Can either be enclosed in "<>" (or any of the other standard forms) or not. If a standard form is used, MQTT's standard prefixes and the Power post-fix will be added to create a full topic. Otherwise, a topic with neither "<" nor ">" is used as-is, without adding the standard pre- and post-fixes, essentially creating generic MQTT messages. If the topic contains spaces, the topic along with any "<" or ">", should be enclosed in double-quotes.
 </li><li><i>payload</i>: The MQTT message payload to send and is valid only for "cmnd", "stat" and "pub" actions. Double-quotes or braces are NOT necessary for any spaces in the payload portion.
 </li><li><i>callback</i>: The name of a procedure in the calling plug-in that will process the subscribed-to incoming message and is valid only for "sub" and "unsub". 
