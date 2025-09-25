@@ -553,8 +553,7 @@ The recent entry lists are saved when the <i>MQTT Configuration</i> window is cl
 #### Pub/Sub Log Area
 The Log window of the Pub/Sub Tab shows results based on publishing and subscribing activity.
 <ul>
-<li>Each of the four Pub/Sub actions are presented in different colors in both the Topic entry fields and the Log window.
-Publish lines in the Log window also have a gray background.
+<li>Each of the four Pub/Sub actions are presented in matching colors in both the Topic entry fields and the Log window.
 </li><li>
 When a <i>Publish</i> button is pressed, that action is shown in the Log window with either "p1: " or "p2: " prepended to the topic and payload published.
 <br>
@@ -587,8 +586,8 @@ Refer to <a href="MQTT_Actions_ext.html">External Device Actions</a> for respons
 <br>
 <br>
 Note that an assigned Flag or Variable is always updated before the macro is run so the macro can take advantage of the new value.
-<!-- <h2 id="controlling-devices">Controlling Devices</h2> -->
-## Controlling Devices
+<!-- <h2 id="controlling-devices">Controlling/Monitoring Objects and Devices</h2> -->
+## Controlling/Monitoring Objects and Devices
 <!-- <h3 id="deviceobject-display-area">Device/Object Display Area</h3> -->
 ### Device/Object Display Area
 Right-clicking on a line in the Device/Object Display Area
@@ -738,7 +737,6 @@ Backslashes in the payload portion should be "escaped" by another backslash (e.g
 
 <!-- <h3 id="netio">NetIO</h3> -->
 ### NetIO
-
 <b><i>
 NOTE: While the NetIO application is no longer supported by its developers,
 it still works and the NetIO plug-in may still be useful to those still using the app.
@@ -943,6 +941,44 @@ click "Command" and enter a procedure name in the "Command" field.
 The procedure becomes the callback procedure for this topic.
 <br>
 <br>
+This option requires a procedure to be defined in a custom plug-in.
+See <a href="#custom-commands">Custom Commands</a> for details.
+
+<!-- <h4 id="homevision-action-topic">Homevision Action Topic</h4> -->
+#### Homevision Action Topic
+This Topic can be used to send a set of commands just like those allowed in an external device <i>trigger</i>.
+Since this method is not supported in Home Assistant's MQTT discovery, it would need to be used in configuration.yaml or in a GUI-based construction, like a button.
+
+<i>However, it is powerful enough that, in some cases, using this method could eliminate the need for "virtual" external devices and the corresponding manual configuration.yaml changes if using Home Assistant!</i>
+
+For example, the previous external device trigger can be done like this:
+<pre>
+    Topic:    cmnd/homevision/action
+    Payload:  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
+</pre>
+In response to an action command, the actions will be returned in a status message:
+<pre>
+    Topic:    stat/homevision/action
+    Payload:  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
+</pre>
+This message may be returned before all the actions in the trigger are completed, especially if the trigger contains "waits".
+
+Trigger % substitutions are NOT performed on the payload using this method.
+
+<!-- <h4 id="custom-processing-plug-ins">Custom Processing Using HomeVisionXL plug-ins (For TCL programmers!)</h4> -->
+#### Custom Processing Using HomeVisionXL plug-ins (For TCL programmers!)
+For those who may want to have total control of processing incoming/outgoing MQTT data,
+custom plug-ins can be used.
+
+<b>Those not interested in creating their own plug-ins can safely ignore this section.</b>
+
+<!-- <h5 id="custom-commands">Custom Commands</h5> -->
+##### Custom Commands
+To have custom processing of received messages for a topic,
+click "Command" and enter a procedure name in the "Command" field.
+The procedure becomes the callback procedure for this topic.
+<br>
+<br>
 Note: If "Command" is selected,
 the "Flag/Var", "On Macro" and "Off Macro" fields are ignored.
 However, the action command can be used in the procedure to manipulate flags, vars, macros, etc..
@@ -1057,30 +1093,9 @@ Since we only care about the topic and payload, we can lump the rest into <i>arg
 <br>
 Procedure <b>bathfan</b> is called whenever a state message from the fan switch is received. It tracks the state of the fan so <b>humid</b> only turns the fan on/off if it is not already.
 In reality, <b>bathfan</b> isn't necessary, as turning on the fan while it is already on does no harm. It's here mainly as an example of how to set up a command.
-<!-- <h4 id="homevision-action-topic">Homevision Action Topic</h4> -->
-#### Homevision Action Topic
-This Topic can be used to send a set of commands just like those allowed in an external device <i>trigger</i>.
-Since this method is not supported in Home Assistant's MQTT discovery, it would need to be used in configuration.yaml or in a GUI-based construction, like a button.
 
-<i>However, it is powerful enough that, in some cases, using this method could eliminate the need for "virtual" external devices and the corresponding manual configuration.yaml changes if using Home Assistant!</i>
-
-For example, the previous external device trigger can be done like this:
-<pre>
-    Topic:    cmnd/homevision/action
-    Payload:  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
-</pre>
-In response to an action command, the actions will be returned in a status message:
-<pre>
-    Topic:    stat/homevision/action
-    Payload:  action: ir transmit 2 1,wait for 500,ir transmit 26 1; roku: 13;
-</pre>
-This message may be returned before all the actions in the trigger are completed, especially if the trigger contains "waits".
-
-Trigger % substitutions are NOT performed on the payload using this method.
-
-
-<!-- <h3 id="mqttcomm---sendingreceiving-mqtt-messages-fromto another-plug-in">mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in</h3> -->
-### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
+<!-- <h5 id="mqttcomm---sendingreceiving-mqtt-messages-fromto another-plug-in">mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in</h5> -->
+##### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
 
 When total control for MQTT message processing is needed,
 this method takes "Custom Commands" a step farther.
@@ -1185,8 +1200,8 @@ Examples:
         publishes cmnd/room 2/state on
 </pre>
 
-<!-- <h4 id="callbacks-with-the-sub-form-of-mqttcomm">Callbacks with the "sub" form of mqttComm</h4> -->
-#### Callbacks with the "sub" form of mqttComm
+<!-- <h6 id="callbacks-with-the-sub-form-of-mqttcomm">Callbacks with the "sub" form of mqttComm</h6> -->
+###### Callbacks with the "sub" form of mqttComm
 
 When something subscribes to a topic, the assumption is that some action should be taken when a message with that topic arrives.
 So how is that handled when a plug-in uses <b>mqttComm</b> to subscribe to a topic?
@@ -1240,11 +1255,11 @@ If it needs to handle a number of very similar fulltopics, one callback that par
 <br>
 Either approach will work.
 
-<!-- <h3 id="other-public-procedures-suppliedcalled-by-the-mqtt-plug-in">Other Public Procedures Supplied/Called by the MQTT Plug-in</h3> -->
-### Other Public Procedures Supplied/Called by the MQTT Plug-in
+<!-- <h5 id="other-public-procedures-suppliedcalled-by-the-mqtt-plug-in">Other Public Procedures Supplied/Called by the MQTT Plug-in</h5> -->
+##### Other Public Procedures Supplied/Called by the MQTT Plug-in
 
-<!-- <h3 id="topictemplate">topicTemplate</h3> -->
-#### topicTemplate
+<!-- <h6 id="topictemplate">topicTemplate</h6> -->
+####### topicTemplate
 
 To help with parsing full topics,
 the MQTT Plug-in makes public a helper procedure that will split a full topic (the topic returned to the callback) into its parts and provide other info about the full topic.
@@ -1300,8 +1315,8 @@ The resulting dict returned by <b>topicTemplate</b> can be used like this:
 </pre>
 
 
-<!-- <h4 id="mqttlog">mqttLog</h4> -->
-#### mqttLog
+<!-- <h6 id="mqttlog">mqttLog</h6> -->
+###### mqttLog
 
 Puts an entry into the current MQTT log file.
 <br>
@@ -1321,8 +1336,8 @@ will also send the string to the debug plug-in in <i>color</i>, Default: red.
 </li>
 </ul>
 
-<!-- <h4 id="mqttready">mqttReady</h4> -->
-#### mqttReady
+<!-- <h6 id="mqttready">mqttReady</h6> -->
+###### mqttReady
 This procedure is defined by the <u>using</u> plug-in and is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
 It is used to detect <i>transitions</i> in MQTT status.
 <br>
@@ -1355,8 +1370,8 @@ Reasons "1", "2", and "4" are fatal and need to be corrected before a connection
 <br>
 To use, define a <b>mqttReady</b> procedure to respond to the connected and/or disconnected states.
 
-<!-- <h4 id="mqttstatus">mqttStatus</h4> -->
-#### mqttStatus
+<!-- <h6 id="mqttstatus">mqttStatus</h6> -->
+###### mqttStatus
 This procedure is <i>provided</i> by the MQTT Plug-in and returns <i>current</i> MQTT status. (Compare to <b>mqttReady</b>.)
 <br>
 <br>
@@ -1390,8 +1405,8 @@ Possible values for <i>reason</i> are:
 </dl>
 If called with "state", "session", "reason", or no argument (default "state"),
 the procedure returns values as described above for that argument type.
-<!-- <h4 id="mqttstatus_and_mqttReady_usage">mqttStatus and mqttReady Usage</h4> -->
-#### mqttStatus and mqttReady Usage
+<!-- <h6 id="mqttstatus_and_mqttReady_usage">mqttStatus and mqttReady Usage</h6> -->
+###### mqttStatus and mqttReady Usage
 
 Typical use:
 <pre>
