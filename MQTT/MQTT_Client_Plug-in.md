@@ -942,7 +942,7 @@ The procedure becomes the callback procedure for this topic.
 <br>
 <br>
 This option requires a procedure to be defined in a custom plug-in.
-See <a href="#custom-commands">Custom Commands</a> for details.
+See <a href="#custom-command-details">Custom Command Details</a> for details.
 
 <!-- <h4 id="homevision-action-topic">Homevision Action Topic</h4> -->
 #### Homevision Action Topic
@@ -965,15 +965,15 @@ This message may be returned before all the actions in the trigger are completed
 
 Trigger % substitutions are NOT performed on the payload using this method.
 
-<!-- <h4 id="custom-processing-plug-ins">Custom Processing Using HomeVisionXL plug-ins (For TCL programmers!)</h4> -->
-#### Custom Processing Using HomeVisionXL plug-ins (For TCL programmers!)
+<!-- <h3 id="custom-processing-plug-ins">Custom Processing Using HomeVisionXL plug-ins (For TCL programmers!)</h3> -->
+### Custom Processing Using HomeVisionXL plug-ins (For TCL programmers!)
 For those who may want to have total control of processing incoming/outgoing MQTT data,
 custom plug-ins can be used.
 
 <b>Those not interested in creating their own plug-ins can safely ignore this section.</b>
 
-<!-- <h5 id="custom-commands">Custom Commands</h5> -->
-##### Custom Commands
+<!-- <h4 id="custom-command-details">Custom Command Details</h4> -->
+#### Custom Command Details
 To have custom processing of received messages for a topic,
 click "Command" and enter a procedure name in the "Command" field.
 The procedure becomes the callback procedure for this topic.
@@ -1094,8 +1094,8 @@ Since we only care about the topic and payload, we can lump the rest into <i>arg
 Procedure <b>bathfan</b> is called whenever a state message from the fan switch is received. It tracks the state of the fan so <b>humid</b> only turns the fan on/off if it is not already.
 In reality, <b>bathfan</b> isn't necessary, as turning on the fan while it is already on does no harm. It's here mainly as an example of how to set up a command.
 
-<!-- <h5 id="mqttcomm---sendingreceiving-mqtt-messages-fromto another-plug-in">mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in</h5> -->
-##### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
+<!-- <h4 id="mqttcomm---sendingreceiving-mqtt-messages-fromto another-plug-in">mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in</h4> -->
+#### mqttComm - Sending/Receiving MQTT Messages from/to Another Plug-in
 
 When total control for MQTT message processing is needed,
 this method takes "Custom Commands" a step farther.
@@ -1200,8 +1200,8 @@ Examples:
         publishes cmnd/room 2/state on
 </pre>
 
-<!-- <h6 id="callbacks-with-the-sub-form-of-mqttcomm">Callbacks with the "sub" form of mqttComm</h6> -->
-###### Callbacks with the "sub" form of mqttComm
+<!-- <h5 id="callbacks-with-the-sub-form-of-mqttcomm">Callbacks with the "sub" form of mqttComm</h5> -->
+##### Callbacks with the "sub" form of mqttComm
 
 When something subscribes to a topic, the assumption is that some action should be taken when a message with that topic arrives.
 So how is that handled when a plug-in uses <b>mqttComm</b> to subscribe to a topic?
@@ -1255,11 +1255,11 @@ If it needs to handle a number of very similar fulltopics, one callback that par
 <br>
 Either approach will work.
 
-<!-- <h5 id="other-public-procedures-suppliedcalled-by-the-mqtt-plug-in">Other Public Procedures Supplied/Called by the MQTT Plug-in</h5> -->
-##### Other Public Procedures Supplied/Called by the MQTT Plug-in
+<!-- <h4 id="other-public-procedures-suppliedcalled-by-the-mqtt-plug-in">Other Public Procedures Supplied/Called by the MQTT Plug-in</h5> -->
+#### Other Public Procedures Supplied/Called by the MQTT Plug-in
 
-<!-- <h6 id="topictemplate">topicTemplate</h6> -->
-####### topicTemplate
+<!-- <h5 id="topictemplate">topicTemplate</h5> -->
+##### topicTemplate
 
 To help with parsing full topics,
 the MQTT Plug-in makes public a helper procedure that will split a full topic (the topic returned to the callback) into its parts and provide other info about the full topic.
@@ -1315,8 +1315,8 @@ The resulting dict returned by <b>topicTemplate</b> can be used like this:
 </pre>
 
 
-<!-- <h6 id="mqttlog">mqttLog</h6> -->
-###### mqttLog
+<!-- <h5 id="mqttlog">mqttLog</h5> -->
+##### mqttLog
 
 Puts an entry into the current MQTT log file.
 <br>
@@ -1336,8 +1336,8 @@ will also send the string to the debug plug-in in <i>color</i>, Default: red.
 </li>
 </ul>
 
-<!-- <h6 id="mqttready">mqttReady</h6> -->
-###### mqttReady
+<!-- <h5 id="mqttready">mqttReady</h5> -->
+##### mqttReady
 This procedure is defined by the <u>using</u> plug-in and is <i>called</i> by the MQTT Plug-in whenever it connects to or disconnects from the MQTT broker (and hence ready (or not) to take <b>mqttComm</b> calls).
 It is used to detect <i>transitions</i> in MQTT status.
 <br>
@@ -1370,8 +1370,8 @@ Reasons "1", "2", and "4" are fatal and need to be corrected before a connection
 <br>
 To use, define a <b>mqttReady</b> procedure to respond to the connected and/or disconnected states.
 
-<!-- <h6 id="mqttstatus">mqttStatus</h6> -->
-###### mqttStatus
+<!-- <h5 id="mqttstatus">mqttStatus</h5> -->
+##### mqttStatus
 This procedure is <i>provided</i> by the MQTT Plug-in and returns <i>current</i> MQTT status. (Compare to <b>mqttReady</b>.)
 <br>
 <br>
@@ -1405,8 +1405,8 @@ Possible values for <i>reason</i> are:
 </dl>
 If called with "state", "session", "reason", or no argument (default "state"),
 the procedure returns values as described above for that argument type.
-<!-- <h6 id="mqttstatus_and_mqttReady_usage">mqttStatus and mqttReady Usage</h6> -->
-###### mqttStatus and mqttReady Usage
+<!-- <h5 id="mqttstatus_and_mqttReady_usage">mqttStatus and mqttReady Usage</h5> -->
+##### mqttStatus and mqttReady Usage
 
 Typical use:
 <pre>
