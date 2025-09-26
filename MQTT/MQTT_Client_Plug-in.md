@@ -1453,8 +1453,8 @@ Typical use:
 A sample plug-in using <b>mqttComm</b>, <b>mqttReady</b> and <b>mqttStatus</b> that does its own subscribing and needs no entries in the MQTT Plug-in's device lists can be downloaded from <a href="https://github.com/rebel7580/rebel7580.github.io/blob/main/MQTT/mqttsample.hap">here</a>.
 
 
-<!-- <h3 id="mqtt-discovery-for-home-assistant">MQTT Discovery for Home Assistant</h3> -->
-### MQTT Discovery for Home Assistant
+<!-- <h2 id="mqtt-discovery-for-home-assistant">MQTT Discovery for Home Assistant</h2> -->
+## MQTT Discovery for Home Assistant
 
 <a href="HomeVision_and_Home_Assistant">Tips for Interfacing HomeVision with Home Assistant</a>
 <br>
