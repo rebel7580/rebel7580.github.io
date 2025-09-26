@@ -965,8 +965,8 @@ This message may be returned before all the actions in the trigger are completed
 
 Trigger % substitutions are NOT performed on the payload using this method.
 
-<!-- <h3 id="custom-processing-plug-ins">Custom Processing Using HomeVisionXL plug-ins (For TCL programmers!)</h3> -->
-### Custom Processing Using HomeVisionXL plug-ins (For TCL programmers!)
+<!-- <h3 id="custom-processing-plug-ins">Custom Processing Using HomeVisionXL Plug-ins (For TCL programmers!)</h3> -->
+### Custom Processing Using HomeVisionXL Plug-ins (For TCL programmers!)
 For those who may want to have total control of processing incoming/outgoing MQTT data,
 custom plug-ins can be used.
 
