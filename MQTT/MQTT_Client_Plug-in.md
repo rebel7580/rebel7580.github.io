@@ -970,7 +970,7 @@ Trigger % substitutions are NOT performed on the payload using this method.
 For those who may want to have total control of processing incoming/outgoing MQTT data,
 custom plug-ins can be used.
 
-<u><b>Those not interested in creating their own plug-ins can safely ignore this section.</b></u>
+<u>Those <b>not</b> interested in creating their own plug-ins can safely ignore this section.</u>
 
 <!-- <h4 id="custom-command-details">Custom Command Details</h4> -->
 #### Custom Command Details
