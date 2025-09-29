@@ -967,8 +967,10 @@ Trigger % substitutions are NOT performed on the payload using this method.
 
 <!-- <h3 id="custom-processing-plug-ins">Custom Processing Using HomeVisionXL Plug-ins (For TCL programmers!)</h3> -->
 ### Custom Processing Using HomeVisionXL Plug-ins (For TCL programmers!)
-<b>NOTE:</b> <u>Those <b>not</b> interested in creating their own plug-ins can safely ignore this section.</u>
-
+<b>NOTE:</b> <u>Those <b>not</b> interested in creating their own plug-ins can safely ignore this section and can skip to</u>
+<a href="#mqtt-discovery-for-home-assistant">MQTT Discovery for Home Assistant</a>.
+<br>
+<br>
 For those who may want to have total control of processing incoming/outgoing MQTT data,
 custom plug-ins can be used.
 
