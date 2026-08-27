@@ -423,6 +423,19 @@ The retain flag will cause most brokers to "remember" the status and send it to 
 </li><li>When "Done" is clicked, objects with standard topics are subscribed to their <b>command</b> full topics. Objects with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
 </li></ul>
+<b>Note:</b> For internal objects to report status changes, "automatic reporting" must be enabled and "automatically report changes" must be turned on for the desired objects. See HomeVisionXL->Controller Settings->Comm..
+<br>
+<br>
+Automatic reporting of changes is not feasible for objects that change frequently.
+Variables are the most likely object where this is true, as many systems have variables that change every loop.
+In this case, automatic reporting would flood the system with update messages.
+To resolve this, select a subset of variables (that don't change too often) to track,
+find in the schedule where these variables are changed,
+and in those places add in "Controller command: Report status of all variables".
+This way updates will occur only when interesting variables are changed.
+Alternatively, set up a periodic event containing "Controller command: Report status of all variables"
+with a rate that is a compromise between the amount of update commands sent vs frequency of the updates.
+
 <!-- <h3 id="settings-tab">Settings Tab</h3> -->
 ### Settings Tab
 
