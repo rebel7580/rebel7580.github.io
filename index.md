@@ -5,7 +5,7 @@ Documentation: ![GitHub last commit](https://img.shields.io/github/last-commit/r
 * [MQTT Plug-in](/MQTT/MQTT_index)
 ![Latest Release](https://img.shields.io/github/v/release/rebel7580/MQTT-Plug-in-For-HomeVisionXL?label=Release&style=plastic)
 ![Latest Release Date](https://img.shields.io/github/release-date/rebel7580/MQTT-Plug-in-For-HomeVisionXL?label=Latest%20Release%20Date&style=plastic)
-![GitHub License](https://img.shields.io/github/license/rebel7580/MQTT-Plug-in-For-HomeVisionXL?label=License&style=plastic)
+![License](https://img.shields.io/github/license/rebel7580/MQTT-Plug-in-For-HomeVisionXL?label=License&style=plastic)
 * [Pushover Plug-in](https://github.com/bgardner46/Pushover)
 ![Latest Release](https://img.shields.io/github/v/release/bgardner46/Pushover?label=Release&style=plastic)
 ![Latest Release Date](https://img.shields.io/github/release-date/bgardner46/Pushover?label=Latest%20Release%20Date&style=plastic)
