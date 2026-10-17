@@ -9,7 +9,7 @@ Documentation: ![GitHub last commit](https://img.shields.io/github/last-commit/r
 * [Pushover Plug-in](https://github.com/bgardner46/Pushover)
 ![Latest Release](https://img.shields.io/github/v/release/bgardner46/Pushover?label=Release&style=plastic)
 ![Latest Release Date](https://img.shields.io/github/release-date/bgardner46/Pushover?label=Latest%20Release%20Date&style=plastic)
-![GitHub License](https://img.shields.io/github/license/bgardner46/Pushover?label=License&style=plastic)
+![License](https://img.shields.io/github/license/bgardner46/Pushover?label=License&style=plastic)
 * [Weather Plug-in](/Wx/Wx_index)
 ![Latest Release](https://img.shields.io/github/v/release/rebel7580/Weather-Plug-in-For-HomeVisionXL?label=Release&style=plastic)
 ![Latest Release Date](https://img.shields.io/github/release-date/rebel7580/Weather-Plug-in-For-HomeVisionXL?label=Latest%20Release%20Date&style=plastic)
