@@ -24,7 +24,6 @@ Documentation: ![GitHub last commit](https://img.shields.io/github/last-commit/r
 * [Roku Plug-in](/Roku/Roku_index)
 ![Latest Release](https://img.shields.io/github/v/release/rebel7580/Roku-Plug-in-For-HomeVisionXL?label=Release&style=plastic)
 ![Latest Release Date](https://img.shields.io/github/release-date/rebel7580/Roku-Plug-in-For-HomeVisionXL?label=Latest%20Release%20Date&style=plastic)
-![License](https://img.shields.io/github/license/rebel7580/Roku-Plug-in-For-HomeVisionXL?label=License&style=plastic)
 
 ## Other Links
 * [HomeVisionXL website](http://hv.tclcode.com)
