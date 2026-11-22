@@ -110,7 +110,7 @@ Example ("NO ID in Name?"and "Underscore to space in Name?" both selected):
 Device names will be "HomeVision {Object_type}". 
 If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
 </li><li>Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
-See <a href="#using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins</a>.
+See <a href="#using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins"</a>.
 </li>
 </ul>
 <!-- <h1 id="homevision-object-discovery-details">HomeVision Object Discovery Details</h1> -->
