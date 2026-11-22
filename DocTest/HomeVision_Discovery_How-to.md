@@ -916,6 +916,7 @@ Description Attributes for objects with "-" will not be processed and <b>will no
 </li>
 </ul>
 
+
 <!-- <h2 id="re-discovery-when-home-assistant-forgets-discovered-devices">Re-discovery When Home Assistant Forgets Discovered Devices</h2> -->
 ## Re-discovery: When Home Assistant Forgets Discovered Devices 
 Discovery messages are sent from the MQTT Plug-in with "retain" on.
