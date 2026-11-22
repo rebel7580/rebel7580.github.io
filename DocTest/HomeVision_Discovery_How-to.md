@@ -110,7 +110,7 @@ Example ("NO ID in Name?"and "Underscore to space in Name?" both selected):
 Device names will be "HomeVision {Object_type}". 
 If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
 </li><li>Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
-See <a href="#using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required">Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins</a>.
+See <a href="#using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required">Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)</a>.
 </li>
 </ul>
 <!-- <h1 id="homevision-object-discovery-details">HomeVision Object Discovery Details</h1> -->
@@ -1026,9 +1026,68 @@ In some cases, you may wind up with entity names changing from what you may have
 Carefully check and manually update any instances of affected entities to the new names.
 It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).
 
+
+<!-- <h2 id="using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required"/h2> -->
+## Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)
+
+Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
+The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
+and a "haObjectDiscovery" procedure which is called when "Run Discovery" is clicked and creates the discovery message to Home Assistant for each object to be discovered.
+The "haObjectDiscovery" procedure typically will call another procedure to process each individual object.
+See the next section for "haObjectDiscovery" details.
+
+If a plug-in needs to use configuration values from the MQTT plug-in, use the "getDiscovConfig" procedure.
+"getDiscovConfig" returns a dict with the following:
+<pre>
+    clientID
+    cmndPrefix 
+    statPrefix
+    telePrefix
+    pwrPostfix
+    rstPostfix
+    LWTPostfix 
+</pre>
+"clientID" can be used to create unique ids if necessary.
+<br>
+<br>
+Example (as provided by the Caseta Plug-in): 
+<pre>
+    hvPublic getDiscovDevices
+    proc getDiscovDevices {} {
+
+        mk::loop row cfg.devices {
+            lassign [mk::get $row id name] id name
+            dict set caseta caseta $id [list "CA-$id" $name]
+        }
+        return $caseta
+    }
+
+    hvPublic haObjectDiscovery
+    proc haObjectDiscovery {args} {
+        ...
+        sendDiscovery $noid $nous $retain $nodevice $add $id $name $topic $obj_type $dev_type $model $manuf
+        ...
+    }
+    
+    hvImport getDiscovConfig
+    hvImport mqttComm
+    proc sendDiscovery {args} {
+        ...
+        # get prefix/postfix, etc. info from MQTT, if needed.
+        set mqttcfg {*}[getDiscovConfig]
+        ...
+        # create HA discovery topic and message
+        ...
+        # send discovery
+        mqttComm -retain pub $hadiscoverytopic $message
+        ...
+    }
+</pre>
 <!-- <h2 id="discovery-from-within-other-plug-ins-tcl-programming-required"/h2> -->
 ## Discovery from Within Other Plug-ins (TCL programming Required)
-The MQTT Plug-in contains a public procedure to do discovery from within other plug-ins. To use, the plug-in must have the following line:
+Discovery can be done from within a plug-ins, skipping the need to use the MQTT plug-in's Discovery tab.
+
+To use, the plug-in must have the following line:
 <pre>
     hvImport haObjectDiscovery
 </pre>
@@ -1102,60 +1161,4 @@ Examples:
 <pre>
       hvObjectDiscovery -noid -nous 1 flag 10
       hvObjectDiscovery -noid -nous 1 x10 1 21 46
-</pre>
-<!-- <h2 id="using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required"/h2> -->
-## Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)
-
-Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
-The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
-and a "haObjectDiscovery" procedure which is called when "Run Discovery" is clicked and creates the discovery message to Home Assistant for each object to be discovered.
-The "haObjectDiscovery" procedure typically will call another procedure to process each individual object.
-</li></ul>
-
-If a plug-in needs to use configuration values from the MQTT plug-in, use the "getDiscovConfig" procedure.
-"getDiscovConfig" returns a dict with the following:
-<pre>
-    clientID
-    cmndPrefix 
-    statPrefix
-    telePrefix
-    pwrPostfix
-    rstPostfix
-    LWTPostfix 
-</pre>
-"clientID" can be used to create unique ids if necessary.
-<br>
-<br>
-Example (as provided by the Caseta Plug-in): 
-<pre>
-    hvPublic getDiscovDevices
-    proc getDiscovDevices {} {
-
-        mk::loop row cfg.devices {
-            lassign [mk::get $row id name] id name
-            dict set caseta caseta $id [list "CA-$id" $name]
-        }
-        return $caseta
-    }
-
-    hvPublic haObjectDiscovery
-    proc haObjectDiscovery {args} {
-        ...
-        sendDiscovery $noid $nous $retain $nodevice $add $id $name $topic $obj_type $dev_type $model $manuf
-        ...
-    }
-    
-    hvImport getDiscovConfig
-    hvImport mqttComm
-    proc sendDiscovery {args} {
-        ...
-        # get prefix/postfix, etc. info from MQTT, if needed.
-        set mqttcfg {*}[getDiscovConfig]
-        ...
-        # create HA discovery topic and message
-        ...
-        # send discovery
-        mqttComm -retain pub $hadiscoverytopic $message
-        ...
-    }
 </pre>
