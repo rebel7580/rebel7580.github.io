@@ -1025,7 +1025,7 @@ In some cases, you may wind up with entity names changing from what you may have
 Carefully check and manually update any instances of affected entities to the new names.
 It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).
 
-<!-- <h2 id="discovery-from-within-other-plug-ins-tcl-programming-required">Discovery from Within Other Plug-ins (TCL programming Required)/h2> -->
+<!-- <h2 id="discovery-from-within-other-plug-ins-tcl-programming-required"/h2> -->
 ## Discovery from Within Other Plug-ins (TCL programming Required)
 The MQTT Plug-in contains a public procedure to do discovery from within other plug-ins. To use, the plug-in must have the following line:
 <pre>
@@ -1102,8 +1102,8 @@ Examples:
       hvObjectDiscovery -noid -nous 1 flag 10
       hvObjectDiscovery -noid -nous 1 x10 1 21 46
 </pre>
-<!-- <h2 id="Using-the-MQTT-plug-in-s-Discovery-Tab-to-Discover-Devices-from-Other-Plug-ins-TCL-programming-Required"/h2> -->
-## Using the MQTT plug-in's Discovery Tab to Discover Devices from Other Plug-ins (TCL programming Required)
+<!-- <h2 id="using-the-mqtt-plug-in-s-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required"/h2> -->
+## Using the MQTT plug-in's Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)
 
 Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
 The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
