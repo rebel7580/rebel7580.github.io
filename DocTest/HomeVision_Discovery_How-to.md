@@ -72,82 +72,9 @@ Same as the "-nodevice" option in the manual method.
 Discovery tab visibility as well as the selection of settings on the Discovery screen are <b>volatile</b>; they are not saved when the plug-in is shut down, unlike other plug-in settings.
 <!-- <h2 id="manual-method">Manual Method</h2> -->
 ## Manual Method
+See
+<a href="discovery-from-within-other-plug-ins-tcl-programming-required">Discovery from Within Other Plug-ins (TCL programming Required)</a> for details on how to do discovery from within other plug-ins.
 
-The MQTT Plug-in contains a public procedure to do discovery from within other plug-ins. To use, the plug-in must have the following line:
-<pre>
-    hvImport haObjectDiscovery
-</pre>
-Syntax of discovery command:
-<pre>
-    hvObjectDiscovery {-noid} {-nous} {-nodevice} {-retain} <i>add</i> {<i>object_type</i> {<i>id1 id2 ...</i>}}
-</pre>
-
-<ul><li><i>-noid</i> is optional. If present, don't include the object ID (i.e.: A-10) at the beginning of the entity name. Default: include the id. The object ID is still used in <i>unique_id</i> and other identifiers to ensure unique entries there.
-</li><li><i>-nous</i> is optional. If present, replace underscores with spaces in the entity name. Default: include any underscores as-is.
-</li><li><i>-nodevice</i> is optional. If present, the object's entity in Home Assistant will NOT be included in an object type device. Default: Entity is included.
-</li><li><i>-retain</i> is optional. If present, Home Assistant will publish command_topic messages with the retain flag set. Default: retain flag is not set.
-</li><li><i>add</i> is required:
- <br>
- 1 - for discovery,
- <br>
- 0 - for object removal (sends a message asking for the object to be removed from the entity list.)
- <br>
- Any other number results in creating the message(s) and just displaying them in the debug plug-in, but NOT publishing.
- Good for testing that the procedure generates what you expect without actually sending anything.
-</li><li>If <i>object_type</i> is not present, then it will discover (or remove) all objects (those that are in the "Int Objects" list, NOT all of your defined objects!).
-Note: In this case, only "flag" and "var" are included; "flag_b" and "var_n" are not.
-If you want to limit discovery or removal to one object type, put that type here. Valid built-in object_types are x10, light, var, var_n, flag, flag_b, input, output, analog, temp, ir, hvac, macro, timer, se, and pe.
-Also works for other plug-ins that have discoverable devices and provide the proper interface to the Discovery procedures. (Caseta is one such plug-in.)
-</li><li>If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
-</li></ul>
-
-"flag_b" generates a flag as a <i>binary_sensor</i>. "flag" does a <i>switch</i>.
-As a binary_sensor, the flag is "read-only". As a switch, it can be read and written.
-You can run discovery on a flag for both types (separately of course). Discovery in this case will generate different <i>unique_IDs</i> and <i>entity IDs</i> for each type. Depending on <i>-noid</i>, names may be the same, but these can be changed in the Home Assistant UI if desired.
-There may be a need to have the same flag appear as both (although I don't have a use case for it!)
-<br>
-<br>
-For number, sensor, and binary_sensor objects, if "dc:<i>device_class</i>" is found in the HomeVisionXL Description field of the var (var_n), flag (flag_b), input, analog input, or temp (DTS),
-a "device_class" attribute will be created with <i>device_class</i> as its value. No validation is made to make sure <i>device_class</i> is a valid "device_class" for the object, and may produce unknown behavior in Home Assistant if invalid.
-<br>
-<br>
-Examples:
-<br>
-<br>
-   Discover all objects:
-<pre>
-       hvObjectDiscovery 1
-</pre>
-   Discover some x-10 (A2, B6, C15):
-<pre>
-       hvObjectDiscovery 1 x10 1 21 46
-</pre>
-   Show all discovery messages, but don't publish:
-<pre>
-       hvObjectDiscovery 2
-</pre>
-   Remove all objects:
-<pre>
-       hvObjectDiscovery 0
-</pre>
-   Remove flag 10:
-<pre>
-       hvObjectDiscovery 0 flag 10
-</pre>
-   Discover only flag objects (as switches):
-<pre>
-       hvObjectDiscovery 1 flag
-</pre>
-   Discover only flag objects (as binary_sensors):
-<pre>
-       hvObjectDiscovery 1 flag_b
-</pre>
-   Discover more than one but less than your total object types. No ID or underscores in Name. 
-   Add a new command line for each type:
-<pre>
-      hvObjectDiscovery -noid -nous 1 flag 10
-      hvObjectDiscovery -noid -nous 1 x10 1 21 46
-</pre>
 <!-- <h2 id="discovery-notes">Discovery Notes</h2> -->
 ## Discovery Notes
 
@@ -182,58 +109,7 @@ Example ("NO ID in Name?"and "Underscore to space in Name?" both selected):
 Device names will be "HomeVision {Object_type}". 
 If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
 </li><li>Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
-The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
-and a "haObjectDiscovery" procedure which is called when "Run Discovery" is clicked and creates the discovery message to Home Assistant for each object to be discovered.
-The "haObjectDiscovery" procedure typically will call another procedure to process each individual object.
-</li></ul>
-
-If a plug-in needs to use configuration values from the MQTT plug-in, use the "getDiscovConfig" procedure.
-"getDiscovConfig" returns a dict with the following:
-<pre>
-    clientID
-    cmndPrefix 
-    statPrefix
-    telePrefix
-    pwrPostfix
-    rstPostfix
-    LWTPostfix 
-</pre>
-"clientID" can be used to create unique ids if necessary.
-<br>
-<br>
-Example (as provided by the Caseta Plug-in): 
-<pre>
-    hvPublic getDiscovDevices
-    proc getDiscovDevices {} {
-
-        mk::loop row cfg.devices {
-            lassign [mk::get $row id name] id name
-            dict set caseta caseta $id [list "CA-$id" $name]
-        }
-        return $caseta
-    }
-
-    hvPublic haObjectDiscovery
-    proc haObjectDiscovery {args} {
-        ...
-        sendDiscovery $noid $nous $retain $nodevice $add $id $name $topic $obj_type $dev_type $model $manuf
-        ...
-    }
-    
-    hvImport getDiscovConfig
-    hvImport mqttComm
-    proc sendDiscovery {args} {
-        ...
-        # get prefix/postfix, etc. info from MQTT, if needed.
-        set mqttcfg {*}[getDiscovConfig]
-        ...
-        # create HA discovery topic and message
-        ...
-        # send discovery
-        mqttComm -retain pub $hadiscoverytopic $message
-        ...
-    }
-</pre>
+See <a href="Using-the-MQTT-plug-in-s-Discovery-Tab-to-Discover-Devices-from-Other-Plug-ins-TCL-programming-Required">Using the MQTT plug-in's Discovery Tab to Discover Devices from Other Plug-ins (TCL programming Required).</a>
 <!-- <h1 id="homevision-object-discovery-details">HomeVision Object Discovery Details</h1> -->
 # HomeVision Object Discovery Details
 
@@ -1011,7 +887,7 @@ Sending an MQTT message to
 will trigger the myHADiscovery procedure and re-discover your devices.
 <!-- <h2 id="caution_for_changing_deleting_objects_that_have_been_discovered">Caution for Changing/Deleting Objects That Have Been Discovered/h2> -->
 ## Caution for Changing/Deleting Objects That Have Been Discovered.
-If you have Home Assistant (HA), and you used the MQTT plug-in's Discovery function to discover to HA an object you subsequently want to delete,
+If you have Home Assistant, and you used the MQTT plug-in's Discovery function to discover to Home Assistant an object you subsequently want to delete,
 to avoid problems the object should be "unwound".
 <ol>
 <li>
@@ -1022,7 +898,7 @@ scroll to and select the object you want to delete.
 Select "Discovery Type:" "unDiscover". The other checkboxes don't matter as they don't affect the "unique ID" that is used to identify the entity.
 </li>
 <li>
-Click "Run Discovery". This will remove the entity from HA. If you don't do this, you may wind up with an "orphaned" entity in HA.
+Click "Run Discovery". This will remove the entity from Home Assistant. If you don't do this, you may wind up with an "orphaned" entity in Home Assistant.
 </li>
 <li>
 "Delete" the object from the MQTT plug-in's "Int Objects" Tab. Press "Done" to make the change effective.
@@ -1036,6 +912,9 @@ These same steps can be followed if you want to rename or otherwise change an ob
 
 <!-- <h2 id="how-device-name-affects-friendly-name">How Device Name Affects Entity and Friendly Names</h2> -->
 ## How Device Name Affects Entity and Friendly Names
+
+<b>Note:</b> Home Assistant release 2026.11 has significantly changed how entity naming is done. While the following is still valid, Home Assistant may offer more flexible ways to handle naming.
+
 Prepending the device name to the object name to create a friendly name and an entity name is a Home Assistant architectural decision made a long time ago but wasn’t implemented in the Home Assistant MQTT integration, specifically, the MQTT Integration's discovery feature, until version 2023.8.0.
 (Similarly, Tasmota Software, around version 12.0 or so, and the Home Assistant Tasmota integration implemented this as well.)
 
@@ -1143,3 +1022,137 @@ You may want to include only those entities that refer to relays/buttons/switche
 In some cases, you may wind up with entity names changing from what you may have had before.
 Carefully check and manually update any instances of affected entities to the new names.
 It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).
+
+<!-- <h2 id="discovery-from-within-other-plug-ins-tcl-programming-required">Discovery from Within Other Plug-ins (TCL programming Required)/h2> -->
+## Discovery from Within Other Plug-ins (TCL programming Required)
+The MQTT Plug-in contains a public procedure to do discovery from within other plug-ins. To use, the plug-in must have the following line:
+<pre>
+    hvImport haObjectDiscovery
+</pre>
+Syntax of discovery command:
+<pre>
+    hvObjectDiscovery {-noid} {-nous} {-nodevice} {-retain} <i>add</i> {<i>object_type</i> {<i>id1 id2 ...</i>}}
+</pre>
+
+<ul><li><i>-noid</i> is optional. If present, don't include the object ID (i.e.: A-10) at the beginning of the entity name. Default: include the id. The object ID is still used in <i>unique_id</i> and other identifiers to ensure unique entries there.
+</li><li><i>-nous</i> is optional. If present, replace underscores with spaces in the entity name. Default: include any underscores as-is.
+</li><li><i>-nodevice</i> is optional. If present, the object's entity in Home Assistant will NOT be included in an object type device. Default: Entity is included.
+</li><li><i>-retain</i> is optional. If present, Home Assistant will publish command_topic messages with the retain flag set. Default: retain flag is not set.
+</li><li><i>add</i> is required:
+ <br>
+ 1 - for discovery,
+ <br>
+ 0 - for object removal (sends a message asking for the object to be removed from the entity list.)
+ <br>
+ Any other number results in creating the message(s) and just displaying them in the debug plug-in, but NOT publishing.
+ Good for testing that the procedure generates what you expect without actually sending anything.
+</li><li>If <i>object_type</i> is not present, then it will discover (or remove) all objects (those that are in the "Int Objects" list, NOT all of your defined objects!).
+Note: In this case, only "flag" and "var" are included; "flag_b" and "var_n" are not.
+If you want to limit discovery or removal to one object type, put that type here. Valid built-in object_types are x10, light, var, var_n, flag, flag_b, input, output, analog, temp, ir, hvac, macro, timer, se, and pe.
+Also works for other plug-ins that have discoverable devices and provide the proper interface to the Discovery procedures. (Caseta is one such plug-in.)
+</li><li>If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
+</li></ul>
+
+"flag_b" generates a flag as a <i>binary_sensor</i>. "flag" does a <i>switch</i>.
+As a binary_sensor, the flag is "read-only". As a switch, it can be read and written.
+You can run discovery on a flag for both types (separately of course). Discovery in this case will generate different <i>unique_IDs</i> and <i>entity IDs</i> for each type. Depending on <i>-noid</i>, names may be the same, but these can be changed in the Home Assistant UI if desired.
+There may be a need to have the same flag appear as both (although I don't have a use case for it!)
+<br>
+<br>
+For number, sensor, and binary_sensor objects, if "dc:<i>device_class</i>" is found in the HomeVisionXL Description field of the var (var_n), flag (flag_b), input, analog input, or temp (DTS),
+a "device_class" attribute will be created with <i>device_class</i> as its value. No validation is made to make sure <i>device_class</i> is a valid "device_class" for the object, and may produce unknown behavior in Home Assistant if invalid.
+<br>
+<br>
+Examples:
+<br>
+<br>
+   Discover all objects:
+<pre>
+       hvObjectDiscovery 1
+</pre>
+   Discover some x-10 (A2, B6, C15):
+<pre>
+       hvObjectDiscovery 1 x10 1 21 46
+</pre>
+   Show all discovery messages, but don't publish:
+<pre>
+       hvObjectDiscovery 2
+</pre>
+   Remove all objects:
+<pre>
+       hvObjectDiscovery 0
+</pre>
+   Remove flag 10:
+<pre>
+       hvObjectDiscovery 0 flag 10
+</pre>
+   Discover only flag objects (as switches):
+<pre>
+       hvObjectDiscovery 1 flag
+</pre>
+   Discover only flag objects (as binary_sensors):
+<pre>
+       hvObjectDiscovery 1 flag_b
+</pre>
+   Discover more than one but less than your total object types. No ID or underscores in Name. 
+   Add a new command line for each type:
+<pre>
+      hvObjectDiscovery -noid -nous 1 flag 10
+      hvObjectDiscovery -noid -nous 1 x10 1 21 46
+</pre>
+<!-- <h2 id="Using-the-MQTT-plug-in-s-Discovery-Tab-to-Discover-Devices-from-Other-Plug-ins-TCL-programming-Required"/h2> -->
+## Using the MQTT plug-in's Discovery Tab to Discover Devices from Other Plug-ins (TCL programming Required)
+
+Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
+The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
+and a "haObjectDiscovery" procedure which is called when "Run Discovery" is clicked and creates the discovery message to Home Assistant for each object to be discovered.
+The "haObjectDiscovery" procedure typically will call another procedure to process each individual object.
+</li></ul>
+
+If a plug-in needs to use configuration values from the MQTT plug-in, use the "getDiscovConfig" procedure.
+"getDiscovConfig" returns a dict with the following:
+<pre>
+    clientID
+    cmndPrefix 
+    statPrefix
+    telePrefix
+    pwrPostfix
+    rstPostfix
+    LWTPostfix 
+</pre>
+"clientID" can be used to create unique ids if necessary.
+<br>
+<br>
+Example (as provided by the Caseta Plug-in): 
+<pre>
+    hvPublic getDiscovDevices
+    proc getDiscovDevices {} {
+
+        mk::loop row cfg.devices {
+            lassign [mk::get $row id name] id name
+            dict set caseta caseta $id [list "CA-$id" $name]
+        }
+        return $caseta
+    }
+
+    hvPublic haObjectDiscovery
+    proc haObjectDiscovery {args} {
+        ...
+        sendDiscovery $noid $nous $retain $nodevice $add $id $name $topic $obj_type $dev_type $model $manuf
+        ...
+    }
+    
+    hvImport getDiscovConfig
+    hvImport mqttComm
+    proc sendDiscovery {args} {
+        ...
+        # get prefix/postfix, etc. info from MQTT, if needed.
+        set mqttcfg {*}[getDiscovConfig]
+        ...
+        # create HA discovery topic and message
+        ...
+        # send discovery
+        mqttComm -retain pub $hadiscoverytopic $message
+        ...
+    }
+</pre>
