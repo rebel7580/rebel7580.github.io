@@ -110,7 +110,7 @@ Example ("NO ID in Name?"and "Underscore to space in Name?" both selected):
 Device names will be "HomeVision {Object_type}". 
 If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
 </li><li>Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
-See <a href="#using-the-mqtt-plug-in-s-discovery-tab">Using the MQTT plug-in's Discovery Tab to Discover Devices from Other Plug-ins (TCL programming Required)</a>.
+See <a href="#using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins</a>.
 </li>
 </ul>
 <!-- <h1 id="homevision-object-discovery-details">HomeVision Object Discovery Details</h1> -->
@@ -1103,8 +1103,8 @@ Examples:
       hvObjectDiscovery -noid -nous 1 flag 10
       hvObjectDiscovery -noid -nous 1 x10 1 21 46
 </pre>
-<!-- <h2 id="using-the-mqtt-plug-in-s-discovery-tab"/h2> -->
-## Using the MQTT plug-in's Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)
+<!-- <h2 id="using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins"/h2> -->
+## Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins
 
 Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
 The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
