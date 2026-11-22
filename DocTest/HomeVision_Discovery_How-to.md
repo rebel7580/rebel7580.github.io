@@ -73,7 +73,7 @@ Discovery tab visibility as well as the selection of settings on the Discovery s
 <!-- <h2 id="manual-method">Manual Method</h2> -->
 ## Manual Method
 See
-<a href="#discovery-from-within-other-plug-ins-tcl-programming-required">Discovery from Within Other Plug-ins (TCL programming Required)</a>
+<a href="#discovery-procedure-for-plug-ins-tcl-programming-required">Discovery Procedure For Other Plug-ins (TCL programming Required)</a>
 for details on how to do discovery from within other plug-ins.
 
 <!-- <h2 id="discovery-notes">Discovery Notes</h2> -->
@@ -796,98 +796,7 @@ Description Attributes for objects with "-" will not be processed and <b>will no
 </ul>
 
 
-<!-- <h2 id="re-discovery-when-home-assistant-forgets-discovered-devices">Re-discovery When Home Assistant Forgets Discovered Devices</h2> -->
-## Re-discovery: When Home Assistant Forgets Discovered Devices 
-Discovery messages are sent from the MQTT Plug-in with "retain" on.
-This means that when you restart Home Assistant, it should automatically get updated by your MQTT broker with retained discovery messages.
 
-However, this is not foolproof. If you restart both Home Assistant and the MQTT broker (for example, they are both on the same computer and it gets rebooted) and the broker is not saving retained messages persistently,
-you may find that your discovered entities are "orphaned" in Home Assistant.
-
-When this happens, you'll want a quick way to get those devices "re-discovered"!  Here's how.
-
-<ul>
-<li>Create a file in your plugin directory with a name something like "my_ha_discovery.hap"
-</li><li>Add
-</li></ul>
-<pre>
-    hvImport haObjectDiscovery
-</pre>
-<ul><li>For each object type you have discovered, add a
-line with the indexes for each object. (and whatever options you want.)
-</li></ul>
-<pre>
-    haObjectDiscovery ...
-</pre>
-<ul><li>When you need to re-discover, simply <i>enable</i> the plug-in in the Plugin Manager window, which will immediately execute all the "haObjectDiscovery" commands in the plug-in.
-</li><li>Once it runs, <i>disable</i> it.
-</li></ul>
-
-Example:
-
-<pre>
-    hvImport haObjectDiscovery
-
-    haObjectDiscovery -noid -nous 1 output
-    haObjectDiscovery -noid -nous 1 input
-    haObjectDiscovery -noid -nous 1 hvac
-    haObjectDiscovery -noid -nous 1 ir
-    haObjectDiscovery -noid -nous 1 flag_b 6 7 26
-    haObjectDiscovery -noid -nous 1 flag 12 13 14 18 19 20 24 25
-    haObjectDiscovery -noid -nous 1 x10
-
-</pre>
-This example discovers all defined outputs, inputs, hvac, ir, and x10 objects,
-Flags 6, 7, and 8 as binary sensors,
-and Flags 12, 13, 14, 18, 19, 20, 24, and 25 as sensors.
-
-Make sure that, as you add new objects (or remove them from Home Assistant), you update this file.
-
-If you want to be able to run this FROM Home Assistant, the plug-in is slightly more complex:
-
-<pre>
-hvImport debug
-hvImport mqttComm
-hvImport haObjectDiscovery
-
-hvPublic myhadisccb
-proc myhadisccb {fulltopic msg {retain 0}} {
-
-    debug "myhadisccb:$fulltopic,$msg" red
-    myHADiscovery
-}
-
-proc init {t} {
-    if {[mqttComm sub cmnd/MyHADiscovery/POWER myhadisccb] != 1} {
-        debug "Retry Discovery: $t" red
-        set t [expr {$t - 1}]
-        if {$t > 0} {
-            after 2000 [list init $t]
-        }
-        return
-    }
-    myHADiscovery
-}
-
-proc myHADiscovery {} {
-    haObjectDiscovery -noid -nous 1 output
-    haObjectDiscovery -noid -nous 1 input
-    haObjectDiscovery -noid -nous 1 hvac
-    haObjectDiscovery -noid -nous 1 ir
-    haObjectDiscovery -noid -nous 1 flag_b 6 7 26
-    haObjectDiscovery -noid -nous 1 flag 12 13 14 18 19 20 24 25
-    haObjectDiscovery -noid -nous 1 x10
-}
-
-hvEventHook ready [list init 10]
-hvEventHook exit  [mqttComm unsub cmnd/MyHADiscovery/POWER]
-</pre>
-Sending an MQTT message to
-<pre>
-    message: cmnd/MyHADiscovery/POWER
-    Payload: {anything}
-</pre>
-will trigger the myHADiscovery procedure and re-discover your devices.
 <!-- <h2 id="caution_for_changing_deleting_objects_that_have_been_discovered">Caution for Changing/Deleting Objects That Have Been Discovered/h2> -->
 ## Caution for Changing/Deleting Objects That Have Been Discovered.
 If you have Home Assistant, and you used the MQTT plug-in's Discovery function to discover to Home Assistant an object you subsequently want to delete,
@@ -1027,64 +936,10 @@ Carefully check and manually update any instances of affected entities to the ne
 It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).
 
 
-<!-- <h2 id="using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required"/h2> -->
-## Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)
-
-Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
-The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
-and a "haObjectDiscovery" procedure which is called when "Run Discovery" is clicked and creates the discovery message to Home Assistant for each object to be discovered.
-The "haObjectDiscovery" procedure typically will call another procedure to process each individual object.
-See the next section for "haObjectDiscovery" details.
-
-If a plug-in needs to use configuration values from the MQTT plug-in, use the "getDiscovConfig" procedure.
-"getDiscovConfig" returns a dict with the following:
-<pre>
-    clientID
-    cmndPrefix 
-    statPrefix
-    telePrefix
-    pwrPostfix
-    rstPostfix
-    LWTPostfix 
-</pre>
-"clientID" can be used to create unique ids if necessary.
-<br>
-<br>
-Example (as provided by the Caseta Plug-in): 
-<pre>
-    hvPublic getDiscovDevices
-    proc getDiscovDevices {} {
-
-        mk::loop row cfg.devices {
-            lassign [mk::get $row id name] id name
-            dict set caseta caseta $id [list "CA-$id" $name]
-        }
-        return $caseta
-    }
-
-    hvPublic haObjectDiscovery
-    proc haObjectDiscovery {args} {
-        ...
-        sendDiscovery $noid $nous $retain $nodevice $add $id $name $topic $obj_type $dev_type $model $manuf
-        ...
-    }
-    
-    hvImport getDiscovConfig
-    hvImport mqttComm
-    proc sendDiscovery {args} {
-        ...
-        # get prefix/postfix, etc. info from MQTT, if needed.
-        set mqttcfg {*}[getDiscovConfig]
-        ...
-        # create HA discovery topic and message
-        ...
-        # send discovery
-        mqttComm -retain pub $hadiscoverytopic $message
-        ...
-    }
-</pre>
-<!-- <h2 id="discovery-from-within-other-plug-ins-tcl-programming-required"/h2> -->
+<!-- <h2 id="discovery-from-within-other-plug-ins-tcl-programming-requireddiscovery-procedure for-plug-ins-tcl-programming-required"/h2> -->
 ## Discovery from Within Other Plug-ins (TCL programming Required)
+<!-- <h3 id="discovery-procedure-for-plug-ins-tcl-programming-required"/h3> -->
+### Discovery Procedure For Other Plug-ins (TCL programming Required)
 Discovery can be done from within a plug-ins, skipping the need to use the MQTT plug-in's Discovery tab.
 
 To use, the plug-in must have the following line:
@@ -1162,3 +1017,151 @@ Examples:
       hvObjectDiscovery -noid -nous 1 flag 10
       hvObjectDiscovery -noid -nous 1 x10 1 21 46
 </pre>
+
+<!-- <h3 id="using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required"/h3> -->
+### Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)
+
+Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
+The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
+and a "haObjectDiscovery" procedure which is called when "Run Discovery" is clicked and creates the discovery message to Home Assistant for each object to be discovered.
+The "haObjectDiscovery" procedure typically will call another procedure to process each individual object.
+
+If a plug-in needs to use configuration values from the MQTT plug-in, use the "getDiscovConfig" procedure.
+"getDiscovConfig" returns a dict with the following:
+<pre>
+    clientID
+    cmndPrefix 
+    statPrefix
+    telePrefix
+    pwrPostfix
+    rstPostfix
+    LWTPostfix 
+</pre>
+"clientID" can be used to create unique ids if necessary.
+<br>
+<br>
+Example (as provided by the Caseta Plug-in): 
+<pre>
+    hvPublic getDiscovDevices
+    proc getDiscovDevices {} {
+
+        mk::loop row cfg.devices {
+            lassign [mk::get $row id name] id name
+            dict set caseta caseta $id [list "CA-$id" $name]
+        }
+        return $caseta
+    }
+
+    hvPublic haObjectDiscovery
+    proc haObjectDiscovery {args} {
+        ...
+        sendDiscovery $noid $nous $retain $nodevice $add $id $name $topic $obj_type $dev_type $model $manuf
+        ...
+    }
+    
+    hvImport getDiscovConfig
+    hvImport mqttComm
+    proc sendDiscovery {args} {
+        ...
+        # get prefix/postfix, etc. info from MQTT, if needed.
+        set mqttcfg {*}[getDiscovConfig]
+        ...
+        # create HA discovery topic and message
+        ...
+        # send discovery
+        mqttComm -retain pub $hadiscoverytopic $message
+        ...
+    }
+</pre>
+<!-- <h3 id="re-discovery-when-home-assistant-forgets-discovered-devices">Re-discovery When Home Assistant Forgets Discovered Devices</h3> -->
+### Re-discovery: When Home Assistant Forgets Discovered Devices 
+Discovery messages are sent from the MQTT Plug-in with "retain" on.
+This means that when you restart Home Assistant, it should automatically get updated by your MQTT broker with retained discovery messages.
+
+However, this is not foolproof. If you restart both Home Assistant and the MQTT broker (for example, they are both on the same computer and it gets rebooted) and the broker is not saving retained messages persistently,
+you may find that your discovered entities are "orphaned" in Home Assistant.
+
+When this happens, you'll want a quick way to get those devices "re-discovered"!  Here's how.
+
+<ul>
+<li>Create a file in your plugin directory with a name something like "my_ha_discovery.hap"
+</li><li>Add
+</li></ul>
+<pre>
+    hvImport haObjectDiscovery
+</pre>
+<ul><li>For each object type you have discovered, add a
+line with the indexes for each object. (and whatever options you want.)
+</li></ul>
+<pre>
+    haObjectDiscovery ...
+</pre>
+<ul><li>When you need to re-discover, simply <i>enable</i> the plug-in in the Plugin Manager window, which will immediately execute all the "haObjectDiscovery" commands in the plug-in.
+</li><li>Once it runs, <i>disable</i> it.
+</li></ul>
+
+Example:
+
+<pre>
+    hvImport haObjectDiscovery
+
+    haObjectDiscovery -noid -nous 1 output
+    haObjectDiscovery -noid -nous 1 input
+    haObjectDiscovery -noid -nous 1 hvac
+    haObjectDiscovery -noid -nous 1 ir
+    haObjectDiscovery -noid -nous 1 flag_b 6 7 26
+    haObjectDiscovery -noid -nous 1 flag 12 13 14 18 19 20 24 25
+    haObjectDiscovery -noid -nous 1 x10
+
+</pre>
+This example discovers all defined outputs, inputs, hvac, ir, and x10 objects,
+Flags 6, 7, and 8 as binary sensors,
+and Flags 12, 13, 14, 18, 19, 20, 24, and 25 as sensors.
+
+Make sure that, as you add new objects (or remove them from Home Assistant), you update this file.
+
+If you want to be able to run this FROM Home Assistant, the plug-in is slightly more complex:
+
+<pre>
+hvImport debug
+hvImport mqttComm
+hvImport haObjectDiscovery
+
+hvPublic myhadisccb
+proc myhadisccb {fulltopic msg {retain 0}} {
+
+    debug "myhadisccb:$fulltopic,$msg" red
+    myHADiscovery
+}
+
+proc init {t} {
+    if {[mqttComm sub cmnd/MyHADiscovery/POWER myhadisccb] != 1} {
+        debug "Retry Discovery: $t" red
+        set t [expr {$t - 1}]
+        if {$t > 0} {
+            after 2000 [list init $t]
+        }
+        return
+    }
+    myHADiscovery
+}
+
+proc myHADiscovery {} {
+    haObjectDiscovery -noid -nous 1 output
+    haObjectDiscovery -noid -nous 1 input
+    haObjectDiscovery -noid -nous 1 hvac
+    haObjectDiscovery -noid -nous 1 ir
+    haObjectDiscovery -noid -nous 1 flag_b 6 7 26
+    haObjectDiscovery -noid -nous 1 flag 12 13 14 18 19 20 24 25
+    haObjectDiscovery -noid -nous 1 x10
+}
+
+hvEventHook ready [list init 10]
+hvEventHook exit  [mqttComm unsub cmnd/MyHADiscovery/POWER]
+</pre>
+Sending an MQTT message to
+<pre>
+    message: cmnd/MyHADiscovery/POWER
+    Payload: {anything}
+</pre>
+will trigger the myHADiscovery procedure and re-discover your devices.
