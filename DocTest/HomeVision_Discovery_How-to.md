@@ -110,6 +110,8 @@ Device names will be "HomeVision {Object_type}".
 If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
 </li><li>Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
 See <a href="Using-the-MQTT-plug-in-s-Discovery-Tab-to-Discover-Devices-from-Other-Plug-ins-TCL-programming-Required">Using the MQTT plug-in's Discovery Tab to Discover Devices from Other Plug-ins (TCL programming Required).</a>
+</li>
+</ul>
 <!-- <h1 id="homevision-object-discovery-details">HomeVision Object Discovery Details</h1> -->
 # HomeVision Object Discovery Details
 
