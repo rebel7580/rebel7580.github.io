@@ -900,8 +900,10 @@ hvac     climate         -     -     -     -     -
 <li>
 <i>temp</i> object attributes dc, sc, and uom default to values as described in
 <a href="#digital-temperature-sensors">Digital Temperature Sensors</a> unless overridded by Description Attributes.
+</li>
 <li>
 All other objects default to no attributes. 
+</li>
 <li>
 Description Attributes with a "Y" are currently supported for that object in Home Assistant.
 </li>
