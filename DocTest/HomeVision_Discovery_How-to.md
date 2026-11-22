@@ -73,7 +73,8 @@ Discovery tab visibility as well as the selection of settings on the Discovery s
 <!-- <h2 id="manual-method">Manual Method</h2> -->
 ## Manual Method
 See
-<a href="discovery-from-within-other-plug-ins-tcl-programming-required">Discovery from Within Other Plug-ins (TCL programming Required)</a> for details on how to do discovery from within other plug-ins.
+<a href="#discovery-from-within-other-plug-ins-tcl-programming-required">Discovery from Within Other Plug-ins (TCL programming Required)</a>
+for details on how to do discovery from within other plug-ins.
 
 <!-- <h2 id="discovery-notes">Discovery Notes</h2> -->
 ## Discovery Notes
@@ -109,7 +110,7 @@ Example ("NO ID in Name?"and "Underscore to space in Name?" both selected):
 Device names will be "HomeVision {Object_type}". 
 If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
 </li><li>Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
-See <a href="Using-the-MQTT-plug-in-s-Discovery-Tab-to-Discover-Devices-from-Other-Plug-ins-TCL-programming-Required">Using the MQTT plug-in's Discovery Tab to Discover Devices from Other Plug-ins (TCL programming Required).</a>
+See <a href="#using-the-mqtt-plug-in-s-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required">Using the MQTT plug-in's Discovery Tab to Discover Devices from Other Plug-ins (TCL programming Required).</a>
 </li>
 </ul>
 <!-- <h1 id="homevision-object-discovery-details">HomeVision Object Discovery Details</h1> -->
