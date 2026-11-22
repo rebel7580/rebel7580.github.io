@@ -724,7 +724,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_AN-0/config
 {% endraw %}
 <!-- <h3 id="timers">Timers</h3> -->
 ### Timers
-Defined as <i>two</i> "sensor" entities,
+Defined as <i><b>two</b></i> "sensor" entities,
 one for the timer's state (Running, Stopped, Ringing)
 and one for the current time.
 Time is reported in "HHH:MM:SS.hh" format.
