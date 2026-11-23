@@ -32,10 +32,12 @@ This document tries to give a few of the more obvious solutions to common situat
 
 <!-- <h2 id="basics-of-the-homevisionxl-mqtt-plug-in">Basics of the HomeVisionXL MQTT plug-in</h2> -->
 ## Basics of the HomeVisionXL MQTT plug-in
-First let's go over the basics. The MQTT plug-in provides support for monitoring and controlling of both HomeVision "internal" objects like x10, lights, vars, flags, etc. via MQTT, and "External" devices such as ESP8266 based products running
+First let's go over the basics. The MQTT plug-in provides support for monitoring and controlling of both HomeVision "internal" objects like x10, lights, vars, flags, etc. via MQTT, and "External" devices such as products running
 <a href="https://tasmota.github.io/docs/">Tasmota</a>
 software.
-This Help doesn't go into all the details of the MQTT plug-in. See
+
+
+This Tips doesn't go into all the details of the MQTT plug-in. See
 <a href="MQTT_Client_Plug-in">MQTT Help</a>
 for that.
 <!-- <h3 id="how-the-mqtt-plug-in-handles-internal-objects">How the MQTT plug-in Handles Internal Objects</h3> -->
@@ -108,6 +110,7 @@ You can find out more about how to run Discovery here:
 <!-- <h2 id="tips">Tips</h2> -->
 ## Tips
 <!-- <h3 id="variable-options">Variable Options</h3> -->
+Most of the following examples can be done entirely in the Home Assistant UI. Yaml is shown here for simplicity.
 ### Variable Options
 Variables are supported as either sensor (var) or number (var_n) entities, or both.
 
@@ -262,8 +265,7 @@ See <b>Device Class Note</b> at the end of [How to Use Home Assistant Auto Disco
 <br><br>
 <b>Method 2:</b>
 <br>
-<ul><li>Manually add the following to your configuration.yaml
-(HA Core 2022.6 and later):
+<ul><li>Manually add the following to your configuration.yaml:
 </li></ul>
 {% raw %}
 ``` yaml
@@ -278,22 +280,6 @@ mqtt:
       state_on: "Open"
       state_off: "Closed"
       qos: 1
-```
-{% endraw %}
-Version deprecated in HA Core 2022.6 (usable until removed in 2022.9):
-{% raw %}
-``` yaml
-- switch:
-  - platform: mqtt
-    unique_id: "MA_GarageDoor1"
-    name: "MA_GarageDoor1"
-    state_topic: "stat/Door1/POWER"
-    command_topic: "cmnd/ToggleGarageDoor1/POWER"
-    payload_on: "ON"
-    payload_off: "ON"
-    state_on: "Open"
-    state_off: "Closed"
-    qos: 1
 ```
 {% endraw %}
 
@@ -335,8 +321,7 @@ First, in the MQTT Configuration <i>Ext Devices</i> Tab, set up a virtual extern
 </p>
 <br>
 <br>
-Next set up a switch in Home Assistant's <i>configuration.yaml</i> Since this is an external device, you can't use MQTT discovery.
-(HA Core 2022.6 and later):
+Next set up a switch in Home Assistant's <i>configuration.yaml</i> Since this is an external device, you can't use MQTT discovery:
 {% raw %}
 ``` yaml
 mqtt:
@@ -352,22 +337,7 @@ mqtt:
       qos: 1
 ```
 {% endraw %}
-Version deprecated in HA Core 2022.6 (usable until removed in 2022.9):
-{% raw %}
-``` yaml
-- switch:
-  - platform: mqtt
-    unique_id: "HA_Outside_Deco"
-    name: "HA_Outside_Deco"
-    state_topic: "stat/HA_Outside_Deco/POWER"
-    command_topic: "stat/HA_Outside_Deco/POWER"
-    payload_on: "ON 1"
-    payload_off: "OFF"
-    state_on: "ON 1"
-    state_off: "OFF"
-    qos: 1
-```
-{% endraw %}
+
 Note that <i>command_topic</i> and the <i>state_topic</i> are the same. Since HomeVisionXL responds to state messages to execute actions, Home Assistant must send a "stat" message to the MQTT plug-in. Home Assistant also will listen to the <i>state_topic</i>, so will hear its own message and ensure that the switch is in the correct state.
 
 Lastly, add in a switch to your UI.
@@ -382,7 +352,6 @@ Let's assume we have a Flag "OutsideDecoState" which tracks whether the outside 
 
 Use the same "virtual" external devices before, but include the binary sensor in the yaml:
 
-(HA Core 2022.6 and later):
 {% raw %}
 ``` yaml
 mqtt:
@@ -396,22 +365,6 @@ mqtt:
       state_on: "Set"
       state_off: "Clear"
       qos: 1
-```
-{% endraw %}
-Version deprecated in HA Core 2022.6 (usable until removed in 2022.9):
-{% raw %}
-``` yaml
-- switch:
-  - platform: mqtt
-    unique_id: "HA_Outside_Deco"
-    name: "HA_Outside_Deco"
-    state_topic: "stat/OutsideDecoState/POWER"
-    command_topic: "stat/HA_Outside_Deco/POWER"
-    payload_on: "ON 1"
-    payload_off: "OFF"
-    state_on: "Set"
-    state_off: "Clear"
-    qos: 1
 ```
 {% endraw %}
 
@@ -443,8 +396,6 @@ This method uses the binary sensor to set the switch state and provides for havi
 ```
 {% endraw %}
 
-You can add additional switches as needed under "switches".
-
 <!-- <h4 id="using-triggers-for-different-onoff-complex-actions-with-a-virtual-external-device">Using Triggers for Different On/Off Complex Actions with a Virtual External Device</h4> -->
 #### Using Triggers for Different On/Off Complex Actions with a Virtual External Device
 
@@ -470,8 +421,7 @@ The compete trigger command (obscured in the screen shot) is:
     action: ir transmit 28 1,ir transmit 114 1,wait for 500,
             ir transmit 116 1,wait for 500,ir transmit 110 1;
 </pre>
-In this example, IR is used, but with a virtual external device to allow for more complex command execution. Consequently, a switch should be added manually to your <i>configuration.yaml</i>. Here is what the switch code would look like
-(HA Core 2022.6 and later):
+In this example, IR is used, but with a virtual external device to allow for more complex command execution. Consequently, a switch should be added manually to your <i>configuration.yaml</i>. Here is what the switch code would look like:
 
 {% raw %}
 ``` yaml
@@ -488,22 +438,7 @@ mqtt:
       qos: 1
 ```
 {% endraw %}
-Version deprecated in HA Core 2022.6 (usable until removed in 2022.9):
-{% raw %}
-``` yaml
-switch:
-  - platform: mqtt
-    unique_id: IR_HA_NBC
-    name: "IR_HA_NBC"
-    state_topic: "stat/HA_NBC/POWER"
-    command_topic: "stat/HA_NBC/POWER"
-    payload_on: "ON 1"
-    payload_off: "Off 1"
-    state_on: "ON"
-    state_off: "Unknown"
-    qos: 1
-```
-{% endraw %}
+
 Next, create a button using the state_topic and payload_on in MQTT Publish service.
 
 <!-- <h3 id="running-scheduled-and-periodic-events">Running Scheduled and Periodic Events</h3> -->
