@@ -351,9 +351,8 @@ The retain flag will cause most brokers to "remember" the status and send it to 
 <br>
 <br>
 Automatic reporting of changes is not feasible for objects that change frequently.
-Variables are the most likely object where this is true, as many systems have variables that change every loop.
-In this case, automatic reporting would flood the system with update messages.
-To resolve this, select a subset of variables (that don't change too often) to track,
+Variables are the most likely objects, as many systems have variables that change every loop; automatic reporting would flood the system with update messages.
+To resolve this problem, select a subset of variables (that don't change too often) to track,
 find in the schedule where these variables are changed,
 and in those places add in "Controller command: Report status of all variables".
 This way updates will occur only when interesting variables are changed.
@@ -649,6 +648,7 @@ Here's a sequence chart example that might make it more clear:
 MQTT devices can be controlled within a schedule via serial commands which take one of these forms:
 <pre>
 
+Device/Object Form:
 
     mqtt: {-log|-nolog -retain|-noretain} <i>device_name/object_name</i> <i>command</i>; 
      - <i>command</i> is one of: [0|off|1|on|2|toggle|on {level}|state]. 
@@ -656,11 +656,15 @@ MQTT devices can be controlled within a schedule via serial commands which take 
      - Logs and retains according to option(s) if present (overrides configuration settings);
      - Default: log and retain according to named device/object's config settings.
 
+Generic Form:
+
     mqtt: {-log|-nolog -retain|-noretain} pub <i>topic</i> {<i>payload</i> {retain}};
      - logs and retains according to option(s) if present;
      -   "-retain|-noretain" removes "retain as last word" restriction.
          I.e., payload can actually include "retain" as last word;
      - default: always logs and retains if last word is "retain".
+
+Subscribe/Unsubscribe Forms:
 
     mqtt: {-log} [sub|unsub] topic <<i>topic</i>>|<i>topic</i> <i>callback</i>;
      - logs if option is present, never retains;
@@ -717,6 +721,8 @@ Examples:
 
 </pre>
 
+<!-- <h4 id="subscribe-unsubscribe-form">Subscribe/Unsubscribe Form</h4> -->
+#### Subscribe/Unsubscribe Form
 For sub and unsub commands, <i>callback</i> is a public callback procedure that must exist in a plug-in.
 <br>
 <br>
@@ -829,7 +835,7 @@ There are four methods that provide more advanced processing, listed here in inc
 See "mqttComm" section for details.
 </li></ul>
 Triggers and Homevision Action Topics are relatively simple to construct.
-Custom Commands and Independant Plug-ins require some knowladge of the TCL programming language.
+Custom Commands and Independant Plug-ins require some knowledge of the TCL programming language.
 <!-- <h4 id="triggers">Triggers</h4> -->
 #### Triggers
 Triggers are a way to get a little more processing power without coding.
