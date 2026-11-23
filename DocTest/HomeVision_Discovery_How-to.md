@@ -26,7 +26,7 @@
     * Analog Inputs
     * Timers
     * HVAC
-    * Device Class, Status Class, Unit of Measurement, Max, and Min Notes
+    * Device Class, State Class, Unit of Measurement, Max, and Min Notes
     * Re-discovery: When Home Assistant Forgets Discovered Devices
     * How Device Name Affects Friendly Name
 {:toc}
@@ -321,7 +321,7 @@ homeassistant/switch/HVXLb1d0d912ed315aad_FL-18/config
 Alternatively, a flag can be defined as a <i>binary_sensor</i> (use "flag_b" as the object type). The flag would be read-only from the perspective of Home Assistant.
 Attribute "device_class" is set if found in the flag's "Description" field. Must be a valid sensor device class.
 See 
-<a href="#device-class-status-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max, and Min Notes</a>.
+<a href="#device-class-state_class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 {% raw %}
 <pre>
 homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
@@ -351,7 +351,7 @@ A variable can be defined as a number entity (use "var_n" as the object type). T
 Attributes "device_class", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes. See Note.
 If not explicitly set, max = 255 and min = 0.
 See 
-<a href="#device-class-status-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max, and Min Notes</a>.
+<a href="#device-class-state_class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 {% raw %}
 <pre>
 homeassistant/number/HVXLb1d0d912ed315aad_VA-145n/config
@@ -378,7 +378,7 @@ homeassistant/number/HVXLb1d0d912ed315aad_VA-145n/config
 Alternatively, a variable can be defined as a "sensor" entity; just use "var" as the object type.
 Attributes "device_class", "state_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes.
 See 
-<a href="#device-class-status-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max, and Min Notes</a>.
+<a href="#device-class-state_class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 <br>
 <br>
 See <i>"Variable Options"</i> in the <i>"Tips"</i> section of
@@ -409,7 +409,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_VA-145/config
 ### Inputs
 Defined as "binary Sensor" entities. "payload_on" and "payload_off" are defined as the text in HomeVisionXL's <i>Input Port Summary's</i> "Low State Label" and "High State Label", respectively.  Attribute "device_class" is set if found in the input's "Description" field. Must be a valid binary_sensor device class.
 See 
-<a href="#device-class-status-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max, and Min Notes</a>.
+<a href="#device-class-state_class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 Binary sensors do not have a "retain" option.
 {% raw %}
 <pre>
@@ -547,7 +547,7 @@ If no device class is found in the Description field, then "device_class" is set
 If no state class is found in the Description field, then "state_class" is set to "measurement".
 "unit_of_measurement" if present is set accordingly. Otherwise it is set to the value specified in HomeVisionXL's Settings->Temperature Scale.
 See 
-<a href="#device-class-status-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max, and Min Notes</a>.
+<a href="#device-class-state_class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 
 Sensors do not have a "retain" option.
 {% raw %}
@@ -578,7 +578,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TE-0/config
 Defined as "sensor" entities. 
 Attributes "device_class", "state_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes.
 See 
-<a href="#device-class-status-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max, and Min Notes</a>.
+<a href="#device-class-state_class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 
 {% raw %}
 <pre>
@@ -613,7 +613,7 @@ Attribute "device_class" is set if found in the timer's "Description" field.
 Must be a valid sensor device class,
 although "device_class" may not make sense for timers.
 See 
-<a href="#device-class-status-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max, and Min Notes</a>.
+<a href="#device-class-state_class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 {% raw %}
 <pre>
 homeassistant/sensor/HVXLb1d0d912ed315aad_TI_8/config
@@ -722,8 +722,8 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 }
 </pre>
 {% endraw %}
-<!-- <h3 id="device-class-status-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max, and Min Notes</h3> -->
-### Device Class, Status Class, Unit of Measurement, Max, and Min Notes
+<!-- <h3 id="device-class-state_class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</h3> -->
+### Device Class, State Class, Unit of Measurement, Max, and Min Notes
 For all objects defined as number, sensor or binary sensor entities, several Home Assistant attributes can be set by placing the following somewhere in the object's <i>Description</i> field in HomeVisionXL.
 <pre>
    dc:<i>device_class</i>
