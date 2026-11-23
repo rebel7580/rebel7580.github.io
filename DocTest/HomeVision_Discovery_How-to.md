@@ -73,7 +73,7 @@ Discovery tab visibility as well as the selection of settings on the Discovery s
 <!-- <h2 id="manual-method">Manual Method</h2> -->
 ## Manual Method
 See
-<a href="#discovery-procedure-for-plug-ins-tcl-programming-required">Discovery Procedure For Other Plug-ins (TCL programming Required)</a>
+<a href="#discovery-procedure-for-plug-ins-tcl-programming-required">Discovery Procedure For Other Plug-ins (TCL Programming Required)</a>
 for details on how to do discovery from within other plug-ins.
 
 <!-- <h2 id="discovery-notes">Discovery Notes</h2> -->
@@ -108,7 +108,7 @@ Example ("NO ID in Name?"and "Underscore to space in Name?" both selected):
 </li></ul>
 <ul><li>If "Exclude from Device?" is NOT checked (or -nodevice is not present), for each object type, MQTT Discovery creates a separate "device" that groups all entities created for that type.
 Device names will be "HomeVision {Object_type}". 
-If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
+If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included as a member of the device.
 </li><li>Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
 See <a href="#using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required">Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)</a>.
 </li>
@@ -936,13 +936,13 @@ Carefully check and manually update any instances of affected entities to the ne
 It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).
 
 <!-- <h2 id="discovery-from-within-other-plug-ins-tcl-programming-requireddiscovery-procedure for-plug-ins-tcl-programming-required"/h2> -->
-## Discovery from Within Other Plug-ins (TCL programming Required)
+## Discovery from Within Other Plug-ins (TCL Programming Required)
 
-The following sections require some amount of knowledge of HomeVisionXL plug-ins and TCL progrsmming.
+The following sections require some amount of knowledge of HomeVisionXL plug-ins and TCL programming.
 
 <!-- <h3 id="discovery-procedure-for-plug-ins-tcl-programming-required"/h3> -->
 
-### Discovery Procedure For Other Plug-ins (TCL programming Required)
+### Discovery Procedure For Other Plug-ins (TCL Programming Required)
 The MQTT plug-in provides a procedure (haObjectDiscovery) that other plug-ins can use to discover "devices".
 
 Discovery can be done either entirely within a plug-in,
