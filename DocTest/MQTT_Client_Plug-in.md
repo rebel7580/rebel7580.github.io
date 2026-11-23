@@ -283,82 +283,6 @@ This can be used to advantage; sending a "cmnd" "POWER" message with a payload o
 <!-- <h2 id="configuring-devices">Configuring Devices</h2> -->
 ## Configuring Devices
 
-<!-- <h3 id="ext-devices-tab">Ext Devices Tab</h3> -->
-### Ext Devices Tab
-This tab contains a list of supported external devices.
-<i>Device Name</i> is the name of the device for use by serial and NetIO commands.
-It must be unique among both external and internal device names.
-See below for Name rules.
-<i>Topic</i> is the topic used for publishing and subscribing.
-See below for Topic rules.
-<ul><li>The <i>Flag/Var</i> column shows the Flag (FL-#) or Variable (VA-#) assigned to the device.
-If none is assigned, a "-" will show.
-</li><li>The <i>Macro</i> column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
-If no macro is assigned, a "-" will show. 
-</li><li>The <i>State</i> column will usually show "On" or "Off", depending on the reported state of the device.
-If the payload was a number, its value, potentially masked and/or truncated, will be displayed.
-When the state has not (yet) been reported, a "-" will show.
-</li><li>For each device, its row will be displayed in RED text if the device is reported as "off line" by an LWT message.
-However, if an "on Line" LWT or a POWER state message is received,
-the row will display in BLACK text.
-</li><li>Rows can be sorted in ascending or descending order by <i>Device Name</i> or <i>Topic</i> by clicking on the column header. 
-</li></ul>
-<i>New/Edit/Delete External Devices</i>
-
-<ul><li>To enter a new device, click the "New" button, and start with the <i>Topic</i>.
-<ul><li>Topics are case-sensitive!
-</li><li>A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
-is indicated by enclosing it in "<" and ">"
-(or one of the variations mentioned previously).
-E.g., "&lt;<i>topic</i>&gt;".
-<i>This should be the default method for specifying topics.</i>
-To help with this, a new device will have "<>" already inserted in the topic field.
-(Delete or modify as needed.)
-</li><li>Topics can contain multiple levels, indicated by "/", but should not start or end with a "/".
-</li><li>A topic with <i>default</i> processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
-</li><li>A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
-Use of wildcards should adhere to the MQTT standards.
-However, care should be taken when using them. It's probably a bad idea to have "#" as a topic, as it will subscribe to EVERYTHING!
-</li><li>Device <i>Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
-If the topic is simple and descriptive, it can be copied to the <i>Name</i> field.
-If the topic is multi-level, <i>Name</i> must be simpler.
-<i>Name</i> cannot contain "<", ">", "/" or spaces.
-Alphanumeric and the underscore are the only allowed characters.
-<i>Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
-</li><li>There is some validation of the <i>Topic</i> and <i>Name</i> fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
-</li><li>For each device, an HV Flag or Variable can be assigned. 
-Assigning a Flag or Variable is optional.
-There is no checking to make sure a Flag or Variable is not used more than once.
-<ul><li>If a variable is selected, two additional options are available.
-<ul><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
-</li><li>If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
-can be selected.
-If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1.
-If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
-<br>
-<br>
-Note: When "Use Variable as Flag" is not selected, Payloads with "on" or "off" do not cause any Actions, except for updating the "State" display.
-</li></ul>
-</li></ul>
-</li><li>Macros can be assigned for "On" and "Off" states.
-The same macro can be assigned to both states, or different macros can be assigned.
-A macro can be assigned to just one of the states, leaving the other set to "None".
-</li><li>To have custom processing of received messages or triggers for this topic, select the appropriate mode and enter command/triggers.
-See <b>Custom Processing of Received Messages</b> for details.
-</li><li>Check "Subscribe to Last Will and Testament" to subscribe standard topics to LWT.
-If the topic is not in the form of a standard topic,
-this selection has no effect.
-</li><li>Choose whether to log MQTT messages sent or received by this device.
-</li><li>Click "OK" to save edits, or "Cancel" to discard them.
-</li></ul>
-</li><li>Devices can be edited by clicking the "Edit" button.
-This brings up the same window used for adding a new device.
-</li><li>Use the "Delete" button to delete a device.
-When a device is deleted, the plug-in unsubscribes to any topics related to that device.
-</li><li>When "Done" is clicked, devices with standard topics are subscribed to their state and LWT full topics.
-Devices with custom topics are subscribed only to the topic as-is.
-<i>Click "Done" for changes to become effective!</i>
-</li></ul>
 <!-- <h3 id="int-objects-tab">Int Objects Tab</h3> -->
 ### Int Objects Tab
 This tab contains a list of supported internal objects.
@@ -435,6 +359,83 @@ and in those places add in "Controller command: Report status of all variables".
 This way updates will occur only when interesting variables are changed.
 Alternatively, set up a periodic event containing "Controller command: Report status of all variables"
 with a rate that is a compromise between the amount of update commands sent vs frequency of the updates.
+
+<!-- <h3 id="ext-devices-tab">Ext Devices Tab</h3> -->
+### Ext Devices Tab
+This tab contains a list of supported external devices.
+<i>Device Name</i> is the name of the device for use by serial and NetIO commands.
+It must be unique among both external and internal device names.
+See below for Name rules.
+<i>Topic</i> is the topic used for publishing and subscribing.
+See below for Topic rules.
+<ul><li>The <i>Flag/Var</i> column shows the Flag (FL-#) or Variable (VA-#) assigned to the device.
+If none is assigned, a "-" will show.
+</li><li>The <i>Macro</i> column shows the Macro(s) assigned to the device in the form {on macro#}/{off macro#}.
+If no macro is assigned, a "-" will show. 
+</li><li>The <i>State</i> column will usually show "On" or "Off", depending on the reported state of the device.
+If the payload was a number, its value, potentially masked and/or truncated, will be displayed.
+When the state has not (yet) been reported, a "-" will show.
+</li><li>For each device, its row will be displayed in RED text if the device is reported as "off line" by an LWT message.
+However, if an "on Line" LWT or a POWER state message is received,
+the row will display in BLACK text.
+</li><li>Rows can be sorted in ascending or descending order by <i>Device Name</i> or <i>Topic</i> by clicking on the column header. 
+</li></ul>
+<i>New/Edit/Delete External Devices</i>
+
+<ul><li>To enter a new device, click the "New" button, and start with the <i>Topic</i>.
+<ul><li>Topics are case-sensitive!
+</li><li>A "Standard" topic, for which prefix and postfix substitution is performed (see <b>Settings Tab</b>),
+is indicated by enclosing it in "<" and ">"
+(or one of the variations mentioned previously).
+E.g., "&lt;<i>topic</i>&gt;".
+<i>This should be the default method for specifying topics.</i>
+To help with this, a new device will have "<>" already inserted in the topic field.
+(Delete or modify as needed.)
+</li><li>Topics can contain multiple levels, indicated by "/", but should not start or end with a "/".
+</li><li>A topic with <i>default</i> processing of received messages should not contain "#" or "+" MQTT wildcards, since it is used both to subscribe and publish and wildcards are not allowed in published topics.
+</li><li>A topic with <i>custom</i> processing of received messages MAY contain "#" or "+" MQTT wildcards, since it will only be subscribed to.
+Use of wildcards should adhere to the MQTT standards.
+However, care should be taken when using them. It's probably a bad idea to have "#" as a topic, as it will subscribe to EVERYTHING!
+</li><li>Device <i>Names</i>, not topics, are used by NetIO and serial commands to publish commands to MQTT devices.
+If the topic is simple and descriptive, it can be copied to the <i>Name</i> field.
+If the topic is multi-level, <i>Name</i> must be simpler.
+<i>Name</i> cannot contain "<", ">", "/" or spaces.
+Alphanumeric and the underscore are the only allowed characters.
+<i>Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
+</li><li>There is some validation of the <i>Topic</i> and <i>Name</i> fields to enforce the above rules and to avoid name duplication, but it may not be perfect.
+</li><li>For each device, an HV Flag or Variable can be assigned. 
+Assigning a Flag or Variable is optional.
+There is no checking to make sure a Flag or Variable is not used more than once.
+<ul><li>If a variable is selected, two additional options are available.
+<ul><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+</li><li>If "Use Variable as Flag" is NOT selected, then "Use Two Variables"
+can be selected.
+If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1.
+If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
+<br>
+<br>
+Note: When "Use Variable as Flag" is not selected, Payloads with "on" or "off" do not cause any Actions, except for updating the "State" display.
+</li></ul>
+</li></ul>
+</li><li>Macros can be assigned for "On" and "Off" states.
+The same macro can be assigned to both states, or different macros can be assigned.
+A macro can be assigned to just one of the states, leaving the other set to "None".
+</li><li>To have custom processing of received messages or triggers for this topic, select the appropriate mode and enter command/triggers.
+See <b>Custom Processing of Received Messages</b> for details.
+</li><li>Check "Subscribe to Last Will and Testament" to subscribe standard topics to LWT.
+If the topic is not in the form of a standard topic,
+this selection has no effect.
+</li><li>Choose whether to log MQTT messages sent or received by this device.
+</li><li>Click "OK" to save edits, or "Cancel" to discard them.
+</li></ul>
+</li><li>Devices can be edited by clicking the "Edit" button.
+This brings up the same window used for adding a new device.
+</li><li>Use the "Delete" button to delete a device.
+When a device is deleted, the plug-in unsubscribes to any topics related to that device.
+</li><li>When "Done" is clicked, devices with standard topics are subscribed to their state and LWT full topics.
+Devices with custom topics are subscribed only to the topic as-is.
+<i>Click "Done" for changes to become effective!</i>
+</li></ul>
 
 <!-- <h3 id="settings-tab">Settings Tab</h3> -->
 ### Settings Tab
