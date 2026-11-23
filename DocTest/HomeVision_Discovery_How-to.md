@@ -865,7 +865,7 @@ This method leaves the device name as part of the entity name.
 </li>
 <li>
 If you have a lot of objects, you can use this (somewhat manual) bulk technique
-(Curtesy of 123Taras on the Home Assistant forum. See
+(Courtesy of 123Taras on the Home Assistant forum. See
 <a href="https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396">why does mqtt discovery add device name to entity name</a>.
 This method also leaves the device name as part of the entity name.
 
