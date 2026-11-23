@@ -664,11 +664,13 @@ Generic Form:
          I.e., payload can actually include "retain" as last word;
      - default: always logs and retains if last word is "retain".
 
-Subscribe/Unsubscribe Forms:
+Subscribe/Unsubscribe Form:
 
     mqtt: {-log} [sub|unsub] topic <<i>topic</i>>|<i>topic</i> <i>callback</i>;
      - logs if option is present, never retains;
      - default: never logs, never retains.
+
+Notes:
 
     "mqtt:" is whatever the "Serial string prefix" is defined as.
     ";' is whatever the "Serial string terminator character(s)" is defined as.
