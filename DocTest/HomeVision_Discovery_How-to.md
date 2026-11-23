@@ -935,18 +935,25 @@ In some cases, you may wind up with entity names changing from what you may have
 Carefully check and manually update any instances of affected entities to the new names.
 It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).
 
-
 <!-- <h2 id="discovery-from-within-other-plug-ins-tcl-programming-requireddiscovery-procedure for-plug-ins-tcl-programming-required"/h2> -->
 ## Discovery from Within Other Plug-ins (TCL programming Required)
-<!-- <h3 id="discovery-procedure-for-plug-ins-tcl-programming-required"/h3> -->
-### Discovery Procedure For Other Plug-ins (TCL programming Required)
-Discovery can be done from within a plug-ins, skipping the need to use the MQTT plug-in's Discovery tab.
 
-To use, the plug-in must have the following line:
+The following sections require some amount of knowledge of HomeVisionXL plug-ins and TCL progrsmming.
+
+<!-- <h3 id="discovery-procedure-for-plug-ins-tcl-programming-required"/h3> -->
+
+### Discovery Procedure For Other Plug-ins (TCL programming Required)
+The MQTT plug-in provides a procedure (haObjectDiscovery) that other plug-ins can use to discover "devices".
+
+Discovery can be done either entirely within a plug-in,
+or by using the MQTT plug-in's Discovery tab to provide a consolidated User interface.
+(See next section).
+
+To use, a plug-in must have the following line:
 <pre>
     hvImport haObjectDiscovery
 </pre>
-Syntax of discovery command:
+Syntax of the discovery procedure:
 <pre>
     hvObjectDiscovery {-noid} {-nous} {-nodevice} {-retain} <i>add</i> {<i>object_type</i> {<i>id1 id2 ...</i>}}
 </pre>
