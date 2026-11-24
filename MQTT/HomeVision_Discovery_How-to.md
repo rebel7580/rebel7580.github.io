@@ -26,7 +26,7 @@
     * Analog Inputs
     * Timers
     * HVAC
-    * Device Class, Max and Min Note
+    * Device Class, State Class, Unit of Measurement, Max, and Min Notes
     * Re-discovery: When Home Assistant Forgets Discovered Devices
     * How Device Name Affects Friendly Name
 {:toc}
@@ -72,82 +72,10 @@ Same as the "-nodevice" option in the manual method.
 Discovery tab visibility as well as the selection of settings on the Discovery screen are <b>volatile</b>; they are not saved when the plug-in is shut down, unlike other plug-in settings.
 <!-- <h2 id="manual-method">Manual Method</h2> -->
 ## Manual Method
+See
+<a href="#discovery-procedure-for-plug-ins-tcl-programming-required">Discovery Procedure For Other Plug-ins (TCL Programming Required)</a>
+for details on how to do discovery from within other plug-ins.
 
-The MQTT Plug-in contains a public procedure to do discovery from within other plug-ins. To use, the plug-in must have the following line:
-<pre>
-    hvImport haObjectDiscovery
-</pre>
-Syntax of discovery command:
-<pre>
-    hvObjectDiscovery {-noid} {-nous} {-nodevice} {-retain} <i>add</i> {<i>object_type</i> {<i>id1 id2 ...</i>}}
-</pre>
-
-<ul><li><i>-noid</i> is optional. If present, don't include the object ID (i.e.: A-10) at the beginning of the entity name. Default: include the id. The object ID is still used in <i>unique_id</i> and other identifiers to ensure unique entries there.
-</li><li><i>-nous</i> is optional. If present, replace underscores with spaces in the entity name. Default: include any underscores as-is.
-</li><li><i>-nodevice</i> is optional. If present, the object's entity in Home Assistant will NOT be included in an object type device. Default: Entity is included.
-</li><li><i>-retain</i> is optional. If present, Home Assistant will publish command_topic messages with the retain flag set. Default: retain flag is not set.
-</li><li><i>add</i> is required:
- <br>
- 1 - for discovery,
- <br>
- 0 - for object removal (sends a message asking for the object to be removed from the entity list.)
- <br>
- Any other number results in creating the message(s) and just displaying them in the debug plug-in, but NOT publishing.
- Good for testing that the procedure generates what you expect without actually sending anything.
-</li><li>If <i>object_type</i> is not present, then it will discover (or remove) all objects (those that are in the "Int Objects" list, NOT all of your defined objects!).
-Note: In this case, only "flag" and "var" are included; "flag_b" and "var_n" are not.
-If you want to limit discovery or removal to one object type, put that type here. Valid built-in object_types are x10, light, var, var_n, flag, flag_b, input, output, analog, temp, ir, hvac, macro, timer, se and pe.
-Also works for other plug-ins that have discoverable devices and provide the proper interface to the Discovery procedures. (Caseta is one such plug-in.)
-</li><li>If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
-</li></ul>
-
-"flag_b" generates a flag as a <i>binary_sensor</i>. "flag" does a <i>switch</i>.
-As a binary_sensor, the flag is "read-only". As a switch, it can be read and written.
-You can run discovery on a flag for both types (separately of course). Discovery in this case will generate different <i>unique_IDs</i> and <i>entity IDs</i> for each type. Depending on <i>-noid</i>, names may be the same, but these can be changed in the Home Assistant UI if desired.
-There may be a need to have the same flag appear as both (although I don't have a use case for it!)
-<br>
-<br>
-For number, sensor and binary_sensor objects, if "dc:<i>device_class</i>" is found in the HomeVisionXL Description field of the var (var_n), flag (flag_b), input, analog input, or temp (DTS),
-a "device_class" attribute will be created with <i>device_class</i> as its value. No validation is made to make sure <i>device_class</i> is a valid "device_class" for the object, and may produce unknown behavior in Home Assistant if invalid.
-<br>
-<br>
-Examples:
-<br>
-<br>
-   Discover all objects:
-<pre>
-       hvObjectDiscovery 1
-</pre>
-   Discover some x-10 (A2, B6, C15):
-<pre>
-       hvObjectDiscovery 1 x10 1 21 46
-</pre>
-   Show all discovery messages, but don't publish:
-<pre>
-       hvObjectDiscovery 2
-</pre>
-   Remove all objects:
-<pre>
-       hvObjectDiscovery 0
-</pre>
-   Remove flag 10:
-<pre>
-       hvObjectDiscovery 0 flag 10
-</pre>
-   Discover only flag objects (as switches):
-<pre>
-       hvObjectDiscovery 1 flag
-</pre>
-   Discover only flag objects (as binary_sensors):
-<pre>
-       hvObjectDiscovery 1 flag_b
-</pre>
-   Discover more than one but less than your total object types. No ID or underscores in Name. 
-   Add a new command line for each type:
-<pre>
-      hvObjectDiscovery -noid -nous 1 flag 10
-      hvObjectDiscovery -noid -nous 1 x10 1 21 46
-</pre>
 <!-- <h2 id="discovery-notes">Discovery Notes</h2> -->
 ## Discovery Notes
 
@@ -180,60 +108,11 @@ Example ("NO ID in Name?"and "Underscore to space in Name?" both selected):
 </li></ul>
 <ul><li>If "Exclude from Device?" is NOT checked (or -nodevice is not present), for each object type, MQTT Discovery creates a separate "device" that groups all entities created for that type.
 Device names will be "HomeVision {Object_type}". 
-If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included.
+If "Exclude from Device?" is checked (or -nodevice is present), then the the entity is not included as a member of the device.
 </li><li>Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
-The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
-and a "haObjectDiscovery" procedure which is called when "Run Discovery" is clicked and creates the discovery message to Home Assistant for each object to be discovered.
-The "haObjectDiscovery" procedure typically will call another procedure to process each individual object.
-</li></ul>
-
-If a plug-in needs to use configuration values from the MQTT plug-in, use the "getDiscovConfig" procedure.
-"getDiscovConfig" returns a dict with the following:
-<pre>
-    clientID
-    cmndPrefix 
-    statPrefix
-    telePrefix
-    pwrPostfix
-    rstPostfix
-    LWTPostfix 
-</pre>
-"clientID" can be used to create unique ids if necessary.
-<br>
-<br>
-Example (as provided by the Caseta Plug-in): 
-<pre>
-    hvPublic getDiscovDevices
-    proc getDiscovDevices {} {
-
-        mk::loop row cfg.devices {
-            lassign [mk::get $row id name] id name
-            dict set caseta caseta $id [list "CA-$id" $name]
-        }
-        return $caseta
-    }
-
-    hvPublic haObjectDiscovery
-    proc haObjectDiscovery {args} {
-        ...
-        sendDiscovery $noid $nous $retain $nodevice $add $id $name $topic $obj_type $dev_type $model $manuf
-        ...
-    }
-    
-    hvImport getDiscovConfig
-    hvImport mqttComm
-    proc sendDiscovery {args} {
-        ...
-        # get prefix/postfix, etc. info from MQTT, if needed.
-        set mqttcfg {*}[getDiscovConfig]
-        ...
-        # create HA discovery topic and message
-        ...
-        # send discovery
-        mqttComm -retain pub $hadiscoverytopic $message
-        ...
-    }
-</pre>
+See <a href="#using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required">Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)</a>.
+</li>
+</ul>
 <!-- <h1 id="homevision-object-discovery-details">HomeVision Object Discovery Details</h1> -->
 # HomeVision Object Discovery Details
 
@@ -442,7 +321,7 @@ homeassistant/switch/HVXLb1d0d912ed315aad_FL-18/config
 Alternatively, a flag can be defined as a <i>binary_sensor</i> (use "flag_b" as the object type). The flag would be read-only from the perspective of Home Assistant.
 Attribute "device_class" is set if found in the flag's "Description" field. Must be a valid sensor device class.
 See 
-<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
+<a href="#device-class-state-class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 {% raw %}
 <pre>
 homeassistant/binary_sensor/HVXLb1d0d912ed315aad_FL-26b/config
@@ -472,7 +351,7 @@ A variable can be defined as a number entity (use "var_n" as the object type). T
 Attributes "device_class", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes. See Note.
 If not explicitly set, max = 255 and min = 0.
 See 
-<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
+<a href="#device-class-state-class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 {% raw %}
 <pre>
 homeassistant/number/HVXLb1d0d912ed315aad_VA-145n/config
@@ -497,9 +376,9 @@ homeassistant/number/HVXLb1d0d912ed315aad_VA-145n/config
 </pre>
 {% endraw %}
 Alternatively, a variable can be defined as a "sensor" entity; just use "var" as the object type.
-Attributes "device_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes.
+Attributes "device_class", "state_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes.
 See 
-<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
+<a href="#device-class-state-class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 <br>
 <br>
 See <i>"Variable Options"</i> in the <i>"Tips"</i> section of
@@ -530,7 +409,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_VA-145/config
 ### Inputs
 Defined as "binary Sensor" entities. "payload_on" and "payload_off" are defined as the text in HomeVisionXL's <i>Input Port Summary's</i> "Low State Label" and "High State Label", respectively.  Attribute "device_class" is set if found in the input's "Description" field. Must be a valid binary_sensor device class.
 See 
-<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
+<a href="#device-class-state-class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 Binary sensors do not have a "retain" option.
 {% raw %}
 <pre>
@@ -662,12 +541,13 @@ homeassistant/switch/HVXLb1d0d912ed315aad_MA-10/config
 Like IR entities, Macros, Scheduled Events and Periodic Events can also be used as Buttons. See IR above for details.
 <!-- <h3 id="digital-temperature-sensors">Digital Temperature Sensors</h3> -->
 ### Digital Temperature Sensors
-Defined as "sensor" entities. Attributes "device_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes. 
+Defined as "sensor" entities. Attributes "device_class", "state_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes. 
 Must be a valid sensor device class. See Note. 
 If no device class is found in the Description field, then "device_class" is set to "temperature".
+If no state class is found in the Description field, then "state_class" is set to "measurement".
 "unit_of_measurement" if present is set accordingly. Otherwise it is set to the value specified in HomeVisionXL's Settings->Temperature Scale.
 See 
-<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
+<a href="#device-class-state-class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 
 Sensors do not have a "retain" option.
 {% raw %}
@@ -680,6 +560,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TE-0/config
         "value_template": "{{ value_json.STATE }}",
         "unit_of_measurement": "°F",
         "device_class": "temperature",
+        "state_class": "measurement",
         "qos": 1,
         "device": {
                 "identifiers": [
@@ -695,9 +576,9 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_TE-0/config
 <!-- <h3 id="analog-inputs">Analog Inputs</h3> -->
 ### Analog Inputs
 Defined as "sensor" entities. 
-Attributes "device_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes.
+Attributes "device_class", "state_class", "unit_of_measurement", "min" and "max" are set if found in the variable's "Description" field. Must be valid sensor attributes.
 See 
-<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
+<a href="#device-class-state-class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 
 {% raw %}
 <pre>
@@ -722,7 +603,7 @@ homeassistant/sensor/HVXLb1d0d912ed315aad_AN-0/config
 {% endraw %}
 <!-- <h3 id="timers">Timers</h3> -->
 ### Timers
-Defined as <i>two</i> "sensor" entities,
+Defined as <i><b>two</b></i> "sensor" entities,
 one for the timer's state (Running, Stopped, Ringing)
 and one for the current time.
 Time is reported in "HHH:MM:SS.hh" format.
@@ -732,7 +613,7 @@ Attribute "device_class" is set if found in the timer's "Description" field.
 Must be a valid sensor device class,
 although "device_class" may not make sense for timers.
 See 
-<a href="#device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</a>.
+<a href="#device-class-state-class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</a>.
 {% raw %}
 <pre>
 homeassistant/sensor/HVXLb1d0d912ed315aad_TI_8/config
@@ -841,18 +722,23 @@ homeassistant/climate/HVXLb1d0d912ed315aad_HV-1/config
 }
 </pre>
 {% endraw %}
-<!-- <h3 id="device-class-unit-of-measurement-max-and-min-notes">Device Class, Unit of Measurement, Max and Min Notes</h3> -->
-### Device Class, Unit of Measurement, Max and Min Notes
-For all objects defined as number, sensor or binary sensor entities, Several Home Assistant attributes can be set by placing the following somewhere in the Object's <i>Description</i> field in HomeVisionXL.
+<!-- <h3 id="device-class-state-class-unit-of-measurement-max-and-min-notes">Device Class, State Class, Unit of Measurement, Max, and Min Notes</h3> -->
+### Device Class, State Class, Unit of Measurement, Max, and Min Notes
+For all objects defined as number, sensor or binary sensor entities, several Home Assistant attributes can be set by placing the following somewhere in the object's <i>Description</i> field in HomeVisionXL.
 <pre>
    dc:<i>device_class</i>
+   sc:<i>state_class</i>
    uom:<i>unit_of_measurement</i>
    max:<i>max_value</i>
    min:<i>min_value</i>
 </pre>
-<i>device_class</i> is a valid device class name for the sensor or binary sensor.
-<i>unit_of_measurement</i> is a valid unit of measurement name for the sensor or binary sensor.
+<i>device_class</i> is a valid device class name for a sensor or binary sensor.
+<i>state_class</i> is a valid state class name for a sensor.
+<i>unit_of_measurement</i> is a valid unit of measurement name for a sensor or binary sensor.
 <i>max_value</i> and <i>min_value</i> should be 0-255.
+(See Home Assistant documentation for allowable values.)
+<br>
+<br>
 No checking is done to make sure that any attributes in the Description field are  valid attributes,
 nor are the max and min values checked. 
 <br>
@@ -865,45 +751,338 @@ any attribute.
 <br>
 Example Object Description:
 <pre>
-   Outside Humidity dc:humidity uom:% max:100 min:0
+   Outside Humidity dc:humidity uom:% max:100 min:0 sc:measurement
 </pre>
 Allowed attributes:
 <pre>
-Object       type       dc    uom   min   maY
-flag_b   binary sensor   Y     x     x     x
-var      sensor          Y     Y     Y     Y
-var_n    number          Y     x     Y     Y
-timer    sensor          Y     x     x     x
-timer_t  sensor          Y     x     x     x
-analog   sensor          Y     Y     Y     Y
-temp     sensor          Y     Y     Y     Y
-input    binary_sensor   Y     x     x     x
-X10      light           -     -     -     -
-X10      switch          -     -     -     -
-light    light           -     -     -     -
-flag     switch          -     -     -     -
-output   switch          -     -     -     -
-ir       switch          -     -     -     -
-macro    switch          -     -     -     -
-se       switch          -     -     -     -
-pe       switch          -     -     -     -
-hvac     climate         -     -     -     -
+Object       type       dc    uom   min   max   sc
+flag_b   binary sensor   Y     x     x     x     x
+var      sensor          Y     Y     Y     Y     Y
+var_n    number          Y     x     Y     Y     x
+timer    sensor          Y     x     x     x     x
+timer_t  sensor          Y     x     x     x     x
+analog   sensor          Y     Y     Y     Y     Y
+temp     sensor          Y     Y     Y     Y     Y
+input    binary_sensor   Y     x     x     x     x
+X10      light           -     -     -     -     -
+X10      switch          -     -     -     -     -
+light    light           -     -     -     -     -
+flag     switch          -     -     -     -     -
+output   switch          -     -     -     -     -
+ir       switch          -     -     -     -     -
+macro    switch          -     -     -     -     -
+se       switch          -     -     -     -     -
+pe       switch          -     -     -     -     -
+hvac     climate         -     -     -     -     -
 </pre>
 <ul>
 <li>
-Description Attributes with a "Y" are currently supported for that object.
+<i>temp</i> object attributes dc, sc, and uom default to values as described in
+<a href="#digital-temperature-sensors">Digital Temperature Sensors</a> unless overridded by Description Attributes.
 </li>
 <li>
-Description Attributes with an "x" will be processed and <b>will</b> appear in the discovery message, but may not make sense for that object and may cause issues with Home Assistant.
+All other objects default to no attributes. 
+</li>
+<li>
+Description Attributes with a "Y" are currently supported for that object in Home Assistant.
+</li>
+<li>
+Description Attributes with an "x" will be processed and <b>will</b> appear in the discovery message, but may not make sense for that object and may or may not cause issues with Home Assistant.
 <i>Use with caution!</i>
 </li>
 <li>
-Description Attributes for objects with four "-" will not be processed and <b>will not</b> appear in the discovery message.
+Description Attributes for objects with "-" will not be processed and <b>will not</b> appear in the discovery message.
 </li>
 </ul>
 
-<!-- <h2 id="re-discovery-when-home-assistant-forgets-discovered-devices">Re-discovery When Home Assistant Forgets Discovered Devices</h2> -->
-## Re-discovery: When Home Assistant Forgets Discovered Devices 
+
+
+<!-- <h2 id="caution_for_changing_deleting_objects_that_have_been_discovered">Caution for Changing/Deleting Objects That Have Been Discovered</h2> -->
+## Caution for Changing/Deleting Objects That Have Been Discovered.
+If you have Home Assistant, and you used the MQTT plug-in's Discovery function to discover to Home Assistant an object you subsequently want to delete,
+to avoid problems the object should be "unwound".
+<ol>
+<li>
+In the MQTT plug-in's "Discovery" tab (press F4 to make it visible if not already),
+scroll to and select the object you want to delete.
+</li>
+<li>
+Select "Discovery Type:" "unDiscover". The other checkboxes don't matter as they don't affect the "unique ID" that is used to identify the entity.
+</li>
+<li>
+Click "Run Discovery". This will remove the entity from Home Assistant. If you don't do this, you may wind up with an "orphaned" entity in Home Assistant.
+</li>
+<li>
+"Delete" the object from the MQTT plug-in's "Int Objects" Tab. Press "Done" to make the change effective.
+</li>
+<li>
+Finally change your schedule to remove the object, if necessary.
+</li>
+</ol>
+
+These same steps can be followed if you want to rename or otherwise change an object.
+
+<!-- <h2 id="how-device-name-affects-friendly-name">How Device Name Affects Entity and Friendly Names</h2> -->
+## How Device Name Affects Entity and Friendly Names
+
+<b>Note:</b> Home Assistant release 2026.11 has significantly changed how entity naming is done. While the following is still valid, Home Assistant may offer more flexible ways to handle naming.
+
+Prepending the device name to the object name to create a friendly name and an entity name is a Home Assistant architectural decision made a long time ago but wasn’t implemented in the Home Assistant MQTT integration, specifically, the MQTT Integration's discovery feature, until version 2023.8.0.
+(Similarly, Tasmota Software, around version 12.0 or so, and the Home Assistant Tasmota integration implemented this as well.)
+
+If you use Devices in your HomeVision MQTT Plug-in's discovery, Home Assistant will create entities in this format:
+
+<pre>
+    {device name}_{object name}
+</pre>
+and friendly names in this format:
+
+<pre>
+    {device name} {object name}
+</pre>
+
+Example:
+<br>
+For a HomeVision macro called "Outside Lights Off", Home Assistant will create the following:
+<pre>
+    entity name:   switch.homevisionxl_macro_outside_lights_off
+
+    friendly name: HomeVisionXL Macro Outside Lights Off
+</pre>
+
+If you don’t want the device name prepended to the object name, you’ll need do one of the following:
+<ul>
+<li>
+Re-discover with "Exclude from Device" turned on in the MQTT Plug-in.
+
+This method removes the device name from both the entity name and friendly name.
+</li>
+<li>
+Manually edit friendly names as you add/use objects in your Home Assistant dashboard.
+This is probably the easiest if you only have a few objects exported into Home Assistant.
+
+This method leaves the device name as part of the entity name.
+</li>
+<li>
+If you have a lot of objects, you can use this (somewhat manual) bulk technique
+(Courtesy of 123Taras on the Home Assistant forum. See
+<a href="https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396">why does mqtt discovery add device name to entity name</a>.
+This method also leaves the device name as part of the entity name.
+
+<br><br>
+<ol>
+<li>
+First, "undiscover" all the HomeVision objects you want to change, using the MQTT Plug-in's <i>Discovery</i> tab (or your customized discovery plug-in).
+</li>
+<br>
+<li>Copy-paste the following template into the Home Assistant Template Editor (Development Tools->Template):
+<br><br>
+<pre>
+&#123;% for id in integration_entities('mqtt')
+  | map('device_id') | unique | reject ('eq', None) | sort %&#125;
+&#123;% set name = device_attr(id, "name_by_user") or device_attr(id, "name") %&#125;
+# &#123;&#123; name &#125;&#125;
+&#123;%- for e in device_entities(id) | sort %&#125;
+&#123;&#123; e &#125;&#125;:
+  friendly_name: &#123;&#123; state_attr(e, 'friendly_name') | replace(name, '') | trim &#125;&#125;
+&#123;%- endfor -%&#125;
+&#123;%- endfor -%&#125;
+</pre>
+The Template Editor’s results window should now contain a neatly formatted YAML listing of your MQTT-based entities, grouped by device, showing each one’s entity_id and its friendly_name stripped of its device name.
+
+Here's an example of what the template might generate.
+This is a very much condensed extraction from my list (which has around 160 entries).
+Each entity’s desired friendly_name has been stripped of its device name.
+<br><br>
+<pre>
+# HomeVisionXL Macro
+switch.homevisionxl_macro_outside_decorations_off:
+  friendly_name: Outside Decorations Off
+
+# HomeVisionXL Output
+switch.homevisionxl_output_sprinkler_enable:
+  friendly_name: Sprinkler Enable
+
+# HomeVisionXL Flag_b
+binary_sensor.homevisionxl_flag_b_evening_lights_on:
+  friendly_name: Evening Lights On
+
+# HomeVisionXL Hvac
+climate.homevisionxl_hvac_zone1:
+  friendly_name: Zone1
+</pre>
+</li>
+<li>
+Copy-paste the generated listing into the customize section of your configuration.yaml file. In my case, I have that section in a separate customize.yaml file.
+Make any required corrections or deletions, then save the file and restart Home Assistant.
+</li>
+<br>
+<li>
+Re-discover your HomeVision objects.
+</li>
+</ol>
+<br><br>
+If/when you add new objects to Home Assistant, you will need to add the appropriate lines to your customize section/file.
+<br><br>
+If you have Tamota devices with the same issue, paste another copy of the above template into the editor with "mqtt" replaced with "tasmota".
+Each Tasmota has it's own device name, plus entities for switches/relays and several sensors.
+You may want to include only those entities that refer to relays/buttons/switches, and not the sensors, since you won't be able to tell sensors from different Tasmotas apart easily.
+(E.g., friendly names for all tasmota devices' RSSI entity would be renamed "RSSI".)
+</li>
+</ul>
+<b>Note:</b>
+In some cases, you may wind up with entity names changing from what you may have had before.
+Carefully check and manually update any instances of affected entities to the new names.
+It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).
+
+<!-- <h2 id="discovery-from-within-other-plug-ins-tcl-programming-requireddiscovery-procedure for-plug-ins-tcl-programming-required">Discovery from Within Other Plug-ins (TCL Programming Required)</h2> -->
+## Discovery from Within Other Plug-ins (TCL Programming Required)
+
+The following sections require some amount of knowledge of HomeVisionXL plug-ins and TCL programming.
+
+<u>Those <b>not</b> interested in creating their own plug-ins can safely ignore these sections</u>.
+<!-- <h3 id="discovery-procedure-for-plug-ins-tcl-programming-required">Discovery Procedure For Other Plug-ins (TCL Programming Required)</h3> -->
+
+### Discovery Procedure For Other Plug-ins (TCL Programming Required)
+The MQTT plug-in provides a procedure (haObjectDiscovery) that other plug-ins can use to discover "devices".
+
+Discovery can be done either entirely within a plug-in,
+or by using the MQTT plug-in's Discovery tab to provide a consolidated User interface.
+(See next section).
+
+To use, a plug-in must have the following line:
+<pre>
+    hvImport haObjectDiscovery
+</pre>
+Syntax of the discovery procedure:
+<pre>
+    hvObjectDiscovery {-noid} {-nous} {-nodevice} {-retain} <i>add</i> {<i>object_type</i> {<i>id1 id2 ...</i>}}
+</pre>
+
+<ul><li><i>-noid</i> is optional. If present, don't include the object ID (i.e.: A-10) at the beginning of the entity name. Default: include the id. The object ID is still used in <i>unique_id</i> and other identifiers to ensure unique entries there.
+</li><li><i>-nous</i> is optional. If present, replace underscores with spaces in the entity name. Default: include any underscores as-is.
+</li><li><i>-nodevice</i> is optional. If present, the object's entity in Home Assistant will NOT be included in an object type device. Default: Entity is included.
+</li><li><i>-retain</i> is optional. If present, Home Assistant will publish command_topic messages with the retain flag set. Default: retain flag is not set.
+</li><li><i>add</i> is required:
+ <br>
+ 1 - for discovery,
+ <br>
+ 0 - for object removal (sends a message asking for the object to be removed from the entity list.)
+ <br>
+ Any other number results in creating the message(s) and just displaying them in the debug plug-in, but NOT publishing.
+ Good for testing that the procedure generates what you expect without actually sending anything.
+</li><li>If <i>object_type</i> is not present, then it will discover (or remove) all objects (those that are in the "Int Objects" list, NOT all of your defined objects!).
+Note: In this case, only "flag" and "var" are included; "flag_b" and "var_n" are not.
+If you want to limit discovery or removal to one object type, put that type here. Valid built-in object_types are x10, light, var, var_n, flag, flag_b, input, output, analog, temp, ir, hvac, macro, timer, se, and pe.
+Also works for other plug-ins that have discoverable devices and provide the proper interface to the Discovery procedures. (Caseta is one such plug-in.)
+</li><li>If you want to further limit to only certain IDs within a type, list the IDs (the <b><i>numeric form</i></b>, NOT the letter/number form).
+</li></ul>
+
+"flag_b" generates a flag as a <i>binary_sensor</i>. "flag" does a <i>switch</i>.
+As a binary_sensor, the flag is "read-only". As a switch, it can be read and written.
+You can run discovery on a flag for both types (separately of course). Discovery in this case will generate different <i>unique_IDs</i> and <i>entity IDs</i> for each type. Depending on <i>-noid</i>, names may be the same, but these can be changed in the Home Assistant UI if desired.
+There may be a need to have the same flag appear as both (although I don't have a use case for it!)
+<br>
+<br>
+For number, sensor, and binary_sensor objects, if "dc:<i>device_class</i>" is found in the HomeVisionXL Description field of the var (var_n), flag (flag_b), input, analog input, or temp (DTS),
+a "device_class" attribute will be created with <i>device_class</i> as its value. No validation is made to make sure <i>device_class</i> is a valid "device_class" for the object, and may produce unknown behavior in Home Assistant if invalid.
+<br>
+<br>
+Examples:
+<br>
+<br>
+   Discover all objects:
+<pre>
+       hvObjectDiscovery 1
+</pre>
+   Discover some x-10 (A2, B6, C15):
+<pre>
+       hvObjectDiscovery 1 x10 1 21 46
+</pre>
+   Show all discovery messages, but don't publish:
+<pre>
+       hvObjectDiscovery 2
+</pre>
+   Remove all objects:
+<pre>
+       hvObjectDiscovery 0
+</pre>
+   Remove flag 10:
+<pre>
+       hvObjectDiscovery 0 flag 10
+</pre>
+   Discover only flag objects (as switches):
+<pre>
+       hvObjectDiscovery 1 flag
+</pre>
+   Discover only flag objects (as binary_sensors):
+<pre>
+       hvObjectDiscovery 1 flag_b
+</pre>
+   Discover more than one but less than your total object types. No ID or underscores in Name. 
+   Add a new command line for each type:
+<pre>
+      hvObjectDiscovery -noid -nous 1 flag 10
+      hvObjectDiscovery -noid -nous 1 x10 1 21 46
+</pre>
+
+<!-- <h3 id="using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required">Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)</h3> -->
+### Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)
+
+Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
+The plug-in must create two procedures: a "getDiscovDevices" procedure that returns a dict with a list of devices used to populate the "Object Type" and "Choose Objects" lists in the MQTT "Discovery" tab,
+and a "haObjectDiscovery" procedure which is called when "Run Discovery" is clicked and creates the discovery message to Home Assistant for each object to be discovered.
+The "haObjectDiscovery" procedure typically will call another procedure to process each individual object.
+
+If a plug-in needs to use configuration values from the MQTT plug-in, use the "getDiscovConfig" procedure.
+"getDiscovConfig" returns a dict with the following:
+<pre>
+    clientID
+    cmndPrefix 
+    statPrefix
+    telePrefix
+    pwrPostfix
+    rstPostfix
+    LWTPostfix 
+</pre>
+"clientID" can be used to create unique ids if necessary.
+<br>
+<br>
+Example (as provided by the Caseta Plug-in): 
+<pre>
+    hvPublic getDiscovDevices
+    proc getDiscovDevices {} {
+
+        mk::loop row cfg.devices {
+            lassign [mk::get $row id name] id name
+            dict set caseta caseta $id [list "CA-$id" $name]
+        }
+        return $caseta
+    }
+
+    hvPublic haObjectDiscovery
+    proc haObjectDiscovery {args} {
+        ...
+        sendDiscovery $noid $nous $retain $nodevice $add $id $name $topic $obj_type $dev_type $model $manuf
+        ...
+    }
+    
+    hvImport getDiscovConfig
+    hvImport mqttComm
+    proc sendDiscovery {args} {
+        ...
+        # get prefix/postfix, etc. info from MQTT, if needed.
+        set mqttcfg {*}[getDiscovConfig]
+        ...
+        # create HA discovery topic and message
+        ...
+        # send discovery
+        mqttComm -retain pub $hadiscoverytopic $message
+        ...
+    }
+</pre>
+<!-- <h3 id="re-discovery-when-home-assistant-forgets-discovered-devices">Re-discovery When Home Assistant Forgets Discovered Devices</h3> -->
+### Re-discovery: When Home Assistant Forgets Discovered Devices 
 Discovery messages are sent from the MQTT Plug-in with "retain" on.
 This means that when you restart Home Assistant, it should automatically get updated by your MQTT broker with retained discovery messages.
 
@@ -994,137 +1173,3 @@ Sending an MQTT message to
     Payload: {anything}
 </pre>
 will trigger the myHADiscovery procedure and re-discover your devices.
-<!-- <h2 id="caution_for_changing_deleting_objects_that_have_been_discovered">Caution for Changing/Deleting Objects That Have Been Discovered/h2> -->
-## Caution for Changing/Deleting Objects That Have Been Discovered.
-If you have Home Assistant (HA), and you used the MQTT plug-in's Discovery function to discover to HA an object you subsequently want to delete,
-to avoid problems the object should be "unwound".
-<ol>
-<li>
-In the MQTT plug-in's "Discovery" tab (press F4 to make it visible if not already),
-scroll to and select the object you want to delete.
-</li>
-<li>
-Select "Discovery Type:" "unDiscover". The other checkboxes don't matter as they don't affect the "unique ID" that is used to identify the entity.
-</li>
-<li>
-Click "Run Discovery". This will remove the entity from HA. If you don't do this, you may wind up with an "orphaned" entity in HA.
-</li>
-<li>
-"Delete" the object from the MQTT plug-in's "Int Objects" Tab. Press "Done" to make the change effective.
-</li>
-<li>
-Finally change your schedule to remove the object, if necessary.
-</li>
-</ol>
-
-These same steps can be followed if you want to rename or otherwise change an object.
-
-<!-- <h2 id="how-device-name-affects-friendly-name">How Device Name Affects Entity and Friendly Names</h2> -->
-## How Device Name Affects Entity and Friendly Names
-Prepending the device name to the object name to create a friendly name and an entity name is a Home Assistant architectural decision made a long time ago but wasn’t implemented in the Home Assistant MQTT integration, specifically, the MQTT Integration's discovery feature, until version 2023.8.0.
-(Similarly, Tasmota Software, around version 12.0 or so, and the Home Assistant Tasmota integration implemented this as well.)
-
-If you use Devices in your HomeVision MQTT Plug-in's discovery, Home Assistant will create entities in this format:
-
-<pre>
-    {device name}_{object name}
-</pre>
-and friendly names in this format:
-
-<pre>
-    {device name} {object name}
-</pre>
-
-Example:
-<br>
-For a HomeVision macro called "Outside Lights Off", Home Assistant will create the following:
-<pre>
-    entity name:   switch.homevisionxl_macro_outside_lights_off
-
-    friendly name: HomeVisionXL Macro Outside Lights Off
-</pre>
-
-If you don’t want the device name prepended to the object name, you’ll need do one of the following:
-<ul>
-<li>
-Re-discover with "Exclude from Device" turned on in the MQTT Plug-in.
-
-This method removes the device name from both the entity name and friendly name.
-</li>
-<li>
-Manually edit friendly names as you add/use objects in your Home Assistant dashboard.
-This is probably the easiest if you only have a few objects exported into Home Assistant.
-
-This method leaves the device name as part of the entity name.
-</li>
-<li>
-If you have a lot of objects, you can use this (somewhat manual) bulk technique
-(Curtesy of 123Taras on the Home Assistant forum. See
-<a href="https://community.home-assistant.io/t/why-does-mqtt-discovery-add-device-name-to-entity-name/637396">why does mqtt discovery add device name to entity name</a>.
-This method also leaves the device name as part of the entity name.
-
-<br><br>
-<ol>
-<li>
-First, "undiscover" all the HomeVision objects you want to change, using the MQTT Plug-in's <i>Discovery</i> tab (or your customized discovery plug-in).
-</li>
-<br>
-<li>Copy-paste the following template into the Home Assistant Template Editor (Development Tools->Template):
-<br><br>
-<pre>
-&#123;% for id in integration_entities('mqtt')
-  | map('device_id') | unique | reject ('eq', None) | sort %&#125;
-&#123;% set name = device_attr(id, "name_by_user") or device_attr(id, "name") %&#125;
-# &#123;&#123; name &#125;&#125;
-&#123;%- for e in device_entities(id) | sort %&#125;
-&#123;&#123; e &#125;&#125;:
-  friendly_name: &#123;&#123; state_attr(e, 'friendly_name') | replace(name, '') | trim &#125;&#125;
-&#123;%- endfor -%&#125;
-&#123;%- endfor -%&#125;
-</pre>
-The Template Editor’s results window should now contain a neatly formatted YAML listing of your MQTT-based entities, grouped by device, showing each one’s entity_id and its friendly_name stripped of its device name.
-
-Here's an example of what the template might generate.
-This is a very much condensed extraction from my list (which has around 160 entries).
-Each entity’s desired friendly_name has been stripped of its device name.
-<br><br>
-<pre>
-# HomeVisionXL Macro
-switch.homevisionxl_macro_outside_decorations_off:
-  friendly_name: Outside Decorations Off
-
-# HomeVisionXL Output
-switch.homevisionxl_output_sprinkler_enable:
-  friendly_name: Sprinkler Enable
-
-# HomeVisionXL Flag_b
-binary_sensor.homevisionxl_flag_b_evening_lights_on:
-  friendly_name: Evening Lights On
-
-# HomeVisionXL Hvac
-climate.homevisionxl_hvac_zone1:
-  friendly_name: Zone1
-</pre>
-</li>
-<li>
-Copy-paste the generated listing into the customize section of your configuration.yaml file. In my case, I have that section in a separate customize.yaml file.
-Make any required corrections or deletions, then save the file and restart Home Assistant.
-</li>
-<br>
-<li>
-Re-discover your HomeVision objects.
-</li>
-</ol>
-<br><br>
-If/when you add new objects to Home Assistant, you will need to add the appropriate lines to your customize section/file.
-<br><br>
-If you have Tamota devices with the same issue, paste another copy of the above template into the editor with "mqtt" replaced with "tasmota".
-Each Tasmota has it's own device name, plus entities for switches/relays and several sensors.
-You may want to include only those entities that refer to relays/buttons/switches, and not the sensors, since you won't be able to tell sensors from different Tasmotas apart easily.
-(E.g., friendly names for all tasmota devices' RSSI entity would be renamed "RSSI".)
-</li>
-</ul>
-<b>Note:</b>
-In some cases, you may wind up with entity names changing from what you may have had before.
-Carefully check and manually update any instances of affected entities to the new names.
-It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).

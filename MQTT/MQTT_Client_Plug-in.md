@@ -283,6 +283,82 @@ This can be used to advantage; sending a "cmnd" "POWER" message with a payload o
 <!-- <h2 id="configuring-devices">Configuring Devices</h2> -->
 ## Configuring Devices
 
+<!-- <h3 id="int-objects-tab">Int Objects Tab</h3> -->
+### Int Objects Tab
+This tab contains a list of supported internal objects.
+These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, Macros, Scheduled Event, Periodic Events, Timers or HVAC.
+Add only those objects that need to be visible to or acted on by the MQTT network.
+<ul><li><i>ID</i> is the internal object ID.
+X-10 object IDs show with their A-P house/unit code format.
+Input and Output object IDs have an "I" or "O" prepended to their usual A-Q codes to distinguish them from X-10 ids.
+Other objects show using a "Fake" code of the first two letters of their standard HV object type name. For example, Custom Lights show as "LI".
+</li><li><i>Object Name</i> is the name of the object for use by serial and NetIO commands.
+It must be unique among both external and internal names. It can be the same as the topic, but cannot contain "<", ">", "/" or spaces.
+Alphanumeric and the underscore are the only allowed characters.
+<i>Object Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
+<b>N.B.:</b> HomeVision allows duplicate names among objects, so some modification to the suggested default names will be necessary to achieve uniqueness in the object lists.
+</li><li><i>Topic</i> is the topic used for publishing and subscribing.
+Topic rules are the same as external devices with default processing (i.e., no MQTT wildcards).
+</li><li>The <i>State</i> column will show the reported state of the object.
+The auto reporting feature for objects must be turned on, or the HomeVision schedule must explicitly send updates for this to work.
+When the state has not (yet) been reported, a "-" may show.
+Variables always show a "-" for the state.
+</li><li><i>Level</i> shows the reported object level or value as appropriate.
+X-10 and Light objects show their level in percent, while Variables show their value.
+</li><li>Rows can be sorted in ascending or descending order by <i>ID</i>, <i>Object Name</i> or <i>Topic</i> by clicking on the column header.
+When sorting by ID, object types are always grouped together and then sorted within those groups by ID.
+Sorting by <i>Object Name</i> or <i>Topic</i> will sort independant of object type. This is a good way to see potentially related objects; e.g., a switch and a flag that tracks the switch's state (and having similar Names).
+</li><li>The "Object Type List Enable" section serves two purposes.
+<ul>
+<li>Checking object types here limits the Object drop-down list in the Configure New window to make it easier to find the object to configure.
+</li><li>
+If "Display Only Checked Objects" is selected, the main object list is also limited to checked objects.
+<br>
+Checking "Display All" displays all objects independant of the checked object types.
+</li></ul>
+</li></ul>
+<i>New/Edit/Delete Internal Objects</i>
+
+<ul><li>To enter a new object, Click the "New" button and start by selecting an object from the drop-down list.
+Objects included in the list are those that have been checked in the
+"Object Type List Enable" section of the <b>Int Object Tab</b>.
+<ul><li>If a variable is selected, two additional options are available.
+<ul><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
+</li><li>If "Use Variable as Flag" is NOT selected, then "Use Two Variables" can be selected. If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1. If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
+</li></ul>
+</li><li>If an X-10 object is selected, then choose a Model.
+Model is used to determine how level changes are done.
+</li><li>Clicking "Copy Object to Topic, Name" will populate the <i>Topic</i> and <i>Name</i> fields with an appropriate version of the object name.
+Some validation is done on the <i>Topic</i> and <i>Name</i> fields; the "OK" button will be grayed out if either field fails validation. 
+The <i>Topic</i> and <i>Name</i> fields can be modified, keeping in mind the rules above for topics and object/device names.
+<br>
+<br>
+More than one object can have the same topic. This allows a single incoming command to control several objects.
+However, note that if a single topic is assigned to multiple objects, when ANY of those objects changes state, the same status message is published so that any external client that might be subscribed to the status message won't be able to tell which object changed state.
+<br>
+<br>
+An exception to this is if different index numbers are appended to the topic, in which case each will act and report independently.
+</li><li>Choose if object status messages should be sent with the "retained" flag set.
+The retain flag will cause most brokers to "remember" the status and send it to any client that later subscribes to the status topic.
+</li><li>Choose whether to log MQTT messages sent or received by this device.
+</li></ul>
+</li><li>Objects can be edited by clicking the "Edit" button. This brings up the same window used for adding a new object.
+</li><li>Use the "Delete" button to delete an object. When a object is deleted, the plug-in unsubscribes to any topics related to that device.
+</li><li>When "Done" is clicked, objects with standard topics are subscribed to their <b>command</b> full topics. Objects with custom topics are subscribed only to the topic as-is.
+<i>Click "Done" for changes to become effective!</i>
+</li></ul>
+<b>Note:</b> <i>For internal objects to report status changes, "automatic reporting" must be enabled and "automatically report changes" must be turned on for the desired objects. See HomeVisionXL->Controller Settings->Comm..</i>
+<br>
+<br>
+Automatic reporting of changes is not feasible for objects that change frequently.
+Variables are the most likely objects, as many systems have variables that change every loop; automatic reporting would flood the system with update messages.
+To resolve this problem, select a subset of variables (that don't change too often) to track,
+find in the schedule where these variables are changed,
+and in those places add in "Controller command: Report status of all variables".
+This way updates will occur only when interesting variables are changed.
+Alternatively, set up a periodic event containing "Controller command: Report status of all variables"
+with a rate that is a compromise between the amount of update commands sent vs frequency of the updates.
+
 <!-- <h3 id="ext-devices-tab">Ext Devices Tab</h3> -->
 ### Ext Devices Tab
 This tab contains a list of supported external devices.
@@ -359,82 +435,6 @@ When a device is deleted, the plug-in unsubscribes to any topics related to that
 Devices with custom topics are subscribed only to the topic as-is.
 <i>Click "Done" for changes to become effective!</i>
 </li></ul>
-<!-- <h3 id="int-objects-tab">Int Objects Tab</h3> -->
-### Int Objects Tab
-This tab contains a list of supported internal objects.
-These can be any of: X-10, Custom Lights, Flags, Variables, Inputs, Outputs, IR, Digital Temperature Sensors, Analog Inputs, Macros, Scheduled Event, Periodic Events, Timers or HVAC.
-Add only those objects that need to be visible to or acted on by the MQTT network.
-<ul><li><i>ID</i> is the internal object ID.
-X-10 object IDs show with their A-P house/unit code format.
-Input and Output object IDs have an "I" or "O" prepended to their usual A-Q codes to distinguish them from X-10 ids.
-Other objects show using a "Fake" code of the first two letters of their standard HV object type name. For example, Custom Lights show as "LI".
-</li><li><i>Object Name</i> is the name of the object for use by serial and NetIO commands.
-It must be unique among both external and internal names. It can be the same as the topic, but cannot contain "<", ">", "/" or spaces.
-Alphanumeric and the underscore are the only allowed characters.
-<i>Object Name</i> cannot be "pub", "sub" or "unsub"; these are reserved keywords for sending generic MQTT messages.
-<b>N.B.:</b> HomeVision allows duplicate names among objects, so some modification to the suggested default names will be necessary to achieve uniqueness in the object lists.
-</li><li><i>Topic</i> is the topic used for publishing and subscribing.
-Topic rules are the same as external devices with default processing (i.e., no MQTT wildcards).
-</li><li>The <i>State</i> column will show the reported state of the object.
-The auto reporting feature for objects must be turned on, or the HomeVision schedule must explicitly send updates for this to work.
-When the state has not (yet) been reported, a "-" may show.
-Variables always show a "-" for the state.
-</li><li><i>Level</i> shows the reported object level or value as appropriate.
-X-10 and Light objects show their level in percent, while Variables show their value.
-</li><li>Rows can be sorted in ascending or descending order by <i>ID</i>, <i>Object Name</i> or <i>Topic</i> by clicking on the column header.
-When sorting by ID, object types are always grouped together and then sorted within those groups by ID.
-Sorting by <i>Object Name</i> or <i>Topic</i> will sort independant of object type. This is a good way to see potentially related objects; e.g., a switch and a flag that tracks the switch's state (and having similar Names).
-</li><li>The "Object Type List Enable" section serves two purposes.
-<ul>
-<li>Checking object types here limits the Object drop-down list in the Configure New window to make it easier to find the object to configure.
-</li><li>
-If "Display Only Checked Objects" is selected, the main object list is also limited to checked objects.
-<br>
-Checking "Display All" displays all objects independant of the checked object types.
-</li></ul>
-</li></ul>
-<i>New/Edit/Delete Internal Objects</i>
-
-<ul><li>To enter a new object, Click the "New" button and start by selecting an object from the drop-down list.
-Objects included in the list are those that have been checked in the
-"Object Type List Enable" section of the <b>Int Object Tab</b>.
-<ul><li>If a variable is selected, two additional options are available.
-<ul><li>"Use Variable as Flag" treats the variable as a flag with its value being either a "0" (off) or "1" (on). If a value is received instead of "on" or "off", if it is "odd" it represents "on" and if "even" it represents "off". The variable will be set  to "0" or "1" accordingly.
-</li><li>If "Use Variable as Flag" is NOT selected, then "Use Two Variables" can be selected. If it is, any value received in a stat message will be written to two variables as a 2-byte number. I.e., the LSB will be written to the specified Variable, and the MSB written to the specified Variable + 1. If the option is not selected, the received value is written as a 1-byte number to the specified Variable.
-</li></ul>
-</li><li>If an X-10 object is selected, then choose a Model.
-Model is used to determine how level changes are done.
-</li><li>Clicking "Copy Object to Topic, Name" will populate the <i>Topic</i> and <i>Name</i> fields with an appropriate version of the object name.
-Some validation is done on the <i>Topic</i> and <i>Name</i> fields; the "OK" button will be grayed out if either field fails validation. 
-The <i>Topic</i> and <i>Name</i> fields can be modified, keeping in mind the rules above for topics and object/device names.
-<br>
-<br>
-More than one object can have the same topic. This allows a single incoming command to control several objects.
-However, note that if a single topic is assigned to multiple objects, when ANY of those objects changes state, the same status message is published so that any external client that might be subscribed to the status message won't be able to tell which object changed state.
-<br>
-<br>
-An exception to this is if different index numbers are appended to the topic, in which case each will act and report independently.
-</li><li>Choose if object status messages should be sent with the "retained" flag set.
-The retain flag will cause most brokers to "remember" the status and send it to any client that later subscribes to the status topic.
-</li><li>Choose whether to log MQTT messages sent or received by this device.
-</li></ul>
-</li><li>Objects can be edited by clicking the "Edit" button. This brings up the same window used for adding a new object.
-</li><li>Use the "Delete" button to delete an object. When a object is deleted, the plug-in unsubscribes to any topics related to that device.
-</li><li>When "Done" is clicked, objects with standard topics are subscribed to their <b>command</b> full topics. Objects with custom topics are subscribed only to the topic as-is.
-<i>Click "Done" for changes to become effective!</i>
-</li></ul>
-<b>Note:</b> For internal objects to report status changes, "automatic reporting" must be enabled and "automatically report changes" must be turned on for the desired objects. See HomeVisionXL->Controller Settings->Comm..
-<br>
-<br>
-Automatic reporting of changes is not feasible for objects that change frequently.
-Variables are the most likely object where this is true, as many systems have variables that change every loop.
-In this case, automatic reporting would flood the system with update messages.
-To resolve this, select a subset of variables (that don't change too often) to track,
-find in the schedule where these variables are changed,
-and in those places add in "Controller command: Report status of all variables".
-This way updates will occur only when interesting variables are changed.
-Alternatively, set up a periodic event containing "Controller command: Report status of all variables"
-with a rate that is a compromise between the amount of update commands sent vs frequency of the updates.
 
 <!-- <h3 id="settings-tab">Settings Tab</h3> -->
 ### Settings Tab
@@ -648,6 +648,7 @@ Here's a sequence chart example that might make it more clear:
 MQTT devices can be controlled within a schedule via serial commands which take one of these forms:
 <pre>
 
+Device/Object Form:
 
     mqtt: {-log|-nolog -retain|-noretain} <i>device_name/object_name</i> <i>command</i>; 
      - <i>command</i> is one of: [0|off|1|on|2|toggle|on {level}|state]. 
@@ -655,15 +656,21 @@ MQTT devices can be controlled within a schedule via serial commands which take 
      - Logs and retains according to option(s) if present (overrides configuration settings);
      - Default: log and retain according to named device/object's config settings.
 
+Generic Form:
+
     mqtt: {-log|-nolog -retain|-noretain} pub <i>topic</i> {<i>payload</i> {retain}};
      - logs and retains according to option(s) if present;
      -   "-retain|-noretain" removes "retain as last word" restriction.
          I.e., payload can actually include "retain" as last word;
      - default: always logs and retains if last word is "retain".
 
+Subscribe/Unsubscribe Form:
+
     mqtt: {-log} [sub|unsub] topic <<i>topic</i>>|<i>topic</i> <i>callback</i>;
      - logs if option is present, never retains;
      - default: never logs, never retains.
+
+Notes:
 
     "mqtt:" is whatever the "Serial string prefix" is defined as.
     ";' is whatever the "Serial string terminator character(s)" is defined as.
@@ -716,6 +723,8 @@ Examples:
 
 </pre>
 
+<!-- <h4 id="subscribe-unsubscribe-form">Subscribe/Unsubscribe Form</h4> -->
+#### Subscribe/Unsubscribe Form
 For sub and unsub commands, <i>callback</i> is a public callback procedure that must exist in a plug-in.
 <br>
 <br>
@@ -828,7 +837,7 @@ There are four methods that provide more advanced processing, listed here in inc
 See "mqttComm" section for details.
 </li></ul>
 Triggers and Homevision Action Topics are relatively simple to construct.
-Custom Commands and Independant Plug-ins require some knowladge of the TCL programming language.
+Custom Commands and Independant Plug-ins require some knowledge of the TCL programming language.
 <!-- <h4 id="triggers">Triggers</h4> -->
 #### Triggers
 Triggers are a way to get a little more processing power without coding.
@@ -1465,7 +1474,7 @@ Typical use:
     hvEventHook exit [list subscribe unsub]
 </pre>
 
-A sample plug-in using <b>mqttComm</b>, <b>mqttReady</b> and <b>mqttStatus</b> that does its own subscribing and needs no entries in the MQTT Plug-in's device lists can be downloaded from <a href="https://github.com/rebel7580/rebel7580.github.io/blob/main/MQTT/mqttsample.hap">here</a>.
+A sample plug-in using <b>mqttComm</b>, <b>mqttReady</b> and <b>mqttStatus</b> that does its own subscribing and needs no entries in the MQTT Plug-in's device lists can be downloaded from <a href="https://github.com/rebel7580/rebel7580.github.io/blob/main/MQTT/mqttsample.hap">https://github.com/rebel7580/rebel7580.github.io/blob/main/MQTT/mqttsample.hap</a>.
 
 
 <!-- <h2 id="mqtt-discovery-for-home-assistant">MQTT Discovery for Home Assistant</h2> -->
