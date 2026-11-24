@@ -797,7 +797,7 @@ Description Attributes for objects with "-" will not be processed and <b>will no
 
 
 
-<!-- <h2 id="caution_for_changing_deleting_objects_that_have_been_discovered">Caution for Changing/Deleting Objects That Have Been Discovered/h2> -->
+<!-- <h2 id="caution_for_changing_deleting_objects_that_have_been_discovered">Caution for Changing/Deleting Objects That Have Been Discovered</h2> -->
 ## Caution for Changing/Deleting Objects That Have Been Discovered.
 If you have Home Assistant, and you used the MQTT plug-in's Discovery function to discover to Home Assistant an object you subsequently want to delete,
 to avoid problems the object should be "unwound".
@@ -935,12 +935,12 @@ In some cases, you may wind up with entity names changing from what you may have
 Carefully check and manually update any instances of affected entities to the new names.
 It's especially important for any LoveLace-based automations, scripts, helpers, etc., as well as your configuration file(s), which won't get updated to a new entity name automatically, and may not produce an obvious error (other than not working as expected).
 
-<!-- <h2 id="discovery-from-within-other-plug-ins-tcl-programming-requireddiscovery-procedure for-plug-ins-tcl-programming-required"/h2> -->
+<!-- <h2 id="discovery-from-within-other-plug-ins-tcl-programming-requireddiscovery-procedure for-plug-ins-tcl-programming-required">Discovery from Within Other Plug-ins (TCL Programming Required)</h2> -->
 ## Discovery from Within Other Plug-ins (TCL Programming Required)
 
 The following sections require some amount of knowledge of HomeVisionXL plug-ins and TCL programming.
-
-<!-- <h3 id="discovery-procedure-for-plug-ins-tcl-programming-required"/h3> -->
+<u>Those <b>not</b> interested in creating their own plug-ins can safely ignore these sections</u>.
+<!-- <h3 id="discovery-procedure-for-plug-ins-tcl-programming-required">Discovery Procedure For Other Plug-ins (TCL Programming Required)</h3> -->
 
 ### Discovery Procedure For Other Plug-ins (TCL Programming Required)
 The MQTT plug-in provides a procedure (haObjectDiscovery) that other plug-ins can use to discover "devices".
@@ -1025,7 +1025,7 @@ Examples:
       hvObjectDiscovery -noid -nous 1 x10 1 21 46
 </pre>
 
-<!-- <h3 id="using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required"/h3> -->
+<!-- <h3 id="using-the-mqtt-plug-in-discovery-tab-to-discover-devices-from-other-plug-ins-tcl-programming-required">Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)</h3> -->
 ### Using the MQTT plug-in Discovery Tab to Discover Devices from Other Plug-ins (TCL Programming Required)
 
 Other plug-ins that support objects that can be discovered (like the caseta plug-in) can be accessed from the MQTT "Discovery" tab.
