@@ -939,6 +939,7 @@ It's especially important for any LoveLace-based automations, scripts, helpers, 
 ## Discovery from Within Other Plug-ins (TCL Programming Required)
 
 The following sections require some amount of knowledge of HomeVisionXL plug-ins and TCL programming.
+
 <u>Those <b>not</b> interested in creating their own plug-ins can safely ignore these sections</u>.
 <!-- <h3 id="discovery-procedure-for-plug-ins-tcl-programming-required">Discovery Procedure For Other Plug-ins (TCL Programming Required)</h3> -->
 
